@@ -1,0 +1,8 @@
+.env
+vendor/
+*.log
+.DS_Store
+Thumbs.db
+public/assets/images/uploads/
+.idea/
+.vscode/

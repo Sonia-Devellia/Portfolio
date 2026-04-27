@@ -1,0 +1,14 @@
+{
+  "name": "portfolio-sonia-habibi",
+  "version": "1.0.0",
+  "description": "Portfolio Sonia Habibi — Dev Full-Stack",
+  "scripts": {
+    "sass:build": "sass scss/main.scss public/assets/css/main.css --style=compressed --no-source-map",
+    "sass:watch": "sass scss/main.scss public/assets/css/main.css --watch --style=expanded"
+  },
+  "author": "Sonia Habibi",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.99.0"
+  }
+}

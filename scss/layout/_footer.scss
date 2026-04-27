@@ -1,0 +1,41 @@
+// ─── Footer ───────────────────────────────────────────────────────────────────
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__logo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  &__links {
+    display: flex;
+    gap: 18px;
+    margin-right: auto;
+
+    a {
+      font-size: 12px;
+      color: var(--text-2);
+      transition: color 0.15s;
+
+      &:hover { color: var(--text); }
+    }
+  }
+
+  &__copy {
+    font-size: 11px;
+    color: var(--text-3);
+  }
+}

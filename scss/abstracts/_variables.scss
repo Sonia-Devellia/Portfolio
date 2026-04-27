@@ -1,0 +1,56 @@
+// ─── CSS Custom Properties ────────────────────────────────────────────────────
+
+:root {
+  // Couleurs light
+  --bg:        #ffffff;
+  --bg-soft:   #f7f6f4;
+  --bg-subtle: #f0eeeb;
+  --border:    rgba(0, 0, 0, 0.08);
+  --border-md: rgba(0, 0, 0, 0.14);
+  --text:      #111110;
+  --text-2:    #5a5956;
+  --text-3:    #9a9895;
+  --avail:     #0f6e56;
+  --avail-bg:  #e1f5ee;
+  --avail-dot: #1d9e75;
+
+  // Tags
+  --tag-blue-bg:   #e6f1fb; --tag-blue-txt:   #185fa5;
+  --tag-green-bg:  #eaf3de; --tag-green-txt:  #3b6d11;
+  --tag-amber-bg:  #faeeda; --tag-amber-txt:  #854f0b;
+  --tag-purple-bg: #eeedfe; --tag-purple-txt: #534ab7;
+  --tag-coral-bg:  #faece7; --tag-coral-txt:  #993c1d;
+  --tag-gray-bg:   #f1efe8; --tag-gray-txt:   #5f5e5a;
+
+  // Typo
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+
+  // Layout
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --max-w:     1160px;
+  --nav-h:     60px;
+}
+
+[data-theme="dark"] {
+  --bg:        #111110;
+  --bg-soft:   #1a1918;
+  --bg-subtle: #222120;
+  --border:    rgba(255, 255, 255, 0.08);
+  --border-md: rgba(255, 255, 255, 0.14);
+  --text:      #f0eeeb;
+  --text-2:    #a09e9b;
+  --text-3:    #6a6866;
+  --avail:     #1d9e75;
+  --avail-bg:  rgba(29, 158, 117, 0.12);
+  --avail-dot: #1d9e75;
+
+  --tag-blue-bg:   #0c447c; --tag-blue-txt:   #b5d4f4;
+  --tag-green-bg:  #27500a; --tag-green-txt:  #c0dd97;
+  --tag-amber-bg:  #633806; --tag-amber-txt:  #fac775;
+  --tag-purple-bg: #3c3489; --tag-purple-txt: #cecbf6;
+  --tag-coral-bg:  #712b13; --tag-coral-txt:  #f5c4b3;
+  --tag-gray-bg:   #2c2c2a; --tag-gray-txt:   #b4b2a9;
+}

@@ -1,0 +1,37 @@
+// ─── Responsive ───────────────────────────────────────────────────────────────
+
+@use '../abstracts/mixins' as *;
+
+@include tablet {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+
+    &__photo { display: none; }
+    &__content { padding: 40px 0; }
+  }
+
+  .services__grid       { grid-template-columns: 1fr; }
+  .projects__grid       { grid-template-columns: 1fr; }
+  .project-card--wide   { grid-column: span 1; }
+  .about                { grid-template-columns: 1fr; }
+  .stats-bar            { grid-template-columns: repeat(2, 1fr); }
+  .cta-band             { flex-direction: column; text-align: center; }
+
+  .nav {
+    &__links  { display: none; }
+    &__avail  { display: none; }
+    &__burger { display: flex; }
+    &__cta    { display: inline-flex; }
+
+    &__actions {
+      .lang-switch,
+      .theme-toggle { display: flex; }
+    }
+  }
+}
+
+@include mobile {
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+  .section   { padding: 48px 16px; }
+}

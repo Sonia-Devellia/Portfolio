@@ -1,0 +1,35 @@
+// ─── Boutons ──────────────────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 9px 20px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, background 0.15s;
+  white-space: nowrap;
+
+  &--dark {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+
+    &:hover { opacity: 0.82; }
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--text-2);
+    border-color: var(--border-md);
+
+    &:hover { background: var(--bg-soft); }
+  }
+
+  &--sm {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+}

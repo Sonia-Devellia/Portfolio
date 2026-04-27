@@ -1,0 +1,54 @@
+// ─── About ────────────────────────────────────────────────────────────────────
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+
+  &__text p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-top: 14px;
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+
+  &__year {
+    font-size: 11px;
+    color: var(--text-3);
+    min-width: 48px;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    border-left: 1px solid var(--border-md);
+    padding-left: 16px;
+  }
+
+  &__title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+  }
+
+  &__sub {
+    font-size: 11px;
+    color: var(--text-3);
+    display: block;
+    margin-top: 2px;
+  }
+}

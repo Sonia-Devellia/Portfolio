@@ -1,0 +1,16 @@
+// ─── Tags ─────────────────────────────────────────────────────────────────────
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 400;
+
+  &--blue   { background: var(--tag-blue-bg);   color: var(--tag-blue-txt);   }
+  &--green  { background: var(--tag-green-bg);  color: var(--tag-green-txt);  }
+  &--amber  { background: var(--tag-amber-bg);  color: var(--tag-amber-txt);  }
+  &--purple { background: var(--tag-purple-bg); color: var(--tag-purple-txt); }
+  &--coral  { background: var(--tag-coral-bg);  color: var(--tag-coral-txt);  }
+  &--gray   { background: var(--tag-gray-bg);   color: var(--tag-gray-txt);   }
+}

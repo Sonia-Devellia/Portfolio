@@ -1,0 +1,30 @@
+// ============================================================
+//  Portfolio Sonia Habibi — main.scss
+// ============================================================
+
+// DM Sans (body) + DM Serif Display italic (logo) chargées via HTML
+
+// Abstracts
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+// Base
+@use 'base/reset';
+@use 'base/typography';
+
+// Layout
+@use 'layout/nav';
+@use 'layout/hero';
+@use 'layout/sections';
+@use 'layout/footer';
+
+// Components
+@use 'components/buttons';
+@use 'components/tags';
+@use 'components/service-card';
+@use 'components/project-card';
+@use 'components/about';
+@use 'components/cta-band';
+
+// Responsive (doit être en dernier)
+@use 'layout/responsive';

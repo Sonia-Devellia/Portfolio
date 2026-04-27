@@ -1,0 +1,138 @@
+// ─── Navigation ───────────────────────────────────────────────────────────────
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-h);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__logo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  &__links {
+    display: flex;
+    gap: 24px;
+    margin-right: auto;
+
+    a {
+      font-size: 13px;
+      color: var(--text-2);
+      transition: color 0.15s;
+
+      &:hover { color: var(--text); }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__avail {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--avail);
+    background: var(--avail-bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  &__avail-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--avail-dot);
+    animation: pulse 2s infinite;
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 4px;
+    margin-left: auto;
+
+    span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 0.2s;
+    }
+  }
+
+  &__cta { display: none; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+// ─── Switcher langue ──────────────────────────────────────────────────────────
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+
+  &__btn {
+    color: var(--text-3);
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+
+    &:hover,
+    &.is-active {
+      color: var(--text);
+      font-weight: 500;
+    }
+  }
+
+  &__sep { color: var(--text-3); }
+}
+
+// ─── Dark mode toggle ─────────────────────────────────────────────────────────
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-md);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-2);
+  transition: background 0.15s;
+
+  &:hover { background: var(--bg-soft); }
+}
+
+[data-theme="light"] .theme-toggle__moon { display: none; }
+[data-theme="dark"]  .theme-toggle__sun  { display: none; }

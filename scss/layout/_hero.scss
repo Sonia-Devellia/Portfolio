@@ -1,0 +1,88 @@
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+
+.hero {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 48px;
+  align-items: center;
+  min-height: calc(100vh - var(--nav-h));
+  border-bottom: 1px solid var(--border);
+
+  &__content { padding: 48px 0; }
+
+  &__title {
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  &__sub {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    max-width: 440px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  &__photo {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+    align-items: flex-end;
+    border-left: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    max-height: calc(100vh - var(--nav-h));
+    filter: grayscale(10%);
+  }
+
+  &__nameplate {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border-md);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+  }
+
+  &__nameplate-name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text);
+    display: block;
+  }
+
+  &__nameplate-role {
+    font-size: 11px;
+    color: var(--text-3);
+    display: block;
+    margin-top: 2px;
+  }
+}
