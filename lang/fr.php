@@ -44,13 +44,22 @@ return [
     'cta.button'         => 'Écrire →',
 
     // Contact
+    'contact.eyebrow'    => 'TRAVAILLONS ENSEMBLE',
     'contact.title'      => 'Contact',
+    'contact.sub'        => 'Disponible pour des missions freelance. Je réponds sous 24h.',
     'contact.name'       => 'Nom',
     'contact.email'      => 'Email',
     'contact.message'    => 'Message',
     'contact.send'       => 'Envoyer',
     'contact.success'    => 'Message envoyé ! Je vous réponds sous 24h.',
     'contact.error'      => 'Une erreur est survenue. Merci de réessayer.',
+
+    // Projet (page détail)
+    'project.back'       => '← Retour aux projets',
+    'project.demo'       => 'Voir la démo →',
+
+    // Projets (page liste)
+    'projects.all'       => 'Tous mes projets',
 
     // Footer
     'footer.rights'      => '© 2026 Sonia Habibi · Développeuse Full-Stack',

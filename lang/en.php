@@ -44,13 +44,22 @@ return [
     'cta.button'         => 'Write to me →',
 
     // Contact
+    'contact.eyebrow'    => "LET'S WORK TOGETHER",
     'contact.title'      => 'Contact',
+    'contact.sub'        => 'Available for freelance missions. I reply within 24h.',
     'contact.name'       => 'Name',
     'contact.email'      => 'Email',
     'contact.message'    => 'Message',
     'contact.send'       => 'Send',
     'contact.success'    => 'Message sent! I\'ll get back to you within 24h.',
     'contact.error'      => 'Something went wrong. Please try again.',
+
+    // Project (detail page)
+    'project.back'       => '← Back to projects',
+    'project.demo'       => 'View demo →',
+
+    // Projects (list page)
+    'projects.all'       => 'All my projects',
 
     // Footer
     'footer.rights'      => '© 2026 Sonia Habibi · Full-Stack Developer',

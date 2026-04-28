@@ -5,6 +5,7 @@ declare(strict_types=1);
 define('ROOT_PATH', dirname(__DIR__));
 
 require ROOT_PATH . '/vendor/autoload.php';
+require ROOT_PATH . '/core/helpers.php';
 
 // Charger les variables d'environnement
 $dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);

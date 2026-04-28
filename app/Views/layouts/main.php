@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/portfolio/public/assets/css/main.css">
+    <link rel="stylesheet" href="<?= url('/assets/css/main.css') ?>">
 </head>
 <body>
 
@@ -26,13 +26,13 @@
 <header class="nav" id="nav">
     <div class="nav__inner">
 
-        <a href="/" class="nav__logo">Sonia</a>
+        <a href="<?= url('/') ?>" class="nav__logo">Sonia</a>
 
         <nav class="nav__links" aria-label="Navigation principale">
-            <a href="/#services"><?= $t('nav.services') ?></a>
-            <a href="/projets"><?= $t('nav.projects') ?></a>
-            <a href="/#about"><?= $t('nav.about') ?></a>
-            <a href="/contact"><?= $t('nav.contact') ?></a>
+            <a href="<?= url('/#services') ?>"><?= $t('nav.services') ?></a>
+            <a href="<?= url('/projets') ?>"><?= $t('nav.projects') ?></a>
+            <a href="<?= url('/#about') ?>"><?= $t('nav.about') ?></a>
+            <a href="<?= url('/contact') ?>"><?= $t('nav.contact') ?></a>
         </nav>
 
         <div class="nav__actions">
@@ -45,9 +45,9 @@
             <!-- Switcher langue -->
             <div class="lang-switch" aria-label="Langue">
                 <?php $lang = $_SESSION['lang'] ?? 'fr'; ?>
-                <a href="/lang/fr" class="lang-switch__btn <?= $lang === 'fr' ? 'is-active' : '' ?>">FR</a>
+                <a href="<?= url('/lang/fr') ?>" class="lang-switch__btn <?= $lang === 'fr' ? 'is-active' : '' ?>">FR</a>
                 <span class="lang-switch__sep">/</span>
-                <a href="/lang/en" class="lang-switch__btn <?= $lang === 'en' ? 'is-active' : '' ?>">EN</a>
+                <a href="<?= url('/lang/en') ?>" class="lang-switch__btn <?= $lang === 'en' ? 'is-active' : '' ?>">EN</a>
             </div>
 
             <!-- Dark mode toggle -->
@@ -64,7 +64,7 @@
             </button>
 
             <!-- CTA mobile / desktop -->
-            <a href="/contact" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
+            <a href="<?= url('/contact') ?>" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
         </div>
 
         <!-- Burger mobile -->
@@ -82,7 +82,7 @@
 <!-- ─── FOOTER ──────────────────────────────────────────── -->
 <footer class="footer">
     <div class="footer__inner">
-        <a href="/" class="footer__logo">Sonia</a>
+        <a href="<?= url('/') ?>" class="footer__logo">Sonia</a>
 
         <div class="footer__links">
             <a href="https://www.malt.fr" target="_blank" rel="noopener">Malt</a>
@@ -96,7 +96,7 @@
     </div>
 </footer>
 
-<script src="/portfolio/public/assets/js/main.js" defer></script>
+<script src="<?= url('/assets/js/main.js') ?>" defer></script>
 
 <?php if (!empty($scripts)): ?>
     <?php foreach ($scripts as $src): ?>

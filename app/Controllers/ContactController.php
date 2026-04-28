@@ -8,6 +8,10 @@ class ContactController extends Controller
 {
     public function index(): void
     {
+         if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+
         $this->render('contact/index', [
             'title' => 'Contact — Sonia Habibi',
         ]);

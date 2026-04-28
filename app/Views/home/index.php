@@ -18,8 +18,8 @@ function tagColor(string $tag): string {
         <h1 class="hero__title"><?= $t('hero.title') ?></h1>
         <p class="hero__sub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
-            <a href="/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
-            <a href="/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
+            <a href="<?= url('/projets') ?>" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
+            <a href="<?= url('/contact') ?>" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
         </div>
         <div class="hero__tags">
             <span class="tag tag--blue">PHP MVC</span>
@@ -110,7 +110,7 @@ function tagColor(string $tag): string {
             <p class="eyebrow"><?= $t('projects.eyebrow') ?></p>
             <h2 class="section__title"><?= $t('projects.title') ?></h2>
         </div>
-        <a href="/projets" class="btn btn--outline btn--sm"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Voir tous →' : 'View all →' ?></a>
+        <a href="<?= url('/projets') ?>" class="btn btn--outline btn--sm"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Voir tous →' : 'View all →' ?></a>
     </div>
 
     <div class="projects__grid">
@@ -150,7 +150,7 @@ function tagColor(string $tag): string {
                     <?php if ($project['is_wip']): ?>
                         <span class="project-card__link project-card__link--muted"><?= $t('projects.wip') ?></span>
                     <?php else: ?>
-                        <a href="/projets/<?= htmlspecialchars($project['slug']) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
+                        <a href="<?= url('/projets/' . htmlspecialchars($project['slug'])) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
                         <?php if ($project['github_url']): ?>
                             <a href="<?= htmlspecialchars($project['github_url']) ?>" class="project-card__link" target="_blank" rel="noopener"><?= $t('projects.github') ?></a>
                         <?php endif; ?>
@@ -205,6 +205,6 @@ function tagColor(string $tag): string {
         <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="btn btn--outline">LinkedIn</a>
         <a href="https://github.com/sonia-habibi" target="_blank" rel="noopener" class="btn btn--outline">GitHub</a>
         <a href="https://www.malt.fr" target="_blank" rel="noopener" class="btn btn--outline">Malt</a>
-        <a href="/contact" class="btn btn--dark"><?= $t('cta.button') ?></a>
+        <a href="<?= url('/contact') ?>" class="btn btn--dark"><?= $t('cta.button') ?></a>
     </div>
 </section>
