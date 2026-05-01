@@ -10,10 +10,13 @@
 ## Skills projet
 @.claude/skills/accessibility.md
 @.claude/skills/seo.md
+@.claude/skills/seo-marketing.md
 @.claude/skills/lighthouse.md
 @.claude/skills/ux-pro.md
 @.claude/skills/code-quality.md
-@.claude/skills/frontend-design.md
+@.claude/skills/design.md
+@.claude/skills/security.md
+@.claude/skills/ai-integration.md
 
 ## Contexte projet
 - Stack : PHP 8.1 MVC natif, Composer PSR-4, MySQL, CSS vanilla, JS vanilla

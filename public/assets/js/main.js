@@ -47,6 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ─── CONFIRM DIALOGS ───────────────────────────────────
+  document.querySelectorAll('[data-confirm]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (!confirm(btn.dataset.confirm)) e.preventDefault();
+    });
+  });
+
   // ─── CSRF TOKEN ────────────────────────────────────────
   // Injecté côté PHP, rien à faire ici
 

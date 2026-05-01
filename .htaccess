@@ -1,0 +1,17 @@
+# Ceinture + bretelles : si le DocumentRoot prod est mal configuré et pointe
+# sur la racine du projet (au lieu de /public), tout est refusé sauf /public.
+# Le routing officiel se fait via public/.htaccess.
+
+RewriteEngine On
+
+# Tout ce qui n'est pas /public/* est refusé.
+RewriteCond %{REQUEST_URI} !^/public(/|$)
+RewriteRule ^.*$ - [F,L]
+
+# Désactivation listing
+Options -Indexes -MultiViews
+
+# Blocage explicite des fichiers sensibles (au cas où)
+<FilesMatch "(^\.env|^\.env\..+|composer\.(json|lock)|package(-lock)?\.json|^\.git.*|^\.htpasswd|README\.md|CLAUDE\.md)$">
+    Require all denied
+</FilesMatch>

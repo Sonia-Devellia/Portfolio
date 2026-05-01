@@ -1,0 +1,274 @@
+// ─── Admin — Login ────────────────────────────────────────────────────────────
+
+.admin-body {
+  background: var(--bg-soft);
+  min-height: 100vh;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.login-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+
+  &__logo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--text);
+    text-align: center;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  &__subtitle {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .form-group { margin-bottom: 18px; }
+
+  .btn--dark {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 20px;
+    margin-top: 4px;
+  }
+}
+
+// ─── Admin — Layout sidebar ───────────────────────────────────────────────────
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0;
+  overflow-y: auto;
+  z-index: 50;
+
+  &__logo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--text);
+    padding: 0 20px;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    padding: 0 10px;
+  }
+
+  &__link {
+    font-size: 13px;
+    color: var(--text-2);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, color 0.15s;
+    display: block;
+
+    &:hover,
+    &--active {
+      background: var(--bg-soft);
+      color: var(--text);
+    }
+
+    &--external { color: var(--text-3); }
+  }
+
+  &__logout {
+    margin: 0 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text-3);
+    border-radius: var(--radius-sm);
+    transition: color 0.15s, background 0.15s;
+    display: block;
+
+    &:hover {
+      color: var(--text);
+      background: var(--bg-soft);
+    }
+  }
+}
+
+.admin-main {
+  margin-left: 220px;
+  min-height: 100vh;
+  padding: 40px;
+  background: var(--bg-soft);
+}
+
+// ─── Admin — Contenu ──────────────────────────────────────────────────────────
+
+.admin-content {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  &__title {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+  }
+}
+
+// ─── Admin — Table ────────────────────────────────────────────────────────────
+
+.admin-table-wrap {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    vertical-align: middle;
+  }
+
+  tbody {
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--bg-soft); transition: background 0.15s; }
+  }
+
+  &__title  { color: var(--text); font-weight: 500; }
+  &__order  { font-variant-numeric: tabular-nums; color: var(--text-3); }
+  &__check  { color: var(--avail); }
+
+  &__actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  &__delete {
+    color: var(--tag-coral-txt);
+    border-color: rgba(153, 60, 29, 0.3);
+
+    &:hover {
+      background: var(--tag-coral-bg);
+      color: var(--tag-coral-txt);
+    }
+  }
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+// ─── Admin — Formulaire projet ────────────────────────────────────────────────
+
+.admin-form-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  max-width: 700px;
+}
+
+.admin-form {
+  &__section {
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+
+    &:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    .form-group { margin-bottom: 0; }
+  }
+
+  &__options {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__sort input { width: 80px; }
+
+  &__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+}

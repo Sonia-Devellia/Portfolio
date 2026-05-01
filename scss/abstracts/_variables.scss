@@ -22,9 +22,35 @@
   --tag-coral-bg:  #faece7; --tag-coral-txt:  #993c1d;
   --tag-gray-bg:   #f1efe8; --tag-gray-txt:   #5f5e5a;
 
-  // Typo
+  // Typo — familles
   --font-sans:  'DM Sans', system-ui, sans-serif;
   --font-serif: 'DM Serif Display', Georgia, serif;
+
+  // Typo — échelle éditoriale (clamp pour fluidité responsive)
+  --fs-display: clamp(48px, 7vw, 88px);   // hero, page projet
+  --fs-h1:      clamp(36px, 5vw, 56px);   // titre page interne
+  --fs-h2:      clamp(26px, 3vw, 36px);   // section
+  --fs-h3:      18px;                     // card title
+  --fs-body:    15px;                     // corps
+  --fs-small:   13px;                     // texte secondaire
+  --fs-mini:    11px;                     // eyebrow, caption, tags
+
+  // Spacing éditorial — séparation sections
+  --space-section-sm: 60px;
+  --space-section-md: 96px;
+  --space-section-lg: 120px;
+  --space-section-xl: 160px;
+
+  // Transitions disciplinées (ease-edit = courbe douce sans bounce)
+  --ease-edit: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast:  120ms;
+  --dur-med:   240ms;
+  --dur-slow:  400ms;
+
+  // Filets (rules) décoratifs
+  --rule-thin:   1px solid var(--border);
+  --rule-md:     1px solid var(--border-md);
+  --rule-accent: 2px solid var(--text);
 
   // Layout
   --radius-sm: 6px;
@@ -32,6 +58,10 @@
   --radius-lg: 14px;
   --max-w:     1160px;
   --nav-h:     60px;
+
+  // Cibles tactiles WCAG
+  --touch-min: 44px;
+  --field-h:   48px;
 }
 
 [data-theme="dark"] {

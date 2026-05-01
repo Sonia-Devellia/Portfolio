@@ -1,4 +1,14 @@
 <?php
+/**
+ * Vue — page d'accueil.
+ *
+ * @var callable(string): string                  $t         Helper de traduction
+ * @var array<int, array<string, mixed>>          $projects  Projets featured affichés
+ */
+$base = rtrim($_ENV['APP_URL'] ?? '', '/');
+$t ??= static fn(string $k): string => $k;
+$projects ??= [];
+
 // Tags couleurs selon technologie
 function tagColor(string $tag): string {
     $tag = strtolower($tag);
@@ -18,8 +28,8 @@ function tagColor(string $tag): string {
         <h1 class="hero__title"><?= $t('hero.title') ?></h1>
         <p class="hero__sub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
-            <a href="<?= url('/projets') ?>" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
-            <a href="<?= url('/contact') ?>" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
+            <a href="<?= $base ?>/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
+            <a href="<?= $base ?>/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
         </div>
         <div class="hero__tags">
             <span class="tag tag--blue">PHP MVC</span>
@@ -32,14 +42,14 @@ function tagColor(string $tag): string {
         </div>
     </div>
     <div class="hero__photo">
-        <img src="/assets/images/sonia.webp"
-             alt="Sonia Habibi — Développeuse Full-Stack"
+        <img src="<?= $base ?>/assets/images/sonia.webp"
+             alt="<?= $t('hero.img.alt') ?>"
              class="hero__img"
              width="480" height="560"
              loading="eager">
         <div class="hero__nameplate">
             <span class="hero__nameplate-name">Sonia Habibi</span>
-            <span class="hero__nameplate-role">Dev Full-Stack · Vannes / Remote</span>
+            <span class="hero__nameplate-role"><?= $t('hero.nameplate.role') ?></span>
         </div>
     </div>
 </section>
@@ -48,19 +58,19 @@ function tagColor(string $tag): string {
 <div class="stats-bar">
     <div class="stats-bar__item">
         <span class="stats-bar__num">5+</span>
-        <span class="stats-bar__lbl"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Projets livrés' : 'Projects delivered' ?></span>
+        <span class="stats-bar__lbl"><?= $t('home.stats.delivered') ?></span>
     </div>
     <div class="stats-bar__item">
         <span class="stats-bar__num">PHP · Py · JS</span>
-        <span class="stats-bar__lbl"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Stack principale' : 'Core stack' ?></span>
+        <span class="stats-bar__lbl"><?= $t('home.stats.stack') ?></span>
     </div>
     <div class="stats-bar__item">
         <span class="stats-bar__num">IA</span>
-        <span class="stats-bar__lbl"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Intégration LLM native' : 'Native LLM integration' ?></span>
+        <span class="stats-bar__lbl"><?= $t('home.stats.ai') ?></span>
     </div>
     <div class="stats-bar__item">
         <span class="stats-bar__num">100%</span>
-        <span class="stats-bar__lbl">Remote</span>
+        <span class="stats-bar__lbl"><?= $t('home.stats.remote') ?></span>
     </div>
 </div>
 
@@ -110,7 +120,7 @@ function tagColor(string $tag): string {
             <p class="eyebrow"><?= $t('projects.eyebrow') ?></p>
             <h2 class="section__title"><?= $t('projects.title') ?></h2>
         </div>
-        <a href="<?= url('/projets') ?>" class="btn btn--outline btn--sm"><?= ($_SESSION['lang'] ?? 'fr') === 'fr' ? 'Voir tous →' : 'View all →' ?></a>
+        <a href="<?= $base ?>/projets" class="btn btn--outline btn--sm"><?= $t('projects.see_all') ?></a>
     </div>
 
     <div class="projects__grid">
@@ -150,7 +160,7 @@ function tagColor(string $tag): string {
                     <?php if ($project['is_wip']): ?>
                         <span class="project-card__link project-card__link--muted"><?= $t('projects.wip') ?></span>
                     <?php else: ?>
-                        <a href="<?= url('/projets/' . htmlspecialchars($project['slug'])) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
+                        <a href="<?= $base ?>/projets/<?= htmlspecialchars($project['slug']) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
                         <?php if ($project['github_url']): ?>
                             <a href="<?= htmlspecialchars($project['github_url']) ?>" class="project-card__link" target="_blank" rel="noopener"><?= $t('projects.github') ?></a>
                         <?php endif; ?>
@@ -171,27 +181,15 @@ function tagColor(string $tag): string {
         <p><?= $t('about.p2') ?></p>
     </div>
     <div class="about__timeline">
-        <?php
-        $timeline = ($_SESSION['lang'] ?? 'fr') === 'fr' ? [
-            ['year' => '2026', 'title' => 'Certification RNCP 37273 Full-Stack', 'sub' => 'GRETA Vannes'],
-            ['year' => '2025', 'title' => 'Stage Kotcha — startup running & IA',  'sub' => 'IA centrale dans le produit'],
-            ['year' => '2024', 'title' => 'Formation autodidacte structurée',      'sub' => 'PHP · Python · JS · MVC'],
-            ['year' => 'Avant','title' => 'Cheffe d\'entreprise · Designer paysagiste', 'sub' => 'Culture produit, gestion client'],
-        ] : [
-            ['year' => '2026', 'title' => 'RNCP 37273 Full-Stack Certification',  'sub' => 'GRETA Vannes'],
-            ['year' => '2025', 'title' => 'Internship Kotcha — running & AI app', 'sub' => 'AI at the core of the product'],
-            ['year' => '2024', 'title' => 'Structured self-taught training',       'sub' => 'PHP · Python · JS · MVC'],
-            ['year' => 'Before','title' => 'Business owner · Landscape designer', 'sub' => 'Product culture, client management'],
-        ];
-        foreach ($timeline as $item): ?>
+        <?php for ($i = 1; $i <= 4; $i++): ?>
         <div class="timeline-item">
-            <span class="timeline-item__year"><?= $item['year'] ?></span>
+            <span class="timeline-item__year"><?= $t("about.tl.{$i}.year") ?></span>
             <div class="timeline-item__content">
-                <span class="timeline-item__title"><?= htmlspecialchars($item['title']) ?></span>
-                <span class="timeline-item__sub"><?= htmlspecialchars($item['sub']) ?></span>
+                <span class="timeline-item__title"><?= $t("about.tl.{$i}.title") ?></span>
+                <span class="timeline-item__sub"><?= $t("about.tl.{$i}.sub") ?></span>
             </div>
         </div>
-        <?php endforeach; ?>
+        <?php endfor; ?>
     </div>
 </section>
 
@@ -205,6 +203,6 @@ function tagColor(string $tag): string {
         <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="btn btn--outline">LinkedIn</a>
         <a href="https://github.com/sonia-habibi" target="_blank" rel="noopener" class="btn btn--outline">GitHub</a>
         <a href="https://www.malt.fr" target="_blank" rel="noopener" class="btn btn--outline">Malt</a>
-        <a href="<?= url('/contact') ?>" class="btn btn--dark"><?= $t('cta.button') ?></a>
+        <a href="<?= $base ?>/contact" class="btn btn--dark"><?= $t('cta.button') ?></a>
     </div>
 </section>

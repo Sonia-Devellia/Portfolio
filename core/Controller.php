@@ -10,13 +10,13 @@ class Controller
         $lang = $_SESSION['lang'] ?? 'fr';
         $translations = require ROOT_PATH . '/lang/' . $lang . '.php';
 
-        // Fonction helper t()
+        // Rendre les données disponibles dans la vue
+        extract($data);
+
+        // Fonction helper t() — définie après extract() pour ne jamais être écrasée
         $t = function (string $key) use ($translations): string {
             return htmlspecialchars($translations[$key] ?? $key, ENT_QUOTES, 'UTF-8');
         };
-
-        // Rendre les données disponibles dans la vue
-        extract($data);
 
         // Chemin de la vue
         $viewPath = ROOT_PATH . '/app/Views/' . $view . '.php';

@@ -1,4 +1,14 @@
 <?php
+/**
+ * Vue — liste de tous les projets.
+ *
+ * @var callable(string): string                  $t         Helper de traduction
+ * @var array<int, array<string, mixed>>          $projects  Liste des projets
+ */
+$base = rtrim($_ENV['APP_URL'] ?? '', '/');
+$t ??= static fn(string $k): string => $k;
+$projects ??= [];
+
 if (!function_exists('tagColor')) {
     function tagColor(string $tag): string {
         $tag = strtolower($tag);
@@ -56,7 +66,7 @@ if (!function_exists('tagColor')) {
                     <?php if ($project['is_wip']): ?>
                         <span class="project-card__link project-card__link--muted"><?= $t('projects.wip') ?></span>
                     <?php else: ?>
-                        <a href="<?= url('/projets/' . htmlspecialchars($project['slug'])) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
+                        <a href="<?= $base ?>/projets/<?= htmlspecialchars($project['slug']) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
                         <?php if ($project['github_url']): ?>
                             <a href="<?= htmlspecialchars($project['github_url']) ?>" class="project-card__link" target="_blank" rel="noopener"><?= $t('projects.github') ?></a>
                         <?php endif; ?>

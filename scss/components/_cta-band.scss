@@ -1,32 +1,54 @@
-// ─── CTA Band ─────────────────────────────────────────────────────────────────
+@use '../abstracts/mixins' as *;
+
+// ─── CTA Band — invitation finale, ton éditorial ────────────────────────────
 
 .cta-band {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 56px 24px;
+  padding: var(--space-section-md) 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
-  border-bottom: 1px solid var(--border);
+  gap: 32px;
+  border-bottom: var(--rule-thin);
+
+  @include tablet {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding: var(--space-section-sm) 24px;
+  }
 
   &__text {
+    max-width: 48ch;
+
     h2 {
-      font-size: 22px;
-      font-weight: 500;
+      font-family: var(--font-sans);
+      font-size: var(--fs-h2);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 6px;
+      margin: 0 0 10px;
+
+      em {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
     }
 
     p {
-      font-size: 13px;
+      font-size: var(--fs-small);
       color: var(--text-2);
+      line-height: 1.6;
+      margin: 0;
     }
   }
 
   &__actions {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
   }
 }

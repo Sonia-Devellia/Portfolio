@@ -1,0 +1,147 @@
+@use '../abstracts/mixins' as *;
+
+// ─── Page Contact — layout éditorial deluxe ──────────────────────────────────
+
+.contact-page {
+  padding: var(--space-section-md) 24px var(--space-section-lg);
+
+  &__inner {
+    display: grid;
+    // Asymétrie 2/5 ↔ 3/5 (info plus tassée, form plus large)
+    grid-template-columns: 2fr 3fr;
+    gap: 80px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    align-items: start;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+
+  // ─── Colonne info ─────────────────────────────────────────
+  &__info {
+    padding-top: 12px;
+    position: relative;
+
+    // Filet vertical décoratif fin (signature éditoriale)
+    &::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 14px;
+      width: 1px;
+      height: 64px;
+      background: var(--text);
+
+      @include tablet { display: none; }
+    }
+  }
+
+  &__title {
+    font-family: var(--font-sans);
+    font-size: var(--fs-h1);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 6px 0 20px;
+
+    // Accent serif italic injecté via <em> côté vue
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      color: var(--text);
+    }
+  }
+
+  &__avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--fs-mini);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--avail);
+    background: var(--avail-bg);
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+
+  &__avail-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--avail-dot);
+    animation: pulse 2s var(--ease-edit) infinite;
+    flex-shrink: 0;
+  }
+
+  &__sub {
+    font-size: var(--fs-body);
+    color: var(--text-2);
+    line-height: 1.65;
+    margin-bottom: 36px;
+    max-width: 36ch;     // line length éditoriale
+  }
+
+  &__socials {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: var(--rule-thin);
+  }
+
+  &__socials li {
+    border-bottom: var(--rule-thin);
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    font-size: var(--fs-small);
+    color: var(--text-2);
+    transition: color var(--dur-fast) var(--ease-edit),
+                padding-left var(--dur-med) var(--ease-edit);
+
+    &:hover {
+      color: var(--text);
+      padding-left: 8px;
+    }
+  }
+
+  // ─── Colonne formulaire ───────────────────────────────────
+  &__form-wrap {
+    position: relative;
+    background: var(--bg);
+    border: var(--rule-thin);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+
+    @include mobile { padding: 28px 22px; }
+  }
+}
+
+// ─── Formulaire ──────────────────────────────────────────────────────────────
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  .form-group { margin-bottom: 22px; }
+
+  // Submit : largeur explicite via .btn--block (pas d'override magique)
+  button[type='submit'] {
+    margin-top: 8px;
+    align-self: flex-start;
+    min-width: 200px;
+  }
+}

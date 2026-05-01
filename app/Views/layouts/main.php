@@ -1,3 +1,12 @@
+<?php
+/**
+ * @var callable(string): string $t
+ * @var string $content
+ * @var string $title
+ * @var array<string> $scripts
+ */
+$base = rtrim($_ENV['APP_URL'] ?? '', '/');
+?>
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($_SESSION['lang'] ?? 'fr') ?>" data-theme="light">
 <head>
@@ -18,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="<?= url('/assets/css/main.css') ?>">
+    <link rel="stylesheet" href="<?= $base ?>/assets/css/main.css">
 </head>
 <body>
 
@@ -26,13 +35,13 @@
 <header class="nav" id="nav">
     <div class="nav__inner">
 
-        <a href="<?= url('/') ?>" class="nav__logo">Sonia</a>
+        <a href="<?= $base ?>/" class="nav__logo">Sonia</a>
 
-        <nav class="nav__links" aria-label="Navigation principale">
-            <a href="<?= url('/#services') ?>"><?= $t('nav.services') ?></a>
-            <a href="<?= url('/projets') ?>"><?= $t('nav.projects') ?></a>
-            <a href="<?= url('/#about') ?>"><?= $t('nav.about') ?></a>
-            <a href="<?= url('/contact') ?>"><?= $t('nav.contact') ?></a>
+        <nav class="nav__links" aria-label="<?= $t('a11y.nav.main') ?>">
+            <a href="<?= $base ?>/#services"><?= $t('nav.services') ?></a>
+            <a href="<?= $base ?>/projets"><?= $t('nav.projects') ?></a>
+            <a href="<?= $base ?>/#about"><?= $t('nav.about') ?></a>
+            <a href="<?= $base ?>/contact"><?= $t('nav.contact') ?></a>
         </nav>
 
         <div class="nav__actions">
@@ -43,15 +52,15 @@
             </span>
 
             <!-- Switcher langue -->
-            <div class="lang-switch" aria-label="Langue">
+            <div class="lang-switch" aria-label="<?= $t('a11y.lang.switch') ?>">
                 <?php $lang = $_SESSION['lang'] ?? 'fr'; ?>
-                <a href="<?= url('/lang/fr') ?>" class="lang-switch__btn <?= $lang === 'fr' ? 'is-active' : '' ?>">FR</a>
+                <a href="<?= $base ?>/lang/fr" class="lang-switch__btn <?= $lang === 'fr' ? 'is-active' : '' ?>">FR</a>
                 <span class="lang-switch__sep">/</span>
-                <a href="<?= url('/lang/en') ?>" class="lang-switch__btn <?= $lang === 'en' ? 'is-active' : '' ?>">EN</a>
+                <a href="<?= $base ?>/lang/en" class="lang-switch__btn <?= $lang === 'en' ? 'is-active' : '' ?>">EN</a>
             </div>
 
             <!-- Dark mode toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+            <button class="theme-toggle" id="themeToggle" aria-label="<?= $t('a11y.theme.toggle') ?>">
                 <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
                     <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
@@ -64,11 +73,11 @@
             </button>
 
             <!-- CTA mobile / desktop -->
-            <a href="<?= url('/contact') ?>" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
+            <a href="<?= $base ?>/contact" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
         </div>
 
         <!-- Burger mobile -->
-        <button class="nav__burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+        <button class="nav__burger" id="navBurger" aria-label="<?= $t('a11y.menu') ?>" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
     </div>
@@ -82,7 +91,7 @@
 <!-- ─── FOOTER ──────────────────────────────────────────── -->
 <footer class="footer">
     <div class="footer__inner">
-        <a href="<?= url('/') ?>" class="footer__logo">Sonia</a>
+        <a href="<?= $base ?>/" class="footer__logo">Sonia</a>
 
         <div class="footer__links">
             <a href="https://www.malt.fr" target="_blank" rel="noopener">Malt</a>
@@ -96,7 +105,7 @@
     </div>
 </footer>
 
-<script src="<?= url('/assets/js/main.js') ?>" defer></script>
+<script src="<?= $base ?>/assets/js/main.js" defer></script>
 
 <?php if (!empty($scripts)): ?>
     <?php foreach ($scripts as $src): ?>

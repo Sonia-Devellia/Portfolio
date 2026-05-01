@@ -69,4 +69,42 @@ return [
     '404.title'          => 'Page not found',
     '404.sub'            => 'The page you\'re looking for doesn\'t exist.',
     '404.back'           => 'Back to home',
+
+    // Hero — image & nameplate
+    'hero.img.alt'           => 'Sonia Habibi — Full-Stack Developer',
+    'hero.nameplate.role'    => 'Full-Stack Dev · Vannes / Remote',
+
+    // Stats bar (home)
+    'home.stats.delivered'   => 'Projects delivered',
+    'home.stats.stack'       => 'Core stack',
+    'home.stats.ai'          => 'Native LLM integration',
+    'home.stats.remote'      => 'Remote',
+
+    // Home — "view all" button
+    'projects.see_all'       => 'View all →',
+
+    // Timeline (about)
+    'about.tl.1.year'        => '2026',
+    'about.tl.1.title'       => 'RNCP 37273 Full-Stack Certification',
+    'about.tl.1.sub'         => 'GRETA Vannes',
+    'about.tl.2.year'        => '2025',
+    'about.tl.2.title'       => 'Internship Kotcha — running & AI app',
+    'about.tl.2.sub'         => 'AI at the core of the product',
+    'about.tl.3.year'        => '2024',
+    'about.tl.3.title'       => 'Structured self-taught training',
+    'about.tl.3.sub'         => 'PHP · Python · JS · MVC',
+    'about.tl.4.year'        => 'Before',
+    'about.tl.4.title'       => 'Business owner · Landscape designer',
+    'about.tl.4.sub'         => 'Product culture, client management',
+
+    // Contact (extras)
+    'contact.available'      => 'Available',
+    'contact.socials.aria'   => 'Professional networks',
+    'contact.social.new_tab' => '(new tab)',
+
+    // Accessibility — aria-labels
+    'a11y.nav.main'          => 'Main navigation',
+    'a11y.lang.switch'       => 'Language',
+    'a11y.menu'              => 'Menu',
+    'a11y.theme.toggle'      => 'Toggle theme',
 ];

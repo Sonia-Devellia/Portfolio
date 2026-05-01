@@ -1,8 +1,30 @@
+# ─── Secrets ─────────────────────────────────────────────────
 .env
+.env.local
+.env.production
+.env.*.local
+
+# ─── Dependencies ────────────────────────────────────────────
 vendor/
+node_modules/
+
+# ─── Logs ────────────────────────────────────────────────────
 *.log
+storage/logs/*
+!storage/logs/.gitignore
+
+# ─── OS ──────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
-public/assets/images/uploads/
+
+# ─── Editors / IDE ───────────────────────────────────────────
 .idea/
 .vscode/
+
+# ─── User uploads ────────────────────────────────────────────
+public/assets/images/uploads/
+
+# ─── Build artifacts ─────────────────────────────────────────
+public/assets/css/main.css.map
+*.swp
+*.swo

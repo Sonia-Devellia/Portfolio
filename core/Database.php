@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core;
 
 use PDO;
@@ -13,13 +15,14 @@ class Database
     {
         if (self::$instance === null) {
             $host = $_ENV['DB_HOST'] ?? 'localhost';
+            $port = $_ENV['DB_PORT'] ?? '3306';
             $name = $_ENV['DB_NAME'] ?? 'portfolio';
             $user = $_ENV['DB_USER'] ?? 'root';
             $pass = $_ENV['DB_PASS'] ?? '';
 
             try {
                 self::$instance = new PDO(
-                    "mysql:host={$host};dbname={$name};charset=utf8mb4",
+                    "mysql:host={$host};port={$port};dbname={$name};charset=utf8mb4",
                     $user,
                     $pass,
                     [
@@ -29,7 +32,15 @@ class Database
                     ]
                 );
             } catch (PDOException $e) {
-                throw new \RuntimeException('Connexion BDD échouée : ' . $e->getMessage());
+                $isProd  = ($_ENV['APP_ENV'] ?? 'local') === 'production';
+                $message = $isProd
+                    ? 'Erreur de connexion à la base de données.'
+                    : 'Connexion BDD échouée : ' . $e->getMessage();
+
+                // Le détail réel est toujours loggé côté serveur
+                error_log('[DB] Connexion échouée : ' . $e->getMessage());
+
+                throw new \RuntimeException($message);
             }
         }
 

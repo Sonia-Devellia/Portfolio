@@ -69,4 +69,42 @@ return [
     '404.title'          => 'Page introuvable',
     '404.sub'            => 'La page que vous cherchez n\'existe pas.',
     '404.back'           => 'Retour à l\'accueil',
+
+    // Hero — image & nameplate
+    'hero.img.alt'           => 'Sonia Habibi — Développeuse Full-Stack',
+    'hero.nameplate.role'    => 'Dev Full-Stack · Vannes / Remote',
+
+    // Stats bar (home)
+    'home.stats.delivered'   => 'Projets livrés',
+    'home.stats.stack'       => 'Stack principale',
+    'home.stats.ai'          => 'Intégration LLM native',
+    'home.stats.remote'      => 'Remote',
+
+    // Home — bouton "voir tous"
+    'projects.see_all'       => 'Voir tous →',
+
+    // Timeline (à propos)
+    'about.tl.1.year'        => '2026',
+    'about.tl.1.title'       => 'Certification RNCP 37273 Full-Stack',
+    'about.tl.1.sub'         => 'GRETA Vannes',
+    'about.tl.2.year'        => '2025',
+    'about.tl.2.title'       => 'Stage Kotcha — startup running & IA',
+    'about.tl.2.sub'         => 'IA centrale dans le produit',
+    'about.tl.3.year'        => '2024',
+    'about.tl.3.title'       => 'Formation autodidacte structurée',
+    'about.tl.3.sub'         => 'PHP · Python · JS · MVC',
+    'about.tl.4.year'        => 'Avant',
+    'about.tl.4.title'       => 'Cheffe d\'entreprise · Designer paysagiste',
+    'about.tl.4.sub'         => 'Culture produit, gestion client',
+
+    // Contact (compléments)
+    'contact.available'      => 'Disponible',
+    'contact.socials.aria'   => 'Réseaux professionnels',
+    'contact.social.new_tab' => '(nouvel onglet)',
+
+    // Accessibilité — aria-labels
+    'a11y.nav.main'          => 'Navigation principale',
+    'a11y.lang.switch'       => 'Langue',
+    'a11y.menu'              => 'Menu',
+    'a11y.theme.toggle'      => 'Changer le thème',
 ];

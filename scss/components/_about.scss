@@ -1,54 +1,101 @@
-// ─── About ────────────────────────────────────────────────────────────────────
+@use '../abstracts/mixins' as *;
+
+// ─── About — texte + timeline éditoriale ─────────────────────────────────────
 
 .about {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 80px;
 
-  &__text p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.75;
-    margin-top: 14px;
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  &__text {
+    p {
+      font-size: var(--fs-body);
+      color: var(--text-2);
+      line-height: 1.75;
+      margin: 0 0 16px;
+      max-width: 48ch;
+
+      &:last-child { margin-bottom: 0; }
+    }
   }
 
   &__timeline {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    justify-content: center;
+    gap: 0;
+    border-top: var(--rule-thin);
   }
 }
 
+// ─── Timeline item — marker visuel discret ───────────────────────────────────
+
 .timeline-item {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: var(--rule-thin);
+  transition: padding-left var(--dur-med) var(--ease-edit);
+
+  &:hover { padding-left: 8px; }
 
   &__year {
-    font-size: 11px;
+    font-family: var(--font-sans);
+    font-size: var(--fs-small);
     color: var(--text-3);
-    min-width: 48px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
     padding-top: 2px;
-    flex-shrink: 0;
   }
 
   &__content {
-    border-left: 1px solid var(--border-md);
-    padding-left: 16px;
+    position: relative;
+    padding-left: 20px;
+
+    // Marker — petit dot + filet vertical fin (signature)
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 2.5px;
+      top: 16px;
+      bottom: -18px;
+      width: 1px;
+      background: var(--border);
+    }
   }
 
+  &:last-child &__content::after { display: none; }
+
   &__title {
-    font-size: 13px;
+    display: block;
+    font-size: var(--fs-body);
     font-weight: 500;
     color: var(--text);
-    display: block;
+    line-height: 1.35;
   }
 
   &__sub {
-    font-size: 11px;
-    color: var(--text-3);
     display: block;
-    margin-top: 2px;
+    font-size: var(--fs-small);
+    color: var(--text-3);
+    margin-top: 4px;
+    line-height: 1.5;
   }
 }

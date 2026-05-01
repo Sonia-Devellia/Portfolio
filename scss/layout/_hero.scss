@@ -1,39 +1,62 @@
-// ─── Hero ─────────────────────────────────────────────────────────────────────
+@use '../abstracts/mixins' as *;
+
+// ─── Hero — éditorial deluxe ─────────────────────────────────────────────────
 
 .hero {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 48px;
+  grid-template-columns: 1fr 460px;
+  gap: 64px;
   align-items: center;
   min-height: calc(100vh - var(--nav-h));
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--rule-thin);
 
-  &__content { padding: 48px 0; }
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    min-height: auto;
+  }
+
+  &__content {
+    padding: var(--space-section-sm) 0;
+    max-width: 56ch;
+  }
+
+  // Eyebrow plus aéré (cf. typography globale)
+  .eyebrow { margin-bottom: 28px; }
 
   &__title {
-    font-size: clamp(32px, 4vw, 46px);
+    font-family: var(--font-sans);
+    font-size: var(--fs-display);
     font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: -0.025em;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     color: var(--text);
-    margin-bottom: 16px;
+    margin: 0 0 28px;
+
+    // Accent serif italic injecté via <em> côté vue (optionnel)
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
   }
 
   &__sub {
-    font-size: 15px;
+    font-size: var(--fs-body);
     color: var(--text-2);
-    line-height: 1.65;
-    margin-bottom: 28px;
-    max-width: 440px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 52ch;
   }
 
   &__actions {
     display: flex;
-    gap: 10px;
-    margin-bottom: 32px;
+    gap: 12px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
   }
 
@@ -43,13 +66,20 @@
     flex-wrap: wrap;
   }
 
+  // ─── Photo ─────────────────────────────────────────────────
   &__photo {
     position: relative;
     align-self: stretch;
     display: flex;
     align-items: flex-end;
-    border-left: 1px solid var(--border);
+    border-left: var(--rule-thin);
     overflow: hidden;
+
+    @include tablet {
+      border-left: none;
+      border-top: var(--rule-thin);
+      min-height: 480px;
+    }
   }
 
   &__img {
@@ -58,7 +88,7 @@
     object-fit: cover;
     object-position: top center;
     max-height: calc(100vh - var(--nav-h));
-    filter: grayscale(10%);
+    filter: grayscale(8%);
   }
 
   &__nameplate {
@@ -66,23 +96,25 @@
     bottom: 20px;
     left: 20px;
     background: var(--bg);
-    border: 1px solid var(--border-md);
+    border: var(--rule-md);
     border-radius: var(--radius-md);
-    padding: 10px 14px;
+    padding: 12px 16px;
   }
 
   &__nameplate-name {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text);
     display: block;
+    line-height: 1.2;
   }
 
   &__nameplate-role {
-    font-size: 11px;
+    font-size: var(--fs-mini);
     color: var(--text-3);
     display: block;
-    margin-top: 2px;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
   }
 }

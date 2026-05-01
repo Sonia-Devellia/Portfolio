@@ -1,46 +1,71 @@
-// ─── Service card ─────────────────────────────────────────────────────────────
+@use '../abstracts/mixins' as *;
+
+// ─── Service card — éditorial avec numérotation signature ────────────────────
 
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 0;
+  border-top: var(--rule-thin);
+  border-left: var(--rule-thin);
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    border-left: none;
+  }
 }
 
 .service-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  position: relative;
+  padding: 32px 28px 28px;
+  border-right: var(--rule-thin);
+  border-bottom: var(--rule-thin);
   background: var(--bg);
-  transition: border-color 0.15s;
+  transition: background var(--dur-med) var(--ease-edit);
 
-  &:hover { border-color: var(--border-md); }
+  &:hover { background: var(--bg-soft); }
 
-  &__num {
-    font-size: 11px;
-    color: var(--text-3);
-    display: block;
-    margin-bottom: 14px;
-    font-variant-numeric: tabular-nums;
+  @include tablet {
+    border-right: none;
+    border-left: var(--rule-thin);
   }
 
+  // Numéro signature : gros, serif italic, en accent visuel
+  &__num {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 24px;
+    transition: color var(--dur-med) var(--ease-edit);
+  }
+
+  &:hover &__num { color: var(--text); }
+
   &__title {
-    font-size: 15px;
+    font-family: var(--font-sans);
+    font-size: 17px;
     font-weight: 500;
     color: var(--text);
-    margin-bottom: 8px;
     line-height: 1.3;
+    margin: 0 0 10px;
   }
 
   &__desc {
-    font-size: 13px;
+    font-size: var(--fs-small);
     color: var(--text-2);
-    line-height: 1.6;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 32ch;
   }
 
   &__tags {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
-    margin-top: 16px;
+    margin-top: 22px;
   }
 }

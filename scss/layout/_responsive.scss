@@ -35,3 +35,20 @@
   .stats-bar { grid-template-columns: 1fr 1fr; }
   .section   { padding: 48px 16px; }
 }
+
+// ─── Admin responsive ─────────────────────────────────────────────────────────
+
+@include tablet {
+  .admin-layout        { grid-template-columns: 1fr; }
+  .admin-sidebar       { display: none; }
+  .admin-main          { margin-left: 0; padding: 24px 16px; }
+  .admin-form__row     { grid-template-columns: 1fr; }
+  .contact-page        { padding: 48px 24px; }
+  .contact-page__inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@include mobile {
+  .contact-page         { padding: 40px 16px; }
+  .contact-page__form-wrap { padding: 24px; }
+  .admin-form-card      { padding: 20px; }
+}

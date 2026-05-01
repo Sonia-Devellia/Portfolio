@@ -1,4 +1,14 @@
 <?php
+/**
+ * Vue — page détail d'un projet.
+ *
+ * @var callable(string): string  $t        Helper de traduction
+ * @var array<string, mixed>      $project  Projet à afficher
+ */
+$base = rtrim($_ENV['APP_URL'] ?? '', '/');
+$t ??= static fn(string $k): string => $k;
+$project ??= [];
+
 if (!function_exists('tagColor')) {
     function tagColor(string $tag): string {
         $tag = strtolower($tag);
@@ -16,9 +26,9 @@ $pDesc  = htmlspecialchars($project['desc_' . $lang]);
 $tags   = \App\Models\Project::parseTags($project['tags']);
 ?>
 
-<section class="section project-detail">
+<section class="project-detail">
 
-    <a href="<?= url('/projets') ?>" class="project-detail__back"><?= $t('project.back') ?></a>
+    <a href="<?= $base ?>/projets" class="project-detail__back"><?= $t('project.back') ?></a>
 
     <div class="project-detail__header">
         <div class="project-detail__tags">

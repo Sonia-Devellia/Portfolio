@@ -8,12 +8,19 @@ class ContactController extends Controller
 {
     public function index(): void
     {
-         if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    }
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        $success = !empty($_SESSION['contact_success']);
+        $error   = !empty($_SESSION['contact_error']);
+        unset($_SESSION['contact_success'], $_SESSION['contact_error']);
 
         $this->render('contact/index', [
-            'title' => 'Contact — Sonia Habibi',
+            'title'      => 'Contact — Sonia Habibi',
+            'csrf_token' => $_SESSION['csrf_token'],
+            'success'    => $success,
+            'error'      => $error,
         ]);
     }
 

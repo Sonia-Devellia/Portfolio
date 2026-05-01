@@ -3,33 +3,83 @@
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--touch-min);
+  padding: 11px 22px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
   font-weight: 400;
-  padding: 9px 20px;
-  border-radius: 30px;
+  letter-spacing: 0.005em;
+  line-height: 1.2;
+  border-radius: 999px;          // pill systématique, sans valeur magique
   border: 1px solid transparent;
-  transition: opacity 0.15s, background 0.15s;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
   white-space: nowrap;
+  user-select: none;
+  transition:
+    background  var(--dur-fast) var(--ease-edit),
+    color       var(--dur-fast) var(--ease-edit),
+    border-color var(--dur-fast) var(--ease-edit),
+    transform   var(--dur-fast) var(--ease-edit),
+    opacity     var(--dur-fast) var(--ease-edit);
 
+  // Press feedback subtil
+  &:active { transform: translateY(1px); }
+
+  // Disabled
+  &[disabled],
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ─── Variante pleine (CTA principal) ──────────────────────
   &--dark {
     background: var(--text);
     color: var(--bg);
     border-color: var(--text);
 
-    &:hover { opacity: 0.82; }
+    &:hover { opacity: 0.88; }
   }
 
+  // ─── Variante outline (CTA secondaire) ────────────────────
   &--outline {
-    background: transparent;
     color: var(--text-2);
     border-color: var(--border-md);
 
-    &:hover { background: var(--bg-soft); }
+    &:hover {
+      color: var(--text);
+      background: var(--bg-soft);
+      border-color: var(--text-2);
+    }
   }
 
-  &--sm {
-    font-size: 12px;
-    padding: 6px 14px;
+  // ─── Variante ghost (lien-action sans cadre) ──────────────
+  &--ghost {
+    color: var(--text-2);
+    padding-inline: 10px;
+
+    &:hover { color: var(--text); }
   }
+
+  // ─── Tailles ──────────────────────────────────────────────
+  &--sm {
+    min-height: 36px;
+    padding: 8px 16px;
+    font-size: var(--fs-mini);
+    letter-spacing: 0.04em;
+  }
+
+  &--lg {
+    min-height: 56px;
+    padding: 16px 28px;
+    font-size: var(--fs-body);
+  }
+
+  // Modificateur block (à utiliser explicitement, jamais auto)
+  &--block { width: 100%; }
 }

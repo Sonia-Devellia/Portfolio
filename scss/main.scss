@@ -10,6 +10,7 @@
 
 // Base
 @use 'base/reset';
+@use 'base/focus';
 @use 'base/typography';
 
 // Layout
@@ -20,11 +21,17 @@
 
 // Components
 @use 'components/buttons';
+@use 'components/forms';
 @use 'components/tags';
 @use 'components/service-card';
 @use 'components/project-card';
 @use 'components/about';
 @use 'components/cta-band';
+
+// Pages
+@use 'pages/admin';
+@use 'pages/contact';
+@use 'pages/projects';
 
 // Responsive (doit être en dernier)
 @use 'layout/responsive';

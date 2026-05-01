@@ -1,9 +1,62 @@
-// ─── Typographie & utilitaires texte ──────────────────────────────────────────
+// ─── Typographie — utilitaires globaux ────────────────────────────────────────
 
+// Eyebrow : surtitre éditorial signature (uppercase tracked, fin)
 .eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--text-3);
+  display: block;
+  font-size: var(--fs-mini);
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  color: var(--text-3);
+  margin: 0 0 12px;
+}
+
+// Lien souligné progressif — signature éditoriale réutilisable
+.link-edit {
+  position: relative;
+  color: var(--text);
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--dur-med) var(--ease-edit);
+  }
+
+  &:hover::after { transform: scaleX(1); }
+}
+
+// Skip link a11y (reste invisible jusqu'au focus)
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--text);
+  color: var(--bg);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-small);
+  z-index: 100;
+
+  &:focus { left: 16px; top: 16px; }
+}
+
+// Sr-only — caché visuellement mais lu par lecteurs d'écran
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
