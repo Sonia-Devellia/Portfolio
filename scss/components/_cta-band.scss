@@ -1,54 +1,51 @@
 @use '../abstracts/mixins' as *;
 
-// ─── CTA Band — invitation finale, ton éditorial ────────────────────────────
+// ─── CTA Band — fermeture éditoriale, titre à l'échelle display ──────────────
 
 .cta-band {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: var(--space-section-md) 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
+  padding: var(--space-section-lg) 24px;
   border-bottom: var(--rule-thin);
 
   @include tablet {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-    padding: var(--space-section-sm) 24px;
+    padding: var(--space-section-md) 24px;
   }
 
-  &__text {
-    max-width: 48ch;
+  @include mobile {
+    padding: var(--space-section-sm) 20px;
+  }
 
-    h2 {
-      font-family: var(--font-sans);
-      font-size: var(--fs-h2);
+  &__title {
+    font-family: var(--font-sans);
+    font-size: clamp(44px, 6vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin: 0 0 18px;
+
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
       font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin: 0 0 10px;
-
-      em {
-        font-family: var(--font-serif);
-        font-style: italic;
-        font-weight: 400;
-      }
     }
+  }
 
-    p {
-      font-size: var(--fs-small);
-      color: var(--text-2);
-      line-height: 1.6;
-      margin: 0;
-    }
+  &__sub {
+    font-size: var(--fs-small);
+    color: var(--text-3);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin: 0 0 44px;
+
+    @include mobile { margin-bottom: 32px; }
   }
 
   &__actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
+    align-items: center;
   }
 }

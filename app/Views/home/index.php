@@ -8,8 +8,8 @@
 $base = rtrim($_ENV['APP_URL'] ?? '', '/');
 $t ??= static fn(string $k): string => $k;
 $projects ??= [];
+$lang = $_SESSION['lang'] ?? 'fr';
 
-// Tags couleurs selon technologie
 function tagColor(string $tag): string {
     $tag = strtolower($tag);
     if (str_contains($tag, 'php'))    return 'tag--blue';
@@ -25,20 +25,24 @@ function tagColor(string $tag): string {
 <section class="hero">
     <div class="hero__content">
         <p class="eyebrow"><?= $t('hero.eyebrow') ?></p>
-        <h1 class="hero__title"><?= $t('hero.title') ?></h1>
+
+        <?php if ($lang === 'fr'): ?>
+        <h1 class="hero__title">Je construis des apps web<br>
+        avec de l'<em>IA&nbsp;embarquée</em>.</h1>
+        <?php else: ?>
+        <h1 class="hero__title">I build web apps<br>
+        with <em>embedded&nbsp;AI</em>.</h1>
+        <?php endif; ?>
+
         <p class="hero__sub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
             <a href="<?= $base ?>/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
             <a href="<?= $base ?>/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
         </div>
         <div class="hero__tags">
-            <span class="tag tag--blue">PHP MVC</span>
+            <span class="tag tag--blue">PHP</span>
             <span class="tag tag--green">Python</span>
-            <span class="tag tag--amber">JavaScript</span>
             <span class="tag tag--purple">LLM APIs</span>
-            <span class="tag tag--amber">React</span>
-            <span class="tag tag--gray">MySQL</span>
-            <span class="tag tag--gray">Git</span>
         </div>
     </div>
     <div class="hero__photo">
@@ -54,24 +58,29 @@ function tagColor(string $tag): string {
     </div>
 </section>
 
-<!-- ─── STATS BAR ───────────────────────────────────────── -->
-<div class="stats-bar">
-    <div class="stats-bar__item">
-        <span class="stats-bar__num">5+</span>
-        <span class="stats-bar__lbl"><?= $t('home.stats.delivered') ?></span>
+<!-- ─── FACTS STRIP ──────────────────────────────────────── -->
+<div class="facts-strip" role="list">
+    <div class="facts-strip__item" role="listitem">
+        <span class="facts-strip__num">5+</span>
+        <span class="facts-strip__lbl"><?= $t('home.stats.delivered') ?></span>
     </div>
-    <div class="stats-bar__item">
-        <span class="stats-bar__num">PHP · Py · JS</span>
-        <span class="stats-bar__lbl"><?= $t('home.stats.stack') ?></span>
+    <div class="facts-strip__item" role="listitem">
+        <span class="facts-strip__num">PHP · Py · JS</span>
+        <span class="facts-strip__lbl"><?= $t('home.stats.stack') ?></span>
     </div>
-    <div class="stats-bar__item">
-        <span class="stats-bar__num">IA</span>
-        <span class="stats-bar__lbl"><?= $t('home.stats.ai') ?></span>
+    <div class="facts-strip__item" role="listitem">
+        <span class="facts-strip__num">IA native</span>
+        <span class="facts-strip__lbl"><?= $t('home.stats.ai') ?></span>
     </div>
-    <div class="stats-bar__item">
-        <span class="stats-bar__num">100%</span>
-        <span class="stats-bar__lbl"><?= $t('home.stats.remote') ?></span>
+    <div class="facts-strip__item" role="listitem">
+        <span class="facts-strip__num">100%</span>
+        <span class="facts-strip__lbl"><?= $t('home.stats.remote') ?></span>
     </div>
+</div>
+
+<!-- ─── CREDENTIAL HOOK ──────────────────────────────────── -->
+<div class="credential-hook">
+    <p><?= $t('hero.credential') ?></p>
 </div>
 
 <!-- ─── SERVICES ────────────────────────────────────────── -->
@@ -113,6 +122,20 @@ function tagColor(string $tag): string {
     </div>
 </section>
 
+<!-- ─── IA SCALE-UP ──────────────────────────────────────── -->
+<section class="ai-scale" id="ai-scale">
+    <div class="ai-scale__inner">
+        <p class="eyebrow"><?= $t('ai.scale.eyebrow') ?></p>
+        <div class="ai-scale__body">
+            <h2 class="ai-scale__assertion"><?= $t('ai.scale.title') ?></h2>
+            <div class="ai-scale__text">
+                <p><?= $t('ai.scale.body') ?></p>
+                <a href="<?= $base ?>/contact" class="btn btn--outline btn--sm"><?= $t('hero.cta_contact') ?></a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ─── PROJETS FEATURED ─────────────────────────────────── -->
 <section class="section projects" id="projects">
     <div class="section__head">
@@ -125,11 +148,11 @@ function tagColor(string $tag): string {
 
     <div class="projects__grid">
         <?php foreach ($projects as $i => $project):
-            $lang     = $_SESSION['lang'] ?? 'fr';
-            $title    = htmlspecialchars($project['title_' . $lang]);
-            $desc     = htmlspecialchars($project['desc_' . $lang]);
-            $tags     = \App\Models\Project::parseTags($project['tags']);
-            $isWide   = $i === 1 || $i === 2; // 2e et 3e projet en large
+            $pLang  = $lang;
+            $title  = htmlspecialchars($project['title_' . $pLang]);
+            $desc   = htmlspecialchars($project['desc_' . $pLang]);
+            $tags   = \App\Models\Project::parseTags($project['tags']);
+            $isWide = $i === 1 || $i === 2;
         ?>
         <article class="project-card <?= $isWide ? 'project-card--wide' : '' ?> <?= $project['is_wip'] ? 'project-card--wip' : '' ?>">
             <?php if ($project['is_wip']): ?>
@@ -140,7 +163,8 @@ function tagColor(string $tag): string {
                 <div class="project-card__thumb">
                     <img src="<?= htmlspecialchars($project['thumbnail']) ?>"
                          alt="<?= $title ?>"
-                         loading="lazy">
+                         loading="lazy"
+                         decoding="async">
                 </div>
             <?php else: ?>
                 <div class="project-card__thumb project-card__thumb--placeholder">
@@ -172,6 +196,30 @@ function tagColor(string $tag): string {
     </div>
 </section>
 
+<!-- ─── MOBILE FIRST ─────────────────────────────────────── -->
+<section class="mobile-first" id="mobile-first">
+    <div class="mobile-first__inner">
+        <div class="mobile-first__content">
+            <p class="eyebrow"><?= $t('mobile.first.eyebrow') ?></p>
+            <h2 class="mobile-first__title"><?= $t('mobile.first.title') ?></h2>
+            <p class="mobile-first__body"><?= $t('mobile.first.body') ?></p>
+        </div>
+        <div class="mobile-first__device" aria-hidden="true">
+            <div class="device">
+                <div class="device__screen">
+                    <div class="device__line device__line--short"></div>
+                    <div class="device__line"></div>
+                    <div class="device__line device__line--med"></div>
+                    <div class="device__line device__line--short"></div>
+                    <div class="device__block"></div>
+                    <div class="device__line device__line--med"></div>
+                    <div class="device__line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
     <div class="about__text">
@@ -195,14 +243,8 @@ function tagColor(string $tag): string {
 
 <!-- ─── CTA BAND ─────────────────────────────────────────── -->
 <section class="cta-band">
-    <div class="cta-band__text">
-        <h2><?= $t('cta.title') ?></h2>
-        <p><?= $t('cta.sub') ?></p>
-    </div>
-    <div class="cta-band__actions">
-        <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="btn btn--outline">LinkedIn</a>
-        <a href="https://github.com/sonia-habibi" target="_blank" rel="noopener" class="btn btn--outline">GitHub</a>
-        <a href="https://www.malt.fr" target="_blank" rel="noopener" class="btn btn--outline">Malt</a>
-        <a href="<?= $base ?>/contact" class="btn btn--dark"><?= $t('cta.button') ?></a>
-    </div>
+    <p class="eyebrow"><?= $t('contact.eyebrow') ?></p>
+    <h2 class="cta-band__title"><?= $t('cta.title') ?></h2>
+    <p class="cta-band__sub"><?= $t('cta.sub') ?></p>
+    <a href="<?= $base ?>/contact" class="btn btn--dark btn--lg"><?= $t('cta.button') ?></a>
 </section>

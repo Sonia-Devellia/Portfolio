@@ -41,47 +41,57 @@
   }
 }
 
-// ─── Stats bar — chiffres tabular-nums + filets verticaux ────────────────────
+// ─── Credential hook — byline parcours atypique, entre facts-strip et services ─
 
-.stats-bar {
+.credential-hook {
   max-width: var(--max-w);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  padding: 18px 24px;
   border-bottom: var(--rule-thin);
 
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
+  p {
+    font-size: var(--fs-small);
+    color: var(--text-3);
+    font-style: italic;
+    letter-spacing: 0.01em;
+    margin: 0;
   }
+}
+
+// ─── Facts strip — bande éditoriale de données, style dateline ───────────────
+
+.facts-strip {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  border-bottom: var(--rule-thin);
 
   &__item {
-    padding: 28px 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    padding: 16px 24px;
     border-right: var(--rule-thin);
+    flex: 1;
 
-    &:last-child { border-right: none; }
-
-    @include tablet {
-      &:nth-child(2n) { border-right: none; }
-      &:nth-child(-n+2) { border-bottom: var(--rule-thin); }
-    }
+    &:first-child { padding-left: 24px; }
+    &:last-child  { border-right: none; }
   }
 
   &__num {
-    display: block;
     font-family: var(--font-sans);
-    font-size: 22px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
     color: var(--text);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
   }
 
   &__lbl {
-    display: block;
-    margin-top: 6px;
     font-size: var(--fs-mini);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
     color: var(--text-3);
   }

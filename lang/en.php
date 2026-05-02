@@ -40,7 +40,7 @@ return [
 
     // CTA
     'cta.title'          => 'Got a project in mind?',
-    'cta.sub'            => 'Freelance missions · Remote · France & worldwide · Available now',
+    'cta.sub'            => 'A 30-minute brief. A deliverable within 4 weeks.',
     'cta.button'         => 'Write to me →',
 
     // Contact
@@ -107,4 +107,17 @@ return [
     'a11y.lang.switch'       => 'Language',
     'a11y.menu'              => 'Menu',
     'a11y.theme.toggle'      => 'Toggle theme',
+
+    // Credential line (hero → services)
+    'hero.credential'        => "Former business owner · Landscape designer — client-first product thinking, before the code.",
+
+    // IA scale-up (home)
+    'ai.scale.eyebrow'       => 'TRANSFORMATION',
+    'ai.scale.title'         => "AI doesn't replace your team — it multiplies what it produces.",
+    'ai.scale.body'          => "Automating repetitive tasks, extracting useful information from raw data, generating content on demand — all of this integrates into your existing product without replacing your team. You produce more, faster, with the same resources.",
+
+    // Mobile First (home)
+    'mobile.first.eyebrow'   => 'MOBILE FIRST',
+    'mobile.first.title'     => "Your clients live on smartphones. Your product should be built for that — from day one.",
+    'mobile.first.body'      => "Adapting a desktop site for mobile costs twice as much and delivers half the results. Mobile-first means starting from the most constrained environment and enriching from there — not the other way around. Every interface I deliver is designed and tested on mobile before being adapted to desktop.",
 ];

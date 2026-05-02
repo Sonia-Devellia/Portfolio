@@ -10,7 +10,7 @@
   grid-template-columns: 1fr 460px;
   gap: 64px;
   align-items: center;
-  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(88vh - var(--nav-h));
   border-bottom: var(--rule-thin);
 
   @include tablet {
@@ -88,33 +88,39 @@
     object-fit: cover;
     object-position: top center;
     max-height: calc(100vh - var(--nav-h));
-    filter: grayscale(8%);
+    filter: grayscale(100%);
+    transition: filter var(--dur-slow) var(--ease-edit);
   }
 
   &__nameplate {
     position: absolute;
     bottom: 20px;
     left: 20px;
+    right: 20px;
     background: var(--bg);
     border: var(--rule-md);
     border-radius: var(--radius-md);
-    padding: 12px 16px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   &__nameplate-name {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text);
-    display: block;
     line-height: 1.2;
+    white-space: nowrap;
   }
 
   &__nameplate-role {
     font-size: var(--fs-mini);
     color: var(--text-3);
-    display: block;
-    margin-top: 4px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 }

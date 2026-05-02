@@ -40,7 +40,7 @@ return [
 
     // CTA
     'cta.title'          => 'Un projet en tête ?',
-    'cta.sub'            => 'Missions freelance · Remote · France & international · Disponible maintenant',
+    'cta.sub'            => 'Un brief de 30 min. Un livrable sous 4 semaines.',
     'cta.button'         => 'Écrire →',
 
     // Contact
@@ -107,4 +107,17 @@ return [
     'a11y.lang.switch'       => 'Langue',
     'a11y.menu'              => 'Menu',
     'a11y.theme.toggle'      => 'Changer le thème',
+
+    // Credential line (hero → services)
+    'hero.credential'        => "Ancienne cheffe d'entreprise · Designeuse paysagiste — vision produit et client final avant les lignes de code.",
+
+    // IA scale-up (home)
+    'ai.scale.eyebrow'       => 'TRANSFORMATION',
+    'ai.scale.title'         => "L'IA ne remplace pas votre équipe — elle multiplie ce qu'elle produit.",
+    'ai.scale.body'          => "Automatiser les tâches répétitives, extraire l'information utile des données brutes, générer du contenu à la demande — tout ça s'intègre dans votre produit existant sans remplacer votre équipe. Vous produisez plus, plus vite, avec les mêmes ressources.",
+
+    // Mobile First (home)
+    'mobile.first.eyebrow'   => 'MOBILE FIRST',
+    'mobile.first.title'     => "Vos clients vivent sur smartphone. Votre produit doit être conçu pour ça — dès le premier jour.",
+    'mobile.first.body'      => "Adapter un site desktop pour mobile coûte deux fois plus cher et donne deux fois moins de résultats. Mobile-first, c'est partir du plus contraint pour aller vers le plus riche — pas l'inverse. Chaque interface que je livre est conçue et testée sur mobile avant d'être adaptée au desktop.",
 ];

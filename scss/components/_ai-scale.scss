@@ -1,0 +1,56 @@
+@use '../abstracts/mixins' as *;
+
+// ─── IA Scale-up — section manifeste, assertion éditoriale ───────────────────
+
+.ai-scale {
+  background: var(--bg-soft);
+  border-bottom: var(--rule-thin);
+
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 24px;
+
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+    margin-top: 24px;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  // Assertion : grande, sobre, autorité sans déclamation
+  &__assertion {
+    font-family: var(--font-sans);
+    font-size: clamp(22px, 2.8vw, 38px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0;
+
+    // Pas de serif ici — l'assertion gagne en poids par la taille, pas l'ornement
+  }
+
+  &__text {
+    padding-top: 4px;
+
+    p {
+      font-size: var(--fs-body);
+      color: var(--text-2);
+      line-height: 1.8;
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    .btn { margin-top: 28px; }
+  }
+}

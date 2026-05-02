@@ -15,8 +15,26 @@
   .projects__grid       { grid-template-columns: 1fr; }
   .project-card--wide   { grid-column: span 1; }
   .about                { grid-template-columns: 1fr; }
-  .stats-bar            { grid-template-columns: repeat(2, 1fr); }
-  .cta-band             { flex-direction: column; text-align: center; }
+  .ai-scale__body       { grid-template-columns: 1fr; gap: 28px; }
+  .mobile-first__inner  { grid-template-columns: 1fr; }
+  .mobile-first__device { display: none; }
+
+  // Facts strip : 2×2 dès tablette pour éviter le débordement des labels longs
+  .facts-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &__item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      border-right: var(--rule-thin);
+      border-bottom: var(--rule-thin);
+
+      &:nth-child(2n)  { border-right: none; }
+      &:nth-child(n+3) { border-bottom: none; }
+    }
+  }
 
   .nav {
     &__links  { display: none; }
@@ -32,8 +50,13 @@
 }
 
 @include mobile {
-  .stats-bar { grid-template-columns: 1fr 1fr; }
-  .section   { padding: 48px 16px; }
+  .section { padding: 48px 16px; }
+
+  // Items padding réduit sur petit écran
+  .facts-strip__item { padding: 14px 16px; }
+
+  // CTA band : titre réduit sur mobile
+  .cta-band__title { font-size: clamp(36px, 9vw, 52px); }
 }
 
 // ─── Admin responsive ─────────────────────────────────────────────────────────

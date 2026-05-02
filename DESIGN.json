@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-01T00:00:00Z",
+  "title": "Design System: Sonia Habibi — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "press-white": {
+        "role": "neutral",
+        "displayName": "Press White",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "oklch(12% 0.003 75)",
+          "oklch(25% 0.004 75)",
+          "oklch(40% 0.005 75)",
+          "oklch(55% 0.005 75)",
+          "oklch(70% 0.005 75)",
+          "oklch(83% 0.004 75)",
+          "oklch(93% 0.004 75)",
+          "oklch(100% 0 0)"
+        ]
+      },
+      "warm-newsprint": {
+        "role": "neutral",
+        "displayName": "Warm Newsprint",
+        "canonical": "oklch(97% 0.005 74)",
+        "tonalRamp": [
+          "oklch(10% 0.003 74)",
+          "oklch(22% 0.004 74)",
+          "oklch(37% 0.005 74)",
+          "oklch(52% 0.005 74)",
+          "oklch(67% 0.005 74)",
+          "oklch(80% 0.005 74)",
+          "oklch(90% 0.005 74)",
+          "oklch(97% 0.005 74)"
+        ]
+      },
+      "old-linen": {
+        "role": "neutral",
+        "displayName": "Old Linen",
+        "canonical": "oklch(94% 0.008 74)",
+        "tonalRamp": [
+          "oklch(10% 0.003 74)",
+          "oklch(22% 0.005 74)",
+          "oklch(37% 0.007 74)",
+          "oklch(52% 0.008 74)",
+          "oklch(66% 0.008 74)",
+          "oklch(78% 0.008 74)",
+          "oklch(88% 0.008 74)",
+          "oklch(94% 0.008 74)"
+        ]
+      },
+      "press-ink": {
+        "role": "neutral",
+        "displayName": "Press Ink",
+        "canonical": "oklch(11% 0.003 70)",
+        "tonalRamp": [
+          "oklch(11% 0.003 70)",
+          "oklch(22% 0.004 70)",
+          "oklch(35% 0.005 70)",
+          "oklch(48% 0.005 70)",
+          "oklch(62% 0.005 70)",
+          "oklch(75% 0.005 70)",
+          "oklch(87% 0.004 70)",
+          "oklch(96% 0.003 70)"
+        ]
+      },
+      "aged-lead": {
+        "role": "neutral",
+        "displayName": "Aged Lead",
+        "canonical": "oklch(39% 0.007 68)",
+        "tonalRamp": [
+          "oklch(10% 0.003 68)",
+          "oklch(20% 0.004 68)",
+          "oklch(30% 0.006 68)",
+          "oklch(39% 0.007 68)",
+          "oklch(53% 0.007 68)",
+          "oklch(67% 0.006 68)",
+          "oklch(80% 0.005 68)",
+          "oklch(93% 0.004 68)"
+        ]
+      },
+      "studio-slate": {
+        "role": "neutral",
+        "displayName": "Studio Slate",
+        "canonical": "oklch(62% 0.006 65)",
+        "tonalRamp": [
+          "oklch(10% 0.002 65)",
+          "oklch(22% 0.003 65)",
+          "oklch(35% 0.005 65)",
+          "oklch(48% 0.006 65)",
+          "oklch(62% 0.006 65)",
+          "oklch(74% 0.005 65)",
+          "oklch(85% 0.004 65)",
+          "oklch(94% 0.003 65)"
+        ]
+      },
+      "available-green": {
+        "role": "primary",
+        "displayName": "Available Green",
+        "canonical": "oklch(42% 0.09 163)",
+        "tonalRamp": [
+          "oklch(14% 0.05 163)",
+          "oklch(24% 0.07 163)",
+          "oklch(33% 0.09 163)",
+          "oklch(42% 0.09 163)",
+          "oklch(54% 0.10 163)",
+          "oklch(67% 0.09 163)",
+          "oklch(80% 0.07 163)",
+          "oklch(93% 0.04 163)"
+        ]
+      },
+      "available-green-bg": {
+        "role": "primary",
+        "displayName": "Available Green Background",
+        "canonical": "oklch(94% 0.04 162)",
+        "tonalRamp": [
+          "oklch(14% 0.03 162)",
+          "oklch(28% 0.05 162)",
+          "oklch(42% 0.07 162)",
+          "oklch(56% 0.09 162)",
+          "oklch(68% 0.08 162)",
+          "oklch(79% 0.07 162)",
+          "oklch(88% 0.05 162)",
+          "oklch(94% 0.04 162)"
+        ]
+      },
+      "available-dot": {
+        "role": "primary",
+        "displayName": "Available Dot",
+        "canonical": "oklch(60% 0.12 162)",
+        "tonalRamp": [
+          "oklch(15% 0.06 162)",
+          "oklch(27% 0.08 162)",
+          "oklch(39% 0.10 162)",
+          "oklch(50% 0.12 162)",
+          "oklch(60% 0.12 162)",
+          "oklch(72% 0.10 162)",
+          "oklch(83% 0.07 162)",
+          "oklch(93% 0.04 162)"
+        ]
+      }
+    },
+    "shadows": [
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 3px var(--bg-subtle)",
+        "purpose": "Focus state only. Applied alongside border-color: var(--text) on focused inputs. Not an elevation shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-edit",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Default easing for all state transitions. Smooth, no bounce."
+      },
+      {
+        "name": "dur-fast",
+        "value": "120ms",
+        "purpose": "Button hover, link color transitions, opacity changes."
+      },
+      {
+        "name": "dur-med",
+        "value": "240ms",
+        "purpose": "Card hover transforms, background transitions, border transitions."
+      },
+      {
+        "name": "dur-slow",
+        "value": "400ms",
+        "purpose": "Image scale on card hover. Fade-up scroll animations."
+      },
+      {
+        "name": "pulse",
+        "value": "pulse 2s infinite — opacity 1→0.4→1",
+        "purpose": "Availability dot in navigation badge only."
+      }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px", "purpose": "Grid collapses to 1 column, hero stacks vertically." },
+      { "name": "mobile", "value": "560px", "purpose": "Section padding reduces, project grid collapses to single column." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main conversion CTA. Press Ink fill, pill shape. One per decision zone.",
+      "html": "<a href=\"/contact\" class=\"ds-btn-primary\">Écrire →</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 22px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.005em; line-height: 1.2; border-radius: 999px; border: 1px solid #111110; background: #111110; color: #ffffff; cursor: pointer; white-space: nowrap; text-decoration: none; transition: opacity 120ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 120ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-btn-primary:hover { opacity: 0.88; } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid #111110; outline-offset: 3px; border-radius: 999px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary CTA — discovery actions, nav links, platform links. Transparent base, border visible.",
+      "html": "<a href=\"/projets\" class=\"ds-btn-outline\">Voir mes projets</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 22px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 0.005em; line-height: 1.2; border-radius: 999px; border: 1px solid rgba(0,0,0,0.14); background: transparent; color: #5a5956; cursor: pointer; white-space: nowrap; text-decoration: none; transition: background 120ms cubic-bezier(0.2, 0.8, 0.2, 1), color 120ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 120ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 120ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-btn-outline:hover { background: #f7f6f4; color: #111110; border-color: #5a5956; } .ds-btn-outline:active { transform: translateY(1px); } .ds-btn-outline:focus-visible { outline: 2px solid #111110; outline-offset: 3px; }"
+    },
+    {
+      "name": "Technology Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Semantic technology label. Color determined by technology domain, not by preference. PHP shown here.",
+      "html": "<span class=\"ds-tag ds-tag--php\">PHP</span>",
+      "css": ".ds-tag { display: inline-flex; align-items: center; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 400; line-height: 1.2; border-radius: 999px; padding: 3px 8px; white-space: nowrap; } .ds-tag--php { background: #e6f1fb; color: #185fa5; } .ds-tag--python { background: #eaf3de; color: #3b6d11; } .ds-tag--js { background: #faeeda; color: #854f0b; } .ds-tag--ai { background: #eeedfe; color: #534ab7; } .ds-tag--css { background: #faece7; color: #993c1d; } .ds-tag--misc { background: #f1efe8; color: #5f5e5a; }"
+    },
+    {
+      "name": "Availability Badge",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature nav element. The only saturated color in the system. One location, one meaning.",
+      "html": "<span class=\"ds-avail-badge\"><span class=\"ds-avail-badge__dot\"></span>Disponible</span>",
+      "css": ".ds-avail-badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 400; color: #0f6e56; background: #e1f5ee; padding: 4px 10px; border-radius: 20px; white-space: nowrap; } .ds-avail-badge__dot { width: 5px; height: 5px; border-radius: 50%; background: #1d9e75; flex-shrink: 0; animation: ds-pulse 2s infinite; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }"
+    },
+    {
+      "name": "Service Card — Newspaper Grid",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Signature component. Cards share borders — no gap, no individual radius. Forms a continuous editorial grid.",
+      "html": "<div class=\"ds-services-grid\"><div class=\"ds-service-card\"><span class=\"ds-service-card__num\">01</span><h3 class=\"ds-service-card__title\">Application web sur mesure</h3><p class=\"ds-service-card__desc\">Architecture MVC propre, base de données, back-office, API REST, déploiement production.</p><div class=\"ds-service-card__tags\"><span class=\"ds-tag ds-tag--php\">PHP</span><span class=\"ds-tag ds-tag--js\">MySQL</span></div></div><div class=\"ds-service-card\"><span class=\"ds-service-card__num\">02</span><h3 class=\"ds-service-card__title\">Intégration IA dans votre produit</h3><p class=\"ds-service-card__desc\">Agents LLM, chatbots contextuels, traitement de documents.</p><div class=\"ds-service-card__tags\"><span class=\"ds-tag ds-tag--ai\">Claude API</span><span class=\"ds-tag ds-tag--python\">Python</span></div></div></div>",
+      "css": ".ds-services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid rgba(0,0,0,0.08); border-left: 1px solid rgba(0,0,0,0.08); } .ds-service-card { position: relative; padding: 32px 28px 28px; border-right: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); background: #ffffff; transition: background 240ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-service-card:hover { background: #f7f6f4; } .ds-service-card:hover .ds-service-card__num { color: #111110; } .ds-service-card__num { display: block; font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 32px; line-height: 1; color: #9a9895; margin-bottom: 24px; transition: color 240ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-service-card__title { font-family: 'DM Sans', system-ui, sans-serif; font-size: 17px; font-weight: 500; color: #111110; line-height: 1.3; margin: 0 0 10px; } .ds-service-card__desc { font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; color: #5a5956; line-height: 1.65; margin: 0; max-width: 32ch; } .ds-service-card__tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 22px; } .ds-tag { display: inline-flex; align-items: center; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; border-radius: 999px; padding: 3px 8px; } .ds-tag--php { background: #e6f1fb; color: #185fa5; } .ds-tag--js { background: #faeeda; color: #854f0b; } .ds-tag--ai { background: #eeedfe; color: #534ab7; } .ds-tag--python { background: #eaf3de; color: #3b6d11; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Portfolio work card with thumbnail, tag strip, title, description, action links.",
+      "html": "<article class=\"ds-project-card\"><div class=\"ds-project-card__thumb\"><div class=\"ds-project-card__thumb-placeholder\">PH</div></div><div class=\"ds-project-card__body\"><div class=\"ds-project-card__tags\"><span class=\"ds-tag ds-tag--php\">PHP</span><span class=\"ds-tag ds-tag--ai\">LLM API</span></div><h3 class=\"ds-project-card__title\">Nom du projet</h3><p class=\"ds-project-card__desc\">Description courte du projet, ce qui a été construit et pour qui.</p><div class=\"ds-project-card__links\"><a href=\"#\" class=\"ds-project-card__link\">Voir le projet →</a><a href=\"#\" class=\"ds-project-card__link\">GitHub →</a></div></div></article>",
+      "css": ".ds-project-card { position: relative; background: #ffffff; border: 1px solid rgba(0,0,0,0.08); border-radius: 14px; overflow: hidden; transition: border-color 240ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-project-card:hover { border-color: rgba(0,0,0,0.14); transform: translateY(-3px); } .ds-project-card__thumb { height: 180px; overflow: hidden; background: #f0eeeb; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; } .ds-project-card__thumb-placeholder { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 32px; color: #9a9895; opacity: 0.5; } .ds-project-card__body { padding: 20px 22px 22px; } .ds-project-card__tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 14px; } .ds-project-card__title { font-family: 'DM Sans', system-ui, sans-serif; font-size: 16px; font-weight: 500; color: #111110; line-height: 1.3; margin: 0 0 8px; } .ds-project-card__desc { font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; color: #5a5956; line-height: 1.6; margin: 0 0 16px; } .ds-project-card__links { display: flex; gap: 16px; align-items: center; } .ds-project-card__link { font-family: 'DM Sans', system-ui, sans-serif; font-size: 13px; color: #111110; font-weight: 500; text-decoration: none; transition: color 120ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-project-card__link:hover { color: #5a5956; transform: translateX(2px); } .ds-tag { display: inline-flex; align-items: center; font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; border-radius: 999px; padding: 3px 8px; } .ds-tag--php { background: #e6f1fb; color: #185fa5; } .ds-tag--ai { background: #eeedfe; color: #534ab7; }"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Uppercase-label input with the system's double-border focus treatment.",
+      "html": "<div class=\"ds-form-group\"><label for=\"ds-email\">Email</label><input type=\"email\" id=\"ds-email\" name=\"email\" placeholder=\"vous@example.com\" required></div>",
+      "css": ".ds-form-group { display: flex; flex-direction: column; gap: 8px; } .ds-form-group label { font-family: 'DM Sans', system-ui, sans-serif; font-size: 11px; font-weight: 500; color: #9a9895; letter-spacing: 0.08em; text-transform: uppercase; } .ds-form-group input, .ds-form-group textarea { width: 100%; min-height: 48px; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.08); border-radius: 6px; background: #ffffff; color: #111110; font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.4; outline: none; transition: border-color 120ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 120ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-form-group input::placeholder { color: #9a9895; opacity: 1; } .ds-form-group input:hover:not(:focus-visible) { border-color: rgba(0,0,0,0.14); } .ds-form-group input:focus-visible { border-color: #111110; box-shadow: 0 0 0 3px #f0eeeb; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Press Room",
+    "overview": "This system is modeled on the functional beauty of professional print — the ordered grid of a newspaper layout, the authority of ink on paper, the discipline of a designer who removes before adding. Nothing here is decorative. The whitespace is load-bearing. The 1px borders are structural. The DM Serif Display italic appears in exactly four positions across the entire interface, and its rarity gives each appearance genuine weight.\n\nDepth is achieved without shadows. Surfaces stack tonally — from Press White to Warm Newsprint to Old Linen — and are separated by hairline rules, not elevation. The result is a surface that reads as a printed sheet, not a floating app. The only color signal in the system is availability green, appearing once in the navigation badge. Its singularity is the point.\n\nThis system refuses four aesthetics by design: the Webflow gradient template, the generic contractor profile on stark white with Inter, the SaaS mega-hero with particle animations, and the Bootstrap card grid with heavy drop shadows.",
+    "keyCharacteristics": [
+      "Tonal depth through layered warm off-whites — no box-shadows anywhere",
+      "DM Serif Display italic used as editorial punctuation in four fixed positions only",
+      "Pill buttons (999px radius) for all interactive elements; restrained corner radius on containers",
+      "Six semantic tag color pairs, each mapped to a specific technology domain",
+      "Single green signal (availability badge) — never reused for other semantic states",
+      "Full light/dark theme via CSS custom properties, zero JavaScript dependency for theming"
+    ],
+    "rules": [
+      {
+        "name": "The Press Room Rule",
+        "body": "DM Serif Display italic is punctuation, not prose. It appears in exactly four established positions: nav logo, service card numbers, hero nameplate name, and WIP placeholder labels. Adding it anywhere else dilutes the system's restraint.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Signal Rule",
+        "body": "Available Green is the only saturated hue in the system. It means one thing: Sonia is available for work. Do not use green for success states, hover effects, active links, or any other semantic purpose.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Invention Rule",
+        "body": "No new color values may be introduced. Every color decision is a choice between existing tokens. If a new semantic state seems to need a new color, use a combination of existing tones, borders, and opacity instead.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat-by-Lines Rule",
+        "body": "Every surface is at the same elevation at rest. Depth is in the tonal steps, not in shadows. If you are reaching for a box-shadow, use a border or a background-color step instead. The only exception is the focus ring.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tracking Rule",
+        "body": "Uppercase labels carry letter-spacing 0.08em. Display sizes carry negative tracking (-0.035em). Body and small text carry neutral tracking. Never apply positive tracking to body text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mapping Rule",
+        "body": "Technology tags follow a fixed color map: PHP→blue, Python→green, JS→amber, AI/LLM→purple, CSS→coral, misc→gray. The map is the system — don't reassign colors for visual variety.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do use the hairline border system (1px solid var(--border)) to separate content zones.",
+      "Do use the service card's shared-border newspaper grid for any 3-column feature section.",
+      "Do use tonal layers (Press White → Warm Newsprint → Old Linen) to create depth without elevation.",
+      "Do use DM Serif Display italic only in its four established positions.",
+      "Do assign technology tags by the fixed color map.",
+      "Do maintain the double-border focus treatment: border-color var(--text) + box-shadow 0 0 0 3px var(--bg-subtle).",
+      "Do use pill buttons (border-radius 999px) for all interactive button elements.",
+      "Do limit each decision zone to one btn--dark. A second dark button destroys the hierarchy.",
+      "Do apply negative letter-spacing (-0.035em) to display-size headings.",
+      "Do enforce max-width on body text — 52ch in hero, 32ch in service card descriptions."
+    ],
+    "donts": [
+      "Don't use gradient text (background-clip: text with a gradient). Prohibited.",
+      "Don't use neon-on-dark aesthetics, purple gradients, or animated particle effects.",
+      "Don't use Inter as the typeface. The system uses DM Sans.",
+      "Don't use external icon libraries (Flaticon, Font Awesome, Heroicons packages). Inline SVG only.",
+      "Don't use decorative icon-plus-timeline milestone patterns.",
+      "Don't add a second color accent. The green signal is the only accent.",
+      "Don't use box-shadows for elevation. Use a border or tonal background instead.",
+      "Don't use Bootstrap-style heavy drop shadows or rounded blue primary buttons.",
+      "Don't use DM Serif Display outside the four established positions.",
+      "Don't apply letter-spacing to body or small text.",
+      "Don't use color alone to convey status. Tags and badges always carry text labels.",
+      "Don't create new color tokens. Use combinations of existing tokens.",
+      "Don't use !important. Reorganize specificity instead."
+    ]
+  }
+}
