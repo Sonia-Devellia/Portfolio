@@ -19,8 +19,25 @@ $csrf_token ??= '';
             <div class="contact-page__avail">
                 <span class="contact-page__avail-dot"></span>
                 <?= $t('contact.available') ?>
+                <span class="contact-page__avail-from"><?= $t('contact.avail.from') ?></span>
             </div>
             <p class="contact-page__sub"><?= $t('contact.sub') ?></p>
+
+            <dl class="contact-page__faq">
+                <div class="contact-page__faq-item">
+                    <dt><?= $t('contact.faq.q1') ?></dt>
+                    <dd><?= $t('contact.faq.a1') ?></dd>
+                </div>
+                <div class="contact-page__faq-item">
+                    <dt><?= $t('contact.faq.q2') ?></dt>
+                    <dd><?= $t('contact.faq.a2') ?></dd>
+                </div>
+                <div class="contact-page__faq-item">
+                    <dt><?= $t('contact.faq.q3') ?></dt>
+                    <dd><?= $t('contact.faq.a3') ?></dd>
+                </div>
+            </dl>
+
             <ul class="contact-page__socials" aria-label="<?= $t('contact.socials.aria') ?>">
                 <li>
                     <a href="https://www.linkedin.com/in/sonia-habibi"
@@ -76,6 +93,18 @@ $csrf_token ??= '';
                     <label for="email"><?= $t('contact.email') ?></label>
                     <input type="email" id="email" name="email"
                            required aria-required="true" autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label><?= $t('contact.type.label') ?></label>
+                    <div class="form-type-pills" role="group" aria-label="<?= $t('contact.type.label') ?>">
+                        <?php foreach (['site', 'app', 'ai', 'other'] as $type): ?>
+                        <label class="type-pill">
+                            <input type="radio" name="project_type" value="<?= $type ?>">
+                            <span><?= $t('contact.type.' . $type) ?></span>
+                        </label>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
                 <div class="form-group">

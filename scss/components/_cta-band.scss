@@ -1,29 +1,27 @@
 @use '../abstracts/mixins' as *;
 
-// ─── CTA Band — fermeture éditoriale, titre à l'échelle display ──────────────
+// ─── CTA Band — finale page, fond sombre inversé ─────────────────────────────
 
 .cta-band {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: var(--space-section-lg) 24px;
-  border-bottom: var(--rule-thin);
+  background: var(--text);      // press-ink on light / press-white on dark — systemic inversion
+  padding: var(--space-section-xl) 5vw var(--space-section-lg);
 
   @include tablet {
-    padding: var(--space-section-md) 24px;
+    padding: var(--space-section-lg) 5vw var(--space-section-md);
   }
 
   @include mobile {
-    padding: var(--space-section-sm) 20px;
+    padding: var(--space-section-md) 20px var(--space-section-sm);
   }
 
   &__title {
     font-family: var(--font-sans);
-    font-size: clamp(44px, 6vw, 76px);
+    font-size: clamp(40px, 7vw, 96px);
     font-weight: 400;
-    line-height: 1;
+    line-height: 0.95;
     letter-spacing: -0.04em;
-    color: var(--text);
-    margin: 0 0 18px;
+    color: var(--bg);            // inverts with the section background
+    margin: 0 0 28px;
 
     em {
       font-family: var(--font-serif);
@@ -34,7 +32,7 @@
 
   &__sub {
     font-size: var(--fs-small);
-    color: var(--text-3);
+    color: var(--text-3);        // in dark context this reads as muted light
     letter-spacing: 0.03em;
     text-transform: uppercase;
     margin: 0 0 44px;
@@ -48,4 +46,30 @@
     flex-wrap: wrap;
     align-items: center;
   }
+
+  // ─── Button inversion inside dark section ─────────────────
+  .btn--dark {
+    background: var(--bg);
+    color: var(--text);
+    border-color: var(--bg);
+
+    @media (hover: hover) {
+      &:hover { opacity: 0.88; }
+    }
+  }
+
+  .btn--outline {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: var(--bg);
+
+    @media (hover: hover) {
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--bg);
+      }
+    }
+  }
+
+  // eyebrow on dark bg
+  .eyebrow { color: var(--text-3); }
 }

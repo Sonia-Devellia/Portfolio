@@ -1,0 +1,42 @@
+// ─── Custom cursor — desktop/mouse only ─────────────────────
+// Uses (hover: hover) and (pointer: fine) so touch devices are
+// unaffected at the CSS level (JS guard handles the rest).
+
+@use '../abstracts/variables';
+
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+
+  .cursor-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--text);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+
+  .cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--text);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition:
+      width 0.3s ease,
+      height 0.3s ease,
+      opacity 0.3s ease,
+      border-color 0.3s ease;
+    opacity: 0.6;
+  }
+}

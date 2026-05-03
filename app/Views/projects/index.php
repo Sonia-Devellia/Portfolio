@@ -34,10 +34,9 @@ if (!function_exists('tagColor')) {
         <?php foreach ($projects as $project):
             $lang  = $_SESSION['lang'] ?? 'fr';
             $title = htmlspecialchars($project['title_' . $lang]);
-            $desc  = htmlspecialchars($project['desc_' . $lang]);
             $tags  = \App\Models\Project::parseTags($project['tags']);
         ?>
-        <article class="project-card <?= $project['is_wip'] ? 'project-card--wip' : '' ?>">
+        <article class="project-card <?= $project['is_wip'] ? 'project-card--wip' : '' ?>" data-theme="dark">
             <?php if ($project['is_wip']): ?>
                 <div class="project-card__thumb project-card__thumb--empty">
                     <span class="project-card__wip-label">+ IA</span>
@@ -46,7 +45,9 @@ if (!function_exists('tagColor')) {
                 <div class="project-card__thumb">
                     <img src="<?= htmlspecialchars($project['thumbnail']) ?>"
                          alt="<?= $title ?>"
-                         loading="lazy">
+                         width="560" height="320"
+                         loading="lazy"
+                         decoding="async">
                 </div>
             <?php else: ?>
                 <div class="project-card__thumb project-card__thumb--placeholder">
@@ -61,15 +62,14 @@ if (!function_exists('tagColor')) {
                     <?php endforeach; ?>
                 </div>
                 <h2 class="project-card__title"><?= $title ?></h2>
-                <p class="project-card__desc"><?= $desc ?></p>
                 <div class="project-card__links">
                     <?php if ($project['is_wip']): ?>
                         <span class="project-card__link project-card__link--muted"><?= $t('projects.wip') ?></span>
-                    <?php else: ?>
-                        <a href="<?= $base ?>/projets/<?= htmlspecialchars($project['slug']) ?>" class="project-card__link"><?= $t('projects.see') ?></a>
-                        <?php if ($project['github_url']): ?>
-                            <a href="<?= htmlspecialchars($project['github_url']) ?>" class="project-card__link" target="_blank" rel="noopener"><?= $t('projects.github') ?></a>
-                        <?php endif; ?>
+                    <?php elseif ($project['github_url']): ?>
+                        <a href="<?= htmlspecialchars($project['github_url']) ?>"
+                           class="project-card__link"
+                           target="_blank" rel="noopener"
+                           aria-label="<?= $title ?> GitHub (<?= $t('contact.social.new_tab') ?>)">GitHub ↗</a>
                     <?php endif; ?>
                 </div>
             </div>

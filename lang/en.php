@@ -37,6 +37,7 @@ return [
     'about.title'        => 'Profile',
     'about.p1'           => 'Former business owner and landscape designer, now a full-stack developer. This unconventional background gives me a rare product mindset — I write code with the end user in mind.',
     'about.p2'           => 'Specialised in embedded AI. Available for freelance missions in France & internationally, 100% remote.',
+    'about.pullquote'    => "Former business owner and landscape designer — I code with the end user's perspective in mind.",
 
     // CTA
     'cta.title'          => 'Got a project in mind?',
@@ -115,9 +116,32 @@ return [
     'ai.scale.eyebrow'       => 'TRANSFORMATION',
     'ai.scale.title'         => "AI doesn't replace your team — it multiplies what it produces.",
     'ai.scale.body'          => "Automating repetitive tasks, extracting useful information from raw data, generating content on demand — all of this integrates into your existing product without replacing your team. You produce more, faster, with the same resources.",
+    'ai.scale.m1.num'        => '3×',
+    'ai.scale.m1.lbl'        => 'faster than a full redesign',
+    'ai.scale.m2.num'        => '24/7',
+    'ai.scale.m2.lbl'        => 'AI available continuously',
+    'ai.scale.m3.num'        => '8 wks',
+    'ai.scale.m3.lbl'        => 'from brief to MVP delivery',
 
     // Mobile First (home)
     'mobile.first.eyebrow'   => 'MOBILE FIRST',
     'mobile.first.title'     => "Your clients live on smartphones. Your product should be built for that — from day one.",
     'mobile.first.body'      => "Adapting a desktop site for mobile costs twice as much and delivers half the results. Mobile-first means starting from the most constrained environment and enriching from there — not the other way around. Every interface I deliver is designed and tested on mobile before being adapted to desktop.",
+    'mobile.first.b1'        => "Retrofitting desktop to mobile costs twice as much, for half the result.",
+    'mobile.first.b2'        => "Mobile-first means starting from the most constrained — not the other way around.",
+    'mobile.first.b3'        => "Every interface designed and tested on mobile before scaling to desktop.",
+
+    // Contact FAQ + project type
+    'contact.faq.q1'         => 'What is your response time?',
+    'contact.faq.a1'         => 'Within 24h, weekdays.',
+    'contact.faq.q2'         => 'Do you work remotely?',
+    'contact.faq.a2'         => '100% remote — France & international.',
+    'contact.faq.q3'         => 'What is your day rate?',
+    'contact.faq.a3'         => 'Available on request.',
+    'contact.avail.from'     => 'Available from June 2026',
+    'contact.type.label'     => 'Project type',
+    'contact.type.site'      => 'Website',
+    'contact.type.app'       => 'Application',
+    'contact.type.ai'        => 'AI Integration',
+    'contact.type.other'     => 'Other',
 ];

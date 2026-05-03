@@ -37,6 +37,7 @@ return [
     'about.title'        => 'Profil',
     'about.p1'           => 'Ancienne cheffe d\'entreprise et designeuse paysagiste, reconvertie en développeuse full-stack. Ce parcours atypique me donne une lecture produit rare — je code avec la vision du client final en tête.',
     'about.p2'           => 'Spécialisée IA embarquée. Disponible pour des missions freelance France & international, 100% remote.',
+    'about.pullquote'    => "Ancienne cheffe d'entreprise et designeuse paysagiste — je code avec la vision du client final en tête.",
 
     // CTA
     'cta.title'          => 'Un projet en tête ?',
@@ -115,9 +116,32 @@ return [
     'ai.scale.eyebrow'       => 'TRANSFORMATION',
     'ai.scale.title'         => "L'IA ne remplace pas votre équipe — elle multiplie ce qu'elle produit.",
     'ai.scale.body'          => "Automatiser les tâches répétitives, extraire l'information utile des données brutes, générer du contenu à la demande — tout ça s'intègre dans votre produit existant sans remplacer votre équipe. Vous produisez plus, plus vite, avec les mêmes ressources.",
+    'ai.scale.m1.num'        => '3×',
+    'ai.scale.m1.lbl'        => "plus rapide qu'une refonte complète",
+    'ai.scale.m2.num'        => '24/7',
+    'ai.scale.m2.lbl'        => 'IA disponible en continu',
+    'ai.scale.m3.num'        => '8 sem',
+    'ai.scale.m3.lbl'        => 'du brief au livrable MVP',
 
     // Mobile First (home)
     'mobile.first.eyebrow'   => 'MOBILE FIRST',
     'mobile.first.title'     => "Vos clients vivent sur smartphone. Votre produit doit être conçu pour ça — dès le premier jour.",
     'mobile.first.body'      => "Adapter un site desktop pour mobile coûte deux fois plus cher et donne deux fois moins de résultats. Mobile-first, c'est partir du plus contraint pour aller vers le plus riche — pas l'inverse. Chaque interface que je livre est conçue et testée sur mobile avant d'être adaptée au desktop.",
+    'mobile.first.b1'        => "Adapter après coup coûte deux fois plus cher, pour deux fois moins de résultats.",
+    'mobile.first.b2'        => "Mobile-first, c'est partir du plus contraint — pas l'inverse.",
+    'mobile.first.b3'        => "Chaque interface conçue et testée sur mobile avant d'être étendue au desktop.",
+
+    // Contact FAQ + type projet
+    'contact.faq.q1'         => 'Quel est votre délai de réponse ?',
+    'contact.faq.a1'         => 'Sous 24h, en semaine.',
+    'contact.faq.q2'         => 'Travaillez-vous en remote ?',
+    'contact.faq.a2'         => '100% remote — France & international.',
+    'contact.faq.q3'         => 'Quel est votre TJM ?',
+    'contact.faq.a3'         => 'Disponible sur demande.',
+    'contact.avail.from'     => 'Disponible à partir de juin 2026',
+    'contact.type.label'     => 'Type de projet',
+    'contact.type.site'      => 'Site web',
+    'contact.type.app'       => 'Application',
+    'contact.type.ai'        => 'Intégration IA',
+    'contact.type.other'     => 'Autre',
 ];

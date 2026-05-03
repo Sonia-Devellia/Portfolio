@@ -1,23 +1,24 @@
 @use '../abstracts/mixins' as *;
 
-// ─── Mobile First — philosophie comme argument business ──────────────────────
+// ─── Mobile First — assertion + téléphone animé CSS ──────────────────────────
 
 .mobile-first {
+  border-top: var(--rule-thin);
   border-bottom: var(--rule-thin);
 
   &__inner {
     max-width: var(--max-w);
     margin: 0 auto;
-    padding: var(--space-section-md) 24px;
+    padding: var(--space-section-lg) 24px;
     display: grid;
-    grid-template-columns: 1fr 280px;
+    grid-template-columns: 1fr 220px;
     gap: 80px;
     align-items: center;
 
     @include tablet {
       grid-template-columns: 1fr;
-      gap: 0;
-      padding-bottom: var(--space-section-sm);
+      gap: 48px;
+      padding-bottom: var(--space-section-md);
     }
 
     @include mobile {
@@ -27,21 +28,42 @@
 
   &__content { max-width: 52ch; }
 
-  &__title {
+  &__statement {
     font-family: var(--font-sans);
-    font-size: clamp(21px, 2.6vw, 32px);
+    font-size: clamp(22px, 2.8vw, 36px);
     font-weight: 400;
-    line-height: 1.3;
+    line-height: 1.25;
     letter-spacing: -0.02em;
     color: var(--text);
-    margin: 12px 0 24px;
+    margin: 14px 0 32px;
   }
 
-  &__body {
-    font-size: var(--fs-body);
-    color: var(--text-2);
-    line-height: 1.8;
+  &__bullets {
+    list-style: none;
+    padding: 0;
     margin: 0;
+    border-top: var(--rule-thin);
+
+    li {
+      font-size: var(--fs-body);
+      color: var(--text-2);
+      line-height: 1.6;
+      padding: 16px 0 16px 20px;
+      border-bottom: var(--rule-thin);
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--text-3);
+      }
+    }
   }
 
   &__device {
@@ -53,40 +75,60 @@
   }
 }
 
-// ─── Device CSS — illustration minimaliste (outline seul, pas d'image) ───────
+// ─── Device CSS animé ────────────────────────────────────────────────────────
+
+@keyframes line-reveal {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes dot-breathe {
+  0%, 100% { opacity: 0.25; }
+  50%       { opacity: 1; }
+}
+
+@keyframes load-progress {
+  0%   { width: 12%; }
+  70%  { width: 76%; }
+  90%  { width: 76%; }
+  100% { width: 12%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device__line,
+  .device__dot,
+  .device__loadbar-fill { animation: none !important; opacity: 1 !important; }
+}
 
 .device {
   width: 130px;
   height: 248px;
-  border: 1.5px solid var(--border-md);
-  border-radius: 26px;
+  border: 2px solid var(--border-md);
+  border-radius: 28px;
   position: relative;
   background: var(--bg);
-  transition: border-color var(--dur-med) var(--ease-edit);
 
-  &:hover { border-color: var(--text-3); }
-
-  // Encoche caméra
+  // Notch
   &::before {
     content: '';
     position: absolute;
-    top: 9px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 26px;
-    height: 4px;
+    width: 28px;
+    height: 5px;
     background: var(--border-md);
-    border-radius: 2px;
+    border-radius: 3px;
   }
 
-  // Indicateur home
+  // Home bar
   &::after {
     content: '';
     position: absolute;
-    bottom: 7px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 32px;
+    width: 36px;
     height: 3px;
     background: var(--border);
     border-radius: 2px;
@@ -94,31 +136,71 @@
 
   &__screen {
     position: absolute;
-    inset: 24px 10px 20px;
+    inset: 26px 12px 22px;
     background: var(--bg-soft);
-    border-radius: 10px;
-    padding: 12px 10px;
+    border-radius: 12px;
+    padding: 10px 10px 12px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    overflow: hidden;
+    gap: 0;
+  }
+
+  &__screen-header {
+    display: flex;
+    align-items: center;
+    height: 18px;
+    margin-bottom: 8px;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-3);
+    animation: dot-breathe 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.25s; }
+    &:nth-child(3) { animation-delay: 0.5s; }
   }
 
   &__line {
-    height: 4px;
-    width: 100%;
+    height: 5px;
     background: var(--bg-subtle);
-    border-radius: 2px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: line-reveal 0.5s var(--ease-edit) forwards;
     flex-shrink: 0;
 
-    &--short { width: 55%; }
-    &--med   { width: 75%; }
+    &--a { width: 90%; animation-delay: 0.3s; }
+    &--b { width: 62%; animation-delay: 0.7s; }
+    &--c { width: 82%; animation-delay: 1.1s; }
+    &--d { width: 55%; animation-delay: 1.5s; }
+    &--e { width: 78%; animation-delay: 1.9s; }
   }
 
-  &__block {
-    flex: 1;
+  &__loadbar {
+    height: 4px;
     background: var(--bg-subtle);
-    border-radius: 4px;
-    margin-top: 2px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 4px 0 8px;
+    flex-shrink: 0;
+  }
+
+  &__loadbar-fill {
+    height: 100%;
+    background: var(--text-3);
+    border-radius: 2px;
+    animation: load-progress 2.8s var(--ease-edit) infinite;
   }
 }

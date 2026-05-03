@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /lang/
+
+Sitemap: https://sonia-habibi.dev/sitemap.xml

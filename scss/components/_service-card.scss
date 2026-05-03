@@ -5,30 +5,21 @@
 .services__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: var(--rule-thin);
-  border-left: var(--rule-thin);
+  gap: 64px;
 
   @include tablet {
     grid-template-columns: 1fr;
-    border-left: none;
+    gap: 48px;
+  }
+
+  @include mobile {
+    gap: 40px;
   }
 }
 
 .service-card {
   position: relative;
-  padding: 32px 28px 28px;
-  border-right: var(--rule-thin);
-  border-bottom: var(--rule-thin);
-  background: var(--bg);
-  transition: background var(--dur-med) var(--ease-edit);
-
-  &:hover { background: var(--bg-soft); }
-
-  @include tablet {
-    border-right: none;
-    border-left: var(--rule-thin);
-  }
+  padding: 0;
 
   // Numéro signature : gros, serif italic, en accent visuel
   &__num {

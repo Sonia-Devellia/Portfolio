@@ -1,6 +1,6 @@
 @use '../abstracts/mixins' as *;
 
-// ─── IA Scale-up — section manifeste, assertion éditoriale ───────────────────
+// ─── IA Scale-up — métriques larges + manifeste ───────────────────────────────
 
 .ai-scale {
   background: var(--bg-soft);
@@ -14,12 +14,65 @@
     @include mobile { padding: var(--space-section-sm) 20px; }
   }
 
+  // ─── Metrics strip (newspaper grid pattern) ───────────────
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: var(--rule-thin);
+    border-left: var(--rule-thin);
+    margin-top: 28px;
+    margin-bottom: 64px;
+
+    @include tablet {
+      margin-bottom: 48px;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      border-left: none;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__metric {
+    padding: 36px 28px 28px;
+    border-right: var(--rule-thin);
+    border-bottom: var(--rule-thin);
+    background: var(--bg);
+
+    @include mobile {
+      border-right: none;
+      border-left: var(--rule-thin);
+      padding: 24px 20px;
+    }
+  }
+
+  &__num {
+    display: block;
+    font-family: ui-monospace, 'Courier New', monospace;
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  &__lbl {
+    display: block;
+    font-size: var(--fs-mini);
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    max-width: 18ch;
+  }
+
+  // ─── Manifeste — 2 col assertion + body ──────────────────
   &__body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 72px;
     align-items: start;
-    margin-top: 24px;
 
     @include tablet {
       grid-template-columns: 1fr;
@@ -27,17 +80,14 @@
     }
   }
 
-  // Assertion : grande, sobre, autorité sans déclamation
   &__assertion {
     font-family: var(--font-sans);
-    font-size: clamp(22px, 2.8vw, 38px);
+    font-size: clamp(20px, 2.6vw, 34px);
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.25;
     letter-spacing: -0.025em;
     color: var(--text);
     margin: 0;
-
-    // Pas de serif ici — l'assertion gagne en poids par la taille, pas l'ornement
   }
 
   &__text {

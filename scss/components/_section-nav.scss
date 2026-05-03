@@ -1,0 +1,90 @@
+@use '../abstracts/mixins' as *;
+
+// ─── Section nav — fil de navigation latéral fixe (home only) ────────────────
+
+.section-nav {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include tablet { display: none; }
+
+  &__track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    // Vertical thread
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+      transform: translateX(-50%);
+    }
+  }
+
+  &__dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-md);
+    padding: 0;
+    cursor: pointer;
+    transition:
+      background var(--dur-med) var(--ease-edit),
+      border-color var(--dur-med) var(--ease-edit),
+      transform var(--dur-med) var(--ease-edit);
+    z-index: 1;
+
+    // Section label on hover
+    &::after {
+      content: attr(aria-label);
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      font-family: var(--font-sans);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity var(--dur-med) var(--ease-edit);
+      pointer-events: none;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        transform: scale(1.4);
+        border-color: var(--text-3);
+
+        &::after { opacity: 1; }
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text);
+      outline-offset: 3px;
+    }
+
+    &.is-active {
+      background: var(--text);
+      border-color: var(--text);
+      transform: scale(1.25);
+    }
+  }
+}

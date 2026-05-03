@@ -27,8 +27,16 @@ class ContactController extends Controller
         $error   = !empty($_SESSION['contact_error']);
         unset($_SESSION['contact_success'], $_SESSION['contact_error']);
 
+        $appUrl   = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
+        $lang     = $_SESSION['lang'] ?? 'fr';
+        $metaDesc = $lang === 'fr'
+            ? 'Discutons de votre projet. Développeuse freelance PHP, Python, IA — disponible en remote. Je réponds sous 24h.'
+            : 'Let\'s talk about your project. Freelance PHP, Python, AI developer — available remotely. I reply within 24h.';
+
         $this->render('contact/index', [
             'title'      => 'Contact — Sonia Habibi',
+            'metaDesc'   => $metaDesc,
+            'canonical'  => $appUrl . '/contact',
             'csrf_token' => $_SESSION['csrf_token'],
             'success'    => $success,
             'error'      => $error,
