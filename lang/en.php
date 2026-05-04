@@ -9,9 +9,9 @@ return [
     'nav.available'      => 'Available',
 
     // Hero
-    'hero.eyebrow'       => 'FULL-STACK DEVELOPER · FREELANCE · REMOTE',
-    'hero.title'         => 'I build web apps with embedded AI.',
-    'hero.sub'           => 'PHP · Python · JavaScript — for startups and companies that want a solid product, delivered fast, no bullshit.',
+    'hero.eyebrow'       => 'FULL-STACK DEVELOPER · INDEPENDENT · FRANCE & INTERNATIONAL',
+    'hero.title'         => 'Full-stack engineer. Product mind. Shipped code.',
+    'hero.sub'           => 'I build complete web products for startups and SMEs — back, front, database, deployment. I add AI where it delivers measurable value, not by default. 30-minute discovery, first deliverable in two weeks.',
     'hero.cta_projects'  => 'View my work',
     'hero.cta_contact'   => 'Get in touch →',
 
@@ -36,13 +36,15 @@ return [
     'about.eyebrow'      => 'ABOUT',
     'about.title'        => 'Profile',
     'about.p1'           => 'Former business owner and landscape designer, now a full-stack developer. This unconventional background gives me a rare product mindset — I write code with the end user in mind.',
-    'about.p2'           => 'Specialised in embedded AI. Available for freelance missions in France & internationally, 100% remote.',
+    'about.p2'           => 'Full-stack developer with solid AI integration practice. Available for freelance missions in France & internationally, 100% remote.',
     'about.pullquote'    => "Former business owner and landscape designer — I code with the end user's perspective in mind.",
 
     // CTA
-    'cta.title'          => 'Got a project in mind?',
-    'cta.sub'            => 'A 30-minute brief. A deliverable within 4 weeks.',
-    'cta.button'         => 'Write to me →',
+    'cta.title'          => 'A precise brief beats a long thread.',
+    'cta.sub'            => '30-min discovery · quote within 48h · first deliverable in 2 weeks.',
+    'cta.button'         => 'Write to Sonia →',
+    'cta.email'          => 'contact@sonia-habibi.dev',
+    'cta.replytime'      => 'Reply within 24h, weekdays.',
 
     // Contact
     'contact.eyebrow'    => "LET'S WORK TOGETHER",
@@ -75,12 +77,6 @@ return [
     'hero.img.alt'           => 'Sonia Habibi — Full-Stack Developer',
     'hero.nameplate.role'    => 'Full-Stack Dev · Vannes / Remote',
 
-    // Stats bar (home)
-    'home.stats.delivered'   => 'Projects delivered',
-    'home.stats.stack'       => 'Core stack',
-    'home.stats.ai'          => 'Native LLM integration',
-    'home.stats.remote'      => 'Remote',
-
     // Home — "view all" button
     'projects.see_all'       => 'View all →',
 
@@ -111,25 +107,6 @@ return [
 
     // Credential line (hero → services)
     'hero.credential'        => "Former business owner · Landscape designer — client-first product thinking, before the code.",
-
-    // IA scale-up (home)
-    'ai.scale.eyebrow'       => 'TRANSFORMATION',
-    'ai.scale.title'         => "AI doesn't replace your team — it multiplies what it produces.",
-    'ai.scale.body'          => "Automating repetitive tasks, extracting useful information from raw data, generating content on demand — all of this integrates into your existing product without replacing your team. You produce more, faster, with the same resources.",
-    'ai.scale.m1.num'        => '3×',
-    'ai.scale.m1.lbl'        => 'faster than a full redesign',
-    'ai.scale.m2.num'        => '24/7',
-    'ai.scale.m2.lbl'        => 'AI available continuously',
-    'ai.scale.m3.num'        => '8 wks',
-    'ai.scale.m3.lbl'        => 'from brief to MVP delivery',
-
-    // Mobile First (home)
-    'mobile.first.eyebrow'   => 'MOBILE FIRST',
-    'mobile.first.title'     => "Your clients live on smartphones. Your product should be built for that — from day one.",
-    'mobile.first.body'      => "Adapting a desktop site for mobile costs twice as much and delivers half the results. Mobile-first means starting from the most constrained environment and enriching from there — not the other way around. Every interface I deliver is designed and tested on mobile before being adapted to desktop.",
-    'mobile.first.b1'        => "Retrofitting desktop to mobile costs twice as much, for half the result.",
-    'mobile.first.b2'        => "Mobile-first means starting from the most constrained — not the other way around.",
-    'mobile.first.b3'        => "Every interface designed and tested on mobile before scaling to desktop.",
 
     // Contact FAQ + project type
     'contact.faq.q1'         => 'What is your response time?',

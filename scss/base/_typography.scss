@@ -75,3 +75,40 @@
     transform: none;
   }
 }
+
+// 6 — Eyebrow slide-in from left (JS adds .eyebrow--reveal, observer adds .is-revealed)
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow--reveal {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition:
+      opacity   0.4s ease-out,
+      transform 0.4s ease-out;
+
+    &.is-revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+// 4 — Line-by-line reveal — JS splits headings, each .line slides up ─────────
+// Applied to .hero__title (on load) and .section__title / .cta-band__title (on scroll)
+
+@media (prefers-reduced-motion: no-preference) {
+  .line-wrap {
+    display: block;
+    overflow: hidden;
+    // Tiny bottom padding prevents descender clipping on certain fonts
+    padding-bottom: 0.06em;
+    margin-bottom: -0.06em;
+  }
+
+  .line {
+    display: block;
+    transform: translateY(108%);
+    transition: transform 0.85s var(--ease-edit);
+
+    &.is-revealed { transform: translateY(0); }
+  }
+}

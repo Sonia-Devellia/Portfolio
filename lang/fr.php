@@ -9,9 +9,9 @@ return [
     'nav.available'      => 'Disponible',
 
     // Hero
-    'hero.eyebrow'       => 'DÉVELOPPEUSE FULL-STACK · FREELANCE · REMOTE',
-    'hero.title'         => 'Je construis des apps web avec de l\'IA embarquée.',
-    'hero.sub'           => 'PHP · Python · JavaScript — pour les startups et entreprises qui veulent un produit solide, livré vite, sans bullshit.',
+    'hero.eyebrow'       => 'DÉVELOPPEUSE FULL-STACK · INDÉPENDANTE · FRANCE & INTERNATIONAL',
+    'hero.title'         => 'Ingénieure full-stack. Vision produit. Code en prod.',
+    'hero.sub'           => 'J\'écris des produits web complets pour startups et PME — back, front, base de données, déploiement. J\'y intègre de l\'IA quand elle apporte un gain mesurable, pas par défaut. Discovery en 30 minutes, premier livrable en deux semaines.',
     'hero.cta_projects'  => 'Voir mes projets',
     'hero.cta_contact'   => 'Me contacter →',
 
@@ -36,13 +36,15 @@ return [
     'about.eyebrow'      => 'À PROPOS',
     'about.title'        => 'Profil',
     'about.p1'           => 'Ancienne cheffe d\'entreprise et designeuse paysagiste, reconvertie en développeuse full-stack. Ce parcours atypique me donne une lecture produit rare — je code avec la vision du client final en tête.',
-    'about.p2'           => 'Spécialisée IA embarquée. Disponible pour des missions freelance France & international, 100% remote.',
+    'about.p2'           => 'Développeuse full-stack avec une pratique solide des intégrations IA. Disponible pour des missions freelance France & international, 100% remote.',
     'about.pullquote'    => "Ancienne cheffe d'entreprise et designeuse paysagiste — je code avec la vision du client final en tête.",
 
     // CTA
-    'cta.title'          => 'Un projet en tête ?',
-    'cta.sub'            => 'Un brief de 30 min. Un livrable sous 4 semaines.',
-    'cta.button'         => 'Écrire →',
+    'cta.title'          => 'Un brief précis vaut mieux qu\'un long échange.',
+    'cta.sub'            => 'Discovery 30 min · devis sous 48h · premier livrable en 2 semaines.',
+    'cta.button'         => 'Écrire à Sonia →',
+    'cta.email'          => 'contact@sonia-habibi.dev',
+    'cta.replytime'      => 'Réponse sous 24h, jours ouvrés.',
 
     // Contact
     'contact.eyebrow'    => 'TRAVAILLONS ENSEMBLE',
@@ -75,12 +77,6 @@ return [
     'hero.img.alt'           => 'Sonia Habibi — Développeuse Full-Stack',
     'hero.nameplate.role'    => 'Dev Full-Stack · Vannes / Remote',
 
-    // Stats bar (home)
-    'home.stats.delivered'   => 'Projets livrés',
-    'home.stats.stack'       => 'Stack principale',
-    'home.stats.ai'          => 'Intégration LLM native',
-    'home.stats.remote'      => 'Remote',
-
     // Home — bouton "voir tous"
     'projects.see_all'       => 'Voir tous →',
 
@@ -111,25 +107,6 @@ return [
 
     // Credential line (hero → services)
     'hero.credential'        => "Ancienne cheffe d'entreprise · Designeuse paysagiste — vision produit et client final avant les lignes de code.",
-
-    // IA scale-up (home)
-    'ai.scale.eyebrow'       => 'TRANSFORMATION',
-    'ai.scale.title'         => "L'IA ne remplace pas votre équipe — elle multiplie ce qu'elle produit.",
-    'ai.scale.body'          => "Automatiser les tâches répétitives, extraire l'information utile des données brutes, générer du contenu à la demande — tout ça s'intègre dans votre produit existant sans remplacer votre équipe. Vous produisez plus, plus vite, avec les mêmes ressources.",
-    'ai.scale.m1.num'        => '3×',
-    'ai.scale.m1.lbl'        => "plus rapide qu'une refonte complète",
-    'ai.scale.m2.num'        => '24/7',
-    'ai.scale.m2.lbl'        => 'IA disponible en continu',
-    'ai.scale.m3.num'        => '8 sem',
-    'ai.scale.m3.lbl'        => 'du brief au livrable MVP',
-
-    // Mobile First (home)
-    'mobile.first.eyebrow'   => 'MOBILE FIRST',
-    'mobile.first.title'     => "Vos clients vivent sur smartphone. Votre produit doit être conçu pour ça — dès le premier jour.",
-    'mobile.first.body'      => "Adapter un site desktop pour mobile coûte deux fois plus cher et donne deux fois moins de résultats. Mobile-first, c'est partir du plus contraint pour aller vers le plus riche — pas l'inverse. Chaque interface que je livre est conçue et testée sur mobile avant d'être adaptée au desktop.",
-    'mobile.first.b1'        => "Adapter après coup coûte deux fois plus cher, pour deux fois moins de résultats.",
-    'mobile.first.b2'        => "Mobile-first, c'est partir du plus contraint — pas l'inverse.",
-    'mobile.first.b3'        => "Chaque interface conçue et testée sur mobile avant d'être étendue au desktop.",
 
     // Contact FAQ + type projet
     'contact.faq.q1'         => 'Quel est votre délai de réponse ?',

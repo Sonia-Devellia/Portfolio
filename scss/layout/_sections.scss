@@ -3,12 +3,18 @@
 // ─── Sections — rythme éditorial ──────────────────────────────────────────────
 
 .section {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: var(--space-section-md) 24px;
+  width: 100%;
   border-bottom: var(--rule-thin);
+  position: relative;
+  overflow: hidden;
 
-  @include mobile { padding: var(--space-section-sm) 20px; }
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 40px;
+
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
 
   &__head {
     display: flex;
@@ -24,6 +30,7 @@
     }
   }
 
+  // 5 — Underline draws left→right when section enters viewport
   &__title {
     font-family: var(--font-sans);
     font-size: var(--fs-h2);
@@ -38,61 +45,54 @@
       font-style: italic;
       font-weight: 400;
     }
-  }
-}
 
-// ─── Credential hook — byline parcours atypique, entre facts-strip et services ─
+    &::after {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 0;
+      background: var(--avail);
+      margin-top: 14px;
+      transition: width 0.6s ease-out 0.15s;
 
-.credential-hook {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 18px 24px;
-  border-bottom: var(--rule-thin);
+      @media (prefers-reduced-motion: reduce) { transition: none; }
+    }
 
-  p {
-    font-size: var(--fs-small);
-    color: var(--text-3);
-    font-style: italic;
-    letter-spacing: 0.01em;
-    margin: 0;
-  }
-}
-
-// ─── Facts strip — bande éditoriale de données, style dateline ───────────────
-
-.facts-strip {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: stretch;
-  border-bottom: var(--rule-thin);
-
-  &__item {
-    display: flex;
-    align-items: baseline;
-    gap: 9px;
-    padding: 16px 24px;
-    border-right: var(--rule-thin);
-    flex: 1;
-
-    &:first-child { padding-left: 24px; }
-    &:last-child  { border-right: none; }
+    &.is-underlined::after { width: 40px; }
   }
 
-  &__num {
-    font-family: var(--font-sans);
-    font-size: 14px;
-    font-weight: 500;
+  // 3 — Watermark numbers — zigzag: odd=right, even=left
+  &__watermark {
+    position: absolute;
+    top: -16px;
+    font-size: clamp(120px, 15vw, 200px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.06em;
     color: var(--text);
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
   }
+}
 
-  &__lbl {
-    font-size: var(--fs-mini);
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--text-3);
-  }
+// Odd sections (01, 03): watermark bleeds off the right edge
+.section.services .section__watermark,
+.section.about    .section__watermark { right: 40px; left: auto; }
+
+// Even sections (02): watermark bleeds off the left edge
+.section.projects .section__watermark { left: 40px; right: auto; }
+
+// 6 — Alternating section background gradients
+.section.services {
+  background: linear-gradient(to bottom, var(--bg) 0%, rgba(247, 246, 244, 0.45) 100%);
+}
+
+.section.projects {
+  background: linear-gradient(to bottom, rgba(247, 246, 244, 0.45) 0%, var(--bg) 100%);
+}
+
+.section.about {
+  background: linear-gradient(to bottom, var(--bg) 0%, rgba(247, 246, 244, 0.45) 100%);
 }

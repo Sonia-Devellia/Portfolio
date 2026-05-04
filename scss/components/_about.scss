@@ -2,7 +2,7 @@
 
 // ─── About — texte + timeline éditoriale ─────────────────────────────────────
 
-.about {
+.about .section__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
@@ -11,7 +11,9 @@
     grid-template-columns: 1fr;
     gap: 48px;
   }
+}
 
+.about {
   &__text {
     p {
       font-size: var(--fs-body);

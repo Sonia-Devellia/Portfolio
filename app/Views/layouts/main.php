@@ -20,8 +20,8 @@ $pageType  = htmlspecialchars($ogType    ?? 'website');
 $ogLocale  = $lang === 'fr' ? 'fr_FR' : 'en_GB';
 
 $schemaDesc = $lang === 'fr'
-    ? 'Développeuse full-stack freelance spécialisée PHP, Python, JavaScript et IA embarquée.'
-    : 'Freelance full-stack developer specialised in PHP, Python, JavaScript and embedded AI.';
+    ? 'Développeuse full-stack freelance spécialisée PHP, Python, JavaScript et intégrations IA utiles.'
+    : 'Freelance full-stack developer specialised in PHP, Python, JavaScript and useful AI integrations.';
 ?>
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars($lang) ?>" data-theme="light">
@@ -59,7 +59,7 @@ $schemaDesc = $lang === 'fr'
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
     <?php $cssV = @filemtime(($_SERVER['DOCUMENT_ROOT'] ?? '') . '/portfolio/public/assets/css/main.css') ?: '1'; ?>
     <link rel="stylesheet" href="<?= $base ?>/assets/css/main.css?v=<?= $cssV ?>">
@@ -177,14 +177,18 @@ $schemaDesc = $lang === 'fr'
         <a href="<?= $base ?>/" class="footer__logo">Sonia</a>
 
         <div class="footer__links">
-            <a href="https://www.malt.fr" target="_blank" rel="noopener">Malt</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://github.com/sonia-habibi" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.malt.fr/profile/soniahabibi" target="_blank" rel="noopener noreferrer">Malt</a>
+            <a href="https://www.linkedin.com/in/sonia-habibi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/Sonia-Devellia" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
 
         <p class="footer__copy">
             <?= $t('footer.rights') ?> · <?= $t('footer.location') ?>
         </p>
+
+        <span class="footer__time">
+            <span class="footer__time-label"><?= $lang === 'fr' ? 'Heure locale · ' : 'Local time · ' ?></span><span id="localTime"></span>
+        </span>
     </div>
 </footer>
 

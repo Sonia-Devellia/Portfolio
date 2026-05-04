@@ -7,22 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ─── DARK MODE ─────────────────────────────────────────
-  const html         = document.documentElement;
-  const themeToggle  = document.getElementById('themeToggle');
-  const savedTheme   = localStorage.getItem('theme') || 'light';
-
+  const html        = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme  = localStorage.getItem('theme') || 'light';
   html.setAttribute('data-theme', savedTheme);
 
   themeToggle?.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next    = current === 'light' ? 'dark' : 'light';
+    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   });
 
   // ─── NAV SCROLL ────────────────────────────────────────
   const nav = document.getElementById('nav');
-
   window.addEventListener('scroll', () => {
     nav?.classList.toggle('nav--scrolled', window.scrollY > 20);
   }, { passive: true });
@@ -46,59 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── CONFIRM DIALOGS ───────────────────────────────────
   document.querySelectorAll('[data-confirm]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', e => {
       if (!confirm(btn.dataset.confirm)) e.preventDefault();
     });
   });
 
-  // ─── FADE-UP ANIMATIONS ────────────────────────────────
+  // ─── FADE-UP ───────────────────────────────────────────
   if (!prefersReducedMotion) {
-    const fadeObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('is-visible');
-        });
-      },
+    const fadeObs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
       { threshold: 0.08 }
     );
-
-    document.querySelectorAll(
-      '.service-card, .project-card, .timeline-item, .ai-scale__assertion, .ai-scale__text, .mobile-first__content'
-    ).forEach(el => {
-      el.classList.add('fade-up');
-      fadeObserver.observe(el);
-    });
-  }
-
-  // ─── COUNTER ANIMATION ─────────────────────────────────
-  const counters = document.querySelectorAll('.ai-scale__num[data-target]');
-
-  if (counters.length && !prefersReducedMotion) {
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.counted) {
-          entry.target.dataset.counted = '1';
-          animateCounter(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(el => counterObserver.observe(el));
-  }
-
-  function animateCounter(el) {
-    const target   = parseInt(el.dataset.target, 10);
-    const suffix   = el.dataset.suffix || '';
-    const duration = 900;
-    const start    = performance.now();
-
-    function update(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 4); // ease-out-quart
-      el.textContent = Math.round(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
+    document.querySelectorAll('.service-card, .timeline-item').forEach(el => { el.classList.add('fade-up'); fadeObs.observe(el); });
   }
 
   // ─── CUSTOM CURSOR ─────────────────────────────────────
@@ -106,72 +62,168 @@ document.addEventListener('DOMContentLoaded', () => {
   const cursorRing = document.getElementById('cursorRing');
 
   if (cursorDot && cursorRing && !('ontouchstart' in window)) {
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX; mouseY = e.clientY;
       cursorDot.style.left = mouseX + 'px';
       cursorDot.style.top  = mouseY + 'px';
     });
-
-    (function animateRing() {
+    (function loop() {
       ringX += (mouseX - ringX) * 0.12;
       ringY += (mouseY - ringY) * 0.12;
       cursorRing.style.left = ringX + 'px';
       cursorRing.style.top  = ringY + 'px';
-      requestAnimationFrame(animateRing);
+      requestAnimationFrame(loop);
     })();
 
     document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursorRing.style.width   = '52px';
-        cursorRing.style.height  = '52px';
-        cursorRing.style.opacity = '1';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursorRing.style.width   = '32px';
-        cursorRing.style.height  = '32px';
-        cursorRing.style.opacity = '0.6';
-      });
+      el.addEventListener('mouseenter', () => { cursorRing.style.width = cursorRing.style.height = '52px'; cursorRing.style.opacity = '1'; });
+      el.addEventListener('mouseleave', () => { cursorRing.style.width = cursorRing.style.height = '32px'; cursorRing.style.opacity = '0.6'; });
     });
 
-    document.addEventListener('mouseleave', () => {
-      cursorDot.style.opacity  = '0';
-      cursorRing.style.opacity = '0';
+    document.addEventListener('mouseleave', () => { cursorDot.style.opacity = '0'; cursorRing.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cursorDot.style.opacity = '1'; cursorRing.style.opacity = '0.6'; });
+
+    document.querySelector('.cta-band')?.addEventListener('mouseenter', () => {
+      cursorDot.style.background   = '#f0eeeb';
+      cursorRing.style.borderColor = '#f0eeeb';
     });
-    document.addEventListener('mouseenter', () => {
-      cursorDot.style.opacity  = '1';
-      cursorRing.style.opacity = '0.6';
+    document.querySelector('.cta-band')?.addEventListener('mouseleave', () => {
+      cursorDot.style.background   = 'var(--text)';
+      cursorRing.style.borderColor = 'var(--text)';
     });
   } else if (cursorDot && cursorRing) {
-    cursorDot.style.display  = 'none';
-    cursorRing.style.display = 'none';
+    cursorDot.style.display = cursorRing.style.display = 'none';
   }
 
-  // ─── SECTION NAV BREADCRUMB ────────────────────────────
-  const sectionNav = document.getElementById('sectionNav');
-
-  if (sectionNav) {
-    const dots = sectionNav.querySelectorAll('[data-target]');
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const dot = sectionNav.querySelector(`[data-target="${entry.target.id}"]`);
-        dot?.classList.toggle('is-active', entry.isIntersecting);
-      });
-    }, { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' });
-
-    dots.forEach(dot => {
-      const section = document.getElementById(dot.dataset.target);
-      if (section) sectionObserver.observe(section);
-
-      dot.addEventListener('click', () => {
-        document.getElementById(dot.dataset.target)
-          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+  // ─── LINE REVEAL helpers (section titles) ─────────────
+  function buildLineWrap(el) {
+    el.innerHTML = el.innerHTML.split(/<br\s*\/?>\s*/i)
+      .map(p => `<span class="line-wrap"><span class="line">${p.trim()}</span></span>`)
+      .join('');
+  }
+  function triggerLines(el, base) {
+    el.querySelectorAll('.line').forEach((l, i) => {
+      l.style.transitionDelay = ((base || 0) + i * 80) + 'ms';
+      l.classList.add('is-revealed');
     });
+  }
+
+  // ─── SECTION + CTA TITLES — line reveal + underline ────
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.section__title, .cta-band__title').forEach(el => {
+      buildLineWrap(el);
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          triggerLines(entry.target);
+          entry.target.classList.add('is-underlined');
+          obs.unobserve(entry.target);
+        });
+      }, { threshold: 0.25 });
+      obs.observe(el);
+    });
+  }
+
+  // ─── HERO SUBTITLE — word-by-word slide up ─────────────
+  if (!prefersReducedMotion) {
+    const heroSub = document.getElementById('heroSub');
+    if (heroSub) {
+      const words = heroSub.textContent.trim().split(/\s+/);
+      heroSub.innerHTML = words.map(w =>
+        `<span class="hw" style="opacity:0;display:inline-block;transform:translateY(8px);transition:opacity .35s,transform .35s">${w}</span>`
+      ).join(' ');
+      setTimeout(() => {
+        heroSub.querySelectorAll('.hw').forEach((w, i) => {
+          setTimeout(() => { w.style.opacity = '1'; w.style.transform = 'translateY(0)'; }, i * 60);
+        });
+      }, 550);
+    }
+  }
+
+  // ─── EYEBROW SLIDE IN FROM LEFT ────────────────────────
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.eyebrow').forEach(el => {
+      el.classList.add('eyebrow--reveal');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-revealed');
+          obs.unobserve(e.target);
+        });
+      }, { threshold: 0.5 });
+      obs.observe(el);
+    });
+  }
+
+  // ─── SERVICE CARD NUMBERS count 00→01/02/03 ────────────
+  if (!prefersReducedMotion) {
+    document.querySelectorAll('.service-card__num[data-num]').forEach(el => {
+      const target = parseInt(el.dataset.num, 10);
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting || e.target.dataset.counted) return;
+          e.target.dataset.counted = '1';
+          const start = performance.now();
+          (function tick(now) {
+            const p = Math.min((now - start) / 400, 1);
+            const v = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            e.target.textContent = String(v).padStart(2, '0');
+            if (p < 1) requestAnimationFrame(tick);
+          })(start);
+        });
+      }, { threshold: 0.5 });
+      obs.observe(el);
+    });
+  }
+
+  // ─── ABOUT PULL QUOTE — word reveal ────────────────────
+  const pullQuote = document.querySelector('.about__pullquote');
+  if (pullQuote && !prefersReducedMotion) {
+    const words = pullQuote.textContent.trim().split(/\s+/);
+    pullQuote.innerHTML = words
+      .map(w => `<span class="pq-word" style="opacity:0;transition:opacity .35s">${w}</span>`)
+      .join(' ');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.pq-word').forEach((w, i) => setTimeout(() => { w.style.opacity = '1'; }, i * 50));
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    obs.observe(pullQuote);
+  }
+
+  // ─── PROJECTS — auto-cycle ─────────────────────────────
+  const slides = document.querySelectorAll('.mac-slide');
+  const details = document.querySelectorAll('.project-detail');
+  if (slides.length) {
+    let cur = 0;
+    const show = i => {
+      slides.forEach((s,j) => s.classList.toggle('mac-slide--active', i===j));
+      details.forEach((d,j) => d.classList.toggle('project-detail--active', i===j));
+      cur = i;
+    };
+    show(0);
+    setInterval(() => show((cur+1) % slides.length), 3500);
+  }
+
+  // ─── FOOTER LOCAL TIME ─────────────────────────────────
+  const localTimeEl = document.getElementById('localTime');
+  if (localTimeEl) {
+    const fmt = new Intl.DateTimeFormat(html.lang === 'en' ? 'en-GB' : 'fr',
+      { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    const tick = () => { localTimeEl.textContent = fmt.format(new Date()); };
+    tick(); setInterval(tick, 1000);
+  }
+
+  // ─── SCROLL INDICATOR ──────────────────────────────────
+  const scrollIndicator = document.getElementById('scrollIndicator');
+  if (scrollIndicator) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) scrollIndicator.classList.add('is-hidden');
+    }, { passive: true, once: true });
   }
 
 });

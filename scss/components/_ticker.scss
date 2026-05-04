@@ -1,0 +1,33 @@
+// ─── Ticker / Marquee — bande éditoriale scrollante ─────────────────────────
+// Deux spans identiques côte à côte. translateX(-50%) = glisse d'un span exact.
+// Contenu répété 2× par span → seamless sur tout viewport.
+// Aucune pause : ni hover, ni prefers-reduced-motion — continu par design.
+
+.ticker {
+  border-top:    var(--rule-thin);
+  border-bottom: var(--rule-thin);
+  overflow: hidden;
+
+  &__track {
+    display: flex;
+    will-change: transform;
+    animation: ticker-scroll 20s linear infinite;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    font-size: var(--fs-mini);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    white-space: nowrap;
+    padding: 14px 0;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
