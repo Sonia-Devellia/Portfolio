@@ -26,6 +26,8 @@
 @use 'components/service-card';
 @use 'components/project-card';
 @use 'components/about';
+@use 'components/method';
+@use 'components/faq';
 @use 'components/cta-band';
 @use 'components/ticker';
 @use 'components/cursor';
@@ -34,6 +36,7 @@
 @use 'pages/admin';
 @use 'pages/contact';
 @use 'pages/projects';
+@use 'pages/case-study';
 
 // Responsive (doit être en dernier)
 @use 'layout/responsive';

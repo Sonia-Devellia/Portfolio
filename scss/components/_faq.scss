@@ -1,0 +1,40 @@
+@use '../abstracts/mixins' as *;
+
+// ─── FAQ — objections as filters ─────────────────────────────────────────────
+
+.faq {
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: var(--rule-md);
+  }
+}
+
+.faq-item {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) 1.4fr;
+  gap: 40px;
+  padding: 26px 0;
+  border-bottom: var(--rule-thin);
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  &__q {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--text);
+    margin: 0;
+  }
+
+  &__a {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 66ch;
+    margin: 0;
+  }
+}

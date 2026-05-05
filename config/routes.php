@@ -3,6 +3,7 @@
 // ─── Public ───────────────────────────────────────────────
 $router->get('/',                    'HomeController',    'index');
 $router->get('/projets',             'ProjectController', 'index');
+$router->get('/case-studies/triage-support', 'CaseStudyController', 'triage');
 $router->get('/contact',             'ContactController', 'index');
 $router->post('/contact',            'ContactController', 'send');
 

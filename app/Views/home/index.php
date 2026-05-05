@@ -20,9 +20,8 @@ function tagColor(string $tag): string {
     return 'tag--gray';
 }
 
-$aiTasks = $lang === 'fr'
-    ? ['Analyse des données clients', 'Génération de rapport', 'Tri et classification']
-    : ['Client data analysis', 'Report generation', 'Sort & classify'];
+$methodStages = ['1a', '1b', '2a', '2b'];
+$faqItems = ['1', '2', '3', '4', '5'];
 ?>
 
 <!-- ─── HERO ────────────────────────────────────────────── -->
@@ -42,6 +41,7 @@ $aiTasks = $lang === 'fr'
         <div class="hero__actions">
             <a href="<?= $base ?>/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
             <a href="<?= $base ?>/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
+            <a href="<?= $base ?>/case-studies/triage-support" class="btn btn--ghost"><?= $t('hero.cta_case') ?></a>
         </div>
         <div class="hero__tags">
             <span class="tag tag--blue">PHP</span>
@@ -78,9 +78,13 @@ $aiTasks = $lang === 'fr'
         </div>
         <div class="services__grid">
             <div class="service-card">
-                <span class="service-card__num" data-num="1">01</span>
+                <span class="service-card__num"><?= $t('services.1.num') ?></span>
                 <h3 class="service-card__title"><?= $t('services.1.title') ?></h3>
                 <p class="service-card__desc"><?= $t('services.1.desc') ?></p>
+                <p class="service-card__deliv">
+                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
+                    <?= $t('services.1.deliv') ?>
+                </p>
                 <div class="service-card__tags">
                     <span class="tag tag--blue">PHP</span>
                     <span class="tag tag--amber">MySQL</span>
@@ -88,9 +92,13 @@ $aiTasks = $lang === 'fr'
                 </div>
             </div>
             <div class="service-card">
-                <span class="service-card__num" data-num="2">02</span>
+                <span class="service-card__num"><?= $t('services.2.num') ?></span>
                 <h3 class="service-card__title"><?= $t('services.2.title') ?></h3>
                 <p class="service-card__desc"><?= $t('services.2.desc') ?></p>
+                <p class="service-card__deliv">
+                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
+                    <?= $t('services.2.deliv') ?>
+                </p>
                 <div class="service-card__tags">
                     <span class="tag tag--purple">Claude API</span>
                     <span class="tag tag--purple">OpenAI</span>
@@ -98,9 +106,13 @@ $aiTasks = $lang === 'fr'
                 </div>
             </div>
             <div class="service-card">
-                <span class="service-card__num" data-num="3">03</span>
+                <span class="service-card__num"><?= $t('services.3.num') ?></span>
                 <h3 class="service-card__title"><?= $t('services.3.title') ?></h3>
                 <p class="service-card__desc"><?= $t('services.3.desc') ?></p>
+                <p class="service-card__deliv">
+                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
+                    <?= $t('services.3.deliv') ?>
+                </p>
                 <div class="service-card__tags">
                     <span class="tag tag--green">Python</span>
                     <span class="tag tag--blue">APIs REST</span>
@@ -185,27 +197,77 @@ $aiTasks = $lang === 'fr'
   </div>
 </section>
 
+<!-- ─── MÉTHODE DEV + IA ───────────────────────────────── -->
+<section class="section method" id="method">
+    <span class="section__watermark" aria-hidden="true">03</span>
+    <div class="section__inner">
+        <div class="method__intro">
+            <p class="eyebrow"><?= $t('method.eyebrow') ?></p>
+            <h2 class="section__title method__title"><?= $t('method.title') ?></h2>
+            <p class="method__sub"><?= $t('method.sub') ?></p>
+        </div>
+
+        <div class="method__stages">
+            <?php foreach ($methodStages as $k): ?>
+            <article class="method-stage">
+                <span class="method-stage__num"><?= $t("method.{$k}.num") ?></span>
+                <div class="method-stage__content">
+                    <h3 class="method-stage__title"><?= $t("method.{$k}.title") ?></h3>
+                    <p class="method-stage__body"><?= $t("method.{$k}.body") ?></p>
+                    <p class="method-stage__deliv">
+                        <strong><?= $t('method.deliv.label') ?></strong>
+                        <?= $t("method.{$k}.deliv") ?>
+                    </p>
+                </div>
+            </article>
+            <?php endforeach; ?>
+        </div>
+
+        <aside class="method__crit">
+            <p class="method__crit-lbl"><?= $t('method.crit.lbl') ?></p>
+            <p class="method__crit-body"><?= $t('method.crit.body') ?></p>
+        </aside>
+    </div>
+</section>
+
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
-    <span class="section__watermark" aria-hidden="true">03</span>
+    <span class="section__watermark" aria-hidden="true">04</span>
     <div class="section__inner">
         <div class="about__text">
             <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
             <h2 class="section__title"><?= $t('about.title') ?></h2>
             <p><?= $t('about.p1') ?></p>
             <p><?= $t('about.p2') ?></p>
+            <a href="#method" class="btn btn--outline btn--sm"><?= $t('about.cta') ?></a>
         </div>
-        <div class="about__timeline">
-            <blockquote class="about__pullquote"><?= $t('about.pullquote') ?></blockquote>
-            <?php for ($i = 1; $i <= 4; $i++): ?>
-            <div class="timeline-item">
-                <span class="timeline-item__year"><?= $t("about.tl.{$i}.year") ?></span>
-                <div class="timeline-item__content">
-                    <span class="timeline-item__title"><?= $t("about.tl.{$i}.title") ?></span>
-                    <span class="timeline-item__sub"><?= $t("about.tl.{$i}.sub") ?></span>
-                </div>
-            </div>
+        <div class="about__proof" role="list">
+            <?php for ($i = 1; $i <= 3; $i++): ?>
+            <article class="about-proof" role="listitem">
+                <span class="about-proof__key"><?= $t("about.proof.{$i}.k") ?></span>
+                <p class="about-proof__value"><?= $t("about.proof.{$i}.v") ?></p>
+            </article>
             <?php endfor; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ─── FAQ ─────────────────────────────────────────────── -->
+<section class="section faq" id="faq">
+    <div class="section__inner">
+        <div class="section__head">
+            <div>
+                <p class="eyebrow"><?= $t('faq.eyebrow') ?></p>
+                <h2 class="section__title"><?= $t('faq.title') ?></h2>
+            </div>
+        </div>
+        <div class="faq__list">
+            <?php foreach ($faqItems as $i): ?>
+            <article class="faq-item">
+                <h3 class="faq-item__q"><?= $t("faq.{$i}.q") ?></h3>
+                <p class="faq-item__a"><?= $t("faq.{$i}.a") ?></p>
+            </article>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

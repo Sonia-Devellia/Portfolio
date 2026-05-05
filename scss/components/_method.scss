@@ -1,0 +1,130 @@
+@use '../abstracts/mixins' as *;
+
+// ─── Method — Dev first, AI second ───────────────────────────────────────────
+
+.method {
+  &__intro {
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  &__title {
+    max-width: 18ch;
+  }
+
+  &__sub {
+    font-size: var(--fs-body);
+    color: var(--text-2);
+    line-height: 1.7;
+    max-width: 62ch;
+    margin: 24px 0 0;
+  }
+
+  &__stages {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: var(--rule-md);
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__crit {
+    margin-top: 32px;
+    max-width: 760px;
+    padding: 22px 26px;
+    background: var(--bg-soft);
+    border: var(--rule-thin);
+    border-left: 2px solid var(--text);
+  }
+
+  &__crit-lbl {
+    font-size: var(--fs-mini);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 0 0 12px;
+  }
+
+  &__crit-body {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.4;
+    color: var(--text);
+    max-width: 48ch;
+    margin: 0;
+  }
+}
+
+.method-stage {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 28px 0;
+  border-bottom: var(--rule-thin);
+
+  &:nth-child(odd) {
+    padding-right: 28px;
+  }
+
+  &:nth-child(even) {
+    padding-left: 28px;
+    border-left: var(--rule-thin);
+  }
+
+  @include tablet {
+    padding: 24px 0;
+
+    &:nth-child(odd),
+    &:nth-child(even) {
+      padding-left: 0;
+      padding-right: 0;
+      border-left: none;
+    }
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  &__num {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: var(--fs-mini);
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    padding-top: 4px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+    margin: 0 0 8px;
+  }
+
+  &__body {
+    font-size: var(--fs-small);
+    color: var(--text-2);
+    line-height: 1.65;
+    margin: 0 0 12px;
+  }
+
+  &__deliv {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    margin: 0;
+
+    strong {
+      color: var(--text-2);
+      font-weight: 500;
+      margin-right: 8px;
+    }
+  }
+}

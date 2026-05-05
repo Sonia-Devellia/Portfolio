@@ -1,0 +1,171 @@
+@use '../abstracts/mixins' as *;
+
+// ─── Case study — long-form proof page ───────────────────────────────────────
+
+.case-study {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-section-md) 40px var(--space-section-lg);
+
+  @include mobile {
+    padding: var(--space-section-sm) 20px;
+  }
+
+  &__back {
+    display: inline-flex;
+    margin-bottom: 48px;
+    font-size: var(--fs-mini);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    transition: color var(--dur-fast) var(--ease-edit), transform var(--dur-med) var(--ease-edit);
+
+    &:hover {
+      color: var(--text);
+      transform: translateX(-3px);
+    }
+  }
+
+  &__head {
+    max-width: 760px;
+    padding-bottom: 56px;
+    border-bottom: var(--rule-md);
+  }
+
+  &__title {
+    font-size: clamp(42px, 7vw, 82px);
+    font-weight: 400;
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    margin: 0 0 28px;
+  }
+
+  &__lede {
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.55;
+    color: var(--text-2);
+    margin: 0 0 40px;
+    max-width: 60ch;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    div {
+      padding-top: 16px;
+      border-top: var(--rule-thin);
+    }
+
+    dt {
+      font-size: var(--fs-mini);
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    dd {
+      font-size: var(--fs-small);
+      color: var(--text);
+      margin: 0;
+    }
+  }
+
+  &__toc {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 48px 0 72px;
+    border-top: var(--rule-thin);
+    border-left: var(--rule-thin);
+
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
+
+    a {
+      min-height: 76px;
+      padding: 16px 18px;
+      border-right: var(--rule-thin);
+      border-bottom: var(--rule-thin);
+      font-size: var(--fs-small);
+      color: var(--text-2);
+      line-height: 1.45;
+      transition: background var(--dur-fast) var(--ease-edit), color var(--dur-fast) var(--ease-edit);
+
+      &:hover {
+        background: var(--bg-soft);
+        color: var(--text);
+      }
+    }
+
+    span {
+      display: block;
+      font-family: ui-monospace, 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+  }
+
+  &__body {
+    border-top: var(--rule-md);
+  }
+
+  &__section {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 680px);
+    gap: 32px;
+    padding: 38px 0;
+    border-bottom: var(--rule-thin);
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+
+    p {
+      font-size: var(--fs-body);
+      line-height: 1.75;
+      color: var(--text-2);
+      margin: 0;
+    }
+  }
+
+  &__num {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: var(--fs-mini);
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    padding-top: 10px;
+  }
+
+  &__disclaimer {
+    max-width: 760px;
+    margin-top: 48px;
+    padding: 22px 26px;
+    background: var(--bg-soft);
+    border: var(--rule-thin);
+    font-size: var(--fs-small);
+    line-height: 1.65;
+    color: var(--text-2);
+  }
+}
