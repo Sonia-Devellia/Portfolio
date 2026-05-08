@@ -1,6 +1,6 @@
 @use '../abstracts/mixins' as *;
 
-// ─── About — portrait + profil court + preuves éditoriales ───────────────────
+// ─── About — portrait + profil + valeurs ─────────────────────────────────────
 
 .about .section__inner {
   display: grid;
@@ -14,7 +14,8 @@
   }
 }
 
-// Portrait column — sticky on desktop, horizontal on tablet
+// ─── Portrait column ──────────────────────────────────────────────────────────
+
 .about__portrait {
   position: sticky;
   top: calc(var(--nav-h, 60px) + 32px);
@@ -73,7 +74,8 @@
   }
 }
 
-// Body column (text + proof)
+// ─── Body column ──────────────────────────────────────────────────────────────
+
 .about__body {
   display: grid;
   grid-template-columns: 1fr;
@@ -94,36 +96,46 @@
   .btn { margin-top: 16px; }
 }
 
-.about__proof {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-top: var(--rule-thin);
+// Pull-quote — citation courte, accent serif italic
+.about__pullquote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.45;
+  color: var(--text-2);
+  border-left: 2px solid var(--text);
+  padding: 4px 0 4px 18px;
+  margin: 20px 0 0;
+  max-width: 46ch;
 }
 
-.about-proof {
-  display: grid;
-  grid-template-columns: 132px 1fr;
-  gap: 28px;
-  padding: 22px 0;
+// ─── Valeurs (ex-proof) ───────────────────────────────────────────────────────
+
+.about__values {
+  border-top: var(--rule-thin);
+
+  .eyebrow {
+    padding: 20px 0 0;
+    margin-bottom: 4px;
+  }
+}
+
+.about-value {
+  padding: 18px 0;
   border-bottom: var(--rule-thin);
 
-  @include mobile {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  &__key {
-    font-size: var(--fs-mini);
-    color: var(--text-3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-top: 3px;
-  }
-
-  &__value {
+  &__title {
+    display: block;
     font-size: var(--fs-body);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  &__desc {
+    font-size: var(--fs-small);
     color: var(--text-2);
-    line-height: 1.65;
+    line-height: 1.6;
     margin: 0;
   }
 }
