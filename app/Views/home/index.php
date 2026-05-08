@@ -66,58 +66,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </section>
 
 <!-- ─── SERVICES ────────────────────────────────────────── -->
-<section class="section services" id="services">
-    <span class="section__watermark" aria-hidden="true">01</span>
-    <div class="section__inner">
-        <div class="section__head">
-            <p class="eyebrow"><?= $t('services.eyebrow') ?></p>
-            <h2 class="section__title"><?= $t('services.title') ?></h2>
-        </div>
-        <div class="services__grid">
-            <div class="service-card">
-                <span class="service-card__num"><?= $t('services.1.num') ?></span>
-                <h3 class="service-card__title"><?= $t('services.1.title') ?></h3>
-                <p class="service-card__desc"><?= $t('services.1.desc') ?></p>
-                <p class="service-card__deliv">
-                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
-                    <?= $t('services.1.deliv') ?>
-                </p>
-                <div class="service-card__tags">
-                    <span class="tag tag--blue">PHP</span>
-                    <span class="tag tag--amber">MySQL</span>
-                    <span class="tag tag--amber">JS</span>
-                </div>
-            </div>
-            <div class="service-card">
-                <span class="service-card__num"><?= $t('services.2.num') ?></span>
-                <h3 class="service-card__title"><?= $t('services.2.title') ?></h3>
-                <p class="service-card__desc"><?= $t('services.2.desc') ?></p>
-                <p class="service-card__deliv">
-                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
-                    <?= $t('services.2.deliv') ?>
-                </p>
-                <div class="service-card__tags">
-                    <span class="tag tag--purple">Claude API</span>
-                    <span class="tag tag--purple">OpenAI</span>
-                    <span class="tag tag--green">Python</span>
-                </div>
-            </div>
-            <div class="service-card">
-                <span class="service-card__num"><?= $t('services.3.num') ?></span>
-                <h3 class="service-card__title"><?= $t('services.3.title') ?></h3>
-                <p class="service-card__desc"><?= $t('services.3.desc') ?></p>
-                <p class="service-card__deliv">
-                    <strong><?= $lang === 'fr' ? 'Livrable' : 'Deliverable' ?></strong>
-                    <?= $t('services.3.deliv') ?>
-                </p>
-                <div class="service-card__tags">
-                    <span class="tag tag--green">Python</span>
-                    <span class="tag tag--blue">APIs REST</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<?php include __DIR__ . '/_services.php'; ?>
 
 <!-- ─── TICKER ───────────────────────────────────────────── -->
 <div class="ticker" aria-hidden="true">
