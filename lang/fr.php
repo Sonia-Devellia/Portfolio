@@ -18,19 +18,34 @@ return [
 
     // Services
     'services.eyebrow'   => 'CE QUE JE FAIS',
-    'services.title'     => 'Services',
-    'services.1.num'     => 'SERVICE 01',
-    'services.1.title'   => 'Sortir un produit web en 8 semaines.',
-    'services.1.desc'    => 'Vous avez une idée validée et besoin d\'un MVP qui tient en prod. Back PHP ou Python, front JS, base, déploiement. Pas de no-code, pas de wrapper.',
-    'services.1.deliv'   => 'App déployée · code source · doc archi',
-    'services.2.num'     => 'SERVICE 02',
-    'services.2.title'   => 'Intégrer une couche IA qui sert vraiment.',
-    'services.2.desc'    => 'Vous avez un workflow opérationnel coûteux : tri, support N1, classification. On évalue le ROI, on prototype, on déploie avec garde-fous. Sortie : gain mesuré ou cas refusé.',
-    'services.2.deliv'   => 'Eval · prototype · intégration ou rapport',
-    'services.3.num'     => 'SERVICE 03',
-    'services.3.title'   => 'Reprendre un code laissé en friche.',
-    'services.3.desc'    => 'Projet hérité, dette technique, ancien dev parti. Audit en 5 jours, plan de remise en état, refonte ciblée. Vous repartez avec un code lisible et testé.',
-    'services.3.deliv'   => 'Audit · plan priorisé · refonte par lots',
+    'services.title'     => 'Deux expertises, une seule exécution.',
+    'services.sub'       => 'Le développement sur mesure est mon socle. L\'IA s\'ajoute quand elle remplace un coût opérationnel mesurable.',
+
+    // Pilier 01 — Développement sur mesure
+    'services.p1.num'    => 'PILIER 01',
+    'services.p1.title'  => 'Développement sur mesure',
+    'services.p1.sub'    => 'Le pilier central. Architecture propre, code testé, déploiement reproductible. Sans dépendance à l\'IA.',
+    'services.p1.s1.t'   => 'Applications web sur mesure',
+    'services.p1.s1.d'   => 'MVP, plateformes SaaS, back-office. PHP, Python, JavaScript.',
+    'services.p1.s2.t'   => 'Logiciels métier',
+    'services.p1.s2.d'   => 'Outils internes, gestion, automatisation de workflows.',
+    'services.p1.s3.t'   => 'Sites e-commerce & vitrine',
+    'services.p1.s3.d'   => 'Catalogue, abonnement, paiement, intégration logistique.',
+    'services.p1.s4.t'   => 'Reprise de projets existants',
+    'services.p1.s4.d'   => 'Audit en 5 jours, plan priorisé, refonte ciblée.',
+
+    // Pilier 02 — Data & IA appliquée
+    'services.p2.num'    => 'PILIER 02',
+    'services.p2.title'  => 'Data & IA appliquée',
+    'services.p2.sub'    => 'L\'expertise pointue. Mobilisée seulement si elle remplace un coût récurrent avec un ROI mesurable.',
+    'services.p2.s1.t'   => 'Audit IA & faisabilité',
+    'services.p2.s1.d'   => 'Évaluation ROI, cas d\'usage, risques techniques. Sortie : go ou no-go argumenté.',
+    'services.p2.s2.t'   => 'Intégration LLM & agents',
+    'services.p2.s2.d'   => 'Classifieurs, extraction documentaire, support augmenté.',
+    'services.p2.s3.t'   => 'Automatisation Python',
+    'services.p2.s3.d'   => 'Pipelines de données, scrapers, reporting, connexion d\'APIs.',
+    'services.p2.s4.t'   => 'Garde-fous & observabilité',
+    'services.p2.s4.d'   => 'Eval set, fallback déterministe, budget tokens, logs prompts.',
 
     // Projets
     'projects.eyebrow'   => 'RÉALISATIONS',

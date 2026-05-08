@@ -18,19 +18,34 @@ return [
 
     // Services
     'services.eyebrow'   => 'WHAT I DO',
-    'services.title'     => 'Services',
-    'services.1.num'     => 'SERVICE 01',
-    'services.1.title'   => 'Ship a web product in 8 weeks.',
-    'services.1.desc'    => 'You have a validated idea and need an MVP that holds up in production. PHP or Python back end, JS front end, database, deployment. No no-code, no wrapper.',
-    'services.1.deliv'   => 'Deployed app · source code · architecture doc',
-    'services.2.num'     => 'SERVICE 02',
-    'services.2.title'   => 'Add an AI layer that actually helps.',
-    'services.2.desc'    => 'You have an expensive operational workflow: triage, support L1, classification. We assess ROI, prototype, and deploy with guardrails. Outcome: measured gain or documented refusal.',
-    'services.2.deliv'   => 'Eval · prototype · integration or report',
-    'services.3.num'     => 'SERVICE 03',
-    'services.3.title'   => 'Recover abandoned code.',
-    'services.3.desc'    => 'Inherited project, technical debt, previous developer gone. Five-day audit, recovery plan, targeted refactor. You get readable, tested code again.',
-    'services.3.deliv'   => 'Audit · prioritized plan · staged refactor',
+    'services.title'     => 'Two areas of expertise, one execution.',
+    'services.sub'       => 'Custom software development is my foundation. AI is added when it replaces a measurable operational cost.',
+
+    // Pillar 01 — Custom software development
+    'services.p1.num'    => 'PILLAR 01',
+    'services.p1.title'  => 'Custom software development',
+    'services.p1.sub'    => 'The core pillar. Clean architecture, tested code, repeatable deployment. No AI dependency required.',
+    'services.p1.s1.t'   => 'Custom web applications',
+    'services.p1.s1.d'   => 'MVPs, SaaS platforms, back-office systems. PHP, Python, JavaScript.',
+    'services.p1.s2.t'   => 'Business software',
+    'services.p1.s2.d'   => 'Internal tools, management systems, workflow automation.',
+    'services.p1.s3.t'   => 'E-commerce & showcase sites',
+    'services.p1.s3.d'   => 'Catalogue, subscription, payment, logistics integration.',
+    'services.p1.s4.t'   => 'Existing project recovery',
+    'services.p1.s4.d'   => 'Five-day audit, prioritised plan, targeted refactor.',
+
+    // Pillar 02 — Applied data & AI
+    'services.p2.num'    => 'PILLAR 02',
+    'services.p2.title'  => 'Applied data & AI',
+    'services.p2.sub'    => 'The specialist layer. Deployed only when it replaces a recurring cost with measurable business value.',
+    'services.p2.s1.t'   => 'AI audit & feasibility',
+    'services.p2.s1.d'   => 'ROI assessment, use cases, technical risks. Output: argued go or no-go.',
+    'services.p2.s2.t'   => 'LLM & agent integration',
+    'services.p2.s2.d'   => 'Classifiers, document extraction, augmented support.',
+    'services.p2.s3.t'   => 'Python automation',
+    'services.p2.s3.d'   => 'Data pipelines, scrapers, reporting, API connectors.',
+    'services.p2.s4.t'   => 'Guardrails & observability',
+    'services.p2.s4.d'   => 'Eval set, deterministic fallback, token budget, prompt logs.',
 
     // Projects
     'projects.eyebrow'   => 'WORK',
