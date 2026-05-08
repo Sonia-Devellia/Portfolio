@@ -32,13 +32,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </p>
         <p class="eyebrow"><?= $t('hero.eyebrow') ?></p>
 
-        <?php if ($lang === 'fr'): ?>
-        <h1 class="hero__title">Développeuse full-stack.<br>
-        <em>Vision produit.</em> Code en prod.</h1>
-        <?php else: ?>
-        <h1 class="hero__title">Full-stack developer.<br>
-        <em>Product mind.</em> Shipped code.</h1>
-        <?php endif; ?>
+        <h1 class="hero__title"><?= $t('hero.title') ?></h1>
 
         <p class="hero__sub" id="heroSub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
