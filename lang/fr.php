@@ -55,17 +55,19 @@ return [
     'projects.github'    => 'GitHub →',
 
     // À propos
-    'about.eyebrow'      => 'À PROPOS',
+    'about.eyebrow'      => 'PROFIL',
     'about.title'        => 'Développeuse full-stack avec un passé d\'entrepreneuse.',
-    'about.p1'           => 'J\'ai dirigé une entreprise pendant huit ans avant de basculer dans le code à temps plein. Cette expérience décide encore aujourd\'hui de la façon dont j\'écris : les délais sont des engagements, les marges existent, un livrable est jugé à ce qu\'il fait tourner, pas à son élégance interne.',
-    'about.p2'           => 'Je travaille seule sur des projets web complets pour startups et PME, en France et à l\'international. J\'introduis de l\'IA quand elle remplace un coût opérationnel mesurable, jamais par effet de mode.',
+    'about.p1'           => 'J\'ai dirigé une entreprise pendant huit ans avant de basculer dans le code à temps plein. Ce passé décide encore aujourd\'hui de la façon dont j\'écris : les délais sont des engagements, les marges existent, un livrable est jugé à ce qu\'il fait tourner pour le client — pas à son élégance interne.',
+    'about.p2'           => 'Je travaille seule sur des projets web complets pour startups et PME, en France et à l\'international, 100 % remote. J\'introduis de l\'IA dans un produit quand elle remplace un coût opérationnel mesurable — jamais par effet de mode.',
+    'about.pullquote'    => 'Vision produit, compréhension métier, exécution. Trois mots qui résument comment je travaille.',
     'about.cta'          => 'Voir ma méthode →',
-    'about.proof.1.k'    => 'Discipline',
-    'about.proof.1.v'    => 'Devis, délais, arbitrages : le code reste lié au réel business.',
-    'about.proof.2.k'    => 'Indépendance',
-    'about.proof.2.v'    => 'Une interlocutrice qui conçoit, code, teste et livre.',
-    'about.proof.3.k'    => 'Code en prod',
-    'about.proof.3.v'    => 'Architecture lisible, déploiement reproductible, maintenance possible.',
+    'about.values.eyebrow' => 'CE QUI ME GUIDE',
+    'about.values.1.t'   => 'Discipline',
+    'about.values.1.d'   => 'Délais respectés, devis tenus, livraison sans surprise.',
+    'about.values.2.t'   => 'Indépendance',
+    'about.values.2.d'   => 'Décisions techniques argumentées, pas dictées par la mode.',
+    'about.values.3.t'   => 'Code en prod',
+    'about.values.3.d'   => 'L\'élégance d\'un code se juge à ce qu\'il fait tourner.',
 
     // CTA
     'cta.title'          => 'Discutons de votre projet.',
