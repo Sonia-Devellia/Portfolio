@@ -9,9 +9,9 @@ return [
     'nav.available'      => 'Disponible',
 
     // Hero
-    'hero.eyebrow'       => 'DÉVELOPPEUSE FULL-STACK · INDÉPENDANTE · FRANCE & INTERNATIONAL',
-    'hero.title'         => 'Développeuse full-stack. Vision produit. Code en prod.',
-    'hero.sub'           => 'J\'écris des produits web complets pour startups et PME — back, front, base de données, déploiement. J\'y intègre de l\'IA quand elle apporte un gain mesurable, pas par défaut. Discovery en 30 minutes, premier livrable en deux semaines.',
+    'hero.eyebrow'       => 'DÉVELOPPEMENT SUR MESURE · EXPERTISE IA · FREELANCE',
+    'hero.title'         => 'Je conçois et développe des produits web sur mesure.',
+    'hero.sub'           => 'Applications web, logiciels métier, intégration IA quand elle crée de la valeur. Pour startups et PME — du brief au livrable, en remote.',
     'hero.cta_projects'  => 'Voir mes projets',
     'hero.cta_contact'   => 'Me contacter →',
     'hero.cta_case'      => 'Voir une étude de cas →',
@@ -53,8 +53,8 @@ return [
     'about.proof.3.v'    => 'Architecture lisible, déploiement reproductible, maintenance possible.',
 
     // CTA
-    'cta.title'          => 'Un brief précis vaut mieux qu\'un long échange.',
-    'cta.sub'            => 'Discovery 30 min · devis sous 48h · premier livrable en 2 semaines.',
+    'cta.title'          => 'Discutons de votre projet.',
+    'cta.sub'            => 'Un premier échange de 30 minutes pour cadrer le besoin et estimer la faisabilité. Réponse sous 24h.',
     'cta.button'         => 'Écrire à Sonia →',
     'cta.email'          => 'contact@sonia-habibi.dev',
     'cta.replytime'      => 'Réponse sous 24h, jours ouvrés.',
@@ -62,7 +62,7 @@ return [
     // Contact
     'contact.eyebrow'    => 'TRAVAILLONS ENSEMBLE',
     'contact.title'      => 'Contact',
-    'contact.sub'        => 'Disponible pour des missions freelance. Je réponds sous 24h.',
+    'contact.sub'        => 'Disponible pour vos projets de développement web et d\'intégration IA. Premier échange offert, réponse sous 24h.',
     'contact.name'       => 'Nom',
     'contact.email'      => 'Email',
     'contact.message'    => 'Message',
@@ -78,7 +78,7 @@ return [
     'projects.all'       => 'Tous mes projets',
 
     // Footer
-    'footer.rights'      => '© 2026 Sonia Habibi · Développeuse Full-Stack',
+    'footer.rights'      => '© 2026 Sonia Habibi · Développement web sur mesure',
     'footer.location'    => 'Vannes · Remote',
 
     // 404
@@ -105,7 +105,7 @@ return [
     'a11y.theme.toggle'      => 'Changer le thème',
 
     // Credential line (hero → services)
-    'hero.credential'        => "Ancienne cheffe d'entreprise · Designeuse paysagiste — vision produit et client final avant les lignes de code.",
+    'hero.credential'        => "Ancienne cheffe d'entreprise — vision produit et compréhension métier avant les lignes de code. Je développe ce qui crée de la valeur, pas ce qui fait moderne.",
 
     // Méthode Dev + IA
     'method.eyebrow'     => '04 · MÉTHODE · DEV + IA',

@@ -9,9 +9,9 @@ return [
     'nav.available'      => 'Available',
 
     // Hero
-    'hero.eyebrow'       => 'FULL-STACK DEVELOPER · INDEPENDENT · FRANCE & INTERNATIONAL',
-    'hero.title'         => 'Full-stack engineer. Product mind. Shipped code.',
-    'hero.sub'           => 'I build complete web products for startups and SMEs — back, front, database, deployment. I add AI where it delivers measurable value, not by default. 30-minute discovery, first deliverable in two weeks.',
+    'hero.eyebrow'       => 'CUSTOM SOFTWARE DEVELOPMENT · AI EXPERTISE · FREELANCE',
+    'hero.title'         => 'I design and build custom web products.',
+    'hero.sub'           => 'Web applications, business software, AI integration where it creates measurable value. For startups and SMEs — from brief to delivery, fully remote.',
     'hero.cta_projects'  => 'View my work',
     'hero.cta_contact'   => 'Get in touch →',
     'hero.cta_case'      => 'Read a case study →',
@@ -53,8 +53,8 @@ return [
     'about.proof.3.v'    => 'Readable architecture, repeatable deployment, maintainable systems.',
 
     // CTA
-    'cta.title'          => 'A precise brief beats a long thread.',
-    'cta.sub'            => '30-min discovery · quote within 48h · first deliverable in 2 weeks.',
+    'cta.title'          => 'Let\'s talk about your project.',
+    'cta.sub'            => 'A 30-minute first call to scope the need and assess feasibility. Reply within 24h.',
     'cta.button'         => 'Write to Sonia →',
     'cta.email'          => 'contact@sonia-habibi.dev',
     'cta.replytime'      => 'Reply within 24h, weekdays.',
@@ -62,7 +62,7 @@ return [
     // Contact
     'contact.eyebrow'    => "LET'S WORK TOGETHER",
     'contact.title'      => 'Contact',
-    'contact.sub'        => 'Available for freelance missions. I reply within 24h.',
+    'contact.sub'        => 'Available for web development and AI integration projects. First call free, reply within 24h.',
     'contact.name'       => 'Name',
     'contact.email'      => 'Email',
     'contact.message'    => 'Message',
@@ -78,7 +78,7 @@ return [
     'projects.all'       => 'All my projects',
 
     // Footer
-    'footer.rights'      => '© 2026 Sonia Habibi · Full-Stack Developer',
+    'footer.rights'      => '© 2026 Sonia Habibi · Custom web development',
     'footer.location'    => 'Vannes · Remote',
 
     // 404
@@ -105,7 +105,7 @@ return [
     'a11y.theme.toggle'      => 'Toggle theme',
 
     // Credential line (hero → services)
-    'hero.credential'        => "Former business owner · Landscape designer — client-first product thinking, before the code.",
+    'hero.credential'        => "Former business owner — product vision and business understanding before the code. I build what creates value, not what looks current.",
 
     // Method Dev + AI
     'method.eyebrow'     => '04 · METHOD · DEV + AI',
