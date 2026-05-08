@@ -1,0 +1,134 @@
+@use '../abstracts/mixins' as *;
+
+// ─── Services — sous-titre de section ────────────────────────────────────────
+
+.services__sub {
+  font-size: var(--fs-body);
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: -16px 0 48px;
+}
+
+// ─── Grille 2 piliers ─────────────────────────────────────────────────────────
+
+.services__pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: var(--rule-thin);
+
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─── Pilier ───────────────────────────────────────────────────────────────────
+
+.pillar {
+  padding: 40px 36px 36px;
+
+  // Pilier 02 séparé du 01 par un filet vertical sur desktop
+  &--p2 {
+    border-left: var(--rule-thin);
+
+    @include tablet {
+      border-left: none;
+      border-top: var(--rule-thin);
+    }
+  }
+
+  &__head {
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: var(--rule-accent);
+  }
+
+  &__num {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: var(--fs-mini);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 0 0 14px;
+  }
+
+  &__title {
+    font-family: var(--font-sans);
+    font-size: clamp(20px, 2.2vw, 26px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin: 0 0 14px;
+
+    // Accent optionnel via <em> côté markup
+    em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+  }
+
+  &__sub {
+    font-size: var(--fs-small);
+    color: var(--text-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 38ch;
+  }
+
+  // Pilier 01 title légèrement plus grand — poids visuel supérieur
+  &--p1 &__title {
+    font-size: clamp(22px, 2.5vw, 30px);
+  }
+}
+
+// ─── Liste sous-services ─────────────────────────────────────────────────────
+
+.pillar__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pillar__item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  padding: 18px 0;
+  border-bottom: var(--rule-thin);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &-title {
+    font-size: var(--fs-body);
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.35;
+  }
+
+  &-desc {
+    font-size: var(--fs-small);
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+}
+
+// ─── Mobile — compacité accrue ────────────────────────────────────────────────
+
+@include mobile {
+  .services__pillars { border: none; }
+
+  .pillar {
+    padding: 28px 0;
+    border-top: var(--rule-accent);
+
+    &--p2 { border-top: var(--rule-thin); }
+  }
+
+  .pillar__item { padding: 14px 0; }
+}
