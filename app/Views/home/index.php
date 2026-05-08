@@ -20,7 +20,6 @@ function tagColor(string $tag): string {
     return 'tag--gray';
 }
 
-$methodStages = ['1a', '1b', '2a', '2b'];
 $faqItems = ['1', '2', '3', '4', '5'];
 ?>
 
@@ -144,38 +143,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
   </div>
 </section>
 
-<!-- ─── MÉTHODE DEV + IA ───────────────────────────────── -->
-<section class="section method" id="method">
-    <span class="section__watermark" aria-hidden="true">03</span>
-    <div class="section__inner">
-        <div class="method__intro">
-            <p class="eyebrow"><?= $t('method.eyebrow') ?></p>
-            <h2 class="section__title method__title"><?= $t('method.title') ?></h2>
-            <p class="method__sub"><?= $t('method.sub') ?></p>
-        </div>
-
-        <div class="method__stages">
-            <?php foreach ($methodStages as $k): ?>
-            <article class="method-stage">
-                <span class="method-stage__num"><?= $t("method.{$k}.num") ?></span>
-                <div class="method-stage__content">
-                    <h3 class="method-stage__title"><?= $t("method.{$k}.title") ?></h3>
-                    <p class="method-stage__body"><?= $t("method.{$k}.body") ?></p>
-                    <p class="method-stage__deliv">
-                        <strong><?= $t('method.deliv.label') ?></strong>
-                        <?= $t("method.{$k}.deliv") ?>
-                    </p>
-                </div>
-            </article>
-            <?php endforeach; ?>
-        </div>
-
-        <aside class="method__crit">
-            <p class="method__crit-lbl"><?= $t('method.crit.lbl') ?></p>
-            <p class="method__crit-body"><?= $t('method.crit.body') ?></p>
-        </aside>
-    </div>
-</section>
+<?php include __DIR__ . '/_method.php'; ?>
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
