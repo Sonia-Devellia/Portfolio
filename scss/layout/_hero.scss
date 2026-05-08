@@ -13,6 +13,7 @@
   align-items: center;
   min-height: calc(88vh - var(--nav-h));
   border-bottom: var(--rule-thin);
+  padding-top: clamp(40px, 10vh, 96px);
 
   @include tablet {
     grid-template-columns: 1fr;
@@ -28,9 +29,34 @@
   // Eyebrow plus aéré (cf. typography globale)
   .eyebrow { margin-bottom: 28px; }
 
+  // Badge dispo visible sur mobile uniquement (la nav le cache sur mobile)
+  &__avail {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--avail);
+    background: var(--avail-bg);
+    padding: 4px 10px;
+    border-radius: 20px;
+    width: fit-content;
+    margin-bottom: 20px;
+
+    @include tablet { display: inline-flex; }
+
+    span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--avail-dot);
+      animation: pulse 2s infinite;
+      @media (prefers-reduced-motion: reduce) { animation: none; }
+    }
+  }
+
   &__title {
     font-family: var(--font-sans);
-    font-size: var(--fs-display);
+    font-size: clamp(40px, 7vw, 88px);
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.035em;

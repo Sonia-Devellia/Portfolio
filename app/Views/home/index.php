@@ -27,13 +27,16 @@ $faqItems = ['1', '2', '3', '4', '5'];
 <!-- ─── HERO ────────────────────────────────────────────── -->
 <section class="hero">
     <div class="hero__content">
+        <p class="hero__avail" aria-hidden="true">
+            <span></span><?= $t('nav.available') ?>
+        </p>
         <p class="eyebrow"><?= $t('hero.eyebrow') ?></p>
 
         <?php if ($lang === 'fr'): ?>
-        <h1 class="hero__title">Ingénieure full-stack.<br>
+        <h1 class="hero__title">Développeuse full-stack.<br>
         <em>Vision produit.</em> Code en prod.</h1>
         <?php else: ?>
-        <h1 class="hero__title">Full-stack engineer.<br>
+        <h1 class="hero__title">Full-stack developer.<br>
         <em>Product mind.</em> Shipped code.</h1>
         <?php endif; ?>
 
@@ -132,6 +135,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 
 <!-- ─── PROJETS FEATURED — Mac mockup showcase ─────────────── -->
 <section class="section projects" id="projects">
+    <span class="section__watermark" aria-hidden="true">02</span>
   <div class="projects__header">
     <div>
       <p class="eyebrow"><?= $t('projects.eyebrow') ?></p>
@@ -234,20 +238,35 @@ $faqItems = ['1', '2', '3', '4', '5'];
 <section class="section about" id="about">
     <span class="section__watermark" aria-hidden="true">04</span>
     <div class="section__inner">
-        <div class="about__text">
-            <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
-            <h2 class="section__title"><?= $t('about.title') ?></h2>
-            <p><?= $t('about.p1') ?></p>
-            <p><?= $t('about.p2') ?></p>
-            <a href="#method" class="btn btn--outline btn--sm"><?= $t('about.cta') ?></a>
+        <div class="about__portrait" aria-hidden="true">
+            <div class="about__portrait-photo">
+                <img src="<?= $base ?>/assets/images/sonia.webp"
+                     alt=""
+                     width="220" height="275"
+                     loading="lazy"
+                     decoding="async">
+            </div>
+            <div class="about__portrait-nameplate">
+                <span>Sonia Habibi</span>
+                <span><?= $lang === 'fr' ? 'Dev Full-Stack · Vannes / Remote' : 'Full-Stack Dev · Vannes / Remote' ?></span>
+            </div>
         </div>
-        <div class="about__proof" role="list">
-            <?php for ($i = 1; $i <= 3; $i++): ?>
-            <article class="about-proof" role="listitem">
-                <span class="about-proof__key"><?= $t("about.proof.{$i}.k") ?></span>
-                <p class="about-proof__value"><?= $t("about.proof.{$i}.v") ?></p>
-            </article>
-            <?php endfor; ?>
+        <div class="about__body">
+            <div class="about__text">
+                <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
+                <h2 class="section__title"><?= $t('about.title') ?></h2>
+                <p><?= $t('about.p1') ?></p>
+                <p><?= $t('about.p2') ?></p>
+                <a href="#method" class="btn btn--outline btn--sm"><?= $t('about.cta') ?></a>
+            </div>
+            <div class="about__proof" role="list">
+                <?php for ($i = 1; $i <= 3; $i++): ?>
+                <article class="about-proof" role="listitem">
+                    <span class="about-proof__key"><?= $t("about.proof.{$i}.k") ?></span>
+                    <p class="about-proof__value"><?= $t("about.proof.{$i}.v") ?></p>
+                </article>
+                <?php endfor; ?>
+            </div>
         </div>
     </div>
 </section>
@@ -262,11 +281,14 @@ $faqItems = ['1', '2', '3', '4', '5'];
             </div>
         </div>
         <div class="faq__list">
-            <?php foreach ($faqItems as $i): ?>
-            <article class="faq-item">
-                <h3 class="faq-item__q"><?= $t("faq.{$i}.q") ?></h3>
+            <?php foreach ($faqItems as $idx => $i): ?>
+            <details class="faq-item" <?= $idx === 0 ? 'open' : '' ?>>
+                <summary class="faq-item__summary">
+                    <span class="faq-item__q"><?= $t("faq.{$i}.q") ?></span>
+                    <span class="faq-item__chev" aria-hidden="true">+</span>
+                </summary>
                 <p class="faq-item__a"><?= $t("faq.{$i}.a") ?></p>
-            </article>
+            </details>
             <?php endforeach; ?>
         </div>
     </div>

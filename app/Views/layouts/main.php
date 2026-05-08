@@ -12,12 +12,20 @@
 $base      = rtrim($_ENV['APP_URL'] ?? '', '/');
 $appUrl    = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
 $lang      = $_SESSION['lang'] ?? 'fr';
-$pageTitle = htmlspecialchars($title ?? 'Sonia Habibi — Dev Full-Stack');
+$pageTitle = htmlspecialchars($title ?? ($lang === 'fr'
+    ? 'Développeuse full-stack PHP Python IA · Sonia Habibi'
+    : 'Full-Stack Developer PHP Python AI · Sonia Habibi'));
 $pageDesc  = htmlspecialchars($metaDesc ?? $t('hero.sub'));
 $pageUrl   = htmlspecialchars($canonical ?? ($appUrl . strtok($_SERVER['REQUEST_URI'] ?? '/', '?')));
 $pageOgImg = htmlspecialchars($ogImage   ?? ($appUrl . '/assets/images/og-cover.jpg'));
 $pageType  = htmlspecialchars($ogType    ?? 'website');
 $ogLocale  = $lang === 'fr' ? 'fr_FR' : 'en_GB';
+
+// Hreflang option A : même chemin, paramètre ?lang= pour signaler la langue
+$rawPath   = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
+$hrefFr    = htmlspecialchars($appUrl . $rawPath . '?lang=fr');
+$hrefEn    = htmlspecialchars($appUrl . $rawPath . '?lang=en');
+$hrefDefault = htmlspecialchars($appUrl . '/');
 
 $schemaDesc = $lang === 'fr'
     ? 'Développeuse full-stack freelance spécialisée PHP, Python, JavaScript et intégrations IA utiles.'
@@ -36,10 +44,10 @@ $schemaDesc = $lang === 'fr'
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="<?= $pageUrl ?>">
 
-    <!-- Hreflang bilingue -->
-    <link rel="alternate" hreflang="fr"      href="<?= $pageUrl ?>">
-    <link rel="alternate" hreflang="en"      href="<?= $pageUrl ?>">
-    <link rel="alternate" hreflang="x-default" href="<?= htmlspecialchars($appUrl) ?>">
+    <!-- Hreflang bilingue — URL distinctes par langue (option A) -->
+    <link rel="alternate" hreflang="fr"        href="<?= $hrefFr ?>">
+    <link rel="alternate" hreflang="en"        href="<?= $hrefEn ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= $hrefDefault ?>">
 
     <!-- Open Graph -->
     <meta property="og:title"       content="<?= $pageTitle ?>">
@@ -78,8 +86,8 @@ $schemaDesc = $lang === 'fr'
           "url": "<?= htmlspecialchars($appUrl) ?>",
           "image": "<?= htmlspecialchars($appUrl) ?>/assets/images/sonia.webp",
           "sameAs": [
-            "https://github.com/sonia-habibi",
-            "https://www.linkedin.com/in/sonia-habibi",
+            "https://github.com/Sonia-Devellia",
+            "https://www.linkedin.com/in/sonia-habibi/",
             "https://www.malt.fr/profile/soniahabibi"
           ],
           "knowsAbout": ["PHP", "Python", "JavaScript", "MySQL", "LLM APIs", "MVC Architecture"]
@@ -99,7 +107,38 @@ $schemaDesc = $lang === 'fr'
           "description": "<?= htmlspecialchars($schemaDesc) ?>",
           "provider": { "@id": "<?= htmlspecialchars($appUrl) ?>#sonia" },
           "areaServed": ["FR", "EU", "Worldwide remote"],
+          "priceRange": "€€€",
           "serviceType": ["<?= $lang === 'fr' ? 'Développement web full-stack' : 'Full-stack web development' ?>", "Intégration API IA (Claude, OpenAI)", "MVP & prototypes", "Audit et sécurisation PHP"],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "<?= $lang === 'fr' ? 'Services freelance' : 'Freelance services' ?>",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "<?= $lang === 'fr' ? 'MVP web en 8 semaines' : 'Web MVP in 8 weeks' ?>",
+                  "description": "<?= $lang === 'fr' ? 'PHP ou Python back-end, JS front, base de données, déploiement. Code source livré.' : 'PHP or Python back end, JS front, database, deployment. Source code delivered.' ?>"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "<?= $lang === 'fr' ? 'Intégration IA avec garde-fous' : 'AI integration with guardrails' ?>",
+                  "description": "<?= $lang === 'fr' ? 'Évaluation ROI, prototype, déploiement avec budget tokens, fallback et logs.' : 'ROI assessment, prototype, deployment with token budget, fallback and logs.' ?>"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "<?= $lang === 'fr' ? 'Reprise de code et audit' : 'Code recovery and audit' ?>",
+                  "description": "<?= $lang === 'fr' ? 'Audit en 5 jours, plan de remise en état, refonte ciblée.' : 'Five-day audit, recovery plan, targeted refactor.' ?>"
+                }
+              }
+            ]
+          },
           "url": "<?= htmlspecialchars($appUrl) ?>",
           "image": "<?= htmlspecialchars($appUrl) ?>/assets/images/sonia.webp"
         }
@@ -127,9 +166,7 @@ $schemaDesc = $lang === 'fr'
         <a href="<?= $base ?>/" class="nav__logo">Sonia</a>
 
         <nav class="nav__links" aria-label="<?= $t('a11y.nav.main') ?>">
-            <a href="<?= $base ?>/#services"><?= $t('nav.services') ?></a>
             <a href="<?= $base ?>/projets"><?= $t('nav.projects') ?></a>
-            <a href="<?= $base ?>/#about"><?= $t('nav.about') ?></a>
             <a href="<?= $base ?>/contact"><?= $t('nav.contact') ?></a>
         </nav>
 
@@ -165,10 +202,6 @@ $schemaDesc = $lang === 'fr'
             <a href="<?= $base ?>/contact" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
         </div>
 
-        <!-- Burger mobile -->
-        <button class="nav__burger" id="navBurger" aria-label="<?= $t('a11y.menu') ?>" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
     </div>
 </header>
 

@@ -13,13 +13,15 @@
   }
 
   @include mobile {
-    gap: 40px;
+    gap: 12px;
   }
 }
 
 .service-card {
   position: relative;
   padding: 0;
+
+  @include mobile { padding: 20px 18px 20px 0; }
 
   // Numéro signature : gros, serif italic, en accent visuel
   &__num {

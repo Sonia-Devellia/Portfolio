@@ -5,8 +5,9 @@
 RewriteEngine On
 
 # Tout ce qui n'est pas /public/* est refusé.
-RewriteCond %{REQUEST_URI} !^/public(/|$)
-RewriteRule ^.*$ - [F,L]
+# (Désactivé en local MAMP — le DocumentRoot est /htdocs, pas la racine du projet)
+# RewriteCond %{REQUEST_URI} !^/public(/|$)
+# RewriteRule ^.*$ - [F,L]
 
 # Désactivation listing
 Options -Indexes -MultiViews

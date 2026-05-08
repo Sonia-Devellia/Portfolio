@@ -17,14 +17,15 @@
   .about                { grid-template-columns: 1fr; }
 
   .nav {
-    &__links  { display: none; }
     &__avail  { display: none; }
-    &__burger { display: flex; }
-    &__cta    { display: inline-flex; }
+    &__cta    { display: none; }
 
-    &__actions {
-      .lang-switch,
-      .theme-toggle { display: flex; }
+    &__inner  { gap: 16px; }
+
+    &__links {
+      gap: 16px;
+
+      a { font-size: 12px; }
     }
   }
 }

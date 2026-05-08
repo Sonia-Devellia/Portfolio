@@ -24,22 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nav?.classList.toggle('nav--scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  // ─── BURGER MOBILE ─────────────────────────────────────
-  const burger   = document.getElementById('navBurger');
-  const navLinks = document.querySelector('.nav__links');
-
-  burger?.addEventListener('click', () => {
-    const isOpen = burger.getAttribute('aria-expanded') === 'true';
-    burger.setAttribute('aria-expanded', String(!isOpen));
-    navLinks?.classList.toggle('nav__links--open');
-  });
-
-  navLinks?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('nav__links--open');
-      burger?.setAttribute('aria-expanded', 'false');
-    });
-  });
 
   // ─── CONFIRM DIALOGS ───────────────────────────────────
   document.querySelectorAll('[data-confirm]').forEach(btn => {

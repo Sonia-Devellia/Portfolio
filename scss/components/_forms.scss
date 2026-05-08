@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 // ─── Formulaires partagés ─────────────────────────────────────────────────────
 
 .form-group {
@@ -84,6 +86,17 @@
     cursor: pointer;
     flex-shrink: 0;
     accent-color: var(--text);
+  }
+}
+
+// ─── Submit pleine largeur sur mobile ────────────────────────────────────────
+
+@include mobile {
+  .form-group [type="submit"],
+  .contact-form [type="submit"],
+  .contact-form .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

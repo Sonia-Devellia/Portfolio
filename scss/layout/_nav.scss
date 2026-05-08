@@ -67,24 +67,6 @@
     animation: pulse 2s infinite;
   }
 
-  &__burger {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    background: none;
-    border: none;
-    padding: 4px;
-    margin-left: auto;
-
-    span {
-      display: block;
-      width: 20px;
-      height: 1.5px;
-      background: var(--text);
-      transition: transform 0.2s;
-    }
-  }
-
   &__cta { display: none; }
 }
 
@@ -99,7 +81,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 12px;
+  font-size: 11px;
 
   &__btn {
     color: var(--text-3);
