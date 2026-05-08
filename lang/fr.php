@@ -10,7 +10,7 @@ return [
 
     // Hero
     'hero.eyebrow'       => 'DÉVELOPPEUSE FULL-STACK · INDÉPENDANTE · FRANCE & INTERNATIONAL',
-    'hero.title'         => 'Ingénieure full-stack. Vision produit. Code en prod.',
+    'hero.title'         => 'Développeuse full-stack. Vision produit. Code en prod.',
     'hero.sub'           => 'J\'écris des produits web complets pour startups et PME — back, front, base de données, déploiement. J\'y intègre de l\'IA quand elle apporte un gain mesurable, pas par défaut. Discovery en 30 minutes, premier livrable en deux semaines.',
     'hero.cta_projects'  => 'Voir mes projets',
     'hero.cta_contact'   => 'Me contacter →',
@@ -41,7 +41,7 @@ return [
 
     // À propos
     'about.eyebrow'      => 'À PROPOS',
-    'about.title'        => 'Ingénieure full-stack avec un passé d\'entrepreneuse.',
+    'about.title'        => 'Développeuse full-stack avec un passé d\'entrepreneuse.',
     'about.p1'           => 'J\'ai dirigé une entreprise pendant huit ans avant de basculer dans le code à temps plein. Cette expérience décide encore aujourd\'hui de la façon dont j\'écris : les délais sont des engagements, les marges existent, un livrable est jugé à ce qu\'il fait tourner, pas à son élégance interne.',
     'about.p2'           => 'Je travaille seule sur des projets web complets pour startups et PME, en France et à l\'international. J\'introduis de l\'IA quand elle remplace un coût opérationnel mesurable, jamais par effet de mode.',
     'about.cta'          => 'Voir ma méthode →',

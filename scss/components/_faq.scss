@@ -1,25 +1,28 @@
 @use '../abstracts/mixins' as *;
 
-// ─── FAQ — objections as filters ─────────────────────────────────────────────
+// ─── FAQ — accordion, objections as filters ──────────────────────────────────
 
 .faq {
   &__list {
-    display: grid;
-    grid-template-columns: 1fr;
     border-top: var(--rule-md);
   }
 }
 
 .faq-item {
-  display: grid;
-  grid-template-columns: minmax(220px, 0.85fr) 1.4fr;
-  gap: 40px;
-  padding: 26px 0;
   border-bottom: var(--rule-thin);
 
-  @include tablet {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  &__summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    gap: 16px;
+    align-items: center;
+    padding: 22px 0;
+    transition: color var(--dur-fast) var(--ease-edit);
+
+    &::-webkit-details-marker { display: none; }
+    &:hover { color: var(--text-2); }
   }
 
   &__q {
@@ -28,6 +31,23 @@
     line-height: 1.35;
     color: var(--text);
     margin: 0;
+
+    @include mobile { font-size: 15px; }
+  }
+
+  &__chev {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: 20px;
+    color: var(--text-3);
+    text-align: right;
+    line-height: 1;
+    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1), color var(--dur-fast) var(--ease-edit);
+    user-select: none;
+  }
+
+  &[open] &__chev {
+    transform: rotate(45deg);
+    color: var(--text);
   }
 
   &__a {
@@ -35,6 +55,20 @@
     line-height: 1.7;
     color: var(--text-2);
     max-width: 66ch;
+    padding: 0 48px 24px 0;
     margin: 0;
+    animation: faqIn 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    @include mobile { padding-right: 0; }
   }
+}
+
+@keyframes faqIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__a { animation: none; }
+  .faq-item__chev { transition: none; }
 }

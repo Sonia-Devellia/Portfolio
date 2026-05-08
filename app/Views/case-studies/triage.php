@@ -82,6 +82,22 @@ if ($lang === 'fr') {
         <?php endforeach; ?>
     </nav>
 
+    <!-- Stats row — résultats clés avant le corps -->
+    <div class="case-study__stats">
+        <div class="case-study__stat">
+            <span class="case-study__stat-num">–40<span>%</span></span>
+            <span class="case-study__stat-lbl"><?= $lang === 'fr' ? 'Temps moyen ticket' : 'Avg ticket time' ?></span>
+        </div>
+        <div class="case-study__stat">
+            <span class="case-study__stat-num">1<span>/8</span></span>
+            <span class="case-study__stat-lbl"><?= $lang === 'fr' ? 'Coût vs ETP évité' : 'Cost vs avoided hire' ?></span>
+        </div>
+        <div class="case-study__stat">
+            <span class="case-study__stat-num">6<span> sem.</span></span>
+            <span class="case-study__stat-lbl"><?= $lang === 'fr' ? 'Du brief à la prod' : 'Brief to production' ?></span>
+        </div>
+    </div>
+
     <div class="case-study__body">
         <?php foreach ($case['chapters'] as $index => [$id, $title, $body]): ?>
         <section id="<?= htmlspecialchars($id) ?>" class="case-study__section">
@@ -91,6 +107,64 @@ if ($lang === 'fr') {
                 <p><?= htmlspecialchars($body) ?></p>
             </div>
         </section>
+        <?php if ($index === 3): ?>
+        <!-- Architecture diagram — after chapter 04 -->
+        <div class="case-study__diagram">
+            <p class="case-study__diagram-lbl"><?= $lang === 'fr' ? 'Architecture — classifieur + routeur' : 'Architecture — classifier + router' ?></p>
+            <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" role="img"
+                 aria-label="<?= $lang === 'fr' ? 'Diagramme architecture triage' : 'Triage architecture diagram' ?>">
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                        <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                    </marker>
+                </defs>
+                <style>
+                    .dg-box { fill: var(--bg, #fcfaf6); stroke: var(--text, #111110); stroke-width: 1; }
+                    .dg-box-soft { fill: var(--bg-soft, #f3eee4); stroke: var(--text-3, #9a9895); stroke-width: 1; stroke-dasharray: 3 3; }
+                    .dg-t { font-family: -apple-system, system-ui, sans-serif; font-size: 12px; fill: var(--text, #111110); }
+                    .dg-t-mono { font-family: ui-monospace, Menlo, monospace; font-size: 9.5px; fill: var(--text-3, #9a9895); letter-spacing: 0.04em; text-transform: uppercase; }
+                    .dg-l { stroke: var(--text, #111110); stroke-width: 1; fill: none; marker-end: url(#arrow); }
+                    .dg-l-soft { stroke: var(--text-3, #9a9895); stroke-width: 1; stroke-dasharray: 4 3; fill: none; marker-end: url(#arrow); }
+                    .dg-pct { font-family: Georgia, serif; font-style: italic; font-size: 13px; fill: var(--text-3, #9a9895); }
+                </style>
+                <!-- Source -->
+                <rect class="dg-box" x="20" y="82" width="130" height="56"/>
+                <text class="dg-t-mono" x="32" y="100">Source</text>
+                <text class="dg-t" x="32" y="120">Helpdesk webhook</text>
+                <text class="dg-t" x="32" y="134" style="fill:var(--text-3,#9a9895)">~800 tickets/j</text>
+                <line class="dg-l" x1="150" y1="110" x2="205" y2="110"/>
+                <!-- Classifieur -->
+                <rect class="dg-box" x="215" y="72" width="160" height="76"/>
+                <text class="dg-t-mono" x="227" y="90">Étape 1</text>
+                <text class="dg-t" x="227" y="110" style="font-weight:500">Classifieur</text>
+                <text class="dg-t" x="227" y="126" style="fill:var(--text-3,#9a9895)">Règles + LLM</text>
+                <text class="dg-t" x="227" y="140" style="fill:var(--text-3,#9a9895)">Eval continue</text>
+                <line class="dg-l" x1="375" y1="110" x2="430" y2="110"/>
+                <!-- Routeur -->
+                <rect class="dg-box" x="440" y="72" width="130" height="76"/>
+                <text class="dg-t-mono" x="452" y="90">Étape 2</text>
+                <text class="dg-t" x="452" y="110" style="font-weight:500">Routeur</text>
+                <text class="dg-t" x="452" y="126" style="fill:var(--text-3,#9a9895)">3 voies</text>
+                <text class="dg-t" x="452" y="140" style="fill:var(--text-3,#9a9895)">+ kill switch</text>
+                <!-- 3 sorties -->
+                <line class="dg-l" x1="570" y1="95" x2="620" y2="32"/>
+                <line class="dg-l" x1="570" y1="110" x2="620" y2="110"/>
+                <line class="dg-l" x1="570" y1="125" x2="620" y2="188"/>
+                <rect class="dg-box" x="630" y="8" width="150" height="48"/>
+                <text class="dg-t" x="642" y="28" style="font-weight:500">Auto-réponse FAQ</text>
+                <text class="dg-pct" x="642" y="46">~30%</text>
+                <rect class="dg-box" x="630" y="86" width="150" height="48"/>
+                <text class="dg-t" x="642" y="106" style="font-weight:500">Suggestion + humain</text>
+                <text class="dg-pct" x="642" y="124">~20%</text>
+                <rect class="dg-box-soft" x="630" y="164" width="150" height="48"/>
+                <text class="dg-t" x="642" y="184" style="font-weight:500">Humain seul</text>
+                <text class="dg-pct" x="642" y="202">~50%</text>
+                <!-- Boucle logs/eval -->
+                <path class="dg-l-soft" d="M 295 148 Q 295 195, 505 195 Q 505 195, 505 148"/>
+                <text class="dg-t-mono" x="360" y="212" style="fill:var(--text-3,#9a9895)">Logs · eval continue</text>
+            </svg>
+        </div>
+        <?php endif; ?>
         <?php endforeach; ?>
     </div>
 
