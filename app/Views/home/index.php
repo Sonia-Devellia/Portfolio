@@ -200,14 +200,16 @@ $faqItems = ['1', '2', '3', '4', '5'];
                 <h2 class="section__title"><?= $t('about.title') ?></h2>
                 <p><?= $t('about.p1') ?></p>
                 <p><?= $t('about.p2') ?></p>
+                <blockquote class="about__pullquote"><?= $t('about.pullquote') ?></blockquote>
                 <a href="#method" class="btn btn--outline btn--sm"><?= $t('about.cta') ?></a>
             </div>
-            <div class="about__proof" role="list">
+            <div class="about__values">
+                <p class="eyebrow"><?= $t('about.values.eyebrow') ?></p>
                 <?php for ($i = 1; $i <= 3; $i++): ?>
-                <article class="about-proof" role="listitem">
-                    <span class="about-proof__key"><?= $t("about.proof.{$i}.k") ?></span>
-                    <p class="about-proof__value"><?= $t("about.proof.{$i}.v") ?></p>
-                </article>
+                <div class="about-value">
+                    <strong class="about-value__title"><?= $t("about.values.{$i}.t") ?></strong>
+                    <p class="about-value__desc"><?= $t("about.values.{$i}.d") ?></p>
+                </div>
                 <?php endfor; ?>
             </div>
         </div>
