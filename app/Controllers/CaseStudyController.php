@@ -11,8 +11,8 @@ class CaseStudyController extends Controller
         $appUrl = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
         $lang = $_SESSION['lang'] ?? 'fr';
         $title = $lang === 'fr'
-            ? 'Étude de cas — Trier 800 tickets/jour sans embaucher'
-            : 'Case study — Triage 800 tickets/day without hiring';
+            ? 'Trier 800 tickets/jour sans embaucher · Sonia Habibi'
+            : 'Triage 800 tickets/day without hiring · Sonia Habibi';
         $metaDesc = $lang === 'fr'
             ? 'Étude de cas sur une architecture IA utile : triage support, classifieur, fallback humain, budget tokens et garde-fous.'
             : 'Case study on a useful AI architecture: support triage, classifier, human fallback, token budget and guardrails.';

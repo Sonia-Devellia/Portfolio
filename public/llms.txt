@@ -1,0 +1,77 @@
+# Sonia Habibi — Développeuse full-stack freelance
+
+Développeuse full-stack freelance spécialisée PHP 8, Python, JavaScript et intégrations IA.
+Disponible pour des missions en remote, France et international.
+
+## À propos
+
+Sonia Habibi est développeuse full-stack freelance avec un passé d'entrepreneuse.
+Elle a dirigé une entreprise pendant huit ans avant de basculer dans le code à temps plein.
+Cette expérience informe sa façon de travailler : les délais sont des engagements, les marges existent,
+un livrable est jugé à ce qu'il fait tourner en production — pas à son élégance interne.
+
+Elle travaille seule sur des projets web complets pour startups et PME, en France et à l'international.
+Elle introduit de l'IA quand elle remplace un coût opérationnel mesurable, jamais par effet de mode.
+
+## Services
+
+### Sortir un produit web en 8 semaines
+MVP PHP ou Python, front JS, base de données, déploiement.
+Pas de no-code, pas de wrapper. Code source livré.
+Livrable : app déployée · code source · documentation d'architecture.
+
+### Intégrer une couche IA qui sert vraiment
+Audit du workflow opérationnel (tri, support N1, classification), évaluation du ROI,
+prototype, déploiement avec garde-fous (budget tokens, fallback, logs).
+Sortie : gain mesuré ou cas refusé documenté.
+Livrable : eval set · prototype · intégration ou rapport.
+
+### Reprendre un code laissé en friche
+Audit en 5 jours, plan de remise en état, refonte ciblée.
+Projet hérité, dette technique, ancien dev parti.
+Livrable : audit · plan priorisé · refonte par lots.
+
+## Méthode Dev + IA
+
+Deux étages, dans cet ordre :
+1. Socle dev solide — MVC strict, tests unitaires, CI/CD, déploiement reproductible.
+2. Décision IA prise après diagnostic : une couche IA est introduite uniquement si elle
+   remplace un coût opérationnel récurrent avec un ROI mesurable sous trois mois.
+
+Anti-pattern refusé : wrapper d'API LLM sans tests, sans budget, sans fallback,
+branché directement à un workflow client critique.
+
+## Stack technique
+
+- Back-end : PHP 8.1 (MVC natif), Python (scripts, scraping, ML léger)
+- Front-end : JavaScript vanilla, SCSS/CSS
+- Bases de données : MySQL, SQLite
+- IA / LLM : Claude API (Anthropic), OpenAI API, fine-tuning, agents, orchestration
+- DevOps : Git, CI/CD, Apache, déploiement o2switch
+- Automatisation : n8n, Make, Zapier + LLM
+
+## Étude de cas
+
+Trier 800 tickets/jour sans embaucher — architecture IA triage support N1.
+Un classifieur + routeur PHP/Python remplaçant deux ETP de tri N1 chez une PME SaaS.
+Résultat : –40 % temps moyen ticket, coût IA = 1/8 d'un ETP chargé, délai 6 semaines.
+URL : https://sonia-habibi.dev/case-studies/triage-support
+
+## Contact
+
+Email : contact@sonia-habibi.dev
+Formulaire : https://sonia-habibi.dev/contact
+TJM : 600–800 €/jour · Forfait pour missions < 6 semaines · Réponse sous 24h
+
+## Présence en ligne
+
+- Site : https://sonia-habibi.dev
+- LinkedIn : https://www.linkedin.com/in/sonia-habibi
+- GitHub : https://github.com/Sonia-Devellia
+- Malt : https://www.malt.fr/profile/soniahabibi
+
+## Mots-clés
+
+développeuse freelance PHP, développeur full-stack freelance, freelance Python IA,
+intégration Claude API, freelance MVP PHP Python, développeur freelance remote France,
+full-stack developer freelance PHP Python AI

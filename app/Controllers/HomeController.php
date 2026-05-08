@@ -19,7 +19,9 @@ class HomeController extends Controller
 
         $this->render('home/index', [
             'projects'   => $projects,
-            'title'      => 'Sonia Habibi — Dev Full-Stack · PHP · Python · IA',
+            'title'      => $lang === 'fr'
+                ? 'Développeuse full-stack PHP Python IA · Sonia Habibi'
+                : 'Full-Stack Developer PHP Python AI · Sonia Habibi',
             'metaDesc'   => $metaDesc,
             'canonical'  => $appUrl . '/',
             'faqSchema'  => $faqSchema,

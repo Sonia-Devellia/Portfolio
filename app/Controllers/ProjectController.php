@@ -18,7 +18,7 @@ class ProjectController extends Controller
 
         $this->render('projects/index', [
             'projects'  => $projects,
-            'title'     => ($lang === 'fr' ? 'Projets' : 'Projects') . ' — Sonia Habibi',
+            'title'     => ($lang === 'fr' ? 'Projets' : 'Projects') . ' · Sonia Habibi',
             'metaDesc'  => $metaDesc,
             'canonical' => $appUrl . '/projets',
         ]);

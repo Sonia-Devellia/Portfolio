@@ -34,7 +34,7 @@ class ContactController extends Controller
             : 'Let\'s talk about your project. Freelance PHP, Python, AI developer — available remotely. I reply within 24h.';
 
         $this->render('contact/index', [
-            'title'      => 'Contact — Sonia Habibi',
+            'title'      => 'Contact · Sonia Habibi',
             'metaDesc'   => $metaDesc,
             'canonical'  => $appUrl . '/contact',
             'csrf_token' => $_SESSION['csrf_token'],
