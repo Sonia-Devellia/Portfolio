@@ -1,11 +1,8 @@
 // ─── Typewriter — H1[data-typewriter] sur la home uniquement ─────────────────
-console.log('[typewriter.js] chargé, prefers-reduced-motion:', window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 // Lit le contenu, ré-écrit caractère à caractère avec curseur indigo.
 // Si ce script ne se charge pas, le H1 reste visible normalement.
 
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
   var el = document.querySelector('[data-typewriter]');
   if (!el) return;
 

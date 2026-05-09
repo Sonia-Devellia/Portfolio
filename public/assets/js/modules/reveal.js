@@ -1,22 +1,17 @@
 // ─── Reveal — progressive enhancement ───────────────────────────────────────
-console.log('[reveal.js] chargé, prefers-reduced-motion:', window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-// Ce script ajoute la classe .reveal (ou .reveal--mask) sur les éléments cibles
-// puis observe leur entrée dans le viewport.
+// Ajoute .reveal / .reveal--mask sur les éléments cibles et observe le viewport.
 // Si ce script ne se charge pas, les éléments restent visibles (opacity: 1).
 
 (function () {
-  // Sélecteurs → classe appliquée
   var TARGETS = [
-    { sel: '.pillar',             cls: 'reveal'      },
-    { sel: '.home-project-card',  cls: 'reveal'      },
-    { sel: '.realisation',        cls: 'reveal'      },
-    { sel: '.casestudy-card',     cls: 'reveal'      },
-    { sel: '.method__step',       cls: 'reveal'      },
-    { sel: '.about__body',        cls: 'reveal'      },
-    { sel: '.about__portrait',    cls: 'reveal--mask' },
+    { sel: '.pillar',            cls: 'reveal'       },
+    { sel: '.home-project-card', cls: 'reveal'       },
+    { sel: '.realisation',       cls: 'reveal'       },
+    { sel: '.casestudy-card',    cls: 'reveal'       },
+    { sel: '.method__step',      cls: 'reveal'       },
+    { sel: '.about__body',       cls: 'reveal'       },
+    { sel: '.about__portrait',   cls: 'reveal--mask' },
   ];
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
