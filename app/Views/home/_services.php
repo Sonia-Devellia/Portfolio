@@ -21,7 +21,7 @@
         <div class="services__pillars">
 
             <?php foreach (['p1', 'p2'] as $p): ?>
-            <article class="pillar pillar--<?= $p ?> reveal">
+            <article class="pillar pillar--<?= $p ?>">
                 <header class="pillar__head">
                     <p class="pillar__num"><?= $t("services.{$p}.num") ?></p>
                     <h3 class="pillar__title"><?= $t("services.{$p}.title") ?></h3>

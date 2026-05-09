@@ -65,7 +65,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </section>
 
 <!-- ─── SECTION LINK hero → services ───────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── SERVICES ────────────────────────────────────────── -->
 <?php include __DIR__ . '/_services.php'; ?>
@@ -97,7 +97,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </div>
 
 <!-- ─── SECTION LINK services → travaux ─────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
 <section class="section home-projects" id="projects">
@@ -115,7 +115,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </header>
         <div class="home-projects__grid">
             <?php foreach ($projects as $i => $project): ?>
-            <article class="home-project-card reveal">
+            <article class="home-project-card">
                 <div class="frame-macbook">
                     <img src="<?= $base . htmlspecialchars($project['image']) ?>"
                          alt="<?= $t($project['title_key']) ?>"
@@ -140,18 +140,18 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </section>
 
 <!-- ─── SECTION LINK travaux → méthode ──────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <?php include __DIR__ . '/_method.php'; ?>
 
 <!-- ─── SECTION LINK méthode → à propos ─────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
     <span class="section__watermark" aria-hidden="true">04</span>
     <div class="section__inner">
-        <div class="about__portrait reveal--mask" aria-hidden="true">
+        <div class="about__portrait" aria-hidden="true">
             <div class="about__portrait-photo">
                 <img src="<?= $base ?>/assets/images/sonia.webp"
                      alt=""
@@ -164,7 +164,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
                 <span><?= $lang === 'fr' ? 'Dev Full-Stack · Vannes / Remote' : 'Full-Stack Dev · Vannes / Remote' ?></span>
             </div>
         </div>
-        <div class="about__body reveal">
+        <div class="about__body">
             <div class="about__text">
                 <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
                 <h2 class="section__title"><?= $t('about.title') ?></h2>
@@ -187,7 +187,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </section>
 
 <!-- ─── SECTION LINK à propos → FAQ ─────────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── FAQ ─────────────────────────────────────────────── -->
 <section class="section faq" id="faq">
@@ -213,7 +213,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 </section>
 
 <!-- ─── SECTION LINK FAQ → CTA ───────────────────────────── -->
-<div class="section-link reveal" aria-hidden="true"></div>
+<div class="section-link" aria-hidden="true"></div>
 
 <!-- CTA Band — always-dark finale -->
 <section class="cta-band">

@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     nav?.classList.toggle('nav--scrolled', window.scrollY > 20);
   }, { passive: true });
 
-
   // ─── CONFIRM DIALOGS ───────────────────────────────────
   document.querySelectorAll('[data-confirm]').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -32,13 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ─── FADE-UP ───────────────────────────────────────────
+  // ─── FADE-UP (legacy — service-card, timeline-item) ────
   if (!prefersReducedMotion) {
     const fadeObs = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
       { threshold: 0.08 }
     );
-    document.querySelectorAll('.service-card, .timeline-item').forEach(el => { el.classList.add('fade-up'); fadeObs.observe(el); });
+    document.querySelectorAll('.service-card, .timeline-item').forEach(el => {
+      el.classList.add('fade-up');
+      fadeObs.observe(el);
+    });
   }
 
   // ─── CUSTOM CURSOR ─────────────────────────────────────

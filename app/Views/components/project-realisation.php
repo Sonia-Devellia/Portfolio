@@ -10,7 +10,7 @@
 $reversed = $reversed ?? false;
 $base     = $base     ?? '';
 ?>
-<article class="realisation <?= $reversed ? 'realisation--reversed' : '' ?> reveal">
+<article class="realisation <?= $reversed ? 'realisation--reversed' : '' ?>">
     <div class="realisation__visual">
         <?php if ($project['frame'] === 'desktop'): ?>
         <div class="frame-macbook">

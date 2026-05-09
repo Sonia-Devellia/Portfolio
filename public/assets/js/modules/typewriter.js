@@ -1,37 +1,35 @@
-// ─── Typewriter — H1 du hero uniquement, une seule fois au chargement ────────
-// Lit data-typewriter sur le H1, vide le textContent, ré-écrit caractère à caractère.
-// Curseur | clignote pendant la frappe puis disparaît 600ms après la fin.
+// ─── Typewriter — H1[data-typewriter] sur la home uniquement ─────────────────
+// Lit le contenu, ré-écrit caractère à caractère avec curseur indigo.
+// Si ce script ne se charge pas, le H1 reste visible normalement.
+
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var el = document.querySelector('[data-typewriter]');
   if (!el) return;
 
-  var full = el.getAttribute('aria-label') || el.textContent.trim();
+  var full  = el.getAttribute('aria-label') || el.textContent.trim();
   var chars = Array.from(full);
 
-  // Préserver aria-label pour les screen readers, cacher le rendu live
-  if (!el.getAttribute('aria-label')) {
-    el.setAttribute('aria-label', full);
-  }
+  el.setAttribute('aria-label', full);
   el.setAttribute('aria-live', 'off');
   el.textContent = '';
   el.classList.add('is-typing');
 
-  var i = 0;
-  function step() {
-    if (i >= chars.length) {
+  var idx = 0;
+  function type() {
+    if (idx >= chars.length) {
       setTimeout(function () { el.classList.remove('is-typing'); }, 600);
       return;
     }
-    el.textContent += chars[i];
-    var c = chars[i];
+    el.textContent += chars[idx];
+    var c = chars[idx];
     var delay = 36 + (Math.random() * 14 - 7);
     if (c === ' ') delay = 1;
     if ('.,;:—!?'.indexOf(c) !== -1) delay += 120;
-    i++;
-    setTimeout(step, delay);
+    idx++;
+    setTimeout(type, delay);
   }
 
-  setTimeout(step, 350);
+  setTimeout(type, 350);
 }());

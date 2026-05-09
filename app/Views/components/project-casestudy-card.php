@@ -8,7 +8,7 @@
  */
 $base = $base ?? '';
 ?>
-<article class="casestudy-card reveal">
+<article class="casestudy-card">
     <div class="casestudy-card__visual">
         <?php if ($project['frame'] === 'desktop'): ?>
         <div class="frame-macbook frame-macbook--sm">
