@@ -64,9 +64,6 @@ $faqItems = ['1', '2', '3', '4', '5'];
     </div>
 </section>
 
-<!-- ─── SECTION LINK hero → services ───────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
-
 <!-- ─── SERVICES ────────────────────────────────────────── -->
 <?php include __DIR__ . '/_services.php'; ?>
 
@@ -95,9 +92,6 @@ $faqItems = ['1', '2', '3', '4', '5'];
         <span>Code en prod</span>
     </div>
 </div>
-
-<!-- ─── SECTION LINK services → travaux ─────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
 <section class="section home-projects" id="projects">
@@ -139,13 +133,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
     </div>
 </section>
 
-<!-- ─── SECTION LINK travaux → méthode ──────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
-
 <?php include __DIR__ . '/_method.php'; ?>
-
-<!-- ─── SECTION LINK méthode → à propos ─────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
@@ -186,9 +174,6 @@ $faqItems = ['1', '2', '3', '4', '5'];
     </div>
 </section>
 
-<!-- ─── SECTION LINK à propos → FAQ ─────────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
-
 <!-- ─── FAQ ─────────────────────────────────────────────── -->
 <section class="section faq" id="faq">
     <div class="section__inner">
@@ -211,9 +196,6 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </div>
     </div>
 </section>
-
-<!-- ─── SECTION LINK FAQ → CTA ───────────────────────────── -->
-<div class="section-link" aria-hidden="true"></div>
 
 <!-- CTA Band — always-dark finale -->
 <section class="cta-band">
