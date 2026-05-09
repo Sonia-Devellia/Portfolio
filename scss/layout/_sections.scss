@@ -53,7 +53,7 @@
       width: 0;
       background: var(--accent);
       margin-top: 12px;
-      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+      transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
     }
 
     &.is-underlined::after { width: 64px; }
@@ -68,7 +68,7 @@
     line-height: 1;
     letter-spacing: -0.06em;
     color: var(--accent);
-    opacity: 0.06;
+    opacity: 0.12;
     pointer-events: none;
     user-select: none;
     z-index: 0;

@@ -87,7 +87,7 @@
   }
   function triggerLines(el, base) {
     el.querySelectorAll('.line').forEach((l, i) => {
-      l.style.transitionDelay = ((base || 0) + i * 80) + 'ms';
+      l.style.transitionDelay = ((base || 0) + i * 140) + 'ms';
       l.classList.add('is-revealed');
     });
   }
@@ -111,13 +111,13 @@
   if (heroSub) {
     const words = heroSub.textContent.trim().split(/\s+/);
     heroSub.innerHTML = words.map(w =>
-      `<span class="hw" style="opacity:0;display:inline-block;transform:translateY(8px);transition:opacity .35s,transform .35s">${w}</span>`
+      `<span class="hw" style="opacity:0;display:inline-block;transform:translateY(8px);transition:opacity .7s,transform .7s">${w}</span>`
     ).join(' ');
     setTimeout(() => {
       heroSub.querySelectorAll('.hw').forEach((w, i) => {
-        setTimeout(() => { w.style.opacity = '1'; w.style.transform = 'translateY(0)'; }, i * 60);
+        setTimeout(() => { w.style.opacity = '1'; w.style.transform = 'translateY(0)'; }, i * 100);
       });
-    }, 550);
+    }, 900);
   }
 
   // ─── EYEBROW SLIDE IN FROM LEFT ────────────────────────
@@ -162,7 +162,7 @@
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
-        e.target.querySelectorAll('.pq-word').forEach((w, i) => setTimeout(() => { w.style.opacity = '1'; }, i * 50));
+        e.target.querySelectorAll('.pq-word').forEach((w, i) => setTimeout(() => { w.style.opacity = '1'; }, i * 90));
         obs.unobserve(e.target);
       });
     }, { threshold: 0.3 });

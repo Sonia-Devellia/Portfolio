@@ -76,8 +76,8 @@
   opacity: 0;
   transform: translateY(14px);
   transition:
-    opacity  480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    transform 480ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    opacity  900ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .fade-up.is-visible {
   opacity: 1;
@@ -89,8 +89,8 @@
   opacity: 0;
   transform: translateX(-20px);
   transition:
-    opacity   0.4s ease-out,
-    transform 0.4s ease-out;
+    opacity   0.8s ease-out,
+    transform 0.8s ease-out;
 
   &.is-revealed {
     opacity: 1;
@@ -109,7 +109,7 @@
 .line {
   display: block;
   transform: translateY(108%);
-  transition: transform 0.85s var(--ease-edit);
+  transition: transform 1.4s var(--ease-edit);
 
   &.is-revealed { transform: translateY(0); }
 }
