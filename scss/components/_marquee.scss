@@ -1,0 +1,46 @@
+// ─── Marquee — bandeau de stack scrollant, accent indigo ─────────────────────
+// Un seul sur la home, entre Services et Travaux.
+// CSS pur — contenu dupliqué 2× dans le markup, translateX(-50%) boucle seamless.
+
+.marquee {
+  overflow: hidden;
+  border-top:    1px solid var(--accent-line);
+  border-bottom: 1px solid var(--accent-line);
+  padding: 16px 0;
+  background: var(--bg-soft);
+
+  &__track {
+    display: inline-flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: marquee-scroll 40s linear infinite;
+    will-change: transform;
+
+    span {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--text-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 48px;
+      text-transform: uppercase;
+
+      &::after {
+        content: '·';
+        color: var(--accent);
+        font-size: 16px;
+      }
+      &:last-child::after { content: none; }
+    }
+  }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+}

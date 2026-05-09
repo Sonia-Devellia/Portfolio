@@ -31,7 +31,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </p>
         <p class="eyebrow"><?= $t('hero.eyebrow') ?></p>
 
-        <h1 class="hero__title"><?= $t('hero.title') ?></h1>
+        <h1 class="hero__title" data-typewriter aria-label="<?= htmlspecialchars(strip_tags($t('hero.title')), ENT_QUOTES) ?>"><?= $t('hero.title') ?></h1>
 
         <p class="hero__sub" id="heroSub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
@@ -64,92 +64,94 @@ $faqItems = ['1', '2', '3', '4', '5'];
     </div>
 </section>
 
+<!-- ─── SECTION LINK hero → services ───────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
+
 <!-- ─── SERVICES ────────────────────────────────────────── -->
 <?php include __DIR__ . '/_services.php'; ?>
 
-<!-- ─── TICKER ───────────────────────────────────────────── -->
-<div class="ticker" aria-hidden="true">
-    <div class="ticker__track">
-        <span class="ticker__content">PHP &nbsp;·&nbsp; Python &nbsp;·&nbsp; JavaScript &nbsp;·&nbsp; LLM &nbsp;·&nbsp; Remote &nbsp;·&nbsp; Disponible &nbsp;·&nbsp; Freelance &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; Code en prod &nbsp;·&nbsp; PHP &nbsp;·&nbsp; Python &nbsp;·&nbsp; JavaScript &nbsp;·&nbsp; LLM &nbsp;·&nbsp; Remote &nbsp;·&nbsp; Disponible &nbsp;·&nbsp; Freelance &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; Code en prod &nbsp;·&nbsp; </span>
-        <span class="ticker__content">PHP &nbsp;·&nbsp; Python &nbsp;·&nbsp; JavaScript &nbsp;·&nbsp; LLM &nbsp;·&nbsp; Remote &nbsp;·&nbsp; Disponible &nbsp;·&nbsp; Freelance &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; Code en prod &nbsp;·&nbsp; PHP &nbsp;·&nbsp; Python &nbsp;·&nbsp; JavaScript &nbsp;·&nbsp; LLM &nbsp;·&nbsp; Remote &nbsp;·&nbsp; Disponible &nbsp;·&nbsp; Freelance &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; Code en prod &nbsp;·&nbsp; </span>
+<!-- ─── MARQUEE stack — entre Services et Travaux ──────── -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+        <span>PHP</span>
+        <span>Python</span>
+        <span>JavaScript</span>
+        <span>MySQL</span>
+        <span>MVC</span>
+        <span>LLM APIs</span>
+        <span>SCSS</span>
+        <span>Full-Stack</span>
+        <span>Remote</span>
+        <span>Code en prod</span>
+        <span>PHP</span>
+        <span>Python</span>
+        <span>JavaScript</span>
+        <span>MySQL</span>
+        <span>MVC</span>
+        <span>LLM APIs</span>
+        <span>SCSS</span>
+        <span>Full-Stack</span>
+        <span>Remote</span>
+        <span>Code en prod</span>
     </div>
 </div>
 
-<!-- ─── PROJETS FEATURED — Mac mockup showcase ─────────────── -->
-<section class="section projects" id="projects">
-    <span class="section__watermark" aria-hidden="true">02</span>
-  <div class="projects__header">
-    <div>
-      <p class="eyebrow"><?= $t('projects.eyebrow') ?></p>
-      <h2 class="section__title"><?= $t('projects.title') ?></h2>
-    </div>
-  </div>
-  <div class="projects__showcase">
-    <!-- Left: Mac mockup -->
-    <div class="mac-mockup">
-      <div class="mac-mockup__bar">
-        <span class="mac-dot mac-dot--red"></span>
-        <span class="mac-dot mac-dot--yellow"></span>
-        <span class="mac-dot mac-dot--green"></span>
-      </div>
-      <div class="mac-mockup__screen">
-        <?php foreach ($projects as $i => $p):
-          $pLang = $_SESSION['lang'] ?? 'fr'; ?>
-        <div class="mac-slide <?= $i === 0 ? 'mac-slide--active' : '' ?>"
-             data-index="<?= $i ?>">
-          <?php if ($p['thumbnail']): ?>
-            <img src="<?= htmlspecialchars($p['thumbnail']) ?>"
-                 alt="<?= htmlspecialchars($p['title_' . $pLang]) ?>"
-                 loading="<?= $i === 0 ? 'eager' : 'lazy' ?>">
-          <?php else: ?>
-            <div class="mac-slide__placeholder">
-              <span><?= $p['is_wip'] ? '+ IA' : strtoupper(substr($p['title_' . $pLang], 0, 2)) ?></span>
-            </div>
-          <?php endif; ?>
-        </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
+<!-- ─── SECTION LINK services → travaux ─────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
 
-    <!-- Right: project details -->
-    <div class="projects__details">
-      <?php foreach ($projects as $i => $p):
-        $pLang = $_SESSION['lang'] ?? 'fr';
-        $tags  = \App\Models\Project::parseTags($p['tags']); ?>
-      <div class="project-detail <?= $i === 0 ? 'project-detail--active' : '' ?>"
-           data-index="<?= $i ?>">
-        <p class="project-detail__num">0<?= $i + 1 ?></p>
-        <h3 class="project-detail__title">
-          <?= htmlspecialchars($p['title_' . $pLang]) ?>
-        </h3>
-        <div class="project-detail__tags">
-          <?php foreach ($tags as $tag): ?>
-            <span class="tag tag--mono"><?= htmlspecialchars($tag) ?></span>
-          <?php endforeach; ?>
+<!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
+<section class="section home-projects" id="projects">
+    <span class="section__watermark" aria-hidden="true">02</span>
+    <div class="home-projects__inner">
+        <header class="home-projects__header">
+            <div>
+                <p class="eyebrow"><?= $t('home.projects.eyebrow') ?></p>
+                <h2 class="home-projects__title">
+                    <?= $t('home.projects.title') ?>
+                    <em><?= $t('home.projects.title_em') ?></em>
+                </h2>
+                <p class="home-projects__lede"><?= $t('home.projects.lede') ?></p>
+            </div>
+        </header>
+        <div class="home-projects__grid">
+            <?php foreach ($projects as $i => $project): ?>
+            <article class="home-project-card reveal">
+                <div class="frame-macbook">
+                    <img src="<?= $base . htmlspecialchars($project['image']) ?>"
+                         alt="<?= $t($project['title_key']) ?>"
+                         loading="<?= $i === 0 ? 'eager' : 'lazy' ?>"
+                         decoding="<?= $i === 0 ? 'sync' : 'async' ?>">
+                </div>
+                <div class="home-project-card__eyebrow">
+                    <span><?= $t('projects.kind.realisation') ?> · <?= htmlspecialchars($project['year']) ?></span>
+                    <span><?= $t($project['type_key']) ?></span>
+                </div>
+                <h3 class="home-project-card__title"><?= $t($project['title_key']) ?></h3>
+                <p class="home-project-card__pitch"><?= $t($project['pitch_key']) ?></p>
+            </article>
+            <?php endforeach; ?>
         </div>
-        <p class="project-detail__desc">
-          <?= htmlspecialchars(mb_substr(strip_tags($p['desc_' . $pLang] ?? ''), 0, 200)) ?>
-        </p>
-        <?php if ($p['is_wip']): ?>
-          <span class="project-detail__wip"><?= $t('projects.wip') ?></span>
-        <?php elseif ($p['github_url']): ?>
-          <a href="<?= htmlspecialchars($p['github_url']) ?>"
-             class="btn btn--outline btn--sm"
-             target="_blank" rel="noopener">GitHub →</a>
-        <?php endif; ?>
-      </div>
-      <?php endforeach; ?>
+        <div class="home-projects__footer">
+            <a href="<?= $base ?>/projets" class="home-projects__see-all">
+                <?= $t('home.projects.see_all') ?> →
+            </a>
+        </div>
     </div>
-  </div>
 </section>
 
+<!-- ─── SECTION LINK travaux → méthode ──────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
+
 <?php include __DIR__ . '/_method.php'; ?>
+
+<!-- ─── SECTION LINK méthode → à propos ─────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
     <span class="section__watermark" aria-hidden="true">04</span>
     <div class="section__inner">
-        <div class="about__portrait" aria-hidden="true">
+        <div class="about__portrait reveal--mask" aria-hidden="true">
             <div class="about__portrait-photo">
                 <img src="<?= $base ?>/assets/images/sonia.webp"
                      alt=""
@@ -162,7 +164,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
                 <span><?= $lang === 'fr' ? 'Dev Full-Stack · Vannes / Remote' : 'Full-Stack Dev · Vannes / Remote' ?></span>
             </div>
         </div>
-        <div class="about__body">
+        <div class="about__body reveal">
             <div class="about__text">
                 <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
                 <h2 class="section__title"><?= $t('about.title') ?></h2>
@@ -183,6 +185,9 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </div>
     </div>
 </section>
+
+<!-- ─── SECTION LINK à propos → FAQ ─────────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
 
 <!-- ─── FAQ ─────────────────────────────────────────────── -->
 <section class="section faq" id="faq">
@@ -206,6 +211,9 @@ $faqItems = ['1', '2', '3', '4', '5'];
         </div>
     </div>
 </section>
+
+<!-- ─── SECTION LINK FAQ → CTA ───────────────────────────── -->
+<div class="section-link reveal" aria-hidden="true"></div>
 
 <!-- CTA Band — always-dark finale -->
 <section class="cta-band">

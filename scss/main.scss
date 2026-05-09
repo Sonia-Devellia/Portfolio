@@ -25,12 +25,20 @@
 @use 'components/tags';
 @use 'components/pillar';
 @use 'components/project-card';
+@use 'components/project-frames';
 @use 'components/about';
 @use 'components/method';
 @use 'components/faq';
 @use 'components/cta-band';
 @use 'components/ticker';
 @use 'components/cursor';
+
+// Motion system (CCv5)
+@use 'components/reveal';
+@use 'components/typewriter';
+@use 'components/drawn-line';
+@use 'components/section-link';
+@use 'components/marquee';
 
 // Pages
 @use 'pages/admin';

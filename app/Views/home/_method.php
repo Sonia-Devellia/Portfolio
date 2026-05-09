@@ -15,7 +15,7 @@
         </header>
         <ol class="method__steps">
             <?php foreach (['s1', 's2', 's3', 's4'] as $s): ?>
-            <li class="method__step">
+            <li class="method__step reveal">
                 <span class="method__num"><?= $t("method.{$s}.num") ?></span>
                 <h3 class="method__step-title"><?= $t("method.{$s}.t") ?></h3>
                 <p class="method__step-body"><?= $t("method.{$s}.d") ?></p>

@@ -1,0 +1,32 @@
+// ─── Reveal — apparition au scroll (IntersectionObserver) ────────────────────
+// Une classe .reveal, un observer unique dans reveal.js.
+// Variantes : .reveal--up (défaut), .reveal--mask (clip-path horizontal).
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity  600ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+  will-change: opacity, transform;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal--mask {
+  opacity: 1;
+  clip-path: inset(0 100% 0 0);
+  transform: none;
+  transition: clip-path 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 80ms);
+  &.is-visible { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--mask { transition: none; opacity: 1; transform: none; clip-path: none; }
+}

@@ -1,0 +1,19 @@
+// ─── Typewriter — curseur clignotant pendant la frappe du H1 hero ────────────
+
+[data-typewriter] {
+  min-height: 1em; // stabilise la hauteur pendant la frappe
+
+  &.is-typing::after {
+    content: '|';
+    color: var(--accent);
+    margin-left: 2px;
+    animation: tw-blink 1s step-end infinite;
+    font-style: normal;
+    font-weight: 300;
+  }
+}
+
+@keyframes tw-blink {
+  0%, 50%   { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

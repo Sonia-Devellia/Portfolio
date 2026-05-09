@@ -231,6 +231,8 @@ $schemaDesc = $lang === 'fr'
     </div>
 </footer>
 
+<script src="<?= $base ?>/assets/js/modules/reveal.js" defer></script>
+<script src="<?= $base ?>/assets/js/modules/typewriter.js" defer></script>
 <script src="<?= $base ?>/assets/js/main.js" defer></script>
 
 <?php if (!empty($scripts)): ?>

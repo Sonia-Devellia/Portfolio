@@ -51,14 +51,14 @@
       display: block;
       height: 2px;
       width: 0;
-      background: var(--avail);
-      margin-top: 14px;
-      transition: width 0.6s ease-out 0.15s;
+      background: var(--accent);
+      margin-top: 12px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 
       @media (prefers-reduced-motion: reduce) { transition: none; }
     }
 
-    &.is-underlined::after { width: 40px; }
+    &.is-underlined::after { width: 64px; }
   }
 
   // 3 — Watermark numbers — zigzag: odd=right, even=left
