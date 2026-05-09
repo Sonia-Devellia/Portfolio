@@ -22,9 +22,9 @@
     }
     el.textContent += chars[idx];
     var c = chars[idx];
-    var delay = 36 + (Math.random() * 14 - 7);
+    var delay = 72 + (Math.random() * 28 - 14);
     if (c === ' ') delay = 1;
-    if ('.,;:—!?'.indexOf(c) !== -1) delay += 120;
+    if ('.,;:—!?'.indexOf(c) !== -1) delay += 240;
     idx++;
     setTimeout(type, delay);
   }
