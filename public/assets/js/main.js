@@ -2,7 +2,7 @@
    Portfolio Sonia Habibi — main.js
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
 
   // ─── DARK MODE ─────────────────────────────────────────
   const html        = document.documentElement;
@@ -200,4 +200,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true, once: true });
   }
 
-});
+}());
