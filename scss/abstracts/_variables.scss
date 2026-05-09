@@ -14,10 +14,10 @@
   --avail-bg:  #e1f5ee;
   --avail-dot: #1d9e75;
 
-  // Accent indigo (usage discret — liens, focus, soulignements, lignes décoratives)
-  --accent:      #2d2a55;
-  --accent-soft: #e7e6f0;       // fond pill / hover surface
-  --accent-line: rgba(45,42,85,0.4); // traits décoratifs
+  // Accent bleu nuit électrique
+  --accent:      #0038ff;
+  --accent-soft: #dde5ff;
+  --accent-line: rgba(0,56,255,0.25);
 
   // Tags
   --tag-blue-bg:   #e6f1fb; --tag-blue-txt:   #185fa5;
@@ -83,9 +83,9 @@
   --avail-bg:  rgba(29, 158, 117, 0.12);
   --avail-dot: #1d9e75;
 
-  --accent:      #9b98d4;       // indigo clair pour contraste sur fond sombre
-  --accent-soft: rgba(155,152,212,0.12);
-  --accent-line: rgba(155,152,212,0.35);
+  --accent:      #4d7aff;       // bleu électrique éclairci pour fond sombre
+  --accent-soft: rgba(77,122,255,0.15);
+  --accent-line: rgba(77,122,255,0.35);
 
   --tag-blue-bg:   #0c447c; --tag-blue-txt:   #b5d4f4;
   --tag-green-bg:  #27500a; --tag-green-txt:  #c0dd97;
