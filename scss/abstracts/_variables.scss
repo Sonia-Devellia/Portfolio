@@ -53,9 +53,10 @@
   --dur-slow:  400ms;
 
   // Filets (rules) décoratifs
-  --rule-thin:   1px solid var(--border);
-  --rule-md:     1px solid var(--border-md);
-  --rule-accent: 2px solid var(--text);
+  --rule-thin:         1px solid var(--border);
+  --rule-md:           1px solid var(--border-md);
+  --rule-accent:       2px solid var(--accent);
+  --rule-accent-thin:  1px solid var(--accent-line);
 
   // Layout
   --radius-sm: 6px;

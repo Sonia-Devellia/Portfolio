@@ -138,7 +138,7 @@
   color: var(--text-2);
   padding: 3px 8px;
   border-radius: 4px;
-  border: var(--rule-thin);
+  border: var(--rule-accent-thin);
 }
 
 @keyframes fadeInUp {
@@ -151,7 +151,7 @@
 .project-card {
   position: relative;
   background: var(--bg);
-  border: var(--rule-thin);
+  border: var(--rule-accent-thin);
   border-color: var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -176,7 +176,7 @@
     height: 200px;
     overflow: hidden;
     background: var(--bg-subtle);
-    border-bottom: var(--rule-thin);
+    border-bottom: var(--rule-accent-thin);
 
     img {
       width: 100%;
@@ -268,5 +268,96 @@
       font-weight: 400;
       &:hover { color: var(--text-3); transform: none; }
     }
+  }
+}
+
+// ─── Home featured projects — grille 2 colonnes ───────────────────────────────
+
+.home-projects {
+  border-top: var(--rule-accent-thin);
+  border-bottom: var(--rule-accent-thin);
+}
+
+.home-projects__inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-section-md) 40px;
+
+  @include mobile { padding: var(--space-section-sm) 20px; }
+}
+
+.home-projects__header {
+  margin-bottom: 48px;
+}
+
+.home-projects__title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 8px 0 10px;
+
+  em { font-style: normal; }
+}
+
+.home-projects__lede {
+  font-size: 14px;
+  color: var(--text-3);
+}
+
+.home-projects__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 24px;
+
+  @include tablet { grid-template-columns: 1fr; }
+}
+
+.home-project-card {
+  &__eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: var(--fs-mini);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 16px 0 8px;
+  }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  &__pitch {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+}
+
+.home-projects__footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: var(--rule-accent-thin);
+}
+
+.home-projects__see-all {
+  font-size: 13px;
+  color: var(--text-2);
+  transition: color var(--dur-fast) var(--ease-edit);
+
+  @media (hover: hover) {
+    &:hover { color: var(--text); }
   }
 }

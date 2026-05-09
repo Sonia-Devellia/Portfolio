@@ -4,7 +4,7 @@
 
 .section {
   width: 100%;
-  border-bottom: var(--rule-thin);
+  border-bottom: var(--rule-accent-thin);
   position: relative;
   overflow: hidden;
 
@@ -68,7 +68,7 @@
     line-height: 1;
     letter-spacing: -0.06em;
     color: var(--accent);
-    opacity: 0.22;
+    opacity: 0.50;
     pointer-events: none;
     user-select: none;
     z-index: 0;
