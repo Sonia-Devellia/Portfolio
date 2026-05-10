@@ -23,4 +23,22 @@ class CaseStudyController extends Controller
             'canonical' => $appUrl . '/case-studies/triage-support',
         ]);
     }
+
+    public function amanea(): void
+    {
+        $appUrl = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
+        $lang = $_SESSION['lang'] ?? 'fr';
+        $title = $lang === 'fr'
+            ? 'Amanéa Voyages — site sur mesure PHP MVC · Sonia Habibi'
+            : 'Amanéa Voyages — bespoke PHP MVC website · Sonia Habibi';
+        $metaDesc = $lang === 'fr'
+            ? 'Étude de cas : site bilingue FR/EN pour une agence de voyages, avec backoffice, espace client et gestion des réservations, sans CMS.'
+            : 'Case study: bilingual FR/EN website for a travel agency, with back-office, client portal and booking management, no CMS.';
+
+        $this->render('case-studies/amanea', [
+            'title'     => $title,
+            'metaDesc'  => $metaDesc,
+            'canonical' => $appUrl . '/case-studies/amanea-voyages',
+        ]);
+    }
 }

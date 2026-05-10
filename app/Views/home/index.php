@@ -37,7 +37,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
         <div class="hero__actions">
             <a href="<?= $base ?>/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
             <a href="<?= $base ?>/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
-            <a href="<?= $base ?>/case-studies/triage-support" class="btn btn--ghost"><?= $t('hero.cta_case') ?></a>
+            <a href="<?= $base ?>/case-studies/amanea-voyages" class="btn btn--ghost"><?= $t('hero.cta_case') ?></a>
         </div>
         <div class="hero__tags">
             <span class="tag tag--blue">PHP</span>
