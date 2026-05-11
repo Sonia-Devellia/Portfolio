@@ -46,11 +46,12 @@
     stackObserver.observe(stackHead);
   }
 
-  // ─── Section method — idem, stagger à 200 ms ─────────────────────────────
-  // Les .method__step n'ont pas .reveal en HTML → on l'ajoute ici (opacity 0),
-  // puis l'observer stagger chaque étape.
+  // ─── Section method — observer sur .method__head, stagger steps via setTimeout
+  // Même logique que stack : on évite d'observer la section entière (overflow:hidden).
+  // Quand le header est visible à 40% → on stagger les 4 steps à 200 ms d'intervalle.
   var methodSection = document.querySelector('.method');
-  if (methodSection) {
+  var methodHead    = methodSection && methodSection.querySelector('.method__head');
+  if (methodHead) {
     var methodSteps = methodSection.querySelectorAll('.method__step');
     methodSteps.forEach(function (step) {
       step.classList.add('reveal');
@@ -58,15 +59,15 @@
     var methodObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        methodObserver.unobserve(entry.target);
+        methodObserver.disconnect();
         methodSteps.forEach(function (step, i) {
           setTimeout(function () {
             step.classList.add('is-visible');
           }, i * 200);
         });
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-    methodObserver.observe(methodSection);
+    }, { threshold: 0.4 });
+    methodObserver.observe(methodHead);
   }
 
   // ─── Stagger automatique pour les .stagger-group (en-tête stack) ──────────
