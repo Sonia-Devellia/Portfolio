@@ -73,8 +73,8 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 <section class="stack" id="stack">
     <div class="stack__bigNum" aria-hidden="true">02</div>
     <div class="stack__head stagger-group">
-        <p class="stack__eyebrow reveal"><?= $t('stack.eyebrow') ?></p>
-        <h2 class="stack__title reveal"><?= $tRaw('stack.title') ?></h2>
+        <p class="eyebrow reveal"><?= $t('stack.eyebrow') ?></p>
+        <h2 class="section__title reveal"><?= $tRaw('stack.title') ?></h2>
         <p class="stack__lede reveal"><?= $tRaw('stack.lede') ?></p>
     </div>
     <ol class="stack__list">
@@ -185,9 +185,9 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     <div class="section__inner">
         <div class="about__portrait" aria-hidden="true">
             <div class="about__portrait-photo">
-                <img src="<?= $base ?>/assets/images/sonia.webp"
+                <img src="<?= $base ?>/assets/images/sonia2.webp"
                      alt=""
-                     width="220" height="275"
+                     width="220" height="220"
                      loading="lazy"
                      decoding="async">
             </div>
