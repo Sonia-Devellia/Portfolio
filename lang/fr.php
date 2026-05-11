@@ -10,7 +10,7 @@ return [
 
     // Hero
     'hero.eyebrow'       => 'DÉVELOPPEMENT SUR MESURE · EXPERTISE IA · FREELANCE',
-    'hero.title'         => 'Je conçois et développe des produits web sur mesure.',
+    'hero.title'         => 'Je conçois et développe des produits web <em>sur mesure.</em>',
     'hero.sub'           => 'Applications web, logiciels métier, intégration IA quand elle crée de la valeur. Pour startups et PME — du brief au livrable, en remote.',
     'hero.cta_projects'  => 'Voir mes projets',
     'hero.cta_contact'   => 'Me contacter →',
@@ -18,7 +18,7 @@ return [
 
     // Services
     'services.eyebrow'   => 'CE QUE JE FAIS',
-    'services.title'     => 'Deux expertises, une seule exécution.',
+    'services.title'     => 'Deux expertises, une seule <em>exécution.</em>',
     'services.sub'       => 'Le développement sur mesure est mon socle. L\'IA s\'ajoute quand elle remplace un coût opérationnel mesurable.',
 
     // Pilier 01 — Développement sur mesure
@@ -55,7 +55,7 @@ return [
 
     // À propos
     'about.eyebrow'      => 'PROFIL',
-    'about.title'        => 'Développeuse full-stack avec un passé d\'entrepreneuse.',
+    'about.title'        => 'Développeuse full-stack avec un passé <em>d\'entrepreneuse.</em>',
     'about.p1'           => 'J\'ai dirigé une entreprise pendant huit ans avant de basculer dans le code à temps plein. Ce passé décide encore aujourd\'hui de la façon dont j\'écris : les délais sont des engagements, les marges existent, un livrable est jugé à ce qu\'il fait tourner pour le client — pas à son élégance interne.',
     'about.p2'           => 'Je travaille seule sur des projets web complets pour startups et PME, en France et à l\'international, 100 % remote. J\'introduis de l\'IA dans un produit quand elle remplace un coût opérationnel mesurable — jamais par effet de mode.',
     'about.pullquote'    => 'Vision produit, compréhension métier, exécution. Trois mots qui résument comment je travaille.',
@@ -125,7 +125,7 @@ return [
 
     // Méthode — du brief au livrable
     'method.eyebrow'  => 'MÉTHODE',
-    'method.title'    => 'Du brief au livrable, en quatre temps.',
+    'method.title'    => 'Du brief au <em>livrable</em>, en quatre temps.',
     'method.sub'      => 'Une compréhension fine de vos enjeux, une vision produit claire, une exécution rigoureuse. Et un retour utilisateur intégré dès le premier livrable.',
     'method.s1.num'   => '01',
     'method.s1.t'     => 'Comprendre',
@@ -142,7 +142,7 @@ return [
 
     // FAQ home
     'faq.eyebrow'        => 'AVANT DE M\'ÉCRIRE',
-    'faq.title'          => 'Cinq réponses utiles.',
+    'faq.title'          => 'Cinq réponses <em>utiles.</em>',
     'faq.1.q'            => 'Quel est votre TJM ?',
     'faq.1.a'            => 'Entre 600€ et 800€/jour selon la nature du projet. Devis forfaitaire pour les missions inférieures à 6 semaines, régie au-delà. Premier appel gratuit pour cadrer.',
     'faq.2.q'            => 'À partir de quel scope vaut-il la peine de m\'écrire ?',
@@ -207,7 +207,10 @@ return [
     'projects.jsentreprise.pitch'     => 'Site agentic IA pour un éducateur équin — assistant conversationnel, réservations, paiement en ligne d\'un ebook de formation.',
     'projects.jsentreprise.body'      => 'Site complet pour un éducateur et coach équin : assistant conversationnel agentic intégré pour qualifier les demandes, système de réservation des prestations, vente en ligne d\'un ebook de formation avec paiement Stripe et livraison automatique. Architecture PHP, intégration des outils métier de l\'entrepreneur.',
 
-    // 3–7. Cas d'études (pitch uniquement)
+    // 3–8. Cas d'études (pitch uniquement)
+    'projects.ferme.title'            => 'La Ferme de Basile',
+    'projects.ferme.pitch'            => 'Refonte d\'un site e-commerce de vente directe pour une ferme locale — catalogue produits, panier, commandes en ligne.',
+
     'projects.helia.title'            => 'Salon Hélia',
     'projects.helia.pitch'            => 'Site d\'un salon de coiffure avec réservation en ligne et paiement sécurisé.',
 
@@ -233,7 +236,7 @@ return [
     'home.projects.title'             => 'Deux projets en',
     'home.projects.title_em'          => 'production.',
     'home.projects.lede'              => 'Plus cinq cas d\'études personnels que je tiens à jour en parallèle.',
-    'home.projects.see_all'           => 'Voir les 7 projets et cas d\'études',
+    'home.projects.see_all'           => 'Voir les 8 projets et cas d\'études',
 
     // ─── Section Stack technique ──────────────────────────────────────────────
     'stack.eyebrow'              => '— Stack technique · outillage',

@@ -93,7 +93,7 @@
   }
 
   // ─── SECTION + CTA TITLES — line reveal + underline ────
-  document.querySelectorAll('.section__title, .cta-band__title, .stack__title').forEach(el => {
+  document.querySelectorAll('.section__title, .cta-band__title').forEach(el => {
     buildLineWrap(el);
     const obs = new IntersectionObserver(entries => {
       entries.forEach(entry => {

@@ -3,11 +3,13 @@
  * Vue — page d'accueil.
  *
  * @var callable(string): string                  $t
+ * @var callable(string): string                  $tRaw
  * @var array<int, array<string, mixed>>          $projects
  * @var array<int, array<string, mixed>>          $stack
  */
 $base = rtrim($_ENV['APP_URL'] ?? '', '/');
-$t ??= static fn(string $k): string => $k;
+$t    ??= static fn(string $k): string => $k;
+$tRaw ??= static fn(string $k): string => $k;
 $projects ??= [];
 $stack    ??= [];
 $lang = $_SESSION['lang'] ?? 'fr';
@@ -33,7 +35,7 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
         </p>
         <p class="eyebrow"><?= $t('hero.eyebrow') ?></p>
 
-        <h1 class="hero__title" data-typewriter aria-label="<?= htmlspecialchars(strip_tags($t('hero.title')), ENT_QUOTES) ?>"><?= $t('hero.title') ?></h1>
+        <h1 class="hero__title" data-typewriter aria-label="<?= htmlspecialchars(strip_tags($tRaw('hero.title')), ENT_QUOTES) ?>"><?= $tRaw('hero.title') ?></h1>
 
         <p class="hero__sub" id="heroSub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
@@ -75,7 +77,7 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     <div class="stack__head stagger-group">
         <p class="eyebrow reveal"><?= $t('stack.eyebrow') ?></p>
         <h2 class="section__title reveal"><?= $tRaw('stack.title') ?></h2>
-        <p class="stack__lede reveal"><?= $tRaw('stack.lede') ?></p>
+        <p class="section__sub reveal"><?= $tRaw('stack.lede') ?></p>
     </div>
     <ol class="stack__list">
         <?php foreach ($stack as $i => $card): ?>
@@ -199,7 +201,7 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
         <div class="about__body">
             <div class="about__text">
                 <p class="eyebrow"><?= $t('about.eyebrow') ?></p>
-                <h2 class="section__title"><?= $t('about.title') ?></h2>
+                <h2 class="section__title"><?= $tRaw('about.title') ?></h2>
                 <p><?= $t('about.p1') ?></p>
                 <p><?= $t('about.p2') ?></p>
                 <blockquote class="about__pullquote"><?= $t('about.pullquote') ?></blockquote>
@@ -224,7 +226,7 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
         <div class="section__head">
             <div>
                 <p class="eyebrow"><?= $t('faq.eyebrow') ?></p>
-                <h2 class="section__title"><?= $t('faq.title') ?></h2>
+                <h2 class="section__title"><?= $tRaw('faq.title') ?></h2>
             </div>
         </div>
         <div class="faq__list">

@@ -10,7 +10,7 @@ return [
 
     // Hero
     'hero.eyebrow'       => 'CUSTOM SOFTWARE DEVELOPMENT · AI EXPERTISE · FREELANCE',
-    'hero.title'         => 'I design and build custom web products.',
+    'hero.title'         => 'I design and build <em>custom</em> web products.',
     'hero.sub'           => 'Web applications, business software, AI integration where it creates measurable value. For startups and SMEs — from brief to delivery, fully remote.',
     'hero.cta_projects'  => 'View my work',
     'hero.cta_contact'   => 'Get in touch →',
@@ -18,7 +18,7 @@ return [
 
     // Services
     'services.eyebrow'   => 'WHAT I DO',
-    'services.title'     => 'Two areas of expertise, one execution.',
+    'services.title'     => 'Two areas of expertise, one <em>execution.</em>',
     'services.sub'       => 'Custom software development is my foundation. AI is added when it replaces a measurable operational cost.',
 
     // Pillar 01 — Custom software development
@@ -55,7 +55,7 @@ return [
 
     // About
     'about.eyebrow'      => 'PROFILE',
-    'about.title'        => 'Full-stack developer with an operator background.',
+    'about.title'        => 'Full-stack developer with an <em>operator</em> background.',
     'about.p1'           => 'I ran a business for eight years before moving into code full time. That background still shapes how I build: deadlines are commitments, margins exist, and a deliverable is judged by what it keeps running for the client — not by internal elegance.',
     'about.p2'           => 'I work solo on complete web products for startups and SMEs in France and internationally, 100% remote. I introduce AI into a product when it replaces a measurable operational cost — never because it sounds current.',
     'about.pullquote'    => 'Product vision, business understanding, execution. Three words that sum up how I work.',
@@ -125,7 +125,7 @@ return [
 
     // Method — from brief to delivery
     'method.eyebrow'  => 'METHOD',
-    'method.title'    => 'From brief to delivery, in four steps.',
+    'method.title'    => 'From brief to <em>delivery</em>, in four steps.',
     'method.sub'      => 'A close read of your business context, a clear product vision, rigorous execution. And user feedback built in from the first deliverable.',
     'method.s1.num'   => '01',
     'method.s1.t'     => 'Understand',
@@ -142,7 +142,7 @@ return [
 
     // Home FAQ
     'faq.eyebrow'        => 'BEFORE YOU WRITE',
-    'faq.title'          => 'Five useful answers.',
+    'faq.title'          => 'Five <em>useful</em> answers.',
     'faq.1.q'            => 'What is your day rate?',
     'faq.1.a'            => 'Between €600 and €800/day depending on the project. Fixed quote for missions under 6 weeks, day rate beyond that. First scoping call is free.',
     'faq.2.q'            => 'What minimum scope is worth contacting you for?',
@@ -207,7 +207,10 @@ return [
     'projects.jsentreprise.pitch'     => 'Agentic AI site for an equine trainer — conversational assistant, bookings, online payment for a training e-book.',
     'projects.jsentreprise.body'      => 'Full website for an equine trainer and coach: integrated agentic conversational assistant to qualify enquiries, service booking system, online sale of a training e-book with Stripe payment and automatic delivery. PHP architecture, integration of the entrepreneur\'s business tools.',
 
-    // 3–7. Case studies (pitch only)
+    // 3–8. Case studies (pitch only)
+    'projects.ferme.title'            => 'La Ferme de Basile',
+    'projects.ferme.pitch'            => 'Redesign of a direct-sales e-commerce site for a local farm — product catalogue, cart, online orders.',
+
     'projects.helia.title'            => 'Salon Hélia',
     'projects.helia.pitch'            => 'Hair salon website with online booking and secure payment.',
 
@@ -233,7 +236,7 @@ return [
     'home.projects.title'             => 'Two projects in',
     'home.projects.title_em'          => 'production.',
     'home.projects.lede'              => 'Plus five personal case studies I keep updated in parallel.',
-    'home.projects.see_all'           => 'See all 7 projects and case studies',
+    'home.projects.see_all'           => 'See all 8 projects and case studies',
 
     // ─── Tech stack section ───────────────────────────────────────────────────
     'stack.eyebrow'              => '— Tech stack · tooling',

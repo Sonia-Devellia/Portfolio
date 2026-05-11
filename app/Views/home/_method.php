@@ -10,8 +10,8 @@
     <div class="section__inner">
         <header class="method__head">
             <p class="eyebrow"><?= $t('method.eyebrow') ?></p>
-            <h2 class="section__title"><?= $t('method.title') ?></h2>
-            <p class="method__sub"><?= $t('method.sub') ?></p>
+            <h2 class="section__title"><?= $tRaw('method.title') ?></h2>
+            <p class="section__sub"><?= $t('method.sub') ?></p>
         </header>
         <ol class="method__steps">
             <?php foreach (['s1', 's2', 's3', 's4'] as $s): ?>

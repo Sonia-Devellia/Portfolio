@@ -13,10 +13,10 @@
         <div class="section__head">
             <div>
                 <p class="eyebrow"><?= $t('services.eyebrow') ?></p>
-                <h2 class="section__title"><?= $t('services.title') ?></h2>
+                <h2 class="section__title"><?= $tRaw('services.title') ?></h2>
             </div>
         </div>
-        <p class="services__sub"><?= $t('services.sub') ?></p>
+        <p class="section__sub"><?= $t('services.sub') ?></p>
 
         <div class="services__pillars">
 

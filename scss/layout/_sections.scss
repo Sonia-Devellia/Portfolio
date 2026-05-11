@@ -30,6 +30,14 @@
   }
 
   // Underline draws left→right when section enters viewport
+  &__sub {
+    font-size: var(--fs-body);
+    color: var(--text-2);
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 16px 0 0;
+  }
+
   &__title {
     font-family: var(--font-sans);
     font-size: var(--fs-h2);

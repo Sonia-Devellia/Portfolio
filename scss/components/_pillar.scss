@@ -1,12 +1,8 @@
 @use '../abstracts/mixins' as *;
 
-// ─── Services — sous-titre de section ────────────────────────────────────────
+// ─── Services — section__sub override (espacement avant la grille) ───────────
 
-.services__sub {
-  font-size: var(--fs-body);
-  color: var(--text-2);
-  line-height: 1.6;
-  max-width: 56ch;
+.services .section__sub {
   margin: -16px 0 48px;
 }
 
