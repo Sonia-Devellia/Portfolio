@@ -30,14 +30,14 @@
 @use 'components/method';
 @use 'components/faq';
 @use 'components/cta-band';
-@use 'components/ticker';
 @use 'components/cursor';
+
+// Section stack technique
+@use 'components/stack';
 
 // Motion system (CCv5)
 @use 'components/reveal';
 @use 'components/typewriter';
-@use 'components/drawn-line';
-@use 'components/section-link';
 @use 'components/marquee';
 
 // Pages
@@ -45,6 +45,7 @@
 @use 'pages/contact';
 @use 'pages/projects';
 @use 'pages/case-study';
+@use 'pages/tarifs';
 
 // Responsive (doit être en dernier)
 @use 'layout/responsive';

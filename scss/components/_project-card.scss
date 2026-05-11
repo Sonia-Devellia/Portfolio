@@ -1,158 +1,11 @@
 @use '../abstracts/mixins' as *;
 
-// ─── Projects section header ──────────────────────────────────────────────────
-
-.projects__header {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: var(--space-section-md) 40px 48px;
-
-  @include mobile { padding: var(--space-section-sm) 20px 32px; }
-}
-
-// ─── Mac mockup showcase — two-column layout ─────────────────────────────────
-
-.projects__showcase {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 40px var(--space-section-md);
-
-  @include tablet {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 0 20px var(--space-section-sm);
-  }
-}
-
-.mac-mockup {
-  background: #1a1a1a;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-.mac-mockup__bar {
-  background: #2a2a2a;
-  padding: 10px 14px;
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.mac-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-
-  &--red    { background: #ff5f57; }
-  &--yellow { background: #ffbd2e; }
-  &--green  { background: #28c840; }
-}
-
-.mac-mockup__screen {
-  position: relative;
-  height: 340px;
-  overflow: hidden;
-}
-
-.mac-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-
-  &--active { opacity: 1; }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.mac-slide__placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #111;
-  font-size: 32px;
-  font-weight: 500;
-  color: #333;
-}
-
-// ─── Project details — right column ──────────────────────────────────────────
-
-.project-detail {
-  display: none;
-  animation: fadeInUp 0.4s ease;
-
-  &--active { display: block; }
-
-  &__num {
-    font-size: 11px;
-    color: var(--text-3);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.06em;
-    margin-bottom: 12px;
-  }
-
-  &__title {
-    font-size: clamp(22px, 3vw, 36px);
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 16px;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-  }
-
-  &__tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  &__desc {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.7;
-    margin-bottom: 24px;
-  }
-
-  &__wip {
-    font-size: 13px;
-    color: var(--text-3);
-  }
-}
-
-.tag--mono {
-  font-family: ui-monospace, 'JetBrains Mono', monospace;
-  font-size: 10px;
-  background: var(--bg-subtle);
-  color: var(--text-2);
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: var(--rule-accent-thin);
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-// ─── Project card — used on /projets grid ────────────────────────────────────
+// ─── Project card — /projets grid ────────────────────────────────────────────
 
 .project-card {
   position: relative;
   background: var(--bg);
-  border: var(--rule-accent-thin);
-  border-color: var(--border);
+  border: var(--rule-thin);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition:
@@ -176,7 +29,7 @@
     height: 200px;
     overflow: hidden;
     background: var(--bg-subtle);
-    border-bottom: var(--rule-accent-thin);
+    border-bottom: var(--rule-thin);
 
     img {
       width: 100%;
@@ -271,12 +124,7 @@
   }
 }
 
-// ─── Home featured projects — grille 2 colonnes ───────────────────────────────
-
-.home-projects {
-  border-top: var(--rule-accent-thin);
-  border-bottom: var(--rule-accent-thin);
-}
+// ─── Home featured projects ───────────────────────────────────────────────────
 
 .home-projects__inner {
   max-width: var(--max-w);
@@ -286,9 +134,7 @@
   @include mobile { padding: var(--space-section-sm) 20px; }
 }
 
-.home-projects__header {
-  margin-bottom: 48px;
-}
+.home-projects__header { margin-bottom: 48px; }
 
 .home-projects__title {
   font-family: var(--font-serif);
@@ -349,7 +195,7 @@
 .home-projects__footer {
   margin-top: 40px;
   padding-top: 24px;
-  border-top: var(--rule-accent-thin);
+  border-top: var(--rule-thin);
 }
 
 .home-projects__see-all {

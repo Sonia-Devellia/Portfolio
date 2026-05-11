@@ -18,6 +18,11 @@ class Controller
             return htmlspecialchars($translations[$key] ?? $key, ENT_QUOTES, 'UTF-8');
         };
 
+        // Variante sans échappement — réservée aux clés contenant du HTML maîtrisé (jamais user input)
+        $tRaw = function (string $key) use ($translations): string {
+            return $translations[$key] ?? $key;
+        };
+
         // Chemin de la vue
         $viewPath = ROOT_PATH . '/app/Views/' . $view . '.php';
 

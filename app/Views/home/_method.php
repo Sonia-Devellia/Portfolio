@@ -6,7 +6,7 @@
  */
 ?>
 <section class="section method" id="method">
-    <span class="section__watermark" aria-hidden="true">03</span>
+    <span class="section__watermark" aria-hidden="true">04</span>
     <div class="section__inner">
         <header class="method__head">
             <p class="eyebrow"><?= $t('method.eyebrow') ?></p>

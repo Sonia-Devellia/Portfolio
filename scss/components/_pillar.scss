@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  border: var(--rule-accent-thin);
+  border: var(--rule-thin);
 
   @include tablet {
     grid-template-columns: 1fr;
@@ -30,11 +30,11 @@
 
   // Pilier 02 séparé du 01 par un filet vertical sur desktop
   &--p2 {
-    border-left: var(--rule-accent-thin);
+    border-left: var(--rule-thin);
 
     @include tablet {
       border-left: none;
-      border-top: var(--rule-accent-thin);
+      border-top: var(--rule-thin);
     }
   }
 
@@ -97,7 +97,7 @@
   grid-template-columns: 1fr;
   gap: 5px;
   padding: 18px 0;
-  border-bottom: var(--rule-accent-thin);
+  border-bottom: var(--rule-thin);
 
   &:last-child {
     border-bottom: none;
@@ -127,7 +127,7 @@
     padding: 28px 0;
     border-top: var(--rule-accent);
 
-    &--p2 { border-top: var(--rule-accent-thin); }
+    &--p2 { border-top: var(--rule-thin); }
   }
 
   .pillar__item { padding: 14px 0; }

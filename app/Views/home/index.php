@@ -4,10 +4,12 @@
  *
  * @var callable(string): string                  $t
  * @var array<int, array<string, mixed>>          $projects
+ * @var array<int, array<string, mixed>>          $stack
  */
 $base = rtrim($_ENV['APP_URL'] ?? '', '/');
 $t ??= static fn(string $k): string => $k;
 $projects ??= [];
+$stack    ??= [];
 $lang = $_SESSION['lang'] ?? 'fr';
 
 function tagColor(string $tag): string {
@@ -20,7 +22,7 @@ function tagColor(string $tag): string {
     return 'tag--gray';
 }
 
-$faqItems = ['1', '2', '3', '4', '5'];
+$faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 ?>
 
 <!-- ─── HERO ────────────────────────────────────────────── -->
@@ -67,7 +69,49 @@ $faqItems = ['1', '2', '3', '4', '5'];
 <!-- ─── SERVICES ────────────────────────────────────────── -->
 <?php include __DIR__ . '/_services.php'; ?>
 
-<!-- ─── MARQUEE stack — entre Services et Travaux ──────── -->
+<!-- ─── STACK TECHNIQUE ──────────────────────────────────── -->
+<section class="stack" id="stack">
+    <div class="stack__bigNum" aria-hidden="true">02</div>
+    <div class="stack__head stagger-group">
+        <p class="stack__eyebrow reveal"><?= $t('stack.eyebrow') ?></p>
+        <h2 class="stack__title reveal"><?= $tRaw('stack.title') ?></h2>
+        <p class="stack__lede reveal"><?= $tRaw('stack.lede') ?></p>
+    </div>
+    <ol class="stack__list">
+        <?php foreach ($stack as $i => $card): ?>
+        <li class="stack__row stack__row--<?= $card['side'] ?>">
+            <?php if ($card['side'] === 'right'): ?>
+            <div class="stack__dot reveal"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
+            <?php endif; ?>
+            <article class="stack__card reveal reveal--<?= $card['side'] ?>">
+                <div class="card__head">
+                    <span class="card__role"><?= $t($card['role_key']) ?></span>
+                    <span class="card__count"><?= sprintf('%02d / %02d', $i + 1, count($stack)) ?></span>
+                </div>
+                <h3 class="card__title"><?= $tRaw($card['title_key']) ?></h3>
+                <p class="card__sub"><?= $t($card['sub_key']) ?></p>
+                <ul class="card__techs">
+                    <?php foreach ($card['techs'] as $tech): ?>
+                    <li class="card__tech">
+                        <div class="card__tech-name">
+                            <span><?= htmlspecialchars($tech['name']) ?></span>
+                            <span><?= htmlspecialchars($tech['meta']) ?></span>
+                        </div>
+                        <div class="card__tech-bar" style="--lvl: <?= (int) $tech['lvl'] ?>%" aria-hidden="true"></div>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                <p class="card__foot"><?= $tRaw($card['foot_key']) ?></p>
+            </article>
+            <?php if ($card['side'] === 'left'): ?>
+            <div class="stack__dot reveal"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
+            <?php endif; ?>
+        </li>
+        <?php endforeach; ?>
+    </ol>
+</section>
+
+<!-- ─── MARQUEE stack — entre Stack et Travaux ────────────── -->
 <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
         <span>PHP</span>
@@ -95,12 +139,12 @@ $faqItems = ['1', '2', '3', '4', '5'];
 
 <!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
 <section class="section home-projects" id="projects">
-    <span class="section__watermark" aria-hidden="true">02</span>
+    <span class="section__watermark" aria-hidden="true">03</span>
     <div class="home-projects__inner">
         <header class="home-projects__header">
             <div>
                 <p class="eyebrow"><?= $t('home.projects.eyebrow') ?></p>
-                <h2 class="home-projects__title">
+                <h2 class="home-projects__title section__title">
                     <?= $t('home.projects.title') ?>
                     <em><?= $t('home.projects.title_em') ?></em>
                 </h2>
@@ -137,7 +181,7 @@ $faqItems = ['1', '2', '3', '4', '5'];
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
-    <span class="section__watermark" aria-hidden="true">04</span>
+    <span class="section__watermark" aria-hidden="true">05</span>
     <div class="section__inner">
         <div class="about__portrait" aria-hidden="true">
             <div class="about__portrait-photo">

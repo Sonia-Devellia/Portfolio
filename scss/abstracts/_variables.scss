@@ -17,7 +17,6 @@
   // Accent bleu nuit électrique
   --accent:      #0F03A0;
   --accent-soft: #e0deff;
-  --accent-line: #c0baff;
 
   // Tags
   --tag-blue-bg:   #e6f1fb; --tag-blue-txt:   #185fa5;
@@ -53,10 +52,9 @@
   --dur-slow:  400ms;
 
   // Filets (rules) décoratifs
-  --rule-thin:         1px solid var(--border);
-  --rule-md:           1px solid var(--border-md);
-  --rule-accent:       2px solid var(--accent);
-  --rule-accent-thin:  1px solid var(--accent-line);
+  --rule-thin:    1px solid var(--border);
+  --rule-md:      1px solid var(--border-md);
+  --rule-accent:  2px solid var(--accent);
 
   // Layout
   --radius-sm: 6px;
@@ -85,7 +83,6 @@
 
   --accent:      #0F03A0;
   --accent-soft: #e0deff;
-  --accent-line: #5540d8;
 
   --tag-blue-bg:   #0c447c; --tag-blue-txt:   #b5d4f4;
   --tag-green-bg:  #27500a; --tag-green-txt:  #c0dd97;

@@ -1,108 +1,267 @@
 @use '../abstracts/mixins' as *;
 
-// ─── Page liste projets — /projets ────────────────────────────────────────────
+// ─── Shared section header ────────────────────────────────────────────────────
 
-.projects-page {
-  // Hérite des paddings et borders de .section déjà appliqués
+.projects-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 56px;
+  padding-bottom: 20px;
+  border-bottom: var(--rule-thin);
 
-  .section__head { margin-bottom: 56px; }
+  .eyebrow { margin-bottom: 0; }
 
-  .projects__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-
-    @include mobile { grid-template-columns: 1fr; }
+  &__kicker {
+    font-size: var(--fs-small);
+    color: var(--text-3);
   }
 }
 
-// ─── Page détail projet — /projets/{slug} — étude de cas éditoriale ──────────
+// ─── Hero ─────────────────────────────────────────────────────────────────────
 
-.project-detail {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: var(--space-section-md) 24px var(--space-section-lg);
+.projects-hero {
   border-bottom: var(--rule-thin);
 
-  @include mobile { padding: var(--space-section-sm) 20px; }
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 40px;
 
-  // Lien retour : signature éditoriale, hover translate-X
-  &__back {
-    display: inline-flex;
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
+
+  .eyebrow { margin-bottom: 20px; }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 24px;
+
+    em { font-style: normal; }
+  }
+
+  &__lede {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 60ch;
+  }
+}
+
+// ─── Réalisations ─────────────────────────────────────────────────────────────
+
+.projects-realisations {
+  border-bottom: var(--rule-thin);
+
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 40px;
+
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
+}
+
+.realisation {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 96px;
+
+  &:last-child { margin-bottom: 0; }
+
+  &--reversed {
+    .realisation__visual { order: 2; }
+    .realisation__content { order: 1; }
+  }
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: 36px;
+
+    &--reversed .realisation__visual,
+    &--reversed .realisation__content { order: unset; }
+  }
+
+  &__eyebrow {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 6px;
+    font-family: var(--font-sans);
     font-size: var(--fs-mini);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-3);
-    margin-bottom: 48px;
-    transition:
-      color     var(--dur-fast) var(--ease-edit),
-      transform var(--dur-med)  var(--ease-edit);
-
-    &:hover {
-      color: var(--text);
-      transform: translateX(-3px);
-    }
-  }
-
-  // ─── Header — titre éditorial XL + tags + CTAs ───────────
-  &__header {
-    max-width: 56ch;
-    margin-bottom: 56px;
-  }
-
-  &__tags {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
+    margin-bottom: 14px;
   }
 
   &__title {
-    font-family: var(--font-sans);
-    font-size: var(--fs-h1);
+    font-family: var(--font-serif);
+    font-style: italic;
     font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     color: var(--text);
-    margin: 0 0 24px;
-
-    em {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 400;
-    }
+    margin-bottom: 12px;
   }
 
-  &__desc {
-    font-size: var(--fs-body);
+  &__pitch {
+    font-size: 15px;
+    line-height: 1.6;
     color: var(--text-2);
+    margin-bottom: 16px;
+  }
+
+  &__body {
+    font-size: 14px;
     line-height: 1.7;
-    margin: 0 0 32px;
-    max-width: 56ch;
+    color: var(--text-2);
+    margin-bottom: 20px;
   }
 
-  &__links {
+  &__stack {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
-  }
+    gap: 6px;
 
-  // ─── Image full-bleed (limitée par max-w du parent) ──────
-  &__thumb {
-    margin-top: 32px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: var(--rule-thin);
-    background: var(--bg-subtle);
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-      max-height: 640px;
-      object-fit: cover;
+    span {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--text-2);
+      background: var(--bg-subtle);
+      padding: 3px 8px;
+      border-radius: 3px;
     }
   }
+}
+
+// ─── Cas d'études ─────────────────────────────────────────────────────────────
+
+.projects-casestudies {
+  border-bottom: var(--rule-thin);
+
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 40px;
+
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
+
+  &__lede {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-2);
+    max-width: 62ch;
+    margin-bottom: 48px;
+  }
+}
+
+.casestudies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 56px 32px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.casestudy-card {
+  &__visual {
+    margin-bottom: 20px;
+  }
+
+  &__eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-sans);
+    font-size: var(--fs-mini);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  &__pitch {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-2);
+    margin-bottom: 12px;
+  }
+
+  &__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    span {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--text-2);
+      background: var(--bg-subtle);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+  }
+}
+
+// ─── CTA GitHub ───────────────────────────────────────────────────────────────
+
+.projects-cta {
+  &__inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: var(--space-section-md) 40px;
+    text-align: center;
+
+    @include mobile { padding: var(--space-section-sm) 20px; }
+  }
+
+  &__title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 36px);
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  &__lede {
+    font-size: 14px;
+    color: var(--text-3);
+    margin-bottom: 28px;
+  }
+}
+
+// ─── Ancienne mise en page grille (home showcase) ────────────────────────────
+
+.projects__header {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--space-section-md) 40px 48px;
+
+  @include mobile { padding: var(--space-section-sm) 20px 32px; }
 }

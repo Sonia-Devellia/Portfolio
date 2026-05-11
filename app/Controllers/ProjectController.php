@@ -1,27 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use Core\Controller;
-use App\Models\Project;
 
 class ProjectController extends Controller
 {
     public function index(): void
     {
-        $projects  = Project::getAll();
+        $projects  = require ROOT_PATH . '/app/Data/projects.php';
         $appUrl    = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
         $lang      = $_SESSION['lang'] ?? 'fr';
         $metaDesc  = $lang === 'fr'
-            ? 'Découvrez mes projets web full-stack — PHP, Python, intégration IA. Applications sur mesure, MVP et automatisations livrés en remote.'
-            : 'Browse my full-stack web projects — PHP, Python, AI integration. Custom apps, MVPs and automations delivered remotely.';
+            ? 'Deux livraisons, cinq cas d\'études. Le code des projets personnels est public.'
+            : 'Two deliveries, five case studies. Personal project code is public.';
+
+        $realisations = array_filter($projects, fn($p) => $p['kind'] === 'realisation');
+        $casestudies  = array_filter($projects, fn($p) => $p['kind'] === 'casestudy');
 
         $this->render('projects/index', [
-            'projects'  => $projects,
-            'title'     => ($lang === 'fr' ? 'Projets' : 'Projects') . ' · Sonia Habibi',
-            'metaDesc'  => $metaDesc,
-            'canonical' => $appUrl . '/projets',
+            'realisations' => array_values($realisations),
+            'casestudies'  => array_values($casestudies),
+            'title'        => ($lang === 'fr' ? 'Travaux' : 'Work') . ' · Sonia Habibi',
+            'metaDesc'     => $metaDesc,
+            'canonical'    => $appUrl . '/projets',
         ]);
     }
-
 }

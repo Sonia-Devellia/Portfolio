@@ -9,6 +9,12 @@ $router->get('/case-studies/amanea-voyages', 'CaseStudyController', 'amanea');
 $router->get('/contact',             'ContactController', 'index');
 $router->post('/contact',            'ContactController', 'send');
 
+// ─── Tarifs ───────────────────────────────────────────────
+$router->get('/tarifs',              'TarifsController',  'index');
+
+// ─── Pages géographiques ──────────────────────────────────
+$router->get('/dev-freelance/{slug}', 'GeoController',   'show');
+
 // ─── Langue ───────────────────────────────────────────────
 $router->get('/lang/{code}',         'LangController',    'switch');
 

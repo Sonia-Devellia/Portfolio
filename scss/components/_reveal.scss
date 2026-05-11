@@ -6,13 +6,35 @@
   transition:
     opacity  900ms cubic-bezier(0.4, 0, 0.2, 1),
     transform 900ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: calc(var(--i, 0) * 120ms);
+  transition-delay: calc(var(--i, 0) * 160ms);
   will-change: opacity, transform;
 
   &.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.reveal--left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition:
+    opacity  700ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 160ms);
+  will-change: opacity, transform;
+  &.is-visible { opacity: 1; transform: translateX(0); }
+}
+
+.reveal--right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition:
+    opacity  700ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 160ms);
+  will-change: opacity, transform;
+  &.is-visible { opacity: 1; transform: translateX(0); }
 }
 
 .reveal--mask {
@@ -22,4 +44,13 @@
   transition: clip-path 1400ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-delay: calc(var(--i, 0) * 120ms);
   &.is-visible { clip-path: inset(0 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal--left, .reveal--right, .reveal--mask {
+    transition: none;
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
 }

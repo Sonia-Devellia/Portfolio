@@ -48,7 +48,6 @@ return [
     'services.p2.s4.d'   => 'Eval set, fallback déterministe, budget tokens, logs prompts.',
 
     // Projets
-    'projects.eyebrow'   => 'RÉALISATIONS',
     'projects.title'     => 'Projets récents',
     'projects.see'       => 'Voir le projet →',
     'projects.wip'       => 'En cours',
@@ -154,6 +153,12 @@ return [
     'faq.4.a'            => 'Oui, en sous-traitance technique pour des agences de design ou de stratégie qui ont besoin d\'un dev senior fiable. Conditions sur demande, NDA standard.',
     'faq.5.q'            => 'Quels délais réalistes ?',
     'faq.5.a'            => 'Première fenêtre disponible communiquée sous 48h après votre brief. Démarrage typique sous 2 à 4 semaines. Pour un MVP web complet, comptez 6 à 10 semaines de production.',
+    'faq.6.q'            => 'Quelle est la différence entre un développeur freelance et une agence web ?',
+    'faq.6.a'            => 'Un freelance senior offre un interlocuteur unique, une décision technique directe et un TJM de 600-800 €/j — sans les coûts de structure d\'une agence. La contrepartie : pas de disponibilité permanente pour les urgences.',
+    'faq.7.q'            => 'Acceptez-vous les projets de clients en Suisse ?',
+    'faq.7.a'            => 'Oui. Je travaille 100 % en remote avec des clients en France, en Suisse romande (Genève, Lausanne) et en Belgique. Facturation en euros, contrat adapté selon la préférence.',
+    'faq.8.q'            => 'Qu\'est-ce qu\'une intégration LLM concrètement ?',
+    'faq.8.a'            => 'Connecter l\'API d\'un modèle (Claude, GPT-4) à votre back-end PHP ou Python pour automatiser une tâche coûteuse : classification de tickets, extraction documentaire, réponse augmentée. Livré avec fallback déterministe, budget tokens et observabilité.',
 
     // Étude de cas
     'case.back'          => '← Retour à l\'accueil',
@@ -171,4 +176,79 @@ return [
     'contact.type.app'       => 'Application',
     'contact.type.ai'        => 'Intégration IA',
     'contact.type.other'     => 'Autre',
+
+    // ─── Page projets ──────────────────────────────────────────
+    'projects.eyebrow'                => '03 — Travaux',
+    'projects.hero.title'             => 'Deux livraisons,',
+    'projects.hero.title_em'          => 'cinq cas d\'études.',
+    'projects.intro.lede'             => 'Je liste ce que j\'ai livré (Amanea Voyages, JS Entreprise Services) et ce que je creuse en parallèle sous forme de cas d\'études personnels — code public, démo locale.',
+
+    'projects.realisations.title'     => 'Réalisations',
+    'projects.realisations.kicker'    => 'En production. Citables.',
+    'projects.casestudies.title'      => 'Cas d\'études',
+    'projects.casestudies.lede'       => 'Projets personnels sur des terrains que j\'aimerais aborder en mission. Pas de client derrière, donc pas de chiffres à afficher — juste le code et la décision technique.',
+
+    'projects.kind.realisation'       => 'Réalisation',
+    'projects.kind.casestudy'         => 'Cas d\'étude',
+
+    'projects.type.web'               => 'Site web',
+    'projects.type.agentic_ai'        => 'Site agentic IA',
+    'projects.type.saas'              => 'SaaS',
+    'projects.type.ecommerce'         => 'E-commerce',
+    'projects.type.mobile'            => 'App mobile',
+
+    // 1. Amanea Voyages
+    'projects.amanea.title'           => 'Amanea Voyages',
+    'projects.amanea.pitch'           => 'Site MVC sur mesure pour une agence de voyages — backoffice complet, espace client, gestion des carnets.',
+    'projects.amanea.body'            => 'Site institutionnel multilingue (FR/EN) pour une agence de voyages, conception et développement complets. Architecture PHP MVC custom avec un backoffice de gestion des destinations et offres, un espace client pour le suivi des réservations, et une intégration soignée d\'une charte typographique éditoriale. Mise en production et maintenance assurées.',
+
+    // 2. JS Entreprise Services
+    'projects.jsentreprise.title'     => 'JS Entreprise Services',
+    'projects.jsentreprise.pitch'     => 'Site agentic IA pour un éducateur équin — assistant conversationnel, réservations, paiement en ligne d\'un ebook de formation.',
+    'projects.jsentreprise.body'      => 'Site complet pour un éducateur et coach équin : assistant conversationnel agentic intégré pour qualifier les demandes, système de réservation des prestations, vente en ligne d\'un ebook de formation avec paiement Stripe et livraison automatique. Architecture PHP, intégration des outils métier de l\'entrepreneur.',
+
+    // 3–7. Cas d'études (pitch uniquement)
+    'projects.helia.title'            => 'Salon Hélia',
+    'projects.helia.pitch'            => 'Site d\'un salon de coiffure avec réservation en ligne et paiement sécurisé.',
+
+    'projects.canilab.title'          => 'Canilab',
+    'projects.canilab.pitch'          => 'SaaS pour les éducateurs canins — RDV, réservations, gestion clients, planning, paiements.',
+
+    'projects.pousse.title'           => 'Pousse',
+    'projects.pousse.pitch'           => 'Boutique en ligne de vêtements seconde main pour enfants — catalogue, filtres, panier, dépôts.',
+
+    'projects.houle.title'            => 'Houle',
+    'projects.houle.pitch'            => 'App météo et conditions de surf sur la côte morbihannaise — houle, vent, marées, prévisions 7 jours.',
+
+    'projects.coach.title'            => 'Coach',
+    'projects.coach.pitch'            => 'App pour coach sportif running & renforcement — gestion clients, plans d\'entraînement, messagerie, suivi des séances.',
+
+    // CTA GitHub
+    'projects.cta.title'              => 'Le code est public.',
+    'projects.cta.lede'               => 'Les sources des cas d\'études sont disponibles sur GitHub. Les réalisations clients restent privées.',
+    'projects.cta.button'             => 'Voir GitHub',
+
+    // Section home — travaux
+    'home.projects.eyebrow'           => '02 — Travaux',
+    'home.projects.title'             => 'Deux projets en',
+    'home.projects.title_em'          => 'production.',
+    'home.projects.lede'              => 'Plus cinq cas d\'études personnels que je tiens à jour en parallèle.',
+    'home.projects.see_all'           => 'Voir les 7 projets et cas d\'études',
+
+    // ─── Section Stack technique ──────────────────────────────────────────────
+    'stack.eyebrow'              => '— Stack technique · outillage',
+    'stack.title'                => 'Du serveur à <em>l\'écran</em>,<br>j\'écris tout.',
+    'stack.lede'                 => 'Pas une vitrine de logos. Trois familles d\'outils que <u>j\'utilise vraiment</u>, au quotidien, sur des projets en production.',
+    'stack.role.backend'         => '— Backend',
+    'stack.role.frontend'        => '— Frontend',
+    'stack.role.tooling'         => '— Outils & pratiques',
+    'stack.card.backend.title'   => 'Construire la <em>logique</em>.',
+    'stack.card.backend.sub'     => 'Architectures MVC sur mesure, APIs propres, base de données pensée pour durer. Pas de framework lourd quand le projet ne le justifie pas.',
+    'stack.card.backend.foot'    => '<strong>Vu en prod chez :</strong> Amanea Voyages, JS Entreprise.',
+    'stack.card.frontend.title'  => 'Donner forme à <em>l\'usage</em>.',
+    'stack.card.frontend.sub'    => 'Du HTML/CSS sémantique aux composants React. Lighthouse ≥ 90, accessibilité par défaut, mobile-first sans compromis.',
+    'stack.card.frontend.foot'   => '<strong>Vu en prod chez :</strong> Salon Hélia, Pousse, ce portfolio.',
+    'stack.card.tooling.title'   => 'Livrer <em>proprement</em>, maintenir <em>longtemps</em>.',
+    'stack.card.tooling.sub'     => 'Outillage qui rend le code visible aux autres et au futur-moi. Git discipliné, déploiements reproductibles, observabilité minimale.',
+    'stack.card.tooling.foot'    => '<strong>Posture :</strong> l\'IA est un outil, pas un substitut. Je code et je débogue avant elle.',
 ];

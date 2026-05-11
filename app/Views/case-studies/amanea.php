@@ -191,12 +191,12 @@ if ($lang === 'fr') {
                     </marker>
                 </defs>
                 <style>
-                    .dg-box        { fill: var(--bg, #fcfaf6); stroke: var(--text, #111110); stroke-width: 1; }
-                    .dg-box-soft   { fill: var(--bg-soft, #f3eee4); stroke: var(--text-3, #9a9895); stroke-width: 1; stroke-dasharray: 3 3; }
+                    .dg-box        { fill: var(--bg-subtle, #f0eeeb); stroke: var(--border-md); stroke-width: 1; }
+                    .dg-box-soft   { fill: var(--bg-soft, #f7f6f4); stroke: var(--text-3, #9a9895); stroke-width: 1; stroke-dasharray: 3 3; }
                     .dg-box-accent { fill: var(--accent-soft, #e0deff); stroke: var(--accent, #0F03A0); stroke-width: 1.5; }
                     .dg-t          { font-family: -apple-system, system-ui, sans-serif; font-size: 12px; fill: var(--text, #111110); }
                     .dg-t-mono     { font-family: ui-monospace, Menlo, monospace; font-size: 9.5px; fill: var(--text-3, #9a9895); letter-spacing: 0.04em; text-transform: uppercase; }
-                    .dg-l          { stroke: var(--text, #111110); stroke-width: 1; fill: none; marker-end: url(#arrow); }
+                    .dg-l          { stroke: var(--text-2, #5a5956); stroke-width: 1; fill: none; marker-end: url(#arrow); }
                     .dg-l-soft     { stroke: var(--text-3, #9a9895); stroke-width: 1; stroke-dasharray: 4 3; fill: none; marker-end: url(#arrow); }
                 </style>
                 <!-- Router -->

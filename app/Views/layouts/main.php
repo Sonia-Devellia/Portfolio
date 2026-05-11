@@ -13,8 +13,8 @@ $base      = rtrim($_ENV['APP_URL'] ?? '', '/');
 $appUrl    = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
 $lang      = $_SESSION['lang'] ?? 'fr';
 $pageTitle = htmlspecialchars($title ?? ($lang === 'fr'
-    ? 'Développeuse full-stack PHP Python IA · Sonia Habibi'
-    : 'Full-Stack Developer PHP Python AI · Sonia Habibi'));
+    ? 'Développeuse Freelance PHP Python IA — Sonia Habibi'
+    : 'Freelance PHP Python AI Developer — Sonia Habibi'));
 $pageDesc  = htmlspecialchars($metaDesc ?? $t('hero.sub'));
 $pageUrl   = htmlspecialchars($canonical ?? ($appUrl . strtok($_SERVER['REQUEST_URI'] ?? '/', '?')));
 $pageOgImg = htmlspecialchars($ogImage   ?? ($appUrl . '/assets/images/og-cover.jpg'));
@@ -64,6 +64,9 @@ $schemaDesc = $lang === 'fr'
     <meta name="twitter:description" content="<?= $pageDesc ?>">
     <meta name="twitter:image"       content="<?= $pageOgImg ?>">
 
+    <!-- Preload LCP image -->
+    <link rel="preload" href="<?= $base ?>/assets/images/sonia.webp" as="image" fetchpriority="high">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,7 +93,27 @@ $schemaDesc = $lang === 'fr'
             "https://www.linkedin.com/in/sonia-habibi/",
             "https://www.malt.fr/profile/soniahabibi"
           ],
-          "knowsAbout": ["PHP", "Python", "JavaScript", "MySQL", "LLM APIs", "MVC Architecture"]
+          "knowsAbout": ["PHP", "Python", "JavaScript", "MySQL", "LLM APIs", "MVC Architecture"],
+          "workLocation": {
+            "@type": "VirtualLocation",
+            "name": "Remote — France, Suisse, Belgique"
+          },
+          "hasOccupation": {
+            "@type": "Occupation",
+            "name": "<?= $lang === 'fr' ? 'Développeuse Full-Stack Freelance' : 'Freelance Full-Stack Developer' ?>",
+            "occupationLocation": {
+              "@type": "Country",
+              "name": "France"
+            },
+            "estimatedSalary": {
+              "@type": "MonetaryAmountDistribution",
+              "name": "TJM",
+              "currency": "EUR",
+              "duration": "P1D",
+              "percentile10": 600,
+              "percentile90": 800
+            }
+          }
         },
         {
           "@type": "WebSite",
@@ -151,6 +174,20 @@ $schemaDesc = $lang === 'fr'
     <?= json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
     </script>
     <?php endif; ?>
+
+    <?php if (!empty($breadcrumbSchema)): ?>
+    <script type="application/ld+json">
+    <?= json_encode($breadcrumbSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+    </script>
+    <?php endif; ?>
+
+    <?php if (!empty($extraSchemas)): ?>
+    <?php foreach ($extraSchemas as $extraSchema): ?>
+    <script type="application/ld+json">
+    <?= json_encode($extraSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+    </script>
+    <?php endforeach; ?>
+    <?php endif; ?>
 </head>
 <body>
 
@@ -167,6 +204,7 @@ $schemaDesc = $lang === 'fr'
 
         <nav class="nav__links" aria-label="<?= $t('a11y.nav.main') ?>">
             <a href="<?= $base ?>/projets"><?= $t('nav.projects') ?></a>
+            <a href="<?= $base ?>/tarifs"><?= $lang === 'fr' ? 'Tarifs' : 'Rates' ?></a>
             <a href="<?= $base ?>/contact"><?= $t('nav.contact') ?></a>
         </nav>
 
@@ -231,9 +269,14 @@ $schemaDesc = $lang === 'fr'
     </div>
 </footer>
 
-<script src="<?= $base ?>/assets/js/modules/reveal.js" defer></script>
-<script src="<?= $base ?>/assets/js/modules/typewriter.js" defer></script>
-<script src="<?= $base ?>/assets/js/main.js" defer></script>
+<?php
+$revealJsV = @filemtime(ROOT_PATH . '/public/assets/js/modules/reveal.js') ?: '1';
+$typerJsV  = @filemtime(ROOT_PATH . '/public/assets/js/modules/typewriter.js') ?: '1';
+$mainJsV   = @filemtime(ROOT_PATH . '/public/assets/js/main.js') ?: '1';
+?>
+<script src="<?= $base ?>/assets/js/modules/reveal.js?v=<?= $revealJsV ?>" defer></script>
+<script src="<?= $base ?>/assets/js/modules/typewriter.js?v=<?= $typerJsV ?>" defer></script>
+<script src="<?= $base ?>/assets/js/main.js?v=<?= $mainJsV ?>" defer></script>
 
 <?php if (!empty($scripts)): ?>
     <?php foreach ($scripts as $src): ?>

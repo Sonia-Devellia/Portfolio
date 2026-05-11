@@ -4,8 +4,8 @@
 
 .marquee {
   overflow: hidden;
-  border-top:    1px solid var(--accent-line);
-  border-bottom: 1px solid var(--accent-line);
+  border-top:    var(--rule-thin);
+  border-bottom: var(--rule-thin);
   padding: 16px 0;
   background: var(--bg-soft);
 
