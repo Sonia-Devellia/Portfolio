@@ -9,17 +9,15 @@
  * @var string  $region     Ex: "Île-de-France"
  * @var string  $country    Ex: "France"
  * @var string  $slug       Ex: "paris"
- * @var bool    $isSuisse
- * @var array   $extraSchemas
+ * @var bool    $isAbroad   true si le pays n'est pas la France (Luxembourg, Suisse...)
  * @var array   $breadcrumbSchema
  */
-$base = rtrim($_ENV['APP_URL'] ?? '', '/');
+$base = base_url();
 $lang = $_SESSION['lang'] ?? 'fr';
 $isFr = $lang === 'fr';
 
-$extraSchemas    ??= [];
+$isAbroad         ??= false;
 $breadcrumbSchema ??= [];
-$isSuisse        ??= false;
 
 $cityName = $isFr ? $city : $cityEn;
 ?>
@@ -51,7 +49,7 @@ $cityName = $isFr ? $city : $cityEn;
                 : "Freelance PHP, Python & AI developer — <em>{$cityName}</em>" ?>
         </h1>
         <p class="geo-hero__sub">
-            <?php if ($isSuisse): ?>
+            <?php if ($isAbroad): ?>
                 <?= $isFr
                     ? "Basée à Vannes (Bretagne), je collabore 100 % en remote avec des clients en {$country}, notamment à {$city} et en {$region}. Facturation en euros, réponse sous 24h."
                     : "Based in Vannes (Brittany), I collaborate 100% remotely with clients in {$country}, including in {$cityEn} and the {$region}. Invoicing in euros, reply within 24h." ?>

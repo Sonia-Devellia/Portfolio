@@ -1,49 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core;
 
 class Controller
 {
     protected function render(string $view, array $data = []): void
     {
-        // Charger les traductions
-        $lang = $_SESSION['lang'] ?? 'fr';
+        $lang         = $_SESSION['lang'] ?? 'fr';
         $translations = require ROOT_PATH . '/lang/' . $lang . '.php';
 
-        // Rendre les données disponibles dans la vue
         extract($data);
 
-        // Fonction helper t() — définie après extract() pour ne jamais être écrasée
-        $t = function (string $key) use ($translations): string {
-            return htmlspecialchars($translations[$key] ?? $key, ENT_QUOTES, 'UTF-8');
-        };
+        // Helper de traduction — toujours échappé.
+        $t = static fn(string $key): string => e($translations[$key] ?? $key);
 
-        // Variante sans échappement — réservée aux clés contenant du HTML maîtrisé (jamais user input)
-        $tRaw = function (string $key) use ($translations): string {
-            return $translations[$key] ?? $key;
-        };
+        // Variante non échappée — réservée aux clés contenant du HTML maîtrisé (jamais user input).
+        $tRaw = static fn(string $key): string => $translations[$key] ?? $key;
 
-        // Chemin de la vue
         $viewPath = ROOT_PATH . '/app/Views/' . $view . '.php';
-
         if (!file_exists($viewPath)) {
             throw new \RuntimeException("Vue introuvable : {$view}");
         }
 
-        // Capturer le contenu de la vue
         ob_start();
         require $viewPath;
         $content = ob_get_clean();
 
-        // Charger le layout
         $layout = $data['layout'] ?? 'layouts/main';
         require ROOT_PATH . '/app/Views/' . $layout . '.php';
     }
 
     protected function redirect(string $path): void
     {
-        $base = rtrim($_ENV['APP_URL'] ?? '', '/');
-        header('Location: ' . $base . $path);
+        header('Location: ' . base_url() . $path);
         exit;
     }
 

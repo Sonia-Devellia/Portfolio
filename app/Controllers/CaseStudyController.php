@@ -10,51 +10,61 @@ class CaseStudyController extends Controller
 {
     public function triage(): void
     {
-        $appUrl   = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
-        $lang     = $_SESSION['lang'] ?? 'fr';
-        $title    = $lang === 'fr'
-            ? 'Trier 800 tickets/jour sans embaucher · Sonia Habibi'
-            : 'Triage 800 tickets/day without hiring · Sonia Habibi';
-        $metaDesc = $lang === 'fr'
-            ? 'Étude de cas sur une architecture IA utile : triage support, classifieur, fallback humain, budget tokens et garde-fous.'
-            : 'Case study on a useful AI architecture: support triage, classifier, human fallback, token budget and guardrails.';
-
-        $this->render('case-studies/triage', [
-            'title'            => $title,
-            'metaDesc'         => $metaDesc,
-            'canonical'        => $appUrl . '/case-studies/triage-support',
-            'breadcrumbSchema' => $this->breadcrumb($appUrl, $lang, $lang === 'fr' ? 'Triage support IA' : 'AI support triage'),
-        ]);
+        $this->renderCase(
+            'triage',
+            slug: 'triage-support',
+            titleFr: 'Trier 800 tickets/jour sans embaucher · Sonia Habibi',
+            titleEn: 'Triage 800 tickets/day without hiring · Sonia Habibi',
+            descFr:  'Étude de cas sur une architecture IA utile : triage support, classifieur, fallback humain, budget tokens et garde-fous.',
+            descEn:  'Case study on a useful AI architecture: support triage, classifier, human fallback, token budget and guardrails.',
+            crumbFr: 'Triage support IA',
+            crumbEn: 'AI support triage',
+        );
     }
 
     public function amanea(): void
     {
-        $appUrl   = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
-        $lang     = $_SESSION['lang'] ?? 'fr';
-        $title    = $lang === 'fr'
-            ? 'Amanéa Voyages — site sur mesure PHP MVC · Sonia Habibi'
-            : 'Amanéa Voyages — bespoke PHP MVC website · Sonia Habibi';
-        $metaDesc = $lang === 'fr'
-            ? 'Étude de cas : site bilingue FR/EN pour une agence de voyages, avec backoffice, espace client et gestion des réservations, sans CMS.'
-            : 'Case study: bilingual FR/EN website for a travel agency, with back-office, client portal and booking management, no CMS.';
+        $this->renderCase(
+            'amanea',
+            slug: 'amanea-voyages',
+            titleFr: 'Amanéa Voyages — site sur mesure PHP MVC · Sonia Habibi',
+            titleEn: 'Amanéa Voyages — bespoke PHP MVC website · Sonia Habibi',
+            descFr:  'Étude de cas : site bilingue FR/EN pour une agence de voyages, avec backoffice, espace client et gestion des réservations, sans CMS.',
+            descEn:  'Case study: bilingual FR/EN website for a travel agency, with back-office, client portal and booking management, no CMS.',
+            crumbFr: 'Amanéa Voyages',
+            crumbEn: 'Amanéa Voyages',
+        );
+    }
 
-        $this->render('case-studies/amanea', [
-            'title'            => $title,
-            'metaDesc'         => $metaDesc,
-            'canonical'        => $appUrl . '/case-studies/amanea-voyages',
-            'breadcrumbSchema' => $this->breadcrumb($appUrl, $lang, 'Amanéa Voyages'),
+    private function renderCase(
+        string $view,
+        string $slug,
+        string $titleFr,
+        string $titleEn,
+        string $descFr,
+        string $descEn,
+        string $crumbFr,
+        string $crumbEn,
+    ): void {
+        $isFr   = ($_SESSION['lang'] ?? 'fr') === 'fr';
+        $appUrl = base_url();
+
+        $this->render("case-studies/{$view}", [
+            'title'            => $isFr ? $titleFr : $titleEn,
+            'metaDesc'         => $isFr ? $descFr  : $descEn,
+            'canonical'        => "{$appUrl}/case-studies/{$slug}",
+            'breadcrumbSchema' => $this->breadcrumb($appUrl, $isFr, $isFr ? $crumbFr : $crumbEn),
         ]);
     }
 
-    private function breadcrumb(string $appUrl, string $lang, string $pageName): array
+    private function breadcrumb(string $appUrl, bool $isFr, string $pageName): array
     {
-        $isFr = $lang === 'fr';
         return [
             '@context'        => 'https://schema.org',
             '@type'           => 'BreadcrumbList',
             'itemListElement' => [
-                ['@type' => 'ListItem', 'position' => 1, 'name' => $isFr ? 'Accueil' : 'Home',    'item' => $appUrl . '/'],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => $isFr ? 'Projets' : 'Projects', 'item' => $appUrl . '/projets'],
+                ['@type' => 'ListItem', 'position' => 1, 'name' => $isFr ? 'Accueil' : 'Home',    'item' => "{$appUrl}/"],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => $isFr ? 'Projets' : 'Projects', 'item' => "{$appUrl}/projets"],
                 ['@type' => 'ListItem', 'position' => 3, 'name' => $pageName],
             ],
         ];

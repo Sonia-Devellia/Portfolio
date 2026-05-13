@@ -9,25 +9,25 @@ use App\Helpers\Logger;
 
 class ContactController extends Controller
 {
-    /** Longueurs autorisées pour le message libre. */
     private const MIN_MESSAGE_LEN = 10;
     private const MAX_MESSAGE_LEN = 5000;
+    private const MAX_NAME_LEN    = 120;
+    private const MAX_EMAIL_LEN   = 254;
 
-    /** Longueurs autorisées pour les champs courts. */
-    private const MAX_NAME_LEN  = 120;
-    private const MAX_EMAIL_LEN = 254;
+    /** Anti-spam : minimum entre l'affichage du formulaire et l'envoi. */
+    private const MIN_FORM_DELAY_S = 3;
+
+    /** Anti-spam : intervalle minimum entre deux envois depuis la même session. */
+    private const SUBMIT_COOLDOWN_S = 60;
 
     public function index(): void
     {
-        if (empty($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-        }
+        $_SESSION['contact_form_loaded_at'] = time();
 
         $success = !empty($_SESSION['contact_success']);
         $error   = !empty($_SESSION['contact_error']);
         unset($_SESSION['contact_success'], $_SESSION['contact_error']);
 
-        $appUrl   = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
         $lang     = $_SESSION['lang'] ?? 'fr';
         $metaDesc = $lang === 'fr'
             ? 'Discutons de votre projet. Développeuse freelance PHP, Python, IA — disponible en remote. Je réponds sous 24h.'
@@ -36,8 +36,8 @@ class ContactController extends Controller
         $this->render('contact/index', [
             'title'      => 'Contact · Sonia Habibi',
             'metaDesc'   => $metaDesc,
-            'canonical'  => $appUrl . '/contact',
-            'csrf_token' => $_SESSION['csrf_token'],
+            'canonical'  => base_url() . '/contact',
+            'csrf_token' => csrf_token(),
             'success'    => $success,
             'error'      => $error,
         ]);
@@ -45,41 +45,61 @@ class ContactController extends Controller
 
     public function send(): void
     {
-        // ─── 1. CSRF d'abord (timing-safe, avant toute autre logique) ─────
-        if (!$this->validCsrf()) {
+        // 1. CSRF
+        if (!csrf_check()) {
             Logger::security('contact_csrf_rejected');
-            $this->fail();
-            return;
+            return $this->fail();
         }
 
-        // ─── 2. Validation des champs ─────────────────────────────────────
+        // 2. Honeypot : champ caché que seuls les bots remplissent
+        if (!empty($_POST['website'])) {
+            Logger::security('contact_honeypot_triggered');
+            // On feinte le succès pour ne pas signaler le piège aux bots
+            $_SESSION['contact_success'] = true;
+            return $this->redirect('/contact');
+        }
+
+        // 3. Timing : un humain met >3s à remplir, un bot envoie en <1s
+        $loadedAt = $_SESSION['contact_form_loaded_at'] ?? 0;
+        if ($loadedAt > 0 && (time() - $loadedAt) < self::MIN_FORM_DELAY_S) {
+            Logger::security('contact_too_fast', ['elapsed' => time() - $loadedAt]);
+            return $this->fail();
+        }
+
+        // 4. Cooldown : une soumission max par minute par session
+        $lastSubmit = $_SESSION['contact_last_submit'] ?? 0;
+        if (time() - $lastSubmit < self::SUBMIT_COOLDOWN_S) {
+            Logger::security('contact_cooldown', ['since' => time() - $lastSubmit]);
+            return $this->fail();
+        }
+
+        // 5. Validation
         $name    = trim($_POST['name']    ?? '');
         $email   = trim($_POST['email']   ?? '');
         $message = trim($_POST['message'] ?? '');
+        $type    = $this->validProjectType($_POST['project_type'] ?? '');
 
         if (!$this->validInput($name, $email, $message)) {
-            $this->fail();
-            return;
+            return $this->fail();
         }
 
-        // ─── 3. Anti-CRLF (header injection prevention) ───────────────────
+        // 6. Anti-CRLF (header injection)
         if ($this->hasHeaderInjection($name) || $this->hasHeaderInjection($email)) {
             Logger::security('contact_header_injection_attempt', [
                 'name'  => mb_substr($name, 0, 80),
                 'email' => mb_substr($email, 0, 80),
             ]);
-            $this->fail();
-            return;
+            return $this->fail();
         }
 
-        // ─── 4. Envoi mail ────────────────────────────────────────────────
-        $sent = $this->sendMail($name, $email, $message);
+        // 7. Envoi
+        $_SESSION['contact_last_submit'] = time();
 
-        if ($sent) {
+        if ($this->sendMail($name, $email, $message, $type)) {
             Logger::info('contact_sent', [
-                'name'         => $name,
                 'email_domain' => substr((string) strrchr($email, '@'), 1),
                 'message_len'  => mb_strlen($message),
+                'project_type' => $type,
             ]);
             $_SESSION['contact_success'] = true;
         } else {
@@ -92,50 +112,40 @@ class ContactController extends Controller
 
     // ─── Helpers privés ──────────────────────────────────────────────────
 
-    private function validCsrf(): bool
-    {
-        $sent     = $_POST['csrf_token']     ?? '';
-        $expected = $_SESSION['csrf_token']  ?? '';
-        return $sent !== '' && $expected !== '' && hash_equals($expected, $sent);
-    }
-
     private function validInput(string $name, string $email, string $message): bool
     {
-        if ($name === '' || $email === '' || $message === '') {
-            return false;
-        }
-        if (mb_strlen($name) > self::MAX_NAME_LEN)        return false;
-        if (mb_strlen($email) > self::MAX_EMAIL_LEN)      return false;
-        if (mb_strlen($message) < self::MIN_MESSAGE_LEN)  return false;
-        if (mb_strlen($message) > self::MAX_MESSAGE_LEN)  return false;
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL))   return false;
+        if ($name === '' || $email === '' || $message === '')        return false;
+        if (mb_strlen($name)    > self::MAX_NAME_LEN)                 return false;
+        if (mb_strlen($email)   > self::MAX_EMAIL_LEN)                return false;
+        if (mb_strlen($message) < self::MIN_MESSAGE_LEN)              return false;
+        if (mb_strlen($message) > self::MAX_MESSAGE_LEN)              return false;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))               return false;
         return true;
     }
 
-    /**
-     * Détecte CR / LF / null bytes — vecteurs d'injection de headers SMTP.
-     */
+    private function validProjectType(string $type): string
+    {
+        return in_array($type, ['site', 'app', 'ai', 'other'], true) ? $type : 'other';
+    }
+
     private function hasHeaderInjection(string $value): bool
     {
         return preg_match('/[\r\n\0]/', $value) === 1;
     }
 
-    private function sendMail(string $name, string $email, string $message): bool
+    private function sendMail(string $name, string $email, string $message, string $type): bool
     {
         $to = $_ENV['MAIL_TO'] ?? '';
-        if ($to === '') {
-            return false;
-        }
+        if ($to === '') return false;
 
-        // Sujet encodé UTF-8 (RFC 2047) pour préserver les accents
         $subject = '=?UTF-8?B?' . base64_encode("Portfolio — Message de {$name}") . '?=';
 
         $body = "Nom : {$name}\n"
-              . "Email : {$email}\n\n"
+              . "Email : {$email}\n"
+              . "Type : {$type}\n\n"
               . "Message :\n{$message}\n";
 
-        $from = $_ENV['MAIL_FROM'] ?? 'noreply@sonia-habibi.dev';
-
+        $from    = $_ENV['MAIL_FROM'] ?? 'noreply@sonia-habibi.dev';
         $headers = implode("\r\n", [
             "From: {$from}",
             "Reply-To: {$email}",

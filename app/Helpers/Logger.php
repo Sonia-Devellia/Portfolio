@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Helpers;
 
 /**
- * Logger applicatif minimal — append-only, file-based.
+ * Logger applicatif minimal — append-only, file-based, RGPD-friendly.
  *
- * Format ligne :
- *   [2026-05-01T12:34:56+02:00] [SECURITY] login_failed | ip=1.2.3.4 | ua=Mozilla/... | ctx={"user":"admin"}
+ * Format :
+ *   [2026-05-01T12:34:56+02:00] [SECURITY] login_failed | ip=ab12cd34 | ua=Mozilla/... | ctx={"user":"admin"}
  *
- * Les logs sont écrits dans storage/logs/ — hors de public/, jamais accessibles via HTTP.
+ * L'IP est hashée par défaut. Les logs sont écrits dans storage/logs/, hors public/.
  */
 class Logger
 {
@@ -47,7 +47,7 @@ class Logger
             date('c'),
             $level,
             $event,
-            self::ip(),
+            self::ipHash(),
             self::ua(),
             json_encode($context, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
         );
@@ -55,18 +55,10 @@ class Logger
         @file_put_contents(self::DIR . '/' . $file, $line, FILE_APPEND | LOCK_EX);
     }
 
-    /**
-     * Retourne un hash court de l'IP (RGPD-friendly : pas de PII en clair).
-     */
     public static function ipHash(): string
     {
-        return substr(hash('sha256', self::ip() . ($_ENV['APP_URL'] ?? '')), 0, 16);
-    }
-
-    private static function ip(): string
-    {
-        // Pas de FORWARDED_FOR sans whitelist proxy → simple, fiable
-        return $_SERVER['REMOTE_ADDR'] ?? '?';
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '?';
+        return substr(hash('sha256', $ip . ($_ENV['APP_URL'] ?? '')), 0, 16);
     }
 
     private static function ua(): string

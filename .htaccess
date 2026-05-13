@@ -1,18 +1,14 @@
-# Ceinture + bretelles : si le DocumentRoot prod est mal configuré et pointe
-# sur la racine du projet (au lieu de /public), tout est refusé sauf /public.
-# Le routing officiel se fait via public/.htaccess.
+# Garde-fou : si le DocumentRoot prod pointe sur la racine du projet au lieu de
+# /public, tout est refusé sauf /public. Le routing officiel passe par public/.htaccess.
 
 RewriteEngine On
 
-# Tout ce qui n'est pas /public/* est refusé.
-# (Désactivé en local MAMP — le DocumentRoot est /htdocs, pas la racine du projet)
+# En prod : décommenter pour forcer le passage par /public
 # RewriteCond %{REQUEST_URI} !^/public(/|$)
 # RewriteRule ^.*$ - [F,L]
 
-# Désactivation listing
 Options -Indexes -MultiViews
 
-# Blocage explicite des fichiers sensibles (au cas où)
-<FilesMatch "(^\.env|^\.env\..+|composer\.(json|lock)|package(-lock)?\.json|^\.git.*|^\.htpasswd|README\.md|CLAUDE\.md)$">
+<FilesMatch "^(\.env|\.env\..+|\.git.*|\.htpasswd|composer\.(json|lock)|package(-lock)?\.json|skills-lock\.json|README\.md|CLAUDE\.md|AGENTS\.md|PRODUCT\.md|DESIGN\.(md|json))$">
     Require all denied
 </FilesMatch>

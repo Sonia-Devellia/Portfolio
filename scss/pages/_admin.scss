@@ -108,12 +108,23 @@
     &--external { color: var(--text-3); }
   }
 
+  &__logout-form {
+    margin: 0;
+    padding: 0;
+  }
+
   &__logout {
     margin: 0 10px;
     padding: 8px 12px;
+    width: calc(100% - 20px);
     font-size: 12px;
     color: var(--text-3);
+    background: transparent;
+    border: 0;
     border-radius: var(--radius-sm);
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
     transition: color 0.15s, background 0.15s;
     display: block;
 

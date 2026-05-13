@@ -1,11 +1,16 @@
 <?php
 /**
- * Vue admin — FR-only par choix produit.
+ * Vue admin — formulaire de connexion (FR-only par choix produit).
  *
- * @var string|null $error  Code d'erreur affiché : 'credentials' | 'csrf' | null
+ * @var string|null $error  Code d'erreur : 'credentials' | 'csrf' | 'rate_limit' | null
  */
-$base  = rtrim($_ENV['APP_URL'] ?? '', '/');
 $error ??= null;
+
+$messages = [
+    'credentials' => 'Identifiants incorrects.',
+    'csrf'        => 'Session expirée, veuillez réessayer.',
+    'rate_limit'  => 'Trop de tentatives. Réessayez dans quelques minutes.',
+];
 ?>
 <div class="login-page">
     <div class="login-card">
@@ -13,16 +18,12 @@ $error ??= null;
         <span class="login-card__logo">Sonia</span>
         <span class="login-card__subtitle">Espace administration</span>
 
-        <?php if ($error === 'credentials'): ?>
-            <div class="alert alert--error" role="alert">Identifiants incorrects.</div>
-        <?php elseif ($error === 'csrf'): ?>
-            <div class="alert alert--error" role="alert">Session expirée, veuillez réessayer.</div>
-        <?php elseif ($error === 'rate_limit'): ?>
-            <div class="alert alert--error" role="alert">Trop de tentatives. Réessayez dans quelques minutes.</div>
+        <?php if (isset($messages[$error])): ?>
+            <div class="alert alert--error" role="alert"><?= $messages[$error] ?></div>
         <?php endif; ?>
 
-        <form method="post" action="<?= $base ?>/admin/login" novalidate>
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+        <form method="post" action="<?= base_url() ?>/admin/login" novalidate>
+            <?= csrf_field() ?>
 
             <div class="form-group">
                 <label for="username">Identifiant</label>

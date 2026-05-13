@@ -80,8 +80,13 @@ $csrf_token ??= '';
             <?php endif; ?>
 
             <form class="contact-form" action="<?= $base ?>/contact" method="post" novalidate>
-                <input type="hidden" name="csrf_token"
-                       value="<?= htmlspecialchars($csrf_token) ?>">
+                <?= csrf_field() ?>
+
+                <!-- Honeypot : champ piège, doit rester vide. Caché aux humains, visible aux bots. -->
+                <div class="hp-field" aria-hidden="true">
+                    <label for="website">Site web</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
 
                 <div class="form-group">
                     <label for="name"><?= $t('contact.name') ?></label>

@@ -10,32 +10,8 @@ use App\Helpers\Logger;
 
 class AdminController extends Controller
 {
-    /** Limite de tentatives consécutives avant blocage temporaire. */
     private const LOGIN_MAX_ATTEMPTS = 5;
-
-    /** Pénalité de base (en secondes), multipliée jusqu'à 5 fois selon le nombre d'échecs. */
     private const LOGIN_BASE_LOCKOUT = 60;
-
-    private function guard(): void
-    {
-        if (empty($_SESSION['admin'])) {
-            Logger::security('admin_access_denied', [
-                'uri' => $_SERVER['REQUEST_URI'] ?? '',
-            ]);
-            $this->redirect('/admin/login');
-        }
-    }
-
-    private function verifyCsrf(): void
-    {
-        $token = $_POST['csrf_token'] ?? '';
-        if (!hash_equals($_SESSION['csrf_token'] ?? '', $token)) {
-            Logger::security('csrf_rejected', [
-                'uri' => $_SERVER['REQUEST_URI'] ?? '',
-            ]);
-            $this->redirect('/admin/projets');
-        }
-    }
 
     // ─── Auth ─────────────────────────────────────────────────
 
@@ -43,10 +19,6 @@ class AdminController extends Controller
     {
         if (!empty($_SESSION['admin'])) {
             $this->redirect('/admin/projets');
-        }
-
-        if (empty($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
 
         $error = $_SESSION['admin_error'] ?? null;
@@ -61,12 +33,12 @@ class AdminController extends Controller
 
     public function loginPost(): void
     {
-        // ─── Rate limit ───────────────────────────────────────
+        // Rate limit
         $attempts = $_SESSION['login_attempts'] ?? ['count' => 0, 'until' => 0];
 
         if ($attempts['count'] >= self::LOGIN_MAX_ATTEMPTS && time() < $attempts['until']) {
             Logger::security('login_rate_limited', [
-                'count' => $attempts['count'],
+                'count'  => $attempts['count'],
                 'wait_s' => max(0, $attempts['until'] - time()),
             ]);
             http_response_code(429);
@@ -75,16 +47,14 @@ class AdminController extends Controller
             return;
         }
 
-        // ─── CSRF ─────────────────────────────────────────────
-        $token = $_POST['csrf_token'] ?? '';
-        if (!hash_equals($_SESSION['csrf_token'] ?? '', $token)) {
+        // CSRF
+        if (!csrf_check()) {
             Logger::security('login_csrf_rejected');
             $_SESSION['admin_error'] = 'csrf';
             $this->redirect('/admin/login');
             return;
         }
 
-        // ─── Vérification credentials ─────────────────────────
         $user = trim($_POST['username'] ?? '');
         $pass = trim($_POST['password'] ?? '');
 
@@ -94,36 +64,32 @@ class AdminController extends Controller
         if ($validUser && $validPass) {
             unset($_SESSION['login_attempts']);
             session_regenerate_id(true);
-            $_SESSION['admin'] = true;
+            $_SESSION['admin']               = true;
+            $_SESSION['admin_last_activity'] = time();
             Logger::security('login_success', ['user' => $user]);
             $this->redirect('/admin/projets');
             return;
         }
 
-        // ─── Échec — incrémenter le compteur avec backoff ────
-        $newCount  = $attempts['count'] + 1;
-        $lockoutMs = self::LOGIN_BASE_LOCKOUT * min(5, $newCount);
-
+        // Échec — backoff progressif
+        $newCount = $attempts['count'] + 1;
         $_SESSION['login_attempts'] = [
             'count' => $newCount,
-            'until' => time() + $lockoutMs,
+            'until' => time() + (self::LOGIN_BASE_LOCKOUT * min(5, $newCount)),
         ];
 
-        Logger::security('login_failed', [
-            'attempt' => $newCount,
-            'username' => $user, // jamais le password
-        ]);
-
+        Logger::security('login_failed', ['attempt' => $newCount, 'username' => $user]);
         $_SESSION['admin_error'] = 'credentials';
         $this->redirect('/admin/login');
     }
 
     public function logout(): void
     {
-        Logger::security('logout', [
-            'session_was_admin' => !empty($_SESSION['admin']),
-        ]);
-        unset($_SESSION['admin']);
+        if (!csrf_check()) {
+            $this->redirect('/admin/projets');
+        }
+        Logger::security('logout');
+        $_SESSION = [];
         session_regenerate_id(true);
         $this->redirect('/admin/login');
     }
@@ -141,9 +107,8 @@ class AdminController extends Controller
     public function projects(): void
     {
         $this->guard();
-        $projects = Project::getAll();
         $this->render('admin/projects', [
-            'projects' => $projects,
+            'projects' => Project::getAll(),
             'title'    => 'Admin — Projets',
             'layout'   => 'layouts/admin',
         ]);
@@ -197,7 +162,23 @@ class AdminController extends Controller
         $this->redirect('/admin/projets');
     }
 
-    // ─── Helpers ──────────────────────────────────────────────
+    // ─── Garde-fous ───────────────────────────────────────────
+
+    private function guard(): void
+    {
+        if (empty($_SESSION['admin'])) {
+            Logger::security('admin_access_denied', ['uri' => $_SERVER['REQUEST_URI'] ?? '']);
+            $this->redirect('/admin/login');
+        }
+    }
+
+    private function verifyCsrf(): void
+    {
+        if (!csrf_check()) {
+            Logger::security('csrf_rejected', ['uri' => $_SERVER['REQUEST_URI'] ?? '']);
+            $this->redirect('/admin/projets');
+        }
+    }
 
     private function sanitizeProjectPost(): array
     {

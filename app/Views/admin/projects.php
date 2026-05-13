@@ -1,13 +1,11 @@
 <?php
 /**
- * Vue admin — liste des projets. FR-only par choix produit.
+ * Vue admin — liste des projets.
  *
- * @var array<int, array<string, mixed>> $projects  Liste des projets en BDD
- * @var string                            $title    Titre de la page (utilisé par le layout)
+ * @var array<int, array<string, mixed>> $projects
  */
-$base     = rtrim($_ENV['APP_URL'] ?? '', '/');
+$base     = base_url();
 $projects ??= [];
-$title    ??= 'Admin — Projets';
 ?>
 <div class="admin-content">
 
@@ -17,9 +15,7 @@ $title    ??= 'Admin — Projets';
     </div>
 
     <?php if (empty($projects)): ?>
-        <div class="admin-empty">
-            <p>Aucun projet pour l'instant.</p>
-        </div>
+        <div class="admin-empty"><p>Aucun projet pour l'instant.</p></div>
     <?php else: ?>
 
     <div class="admin-table-wrap">
@@ -38,8 +34,8 @@ $title    ??= 'Admin — Projets';
                 <?php foreach ($projects as $project): ?>
                 <tr>
                     <td class="admin-table__order"><?= (int) $project['sort_order'] ?></td>
-                    <td class="admin-table__title"><?= htmlspecialchars($project['title_fr']) ?></td>
-                    <td><?= htmlspecialchars($project['tags']) ?></td>
+                    <td class="admin-table__title"><?= e($project['title_fr']) ?></td>
+                    <td><?= e($project['tags']) ?></td>
                     <td class="admin-table__check"><?= $project['is_featured'] ? '✓' : '' ?></td>
                     <td class="admin-table__check"><?= $project['is_wip']      ? '✓' : '' ?></td>
                     <td>
@@ -48,11 +44,10 @@ $title    ??= 'Admin — Projets';
                                class="btn btn--outline btn--sm">Modifier</a>
                             <form method="post"
                                   action="<?= $base ?>/admin/projets/<?= (int) $project['id'] ?>/delete">
-                                <input type="hidden" name="csrf_token"
-                                       value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
+                                <?= csrf_field() ?>
                                 <button type="submit"
                                         class="btn btn--outline btn--sm admin-table__delete"
-                                        data-confirm="Supprimer « <?= htmlspecialchars($project['title_fr'], ENT_QUOTES) ?> » ?">
+                                        data-confirm="Supprimer « <?= e($project['title_fr']) ?> » ?">
                                     Supprimer
                                 </button>
                             </form>

@@ -1,229 +1,149 @@
 <?php
 /**
+ * Layout principal — site public bilingue FR/EN.
+ *
  * @var callable(string): string $t
- * @var string $content
- * @var string $title
- * @var string|null $metaDesc
- * @var string|null $canonical
- * @var string|null $ogImage
- * @var string|null $ogType
- * @var array<string> $scripts
+ * @var string                   $content
+ * @var string                   $title
+ * @var string|null              $metaDesc
+ * @var string|null              $canonical
+ * @var string|null              $ogImage
+ * @var string|null              $ogType
+ * @var array|null               $faqSchema
+ * @var array|null               $breadcrumbSchema
+ * @var array|null               $extraSchemas
+ * @var array<string>|null       $scripts
  */
-$base      = rtrim($_ENV['APP_URL'] ?? '', '/');
-$appUrl    = rtrim($_ENV['APP_URL'] ?? 'https://sonia-habibi.dev', '/');
-$lang      = $_SESSION['lang'] ?? 'fr';
-$pageTitle = htmlspecialchars($title ?? ($lang === 'fr'
+$base   = base_url();
+$lang   = $_SESSION['lang'] ?? 'fr';
+$isFr   = $lang === 'fr';
+
+$pageTitle = $title ?? ($isFr
     ? 'Développeuse Freelance PHP Python IA — Sonia Habibi'
-    : 'Freelance PHP Python AI Developer — Sonia Habibi'));
-$pageDesc  = htmlspecialchars($metaDesc ?? $t('hero.sub'));
-$pageUrl   = htmlspecialchars($canonical ?? ($appUrl . strtok($_SERVER['REQUEST_URI'] ?? '/', '?')));
-$pageOgImg = htmlspecialchars($ogImage   ?? ($appUrl . '/assets/images/og-cover.jpg'));
-$pageType  = htmlspecialchars($ogType    ?? 'website');
-$ogLocale  = $lang === 'fr' ? 'fr_FR' : 'en_GB';
+    : 'Freelance PHP Python AI Developer — Sonia Habibi');
+$pageDesc  = $metaDesc  ?? $t('hero.sub');
+$pageUrl   = $canonical ?? ($base . strtok($_SERVER['REQUEST_URI'] ?? '/', '?'));
+$pageImg   = $ogImage   ?? ($base . '/assets/images/og-cover.jpg');
+$pageType  = $ogType    ?? 'website';
 
-// Hreflang option A : même chemin, paramètre ?lang= pour signaler la langue
-$rawPath   = strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
-$hrefFr    = htmlspecialchars($appUrl . $rawPath . '?lang=fr');
-$hrefEn    = htmlspecialchars($appUrl . $rawPath . '?lang=en');
-$hrefDefault = htmlspecialchars($appUrl . '/');
-
-$schemaDesc = $lang === 'fr'
+$schemaDesc = $isFr
     ? 'Développeuse full-stack freelance spécialisée PHP, Python, JavaScript et intégrations IA utiles.'
     : 'Freelance full-stack developer specialised in PHP, Python, JavaScript and useful AI integrations.';
+
+$cssV = @filemtime(ROOT_PATH . '/public/assets/css/main.css') ?: '1';
+
+$personSchema = [
+    '@context' => 'https://schema.org',
+    '@type'    => 'Person',
+    '@id'      => $base . '#sonia',
+    'name'     => 'Sonia Habibi',
+    'jobTitle' => $isFr ? 'Développeuse Full-Stack Freelance' : 'Freelance Full-Stack Developer',
+    'description' => $schemaDesc,
+    'url'      => $base,
+    'image'    => $base . '/assets/images/sonia.webp',
+    'sameAs'   => [
+        'https://github.com/Sonia-Devellia',
+        'https://www.linkedin.com/in/sonia-habibi/',
+        'https://www.malt.fr/profile/soniahabibi',
+    ],
+    'knowsAbout' => ['PHP', 'Python', 'JavaScript', 'MySQL', 'LLM APIs', 'MVC Architecture'],
+    'workLocation' => ['@type' => 'VirtualLocation', 'name' => 'Remote — France, Suisse, Belgique'],
+];
+
+$siteSchema = [
+    '@context' => 'https://schema.org',
+    '@type'    => 'WebSite',
+    '@id'      => $base . '#website',
+    'url'      => $base,
+    'name'     => 'Sonia Habibi — Dev Full-Stack',
+    'author'   => ['@id' => $base . '#sonia'],
+    'inLanguage' => ['fr-FR', 'en-GB'],
+];
+
+$jsonLd = static fn(array $data): string => json_encode(
+    $data,
+    JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+);
 ?>
 <!DOCTYPE html>
-<html lang="<?= htmlspecialchars($lang) ?>" data-theme="light">
+<html lang="<?= e($lang) ?>" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Title & meta -->
-    <title><?= $pageTitle ?></title>
-    <meta name="description" content="<?= $pageDesc ?>">
+    <title><?= e($pageTitle) ?></title>
+    <meta name="description" content="<?= e($pageDesc) ?>">
     <meta name="author" content="Sonia Habibi">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="<?= $pageUrl ?>">
+    <link rel="canonical" href="<?= e($pageUrl) ?>">
 
-    <!-- Hreflang bilingue — URL distinctes par langue (option A) -->
-    <link rel="alternate" hreflang="fr"        href="<?= $hrefFr ?>">
-    <link rel="alternate" hreflang="en"        href="<?= $hrefEn ?>">
-    <link rel="alternate" hreflang="x-default" href="<?= $hrefDefault ?>">
+    <link rel="alternate" hreflang="fr"        href="<?= e($base . '/lang/fr') ?>">
+    <link rel="alternate" hreflang="en"        href="<?= e($base . '/lang/en') ?>">
+    <link rel="alternate" hreflang="x-default" href="<?= e($base . '/') ?>">
 
     <!-- Open Graph -->
-    <meta property="og:title"       content="<?= $pageTitle ?>">
-    <meta property="og:description" content="<?= $pageDesc ?>">
-    <meta property="og:url"         content="<?= $pageUrl ?>">
-    <meta property="og:type"        content="<?= $pageType ?>">
-    <meta property="og:image"       content="<?= $pageOgImg ?>">
-    <meta property="og:locale"      content="<?= $ogLocale ?>">
+    <meta property="og:title"       content="<?= e($pageTitle) ?>">
+    <meta property="og:description" content="<?= e($pageDesc) ?>">
+    <meta property="og:url"         content="<?= e($pageUrl) ?>">
+    <meta property="og:type"        content="<?= e($pageType) ?>">
+    <meta property="og:image"       content="<?= e($pageImg) ?>">
+    <meta property="og:locale"      content="<?= $isFr ? 'fr_FR' : 'en_GB' ?>">
     <meta property="og:site_name"   content="Sonia Habibi — Dev Full-Stack">
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       content="<?= $pageTitle ?>">
-    <meta name="twitter:description" content="<?= $pageDesc ?>">
-    <meta name="twitter:image"       content="<?= $pageOgImg ?>">
+    <meta name="twitter:title"       content="<?= e($pageTitle) ?>">
+    <meta name="twitter:description" content="<?= e($pageDesc) ?>">
+    <meta name="twitter:image"       content="<?= e($pageImg) ?>">
 
-    <!-- Preload LCP image -->
     <link rel="preload" href="<?= $base ?>/assets/images/sonia.webp" as="image" fetchpriority="high">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-
-    <?php $cssV = @filemtime(($_SERVER['DOCUMENT_ROOT'] ?? '') . '/portfolio/public/assets/css/main.css') ?: '1'; ?>
     <link rel="stylesheet" href="<?= $base ?>/assets/css/main.css?v=<?= $cssV ?>">
 
-    <!-- JSON-LD — Person + WebSite + ProfessionalService -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "<?= htmlspecialchars($appUrl) ?>#sonia",
-          "name": "Sonia Habibi",
-          "jobTitle": "<?= $lang === 'fr' ? 'Développeuse Full-Stack Freelance' : 'Freelance Full-Stack Developer' ?>",
-          "description": "<?= htmlspecialchars($schemaDesc) ?>",
-          "url": "<?= htmlspecialchars($appUrl) ?>",
-          "image": "<?= htmlspecialchars($appUrl) ?>/assets/images/sonia.webp",
-          "sameAs": [
-            "https://github.com/Sonia-Devellia",
-            "https://www.linkedin.com/in/sonia-habibi/",
-            "https://www.malt.fr/profile/soniahabibi"
-          ],
-          "knowsAbout": ["PHP", "Python", "JavaScript", "MySQL", "LLM APIs", "MVC Architecture"],
-          "workLocation": {
-            "@type": "VirtualLocation",
-            "name": "Remote — France, Suisse, Belgique"
-          },
-          "hasOccupation": {
-            "@type": "Occupation",
-            "name": "<?= $lang === 'fr' ? 'Développeuse Full-Stack Freelance' : 'Freelance Full-Stack Developer' ?>",
-            "occupationLocation": {
-              "@type": "Country",
-              "name": "France"
-            },
-            "estimatedSalary": {
-              "@type": "MonetaryAmountDistribution",
-              "name": "TJM",
-              "currency": "EUR",
-              "duration": "P1D",
-              "percentile10": 600,
-              "percentile90": 800
-            }
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "<?= htmlspecialchars($appUrl) ?>#website",
-          "url": "<?= htmlspecialchars($appUrl) ?>",
-          "name": "Sonia Habibi — Dev Full-Stack",
-          "author": { "@id": "<?= htmlspecialchars($appUrl) ?>#sonia" },
-          "inLanguage": ["fr-FR", "en-GB"]
-        },
-        {
-          "@type": "ProfessionalService",
-          "@id": "<?= htmlspecialchars($appUrl) ?>#service",
-          "name": "<?= $lang === 'fr' ? 'Sonia Habibi — Développement web freelance' : 'Sonia Habibi — Freelance Web Development' ?>",
-          "description": "<?= htmlspecialchars($schemaDesc) ?>",
-          "provider": { "@id": "<?= htmlspecialchars($appUrl) ?>#sonia" },
-          "areaServed": ["FR", "EU", "Worldwide remote"],
-          "priceRange": "€€€",
-          "serviceType": ["<?= $lang === 'fr' ? 'Développement web full-stack' : 'Full-stack web development' ?>", "Intégration API IA (Claude, OpenAI)", "MVP & prototypes", "Audit et sécurisation PHP"],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "<?= $lang === 'fr' ? 'Services freelance' : 'Freelance services' ?>",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "<?= $lang === 'fr' ? 'MVP web en 8 semaines' : 'Web MVP in 8 weeks' ?>",
-                  "description": "<?= $lang === 'fr' ? 'PHP ou Python back-end, JS front, base de données, déploiement. Code source livré.' : 'PHP or Python back end, JS front, database, deployment. Source code delivered.' ?>"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "<?= $lang === 'fr' ? 'Intégration IA avec garde-fous' : 'AI integration with guardrails' ?>",
-                  "description": "<?= $lang === 'fr' ? 'Évaluation ROI, prototype, déploiement avec budget tokens, fallback et logs.' : 'ROI assessment, prototype, deployment with token budget, fallback and logs.' ?>"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "<?= $lang === 'fr' ? 'Reprise de code et audit' : 'Code recovery and audit' ?>",
-                  "description": "<?= $lang === 'fr' ? 'Audit en 5 jours, plan de remise en état, refonte ciblée.' : 'Five-day audit, recovery plan, targeted refactor.' ?>"
-                }
-              }
-            ]
-          },
-          "url": "<?= htmlspecialchars($appUrl) ?>",
-          "image": "<?= htmlspecialchars($appUrl) ?>/assets/images/sonia.webp"
-        }
-      ]
-    }
-    </script>
+    <!-- JSON-LD -->
+    <script type="application/ld+json"><?= $jsonLd($personSchema) ?></script>
+    <script type="application/ld+json"><?= $jsonLd($siteSchema) ?></script>
 
-    <?php if (!empty($faqSchema)): ?>
-    <script type="application/ld+json">
-    <?= json_encode($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
-    </script>
-    <?php endif; ?>
-
-    <?php if (!empty($breadcrumbSchema)): ?>
-    <script type="application/ld+json">
-    <?= json_encode($breadcrumbSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
-    </script>
-    <?php endif; ?>
-
-    <?php if (!empty($extraSchemas)): ?>
-    <?php foreach ($extraSchemas as $extraSchema): ?>
-    <script type="application/ld+json">
-    <?= json_encode($extraSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
-    </script>
+    <?php foreach (array_filter([$faqSchema ?? null, $breadcrumbSchema ?? null]) as $schema): ?>
+    <script type="application/ld+json"><?= $jsonLd($schema) ?></script>
     <?php endforeach; ?>
-    <?php endif; ?>
+
+    <?php foreach (($extraSchemas ?? []) as $schema): ?>
+    <script type="application/ld+json"><?= $jsonLd($schema) ?></script>
+    <?php endforeach; ?>
 </head>
 <body>
 
-<a href="#main" class="skip-link"><?= $lang === 'fr' ? 'Aller au contenu principal' : 'Skip to main content' ?></a>
+<a href="#main" class="skip-link"><?= $isFr ? 'Aller au contenu principal' : 'Skip to main content' ?></a>
 
 <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-<!-- ─── NAVIGATION ──────────────────────────────────────── -->
 <header class="nav" id="nav">
     <div class="nav__inner">
-
         <a href="<?= $base ?>/" class="nav__logo">Sonia</a>
 
         <nav class="nav__links" aria-label="<?= $t('a11y.nav.main') ?>">
             <a href="<?= $base ?>/projets"><?= $t('nav.projects') ?></a>
-            <a href="<?= $base ?>/tarifs"><?= $lang === 'fr' ? 'Tarifs' : 'Rates' ?></a>
+            <a href="<?= $base ?>/tarifs"><?= $isFr ? 'Tarifs' : 'Rates' ?></a>
             <a href="<?= $base ?>/contact"><?= $t('nav.contact') ?></a>
         </nav>
 
         <div class="nav__actions">
-            <!-- Disponibilité -->
             <span class="nav__avail">
                 <span class="nav__avail-dot"></span>
                 <?= $t('nav.available') ?>
             </span>
 
-            <!-- Switcher langue -->
             <div class="lang-switch" aria-label="<?= $t('a11y.lang.switch') ?>">
-                <?php $lang = $_SESSION['lang'] ?? 'fr'; ?>
-                <a href="<?= $base ?>/lang/fr" class="lang-switch__btn <?= $lang === 'fr' ? 'is-active' : '' ?>">FR</a>
+                <a href="<?= $base ?>/lang/fr" class="lang-switch__btn <?= $isFr ? 'is-active' : '' ?>">FR</a>
                 <span class="lang-switch__sep">/</span>
-                <a href="<?= $base ?>/lang/en" class="lang-switch__btn <?= $lang === 'en' ? 'is-active' : '' ?>">EN</a>
+                <a href="<?= $base ?>/lang/en" class="lang-switch__btn <?= !$isFr ? 'is-active' : '' ?>">EN</a>
             </div>
 
-            <!-- Dark mode toggle -->
             <button class="theme-toggle" id="themeToggle" aria-label="<?= $t('a11y.theme.toggle') ?>">
                 <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
@@ -236,19 +156,15 @@ $schemaDesc = $lang === 'fr'
                 </svg>
             </button>
 
-            <!-- CTA mobile / desktop -->
             <a href="<?= $base ?>/contact" class="btn btn--dark nav__cta"><?= $t('nav.contact') ?> →</a>
         </div>
-
     </div>
 </header>
 
-<!-- ─── CONTENU PRINCIPAL ───────────────────────────────── -->
 <main id="main">
     <?= $content ?>
 </main>
 
-<!-- ─── FOOTER ──────────────────────────────────────────── -->
 <footer class="footer">
     <div class="footer__inner">
         <a href="<?= $base ?>/" class="footer__logo">Sonia</a>
@@ -259,29 +175,25 @@ $schemaDesc = $lang === 'fr'
             <a href="https://github.com/Sonia-Devellia" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
 
-        <p class="footer__copy">
-            <?= $t('footer.rights') ?> · <?= $t('footer.location') ?>
-        </p>
+        <p class="footer__copy"><?= $t('footer.rights') ?> · <?= $t('footer.location') ?></p>
 
         <span class="footer__time">
-            <span class="footer__time-label"><?= $lang === 'fr' ? 'Heure locale · ' : 'Local time · ' ?></span><span id="localTime"></span>
+            <span class="footer__time-label"><?= $isFr ? 'Heure locale · ' : 'Local time · ' ?></span>
+            <span id="localTime"></span>
         </span>
     </div>
 </footer>
 
 <?php
-$revealJsV = @filemtime(ROOT_PATH . '/public/assets/js/modules/reveal.js') ?: '1';
-$typerJsV  = @filemtime(ROOT_PATH . '/public/assets/js/modules/typewriter.js') ?: '1';
-$mainJsV   = @filemtime(ROOT_PATH . '/public/assets/js/main.js') ?: '1';
+$jsV = static fn(string $path): int|string =>
+    @filemtime(ROOT_PATH . '/public' . $path) ?: '1';
 ?>
-<script src="<?= $base ?>/assets/js/modules/reveal.js?v=<?= $revealJsV ?>" defer></script>
-<script src="<?= $base ?>/assets/js/modules/typewriter.js?v=<?= $typerJsV ?>" defer></script>
-<script src="<?= $base ?>/assets/js/main.js?v=<?= $mainJsV ?>" defer></script>
+<script src="<?= $base ?>/assets/js/modules/reveal.js?v=<?= $jsV('/assets/js/modules/reveal.js') ?>" defer></script>
+<script src="<?= $base ?>/assets/js/modules/typewriter.js?v=<?= $jsV('/assets/js/modules/typewriter.js') ?>" defer></script>
+<script src="<?= $base ?>/assets/js/main.js?v=<?= $jsV('/assets/js/main.js') ?>" defer></script>
 
-<?php if (!empty($scripts)): ?>
-    <?php foreach ($scripts as $src): ?>
-        <script src="<?= htmlspecialchars($src) ?>" defer></script>
-    <?php endforeach; ?>
-<?php endif; ?>
+<?php foreach (($scripts ?? []) as $src): ?>
+<script src="<?= e($src) ?>" defer></script>
+<?php endforeach; ?>
 </body>
 </html>

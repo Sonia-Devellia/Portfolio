@@ -14,14 +14,6 @@ $extraSchemas ??= [];
 $isFr = $lang === 'fr';
 ?>
 
-<?php if (!empty($extraSchemas)): ?>
-<?php foreach ($extraSchemas as $schema): ?>
-<script type="application/ld+json">
-<?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
-</script>
-<?php endforeach; ?>
-<?php endif; ?>
-
 <!-- ─── HERO TARIFS ──────────────────────────────────────── -->
 <section class="section tarifs-hero">
     <div class="section__inner">

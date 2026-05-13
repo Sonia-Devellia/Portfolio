@@ -1,64 +1,50 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core;
 
 class Router
 {
+    /** @var list<array{method:string,path:string,controller:string,action:string}> */
     private array $routes = [];
 
-    public function get(string $path, string $controller, string $method): void
+    public function get(string $path, string $controller, string $action): void
     {
-        $this->routes[] = [
-            'method'     => 'GET',
-            'path'       => $path,
-            'controller' => $controller,
-            'action'     => $method,
-        ];
+        $this->routes[] = compact('path', 'controller', 'action') + ['method' => 'GET'];
     }
 
-    public function post(string $path, string $controller, string $method): void
+    public function post(string $path, string $controller, string $action): void
     {
-        $this->routes[] = [
-            'method'     => 'POST',
-            'path'       => $path,
-            'controller' => $controller,
-            'action'     => $method,
-        ];
+        $this->routes[] = compact('path', 'controller', 'action') + ['method' => 'POST'];
     }
 
     public function dispatch(): void
     {
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $requestUri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $method = $_SERVER['REQUEST_METHOD'];
+        $uri    = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
 
-        // Retirer le base path si en sous-dossier local
-        $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
-        if ($basePath && str_starts_with($requestUri, $basePath)) {
-            $requestUri = substr($requestUri, strlen($basePath));
+        // Retirer le base path si en sous-dossier (MAMP local)
+        $base = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
+        if ($base && str_starts_with($uri, $base)) {
+            $uri = substr($uri, strlen($base));
         }
-
-        $requestUri = '/' . trim($requestUri, '/');
+        $uri = '/' . trim($uri, '/');
 
         foreach ($this->routes as $route) {
-            $pattern = $this->pathToRegex($route['path']);
-            if ($route['method'] === $requestMethod && preg_match($pattern, $requestUri, $matches)) {
+            if ($route['method'] !== $method) {
+                continue;
+            }
+            $pattern = '#^' . preg_replace('/\{([a-zA-Z_]+)\}/', '([^/]+)', $route['path']) . '$#';
+            if (preg_match($pattern, $uri, $matches)) {
                 array_shift($matches);
-                $controllerClass = 'App\\Controllers\\' . $route['controller'];
-                $controller      = new $controllerClass();
-                call_user_func_array([$controller, $route['action']], $matches);
+                $class = 'App\\Controllers\\' . $route['controller'];
+                (new $class())->{$route['action']}(...$matches);
                 return;
             }
         }
 
-        // 404
         http_response_code(404);
-        $controller = new \App\Controllers\HomeController();
-        $controller->notFound();
-    }
-
-    private function pathToRegex(string $path): string
-    {
-        $pattern = preg_replace('/\{([a-zA-Z_]+)\}/', '([^/]+)', $path);
-        return '#^' . $pattern . '$#';
+        (new \App\Controllers\HomeController())->notFound();
     }
 }

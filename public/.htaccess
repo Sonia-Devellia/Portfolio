@@ -1,30 +1,43 @@
 RewriteEngine On
 
 # ─── HTTPS forcé (commenté en local, à activer en prod) ─────────
-# Décommenter avant push prod sur o2switch.
 # RewriteCond %{HTTPS} off
 # RewriteCond %{HTTP:X-Forwarded-Proto} !https
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# ─── www → apex (commenté, à activer en prod si voulu) ──────────
+# ─── www → apex (à activer en prod si voulu) ────────────────────
 # RewriteCond %{HTTP_HOST} ^www\.sonia-habibi\.dev$ [NC]
 # RewriteRule ^(.*)$ https://sonia-habibi.dev/$1 [L,R=301]
+
+# ─── 301 — anciennes pages géo retirées ─────────────────────────
+# Anglet est limitrophe de Biarritz → redirection thématique pertinente.
+# Caen, Rouen, Le Havre, Lyon → homepage (pas de match équivalent).
+RewriteRule ^dev-freelance/anglet/?$ /dev-freelance/biarritz [L,R=301,NE]
+RewriteRule ^dev-freelance/(caen|rouen|le-havre|lyon)/?$ / [L,R=301,NE]
+
+# ─── Sitemap dynamique : toujours via PHP, même si un fichier statique existe ─
+RewriteRule ^sitemap\.xml$ index.php [L]
 
 # ─── Routing front-controller ───────────────────────────────────
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [QSA,L]
 
-# ─── Désactiver le listing de répertoire ────────────────────────
+# ─── Hardening ──────────────────────────────────────────────────
 Options -Indexes -MultiViews
+ServerSignature Off
 
-# ─── Bloquer l'accès aux fichiers sensibles ─────────────────────
-<FilesMatch "(^\.env|^\.env\..+|composer\.(json|lock)|package(-lock)?\.json|^\.git.*|^\.htpasswd|README\.md|CLAUDE\.md|\.scss$|\.config\.js$)$">
+<IfModule mod_php.c>
+    php_flag expose_php Off
+</IfModule>
+
+# ─── Fichiers sensibles ─────────────────────────────────────────
+<FilesMatch "^(\.env|\.env\..+|\.git.*|\.htpasswd|composer\.(json|lock)|package(-lock)?\.json|skills-lock\.json|README\.md|CLAUDE\.md|AGENTS\.md|PRODUCT\.md|DESIGN\.(md|json))$|\.(scss|sql|log)$|\.config\.js$">
     Require all denied
 </FilesMatch>
 
-# ─── Bloquer les dossiers internes (au cas où DocumentRoot mal configuré) ───
-RewriteRule ^(app|core|config|lang|vendor|node_modules|storage|scss|\.claude|\.superpowers)(/|$) - [F,L]
+# ─── Dossiers internes (au cas où DocumentRoot mal configuré) ───
+RewriteRule ^(app|core|config|lang|vendor|node_modules|storage|scss|tests|\.claude|\.superpowers|\.agents)(/|$) - [F,L]
 
 # ─── Cache statique long ────────────────────────────────────────
 <IfModule mod_expires.c>
@@ -44,12 +57,4 @@ RewriteRule ^(app|core|config|lang|vendor|node_modules|storage|scss|\.claude|\.s
 # ─── Compression gzip ──────────────────────────────────────────
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
-</IfModule>
-
-# ─── Désactiver la signature serveur ────────────────────────────
-ServerSignature Off
-
-# ─── PHP : sécurité runtime (si autorisé sur l'hébergeur) ───────
-<IfModule mod_php.c>
-    php_flag expose_php Off
 </IfModule>

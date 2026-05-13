@@ -70,6 +70,17 @@
   }
 }
 
+// ─── Honeypot — visuellement masqué, lisible aux bots seulement ───────────────
+
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-check {
   display: flex;
   align-items: center;

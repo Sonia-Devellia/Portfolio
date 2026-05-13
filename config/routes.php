@@ -15,13 +15,18 @@ $router->get('/tarifs',              'TarifsController',  'index');
 // ─── Pages géographiques ──────────────────────────────────
 $router->get('/dev-freelance/{slug}', 'GeoController',   'show');
 
+// ─── SEO ──────────────────────────────────────────────────
+// Le robots.txt reste un fichier statique dans public/ (servi directement par Apache).
+// Le sitemap.xml est forcé en dynamique via .htaccess RewriteRule.
+$router->get('/sitemap.xml',          'SitemapController', 'index');
+
 // ─── Langue ───────────────────────────────────────────────
 $router->get('/lang/{code}',         'LangController',    'switch');
 
 // ─── Admin auth ───────────────────────────────────────────
 $router->get('/admin/login',                    'AdminController', 'login');
 $router->post('/admin/login',                   'AdminController', 'loginPost');
-$router->get('/admin/logout',                   'AdminController', 'logout');
+$router->post('/admin/logout',                  'AdminController', 'logout');
 
 // ─── Admin ────────────────────────────────────────────────
 $router->get('/admin',                          'AdminController', 'index');

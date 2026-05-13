@@ -8,18 +8,14 @@ require ROOT_PATH . '/vendor/autoload.php';
 require ROOT_PATH . '/core/helpers.php';
 
 // ─── Variables d'environnement ──────────────────────────────────────────────
-$dotenv = Dotenv\Dotenv::createImmutable(ROOT_PATH);
-$dotenv->load();
+Dotenv\Dotenv::createImmutable(ROOT_PATH)->load();
 
 $isProd = ($_ENV['APP_ENV'] ?? 'local') === 'production';
 
 // ─── Affichage des erreurs PHP ──────────────────────────────────────────────
-// En prod : tout masqué côté navigateur, tout loggé côté disque.
-// En local : tout visible.
 if ($isProd) {
     ini_set('display_errors', '0');
     ini_set('display_startup_errors', '0');
-    error_reporting(E_ALL);
     ini_set('log_errors', '1');
 
     $logDir = ROOT_PATH . '/storage/logs';
@@ -27,41 +23,50 @@ if ($isProd) {
         @mkdir($logDir, 0750, true);
     }
     ini_set('error_log', $logDir . '/php-errors.log');
-} else {
-    ini_set('display_errors', '1');
-    error_reporting(E_ALL);
 }
+error_reporting(E_ALL);
 
 // ─── Session ────────────────────────────────────────────────────────────────
+// Nom de cookie neutre (n'expose plus l'utilisation de PHP via 'PHPSESSID').
+session_name('portfolio_sid');
 session_set_cookie_params([
     'lifetime' => 0,
     'path'     => '/',
-    'secure'   => $isProd,           // HTTPS uniquement en prod
+    'secure'   => $isProd,
     'httponly' => true,
     'samesite' => 'Lax',
 ]);
 session_start();
 
+// ─── Idle timeout admin (30 min) ────────────────────────────────────────────
+$adminIdleMax = 1800;
+if (!empty($_SESSION['admin'])) {
+    $lastActivity = $_SESSION['admin_last_activity'] ?? time();
+    if (time() - $lastActivity > $adminIdleMax) {
+        $_SESSION = [];
+        session_regenerate_id(true);
+    } else {
+        $_SESSION['admin_last_activity'] = time();
+    }
+}
+
+// ─── CSRF token global ──────────────────────────────────────────────────────
+csrf_token();
+
 // ─── Headers de sécurité ────────────────────────────────────────────────────
-// Anti-clickjacking
 header('X-Frame-Options: SAMEORIGIN');
-
-// MIME sniffing désactivé
 header('X-Content-Type-Options: nosniff');
-
-// Referrer minimal
 header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Cross-Origin-Opener-Policy: same-origin');
+header('Cross-Origin-Resource-Policy: same-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()');
 
-// HSTS — uniquement en prod, après vérification que HTTPS est OK
 if ($isProd) {
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
 }
 
-// Permissions — couper tout ce qu'on n'utilise pas
-header("Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=()");
-
-// CSP — strict, compatible Google Fonts + JSON-LD inline
-header("Content-Security-Policy: "
+header(
+    "Content-Security-Policy: "
     . "default-src 'self'; "
     . "script-src 'self'; "
     . "style-src 'self' https://fonts.googleapis.com; "
@@ -70,13 +75,13 @@ header("Content-Security-Policy: "
     . "connect-src 'self'; "
     . "frame-ancestors 'self'; "
     . "form-action 'self'; "
-    . "base-uri 'self'"
+    . "base-uri 'self'; "
+    . "object-src 'none'; "
+    . "upgrade-insecure-requests"
 );
 
 // ─── Langue par défaut ──────────────────────────────────────────────────────
-if (!isset($_SESSION['lang'])) {
-    $_SESSION['lang'] = $_ENV['DEFAULT_LANG'] ?? 'fr';
-}
+$_SESSION['lang'] ??= $_ENV['DEFAULT_LANG'] ?? 'fr';
 
 // ─── Router ─────────────────────────────────────────────────────────────────
 $router = new Core\Router();
