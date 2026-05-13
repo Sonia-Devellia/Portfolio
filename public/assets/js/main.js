@@ -169,18 +169,17 @@
     obs.observe(pullQuote);
   }
 
-  // ─── PROJECTS — auto-cycle ─────────────────────────────
-  const slides = document.querySelectorAll('.mac-slide');
+  // ─── PROJECTS — clickable tabs ─────────────────────────
+  const slides  = document.querySelectorAll('.mac-slide');
   const details = document.querySelectorAll('.project-detail');
   if (slides.length) {
-    let cur = 0;
     const show = i => {
-      slides.forEach((s,j) => s.classList.toggle('mac-slide--active', i===j));
-      details.forEach((d,j) => d.classList.toggle('project-detail--active', i===j));
-      cur = i;
+      slides.forEach((s, j)  => s.classList.toggle('mac-slide--active',      i === j));
+      details.forEach((d, j) => d.classList.toggle('project-detail--active', i === j));
     };
     show(0);
-    setInterval(() => show((cur+1) % slides.length), 3500);
+    slides.forEach((s, i)  => s.addEventListener('click',  () => show(i)));
+    details.forEach((d, i) => d.addEventListener('click',  () => show(i)));
   }
 
   // ─── FOOTER LOCAL TIME ─────────────────────────────────
