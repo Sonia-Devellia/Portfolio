@@ -4,6 +4,8 @@
 
 (function () {
 
+  const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ─── DARK MODE ─────────────────────────────────────────
   const html        = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
@@ -33,7 +35,7 @@
   const cursorDot  = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
 
-  if (cursorDot && cursorRing && !('ontouchstart' in window)) {
+  if (!REDUCE_MOTION && cursorDot && cursorRing && !('ontouchstart' in window)) {
     let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
     document.addEventListener('mousemove', e => {
