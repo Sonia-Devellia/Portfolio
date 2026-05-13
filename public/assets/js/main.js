@@ -29,16 +29,6 @@
     });
   });
 
-  // ─── FADE-UP (legacy — service-card, timeline-item) ────
-  const fadeObs = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
-    { threshold: 0.08 }
-  );
-  document.querySelectorAll('.service-card, .timeline-item').forEach(el => {
-    el.classList.add('fade-up');
-    fadeObs.observe(el);
-  });
-
   // ─── CUSTOM CURSOR ─────────────────────────────────────
   const cursorDot  = document.getElementById('cursorDot');
   const cursorRing = document.getElementById('cursorRing');
@@ -77,96 +67,6 @@
     });
   } else if (cursorDot && cursorRing) {
     cursorDot.style.display = cursorRing.style.display = 'none';
-  }
-
-  // ─── LINE REVEAL helpers (section titles) ─────────────
-  function buildLineWrap(el) {
-    el.innerHTML = el.innerHTML.split(/<br\s*\/?>\s*/i)
-      .map(p => `<span class="line-wrap"><span class="line">${p.trim()}</span></span>`)
-      .join('');
-  }
-  function triggerLines(el, base) {
-    el.querySelectorAll('.line').forEach((l, i) => {
-      l.style.transitionDelay = ((base || 0) + i * 140) + 'ms';
-      l.classList.add('is-revealed');
-    });
-  }
-
-  // ─── SECTION + CTA TITLES — line reveal + underline ────
-  document.querySelectorAll('.section__title, .cta-band__title').forEach(el => {
-    buildLineWrap(el);
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        triggerLines(entry.target);
-        entry.target.classList.add('is-underlined');
-        obs.unobserve(entry.target);
-      });
-    }, { threshold: 0.25 });
-    obs.observe(el);
-  });
-
-  // ─── HERO SUBTITLE — word-by-word slide up ─────────────
-  const heroSub = document.getElementById('heroSub');
-  if (heroSub) {
-    const words = heroSub.textContent.trim().split(/\s+/);
-    heroSub.innerHTML = words.map(w =>
-      `<span class="hw" style="opacity:0;display:inline-block;transform:translateY(8px);transition:opacity .7s,transform .7s">${w}</span>`
-    ).join(' ');
-    setTimeout(() => {
-      heroSub.querySelectorAll('.hw').forEach((w, i) => {
-        setTimeout(() => { w.style.opacity = '1'; w.style.transform = 'translateY(0)'; }, i * 100);
-      });
-    }, 900);
-  }
-
-  // ─── EYEBROW SLIDE IN FROM LEFT ────────────────────────
-  document.querySelectorAll('.eyebrow').forEach(el => {
-    el.classList.add('eyebrow--reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('is-revealed');
-        obs.unobserve(e.target);
-      });
-    }, { threshold: 0.5 });
-    obs.observe(el);
-  });
-
-  // ─── SERVICE CARD NUMBERS count 00→01/02/03 ────────────
-  document.querySelectorAll('.service-card__num[data-num]').forEach(el => {
-    const target = parseInt(el.dataset.num, 10);
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting || e.target.dataset.counted) return;
-        e.target.dataset.counted = '1';
-        const start = performance.now();
-        (function tick(now) {
-          const p = Math.min((now - start) / 400, 1);
-          const v = Math.round(target * (1 - Math.pow(1 - p, 3)));
-          e.target.textContent = String(v).padStart(2, '0');
-          if (p < 1) requestAnimationFrame(tick);
-        })(start);
-      });
-    }, { threshold: 0.5 });
-    obs.observe(el);
-  });
-
-  // ─── ABOUT PULL QUOTE — word reveal ────────────────────
-  const pullQuote = document.querySelector('.about__pullquote');
-  if (pullQuote) {
-    const words = pullQuote.textContent.trim().split(/\s+/);
-    pullQuote.innerHTML = words
-      .map(w => `<span class="pq-word" style="opacity:0;transition:opacity .35s">${w}</span>`)
-      .join(' ');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.querySelectorAll('.pq-word').forEach((w, i) => setTimeout(() => { w.style.opacity = '1'; }, i * 90));
-        obs.unobserve(e.target);
-      });
-    }, { threshold: 0.3 });
-    obs.observe(pullQuote);
   }
 
   // ─── PROJECTS — clickable tabs ─────────────────────────
