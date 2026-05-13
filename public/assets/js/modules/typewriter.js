@@ -9,6 +9,12 @@
 
   var full = el.getAttribute('aria-label') || el.textContent.trim();
 
+  // Honour prefers-reduced-motion: render the full text immediately, no typing
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.setAttribute('aria-label', full);
+    return;
+  }
+
   // Découper le innerHTML en segments { tag: null|'em', text: '...' }
   var segments = [];
   el.childNodes.forEach(function (node) {

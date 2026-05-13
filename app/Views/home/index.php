@@ -14,16 +14,6 @@ $projects ??= [];
 $stack    ??= [];
 $lang = $_SESSION['lang'] ?? 'fr';
 
-function tagColor(string $tag): string {
-    $tag = strtolower($tag);
-    if (str_contains($tag, 'php'))    return 'tag--blue';
-    if (str_contains($tag, 'python')) return 'tag--green';
-    if (str_contains($tag, 'js') || str_contains($tag, 'javascript')) return 'tag--amber';
-    if (str_contains($tag, 'ia') || str_contains($tag, 'llm') || str_contains($tag, 'ai') || str_contains($tag, 'claude') || str_contains($tag, 'openai')) return 'tag--purple';
-    if (str_contains($tag, 'scss') || str_contains($tag, 'css')) return 'tag--coral';
-    return 'tag--gray';
-}
-
 $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 ?>
 
@@ -39,9 +29,8 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
         <p class="hero__sub" id="heroSub"><?= $t('hero.sub') ?></p>
         <div class="hero__actions">
-            <a href="<?= $base ?>/projets" class="btn btn--dark"><?= $t('hero.cta_projects') ?></a>
+            <a href="<?= $base ?>/case-studies/amanea-voyages" class="btn btn--dark"><?= $t('hero.cta_case') ?></a>
             <a href="<?= $base ?>/contact" class="btn btn--outline"><?= $t('hero.cta_contact') ?></a>
-            <a href="<?= $base ?>/case-studies/amanea-voyages" class="btn btn--ghost"><?= $t('hero.cta_case') ?></a>
         </div>
         <div class="hero__tags">
             <span class="tag tag--blue">PHP</span>
@@ -62,9 +51,6 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
             <span class="hero__nameplate-name">Sonia Habibi</span>
             <span class="hero__nameplate-role"><?= $t('hero.nameplate.role') ?></span>
         </div>
-    </div>
-    <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
-        <div class="scroll-indicator__line"></div>
     </div>
 </section>
 
@@ -113,31 +99,6 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     </ol>
 </section>
 
-<!-- ─── MARQUEE stack — entre Stack et Travaux ────────────── -->
-<div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-        <span>PHP</span>
-        <span>Python</span>
-        <span>JavaScript</span>
-        <span>MySQL</span>
-        <span>MVC</span>
-        <span>LLM APIs</span>
-        <span>SCSS</span>
-        <span>Full-Stack</span>
-        <span>Remote</span>
-        <span>Code en prod</span>
-        <span>PHP</span>
-        <span>Python</span>
-        <span>JavaScript</span>
-        <span>MySQL</span>
-        <span>MVC</span>
-        <span>LLM APIs</span>
-        <span>SCSS</span>
-        <span>Full-Stack</span>
-        <span>Remote</span>
-        <span>Code en prod</span>
-    </div>
-</div>
 
 <!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
 <section class="section home-projects" id="projects">

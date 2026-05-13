@@ -11,19 +11,30 @@
   @include mobile { padding: var(--space-section-sm) 20px; }
 }
 
-// Filigrane numéro géant — quasi-invisible
+// Incipit numéroté — assumé, visible, éditorial
 .stack__bigNum {
   position: absolute;
-  top: 32px;
-  right: 60px;
+  top: 24px;
+  left: 24px;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(140px, 18vw, 240px);
+  font-size: clamp(48px, 6vw, 72px);
   line-height: 1;
-  color: var(--bg-subtle);
+  color: var(--text-3);
   z-index: 0;
   pointer-events: none;
   user-select: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--text-3);
+  }
 }
 
 .stack__head {
@@ -299,7 +310,7 @@
     width: 16px;
   }
 
-  .stack__bigNum { font-size: 160px; top: 12px; right: 20px; }
+  .stack__bigNum { font-size: 48px; top: 16px; left: 16px; }
   .card__title   { font-size: 26px; }
 }
 

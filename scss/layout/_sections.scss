@@ -66,28 +66,44 @@
     &.is-underlined::after { width: 64px; }
   }
 
-  // Watermark numéro — même style que stack__bigNum
+  // Incipit numéroté — assumé, visible, éditorial
   &__watermark {
     position: absolute;
-    top: 0;
+    top: 24px;
+    left: 24px;
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(140px, 18vw, 240px);
+    font-size: clamp(48px, 6vw, 72px);
     line-height: 1;
-    color: var(--bg-subtle);
+    color: var(--text-3);
     pointer-events: none;
     user-select: none;
     z-index: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 1px;
+      background: var(--text-3);
+    }
   }
 }
 
-// 01 services + 05 about → gauche
-.section.services .section__watermark,
-.section.about    .section__watermark { left: 60px; right: auto; }
-
-// 03 projects + 04 method → droite
+// 03 projects + 04 method → droite (les sections gauche restent à left: 24px par défaut)
 .section.projects .section__watermark,
-.section.method   .section__watermark { right: 60px; left: auto; }
+.section.method   .section__watermark {
+  left: auto;
+  right: 24px;
+
+  &::after {
+    left: auto;
+    right: calc(100% + 12px);
+  }
+}
 
 .section.faq { background: var(--bg-soft); }
