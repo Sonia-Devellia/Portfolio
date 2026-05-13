@@ -14,16 +14,6 @@ $projects ??= [];
 $stack    ??= [];
 $lang = $_SESSION['lang'] ?? 'fr';
 
-function tagColor(string $tag): string {
-    $tag = strtolower($tag);
-    if (str_contains($tag, 'php'))    return 'tag--blue';
-    if (str_contains($tag, 'python')) return 'tag--green';
-    if (str_contains($tag, 'js') || str_contains($tag, 'javascript')) return 'tag--amber';
-    if (str_contains($tag, 'ia') || str_contains($tag, 'llm') || str_contains($tag, 'ai') || str_contains($tag, 'claude') || str_contains($tag, 'openai')) return 'tag--purple';
-    if (str_contains($tag, 'scss') || str_contains($tag, 'css')) return 'tag--coral';
-    return 'tag--gray';
-}
-
 $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 ?>
 
@@ -62,9 +52,6 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
             <span class="hero__nameplate-name">Sonia Habibi</span>
             <span class="hero__nameplate-role"><?= $t('hero.nameplate.role') ?></span>
         </div>
-    </div>
-    <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
-        <div class="scroll-indicator__line"></div>
     </div>
 </section>
 

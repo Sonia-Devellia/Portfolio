@@ -192,12 +192,4 @@
     tick(); setInterval(tick, 1000);
   }
 
-  // ─── SCROLL INDICATOR ──────────────────────────────────
-  const scrollIndicator = document.getElementById('scrollIndicator');
-  if (scrollIndicator) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 80) scrollIndicator.classList.add('is-hidden');
-    }, { passive: true, once: true });
-  }
-
 }());
