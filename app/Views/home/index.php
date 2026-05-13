@@ -100,31 +100,6 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     </ol>
 </section>
 
-<!-- ─── MARQUEE stack — entre Stack et Travaux ────────────── -->
-<div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-        <span>PHP</span>
-        <span>Python</span>
-        <span>JavaScript</span>
-        <span>MySQL</span>
-        <span>MVC</span>
-        <span>LLM APIs</span>
-        <span>SCSS</span>
-        <span>Full-Stack</span>
-        <span>Remote</span>
-        <span>Code en prod</span>
-        <span>PHP</span>
-        <span>Python</span>
-        <span>JavaScript</span>
-        <span>MySQL</span>
-        <span>MVC</span>
-        <span>LLM APIs</span>
-        <span>SCSS</span>
-        <span>Full-Stack</span>
-        <span>Remote</span>
-        <span>Code en prod</span>
-    </div>
-</div>
 
 <!-- ─── TRAVAUX (2 réalisations featured) ────────────────── -->
 <section class="section home-projects" id="projects">
