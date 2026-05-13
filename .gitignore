@@ -30,3 +30,4 @@ tmp/
 
 # Node (si jamais)
 node_modules/
+*.css.map

@@ -1,0 +1,64 @@
+@use '../abstracts/mixins' as *;
+
+// ─── MacBook frame — visuels desktop ─────────────────────────────────────────
+
+.frame-macbook {
+  position: relative;
+  background: #1a1a1a;
+  padding: 14px 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 30px 60px -20px rgba(17, 17, 16, 0.15);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #444;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
+  }
+
+  &--sm {
+    padding: 10px 10px 13px;
+    border-radius: 8px;
+
+    &::before { width: 4px; height: 4px; top: 4px; }
+  }
+}
+
+// ─── iPhone frame — visuels mobiles ──────────────────────────────────────────
+
+.frame-iphone {
+  background: #111110;
+  padding: 10px;
+  border-radius: 48px;
+  box-shadow: 0 30px 60px -20px rgba(17, 17, 16, 0.18);
+  max-width: 280px;
+  margin: 0 auto;
+
+  img {
+    display: block;
+    width: 100%;
+    border-radius: 38px;
+  }
+
+  &--sm {
+    max-width: 200px;
+    padding: 8px;
+    border-radius: 36px;
+
+    img { border-radius: 28px; }
+  }
+}
