@@ -54,7 +54,41 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 </section>
 
 <!-- ─── SERVICES ────────────────────────────────────────── -->
-<?php include __DIR__ . '/_services.php'; ?>
+<section class="section services" id="services">
+    <span class="section__watermark" aria-hidden="true">01</span>
+    <div class="section__inner">
+
+        <div class="section__head">
+            <div>
+                <p class="eyebrow"><?= $t('services.eyebrow') ?></p>
+                <h2 class="section__title"><?= $tRaw('services.title') ?></h2>
+            </div>
+        </div>
+        <p class="section__sub"><?= $t('services.sub') ?></p>
+
+        <div class="services__pillars">
+
+            <?php foreach (['p1', 'p2'] as $p): ?>
+            <article class="pillar pillar--<?= $p ?>">
+                <header class="pillar__head">
+                    <p class="pillar__num"><?= $t("services.{$p}.num") ?></p>
+                    <h3 class="pillar__title"><?= $t("services.{$p}.title") ?></h3>
+                    <p class="pillar__sub"><?= $t("services.{$p}.sub") ?></p>
+                </header>
+                <ul class="pillar__list" role="list">
+                    <?php foreach (['s1', 's2', 's3', 's4'] as $s): ?>
+                    <li class="pillar__item">
+                        <strong class="pillar__item-title"><?= $t("services.{$p}.{$s}.t") ?></strong>
+                        <span class="pillar__item-desc"><?= $t("services.{$p}.{$s}.d") ?></span>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </article>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+</section>
 
 <!-- ─── STACK TECHNIQUE ──────────────────────────────────── -->
 <section class="stack" id="stack">
@@ -131,7 +165,25 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     </div>
 </section>
 
-<?php include __DIR__ . '/_method.php'; ?>
+<section class="section method" id="method">
+    <span class="section__watermark" aria-hidden="true">04</span>
+    <div class="section__inner">
+        <header class="method__head">
+            <p class="eyebrow"><?= $t('method.eyebrow') ?></p>
+            <h2 class="section__title"><?= $tRaw('method.title') ?></h2>
+            <p class="section__sub"><?= $t('method.sub') ?></p>
+        </header>
+        <ol class="method__steps">
+            <?php foreach (['s1', 's2', 's3', 's4'] as $s): ?>
+            <li class="method__step">
+                <span class="method__num"><?= $t("method.{$s}.num") ?></span>
+                <h3 class="method__step-title"><?= $t("method.{$s}.t") ?></h3>
+                <p class="method__step-body"><?= $t("method.{$s}.d") ?></p>
+            </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+</section>
 
 <!-- ─── À PROPOS ─────────────────────────────────────────── -->
 <section class="section about" id="about">
@@ -156,7 +208,6 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
                 <p><?= $t('about.p1') ?></p>
                 <p><?= $t('about.p2') ?></p>
                 <blockquote class="about__pullquote"><?= $t('about.pullquote') ?></blockquote>
-                <a href="#method" class="btn btn--outline btn--sm"><?= $t('about.cta') ?></a>
             </div>
             <div class="about__values">
                 <p class="eyebrow"><?= $t('about.values.eyebrow') ?></p>

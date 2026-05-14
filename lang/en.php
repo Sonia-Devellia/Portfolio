@@ -241,10 +241,11 @@ return [
     // ─── Tech stack section ───────────────────────────────────────────────────
     'stack.eyebrow'              => '— Tech stack · tooling',
     'stack.title'                => 'Server to <em>screen</em>,<br>I write it all.',
-    'stack.lede'                 => 'Not a logo wall. Three families of tools I <u>actually use</u>, daily, on production projects.',
+    'stack.lede'                 => 'Not a logo wall. Four families of tools I <u>actually use</u>, daily, on production projects.',
     'stack.role.backend'         => '— Backend',
     'stack.role.frontend'        => '— Frontend',
     'stack.role.tooling'         => '— Tools & practices',
+    'stack.role.integration'     => '— Integration & no-code',
     'stack.card.backend.title'   => 'Building the <em>logic</em>.',
     'stack.card.backend.sub'     => 'Custom MVC architectures, clean APIs, databases designed to last. No heavy framework when the project does not call for it.',
     'stack.card.backend.foot'    => '<strong>Seen in production at:</strong> Amanea Voyages, JS Entreprise.',
@@ -254,4 +255,7 @@ return [
     'stack.card.tooling.title'   => 'Ship <em>cleanly</em>, maintain <em>long-term</em>.',
     'stack.card.tooling.sub'     => 'Tooling that makes the code visible to others and to future-me. Disciplined Git, reproducible deployments, minimal observability.',
     'stack.card.tooling.foot'    => '<strong>Stance:</strong> AI is a tool, not a substitute. I code and debug before it does.',
+    'stack.card.integration.title' => 'Connect, automate, <em>ship fast.</em>',
+    'stack.card.integration.sub'   => 'CMS, e-commerce and no-code automation when it\'s the right answer. Shopify, WordPress, Webflow or an AI agent — whatever creates the most value.',
+    'stack.card.integration.foot'  => 'The right tool for the right problem — not the most technical, the most effective.',
 ];
