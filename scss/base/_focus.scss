@@ -1,7 +1,8 @@
 // ─── Focus visible ────────────────────────────────────────────────────────────
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--text);
   outline-offset: 3px;
   border-radius: 2px;
+  box-shadow: 0 0 0 3px var(--bg-subtle);
 }
