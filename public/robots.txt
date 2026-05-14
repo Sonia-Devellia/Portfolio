@@ -3,6 +3,8 @@ Allow: /
 Disallow: /admin/
 Disallow: /admin/login
 Disallow: /lang/
+Disallow: /health
+Disallow: /csp-report
 
 # AI crawlers — explicitly allowed for search and GEO indexing
 User-agent: GPTBot

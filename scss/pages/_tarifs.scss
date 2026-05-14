@@ -302,6 +302,141 @@
         text-transform: uppercase;
         margin-right: 4px;
     }
+
+    &__refs {
+        margin-top: 32px;
+        padding: 20px 22px;
+        background: var(--bg-soft);
+        border-left: 3px solid var(--text);
+        border-radius: var(--radius-sm);
+    }
+
+    &__refs-label {
+        font-size: var(--fs-mini);
+        font-weight: 500;
+        color: var(--text-3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin: 0 0 10px 0;
+    }
+
+    &__refs-body {
+        font-size: 14px;
+        color: var(--text-2);
+        line-height: 1.7;
+        margin: 0 0 12px 0;
+    }
+
+    &__refs-link {
+        display: inline-block;
+        font-size: 13px;
+        color: var(--text);
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover { color: var(--text-2); }
+    }
+}
+
+// ─── Zones d'intervention — section dédiée dans /tarifs ───────────────────
+.zones-section {
+    &__intro {
+        font-size: 15px;
+        color: var(--text-2);
+        max-width: 720px;
+        line-height: 1.7;
+        margin-bottom: 32px;
+    }
+}
+
+.zones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+
+    &__group {
+        padding: 16px 18px;
+        background: var(--bg-soft);
+        border-radius: var(--radius-sm);
+    }
+
+    &__zone-name {
+        display: block;
+        font-size: var(--fs-mini);
+        font-weight: 500;
+        color: var(--text-3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    &__cities {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        a {
+            font-size: 14px;
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.15s;
+
+            &:hover { color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; }
+        }
+    }
+}
+
+// ─── Footer — maillage SEO villes phares ──────────────────────────────────
+.footer__zones {
+    max-width: var(--container);
+    margin: 24px auto 0;
+    padding: 16px 24px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-3);
+
+    &-label {
+        font-size: var(--fs-mini);
+        font-weight: 500;
+        color: var(--text-3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-right: 8px;
+    }
+
+    a {
+        color: var(--text-2);
+        text-decoration: none;
+        transition: color 0.15s;
+
+        &:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+    }
+}
+
+// ─── Contact — mention zones d'intervention ───────────────────────────────
+.contact-page__zones {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.7;
+
+    a {
+        color: var(--text-2);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover { color: var(--text); }
+    }
 }
 
 .geo-services {
