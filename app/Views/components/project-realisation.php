@@ -4,33 +4,22 @@
  *
  * @var array    $project   Entrée du tableau projects.php
  * @var callable $t         Helper de traduction
- * @var string   $base      URL de base
  * @var bool     $reversed  Alterner image/texte
  */
-$reversed = $reversed ?? false;
-$base     = $base     ?? '';
+$reversed ??= false;
+
+$frameClass = $project['frame'] === 'desktop' ? 'frame-macbook' : 'frame-iphone';
+$imgAttrs   = ['loading' => 'lazy', 'decoding' => 'async'];
 ?>
 <article class="realisation <?= $reversed ? 'realisation--reversed' : '' ?>">
     <div class="realisation__visual">
-        <?php if ($project['frame'] === 'desktop'): ?>
-        <div class="frame-macbook">
-            <img src="<?= $base . htmlspecialchars($project['image']) ?>"
-                 alt="<?= $t($project['title_key']) ?>"
-                 loading="lazy"
-                 decoding="async">
+        <div class="<?= $frameClass ?>">
+            <?= picture($project['image'], $t($project['title_key']), null, null, $imgAttrs) ?>
         </div>
-        <?php else: ?>
-        <div class="frame-iphone">
-            <img src="<?= $base . htmlspecialchars($project['image']) ?>"
-                 alt="<?= $t($project['title_key']) ?>"
-                 loading="lazy"
-                 decoding="async">
-        </div>
-        <?php endif; ?>
     </div>
     <div class="realisation__content">
         <div class="realisation__eyebrow">
-            <span><?= $t('projects.kind.realisation') ?> · <?= htmlspecialchars($project['year']) ?></span>
+            <span><?= $t('projects.kind.realisation') ?> · <?= e($project['year']) ?></span>
             <span><?= $t($project['type_key']) ?></span>
         </div>
         <h2 class="realisation__title"><?= $t($project['title_key']) ?></h2>
@@ -40,7 +29,7 @@ $base     = $base     ?? '';
         <?php endif; ?>
         <div class="realisation__stack">
             <?php foreach ($project['stack'] as $tech): ?>
-            <span><?= htmlspecialchars($tech) ?></span>
+            <span><?= e($tech) ?></span>
             <?php endforeach; ?>
         </div>
     </div>

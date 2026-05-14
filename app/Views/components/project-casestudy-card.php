@@ -4,37 +4,25 @@
  *
  * @var array    $project   Entrée du tableau projects.php
  * @var callable $t         Helper de traduction
- * @var string   $base      URL de base
  */
-$base = $base ?? '';
+$frameClass = $project['frame'] === 'desktop' ? 'frame-macbook frame-macbook--sm' : 'frame-iphone frame-iphone--sm';
+$imgAttrs   = ['loading' => 'lazy', 'decoding' => 'async'];
 ?>
 <article class="casestudy-card">
     <div class="casestudy-card__visual">
-        <?php if ($project['frame'] === 'desktop'): ?>
-        <div class="frame-macbook frame-macbook--sm">
-            <img src="<?= $base . htmlspecialchars($project['image']) ?>"
-                 alt="<?= $t($project['title_key']) ?>"
-                 loading="lazy"
-                 decoding="async">
+        <div class="<?= $frameClass ?>">
+            <?= picture($project['image'], $t($project['title_key']), null, null, $imgAttrs) ?>
         </div>
-        <?php else: ?>
-        <div class="frame-iphone frame-iphone--sm">
-            <img src="<?= $base . htmlspecialchars($project['image']) ?>"
-                 alt="<?= $t($project['title_key']) ?>"
-                 loading="lazy"
-                 decoding="async">
-        </div>
-        <?php endif; ?>
     </div>
     <div class="casestudy-card__eyebrow">
-        <span><?= $t('projects.kind.casestudy') ?> · <?= htmlspecialchars($project['year']) ?></span>
+        <span><?= $t('projects.kind.casestudy') ?> · <?= e($project['year']) ?></span>
         <span><?= $t($project['type_key']) ?></span>
     </div>
     <h3 class="casestudy-card__title"><?= $t($project['title_key']) ?></h3>
     <p class="casestudy-card__pitch"><?= $t($project['pitch_key']) ?></p>
     <div class="casestudy-card__stack">
         <?php foreach ($project['stack'] as $tech): ?>
-        <span><?= htmlspecialchars($tech) ?></span>
+        <span><?= e($tech) ?></span>
         <?php endforeach; ?>
     </div>
 </article>

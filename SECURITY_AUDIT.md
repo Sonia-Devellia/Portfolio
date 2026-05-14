@@ -128,3 +128,54 @@ MAIL_TO=sonia@sonia-habibi.dev
 1. Envoyer un test via le formulaire de contact
 2. Tester avec [mail-tester.com](https://mail-tester.com) : score ≥ 9/10 attendu sur OVH avec SPF + DKIM auto
 3. Vérifier les logs : `tail -f storage/logs/app.log` doit afficher `[INFO] contact_sent` au lieu de `[ERROR] contact_mail_failed`
+
+## Images responsive — AVIF + WebP via `<picture>`
+
+### Pourquoi
+
+- AVIF est ~25-30% plus léger que WebP à qualité équivalente
+- Supporté par tous les navigateurs modernes (Chrome, Firefox, Safari 16+) → ~95% du trafic
+- Le `<picture>` dégrade gracieusement : si AVIF non supporté, le navigateur prend le WebP fallback
+
+### Comment ça marche dans le code
+
+Le helper `picture()` dans `core/helpers.php` détecte automatiquement les variants présents
+à côté de chaque image WebP :
+
+- `sonia.webp` + `sonia.avif` (s'il existe) → `<source type="image/avif">`
+- `sonia.webp` + `sonia@2x.webp` (s'il existe) → `srcset="... 1x, ... 2x"` Retina
+- `sonia.webp` + `sonia@2x.avif` (s'il existe) → idem pour AVIF Retina
+
+**Pas d'erreur si une variante manque** — le helper omet juste la source correspondante.
+
+### Générer les variantes AVIF
+
+```bash
+# Installation outils (macOS)
+brew install libavif
+
+# Génération automatique de toutes les variantes manquantes
+./bin/build-images.sh
+```
+
+Le script :
+- Détecte chaque `.webp` / `.png` / `.jpg` dans `public/assets/images/` et `public/assets/img/`
+- Génère un `.avif` à côté (qualité 70, vitesse 6 — bon compromis)
+- Skip les fichiers déjà à jour (comparaison mtime)
+- Fallback sur ImageMagick (`magick`) si `avifenc` indisponible
+
+### Vérification gain perf
+
+1. Avant : `find public/assets/images -name "*.webp" | xargs du -ch`
+2. Après : ajouter `*.avif` à la commande pour voir le poids cumulé
+3. Lighthouse : score Performance attendu en hausse de 5-10 points, surtout LCP
+4. PageSpeed Insights : voir le détail "Use modern image formats" passer au vert
+
+### Variantes Retina (phase 2, plus tard)
+
+Si tu veux pousser plus loin, upload tes images sources à 2× la taille d'affichage
+(ex. pour `sonia` affichée à 480×560, fournis `sonia@2x.webp` à 960×1120).
+Le helper l'utilisera automatiquement.
+
+Pas urgent : sans `@2x`, le navigateur upscale le 1× sur Retina (un peu flou)
+mais ça reste WebP/AVIF donc déjà très optimisé.

@@ -95,7 +95,13 @@ $jsonLd = static fn(array $data): string => json_encode(
     <meta name="twitter:description" content="<?= e($pageDesc) ?>">
     <meta name="twitter:image"       content="<?= e($pageImg) ?>">
 
-    <link rel="preload" href="<?= $base ?>/assets/images/sonia.webp" as="image" fetchpriority="high">
+    <?php
+    // Preload du LCP — préfère AVIF si disponible, sinon WebP.
+    $heroAvif = ROOT_PATH . '/public/assets/images/sonia.avif';
+    $heroSrc  = is_file($heroAvif) ? '/assets/images/sonia.avif' : '/assets/images/sonia.webp';
+    $heroType = is_file($heroAvif) ? 'image/avif' : 'image/webp';
+    ?>
+    <link rel="preload" href="<?= $base . $heroSrc ?>" as="image" type="<?= $heroType ?>" fetchpriority="high">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

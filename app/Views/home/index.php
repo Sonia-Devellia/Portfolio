@@ -40,13 +40,12 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
         </div>
     </div>
     <div class="hero__photo">
-        <img src="<?= $base ?>/assets/images/sonia.webp"
-             alt="<?= $t('hero.img.alt') ?>"
-             class="hero__img"
-             width="480" height="560"
-             loading="eager"
-             fetchpriority="high"
-             decoding="sync">
+        <?= picture('/assets/images/sonia.webp', $t('hero.img.alt'), 480, 560, [
+            'class'         => 'hero__img',
+            'loading'       => 'eager',
+            'fetchpriority' => 'high',
+            'decoding'      => 'sync',
+        ]) ?>
         <div class="hero__nameplate">
             <span class="hero__nameplate-name">Sonia Habibi</span>
             <span class="hero__nameplate-role"><?= $t('hero.nameplate.role') ?></span>
@@ -118,10 +117,10 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
             <?php foreach ($projects as $i => $project): ?>
             <article class="home-project-card">
                 <div class="frame-macbook">
-                    <img src="<?= $base . htmlspecialchars($project['image']) ?>"
-                         alt="<?= $t($project['title_key']) ?>"
-                         loading="<?= $i === 0 ? 'eager' : 'lazy' ?>"
-                         decoding="<?= $i === 0 ? 'sync' : 'async' ?>">
+                    <?= picture($project['image'], $t($project['title_key']), null, null, [
+                        'loading'  => $i === 0 ? 'eager' : 'lazy',
+                        'decoding' => $i === 0 ? 'sync' : 'async',
+                    ]) ?>
                 </div>
                 <div class="home-project-card__eyebrow">
                     <span><?= $t('projects.kind.realisation') ?> · <?= htmlspecialchars($project['year']) ?></span>
@@ -148,11 +147,10 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
     <div class="section__inner">
         <div class="about__portrait" aria-hidden="true">
             <div class="about__portrait-photo">
-                <img src="<?= $base ?>/assets/images/sonia2.webp"
-                     alt=""
-                     width="220" height="220"
-                     loading="lazy"
-                     decoding="async">
+                <?= picture('/assets/images/sonia2.webp', '', 220, 220, [
+                    'loading'  => 'lazy',
+                    'decoding' => 'async',
+                ]) ?>
             </div>
             <div class="about__portrait-nameplate">
                 <span>Sonia Habibi</span>
