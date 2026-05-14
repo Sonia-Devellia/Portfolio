@@ -137,16 +137,19 @@
 .home-projects__header { margin-bottom: 48px; }
 
 .home-projects__title {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-size: clamp(28px, 3.5vw, 40px);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   color: var(--text);
   margin: 8px 0 10px;
 
-  em { font-style: normal; }
+  em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+  }
 }
 
 .home-projects__lede {
@@ -176,13 +179,13 @@
   }
 
   &__title {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 20px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 18px;
     color: var(--text);
     margin-bottom: 6px;
-    line-height: 1.2;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   &__pitch {

@@ -96,9 +96,9 @@
   .btn { margin-top: 16px; }
 }
 
-// Pull-quote — citation courte, accent serif italic
+// Pull-quote — citation courte
 .about__pullquote {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-style: italic;
   font-size: clamp(16px, 1.6vw, 19px);
   line-height: 1.45;
