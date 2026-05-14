@@ -117,9 +117,9 @@
     }
 
     &--muted {
-      color: var(--text-3);
+      color: var(--text-2);
       font-weight: 400;
-      &:hover { color: var(--text-3); transform: none; }
+      &:hover { color: var(--text-2); transform: none; }
     }
   }
 }
@@ -154,7 +154,7 @@
 
 .home-projects__lede {
   font-size: 14px;
-  color: var(--text-3);
+  color: var(--text-2);
 }
 
 .home-projects__grid {
@@ -174,7 +174,7 @@
     font-size: var(--fs-mini);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--text-2);
     margin: 16px 0 8px;
   }
 
