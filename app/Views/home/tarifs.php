@@ -126,31 +126,34 @@ $isFr = $lang === 'fr';
                 </a>
             </article>
 
-            <!-- ── OPTION 3 : CDI MI-TEMPS ── -->
-            <article class="tarif-card" id="cdi-mi-temps">
-                <p class="tarif-card__type"><?= $isFr ? 'CDI mi-temps — 50 %' : 'Part-time CDI — 50%' ?></p>
+            <!-- ── OPTION 5 : STAGE ── -->
+            <article class="tarif-card" id="stage">
+                <div class="tarif-card__badge">
+                    <span class="tag tag--green"><?= $isFr ? 'Remote & Bretagne' : 'Remote & Brittany' ?></span>
+                </div>
+                <p class="tarif-card__type"><?= $isFr ? 'Stage — convention obligatoire' : 'Internship — agreement required' ?></p>
                 <div class="tarif-card__price">
-                    <span class="tarif-card__amount"><?= $isFr ? 'Sur demande' : 'On request' ?></span>
-                    <span class="tarif-card__unit"><?= $isFr ? '17h30 / semaine' : '17h30 / week' ?></span>
+                    <span class="tarif-card__amount"><?= $isFr ? '6 mois min.' : '6 months min.' ?></span>
+                    <span class="tarif-card__unit"><?= $isFr ? 'temps plein' : 'full time' ?></span>
                 </div>
                 <p class="tarif-card__forfait">
-                    <?= $isFr ? 'Remote 100 % · Jours dédiés à définir ensemble' : '100% remote · Dedicated days to define together' ?>
+                    <?= $isFr ? 'Remote ou présentiel Bretagne · Convention de stage requise' : 'Remote or on-site Brittany · Internship agreement required' ?>
                 </p>
                 <ul class="tarif-card__list">
-                    <li><?= $isFr ? 'Engagement salarié sans monopole du temps' : 'Employed commitment without time monopoly' ?></li>
-                    <li><?= $isFr ? 'Idéal pour les budgets early-stage' : 'Ideal for early-stage budgets' ?></li>
-                    <li><?= $isFr ? 'Planning prévisible — jours fixes hebdomadaires' : 'Predictable schedule — fixed weekly days' ?></li>
-                    <li><?= $isFr ? 'Prétentions communiquées après premier échange' : 'Salary expectations shared after initial call' ?></li>
-                    <li><?= $isFr ? 'Cumul possible avec activité freelance hors temps dédié' : 'Cumulative freelance activity possible outside dedicated time' ?></li>
+                    <li><?= $isFr ? 'Participation à des projets réels et ambitieux' : 'Involvement in real, ambitious projects' ?></li>
+                    <li><?= $isFr ? 'Montée en compétences sur PHP, Python, IA appliquée' : 'Skills development in PHP, Python, applied AI' ?></li>
+                    <li><?= $isFr ? 'Échanges réguliers, feedback et suivi personnalisé' : 'Regular exchanges, feedback and personal mentoring' ?></li>
+                    <li><?= $isFr ? 'Environnement de travail structuré et bienveillant' : 'Structured and supportive work environment' ?></li>
+                    <li><?= $isFr ? 'Gratification légale en vigueur' : 'Statutory internship allowance applies' ?></li>
                 </ul>
                 <div class="tarif-card__ideal">
                     <strong><?= $isFr ? 'Idéal pour :' : 'Ideal for:' ?></strong>
                     <?= $isFr
-                        ? 'Startups early-stage, fondateurs tech solos ayant besoin d\'un binôme senior sans coût full-time.'
-                        : 'Early-stage startups, solo tech founders needing a senior partner without full-time cost.' ?>
+                        ? 'Étudiant·e en développement web souhaitant progresser sur des projets concrets. Aussi ouvert aux startups et TPE/PME cherchant à former et intégrer un profil junior avec l\'encadrement d\'une développeuse senior.'
+                        : 'Web development students looking to grow on real projects. Also open to startups and SMBs wanting to train and integrate a junior profile under senior developer mentorship.' ?>
                 </div>
                 <a href="<?= $base ?>/contact" class="btn btn--outline btn--full">
-                    <?= $isFr ? 'En savoir plus →' : 'Learn more →' ?>
+                    <?= $isFr ? 'Me contacter →' : 'Get in touch →' ?>
                 </a>
             </article>
 
@@ -317,18 +320,21 @@ $isFr = $lang === 'fr';
         ?>
 
         <div class="zones-grid">
-            <?php foreach ($zones as $zoneName => $cities): ?>
-            <div class="zones-grid__group">
-                <span class="zones-grid__zone-name"><?= htmlspecialchars($zoneName) ?></span>
-                <ul class="zones-grid__cities">
+            <?php $idx = 0; foreach ($zones as $zoneName => $cities): ?>
+            <details class="zones-item" <?= $idx === 0 ? 'open' : '' ?>>
+                <summary class="zones-item__header">
+                    <span class="zones-item__name"><?= htmlspecialchars($zoneName) ?></span>
+                    <span class="zones-item__chev" aria-hidden="true">+</span>
+                </summary>
+                <ul class="zones-item__cities">
                     <?php foreach ($cities as $slug => $label): ?>
                     <li>
                         <a href="<?= $base ?>/dev-freelance/<?= $slug ?>"><?= htmlspecialchars($label) ?></a>
                     </li>
                     <?php endforeach; ?>
                 </ul>
-            </div>
-            <?php endforeach; ?>
+            </details>
+            <?php $idx++; endforeach; ?>
         </div>
     </div>
 </section>

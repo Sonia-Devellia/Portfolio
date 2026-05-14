@@ -351,41 +351,78 @@
 }
 
 .zones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    border-top: var(--rule-thin);
+}
 
-    &__group {
-        padding: 16px 18px;
-        background: var(--bg-soft);
-        border-radius: var(--radius-sm);
+.zones-item {
+    border-bottom: var(--rule-thin);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 20px;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        transition: background var(--dur-fast) var(--ease-edit);
+
+        &::-webkit-details-marker { display: none; }
+
+        @media (hover: hover) {
+            &:hover { background: var(--bg-soft); }
+        }
     }
 
-    &__zone-name {
-        display: block;
-        font-size: var(--fs-mini);
+    &__name {
+        flex: 1;
+        font-size: 14px;
         font-weight: 500;
-        color: var(--text-3);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-bottom: 10px;
+        color: var(--text);
+    }
+
+    &__chev {
+        font-size: 18px;
+        color: var(--text-2);
+        line-height: 1;
+        transition: transform var(--dur-med) var(--ease-edit), color var(--dur-fast) var(--ease-edit);
+        flex-shrink: 0;
+    }
+
+    &[open] &__chev {
+        transform: rotate(45deg);
+        color: var(--text);
+    }
+
+    &[open] &__header {
+        border-bottom: var(--rule-thin);
     }
 
     &__cities {
         list-style: none;
-        padding: 0;
+        padding: 12px 20px 16px;
         margin: 0;
         display: flex;
-        flex-direction: column;
-        gap: 4px;
+        flex-wrap: wrap;
+        gap: 4px 10px;
+
+        li { display: inline; }
 
         a {
             font-size: 14px;
             color: var(--text);
             text-decoration: none;
-            transition: color 0.15s;
+            border-bottom: 1px solid var(--border);
+            transition: border-color var(--dur-fast) var(--ease-edit), color var(--dur-fast) var(--ease-edit);
 
-            &:hover { color: var(--text-2); text-decoration: underline; text-underline-offset: 3px; }
+            @media (hover: hover) {
+                &:hover {
+                    color: var(--text-2);
+                    border-bottom-color: var(--border-md);
+                }
+            }
         }
     }
 }
