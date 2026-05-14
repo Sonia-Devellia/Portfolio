@@ -30,7 +30,6 @@ $schemaDesc = $isFr
     ? 'Développeuse full-stack freelance spécialisée PHP, Python, JavaScript et intégrations IA utiles.'
     : 'Freelance full-stack developer specialised in PHP, Python, JavaScript and useful AI integrations.';
 
-$cssV = @filemtime(ROOT_PATH . '/public/assets/css/main.css') ?: '1';
 
 $personSchema = [
     '@context' => 'https://schema.org',
@@ -101,7 +100,7 @@ $jsonLd = static fn(array $data): string => json_encode(
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $base ?>/assets/css/main.css?v=<?= $cssV ?>">
+    <link rel="stylesheet" href="<?= asset('/assets/css/main.css') ?>">
 
     <!-- JSON-LD -->
     <script type="application/ld+json"><?= $jsonLd($personSchema) ?></script>
@@ -184,13 +183,9 @@ $jsonLd = static fn(array $data): string => json_encode(
     </div>
 </footer>
 
-<?php
-$jsV = static fn(string $path): int|string =>
-    @filemtime(ROOT_PATH . '/public' . $path) ?: '1';
-?>
-<script src="<?= $base ?>/assets/js/modules/reveal.js?v=<?= $jsV('/assets/js/modules/reveal.js') ?>" defer></script>
-<script src="<?= $base ?>/assets/js/modules/typewriter.js?v=<?= $jsV('/assets/js/modules/typewriter.js') ?>" defer></script>
-<script src="<?= $base ?>/assets/js/main.js?v=<?= $jsV('/assets/js/main.js') ?>" defer></script>
+<script src="<?= asset('/assets/js/modules/reveal.js') ?>" defer></script>
+<script src="<?= asset('/assets/js/modules/typewriter.js') ?>" defer></script>
+<script src="<?= asset('/assets/js/main.js') ?>" defer></script>
 
 <?php foreach (($scripts ?? []) as $src): ?>
 <script src="<?= e($src) ?>" defer></script>

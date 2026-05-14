@@ -94,9 +94,8 @@
   }
 }
 
-// 03 projects + 04 method → droite (les sections gauche restent à left: 24px par défaut)
-.section.projects .section__watermark,
-.section.method   .section__watermark {
+// 04 method → droite (quinconce : 01 gauche, 02 droite, 03 gauche, 04 droite, 05 gauche)
+.section.method .section__watermark {
   left: auto;
   right: 24px;
 

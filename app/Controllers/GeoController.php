@@ -60,6 +60,10 @@ class GeoController extends Controller
         $cityLabel = $city['label'];
         $cityEn    = $city['lang_en'];
 
+        // Contexte local unique à la ville — évite le thin content
+        $contexts = require ROOT_PATH . '/app/Data/cities.php';
+        $context  = $contexts[$slug] ?? null;
+
         $title = $isFr
             ? "Développeuse Freelance PHP Python IA à {$cityLabel} — Sonia Habibi"
             : "Freelance PHP Python AI Developer in {$cityEn} — Sonia Habibi";
@@ -73,13 +77,14 @@ class GeoController extends Controller
             'metaDesc'         => $metaDesc,
             'canonical'        => "{$appUrl}/dev-freelance/{$slug}",
             'breadcrumbSchema' => $this->breadcrumbSchema($appUrl, $isFr, $cityLabel, $cityEn),
-            'extraSchemas'     => [$this->localBusinessSchema($appUrl, $isFr, $city, $slug, $metaDesc)],
+            'extraSchemas'     => [$this->localBusinessSchema($appUrl, $isFr, $city, $slug, $metaDesc, $context)],
             'city'             => $cityLabel,
             'cityEn'           => $cityEn,
             'region'           => $city['region'],
             'country'          => $city['country'],
             'slug'             => $slug,
             'isAbroad'         => $city['country'] !== 'France',
+            'context'          => $context,
         ]);
     }
 
@@ -104,9 +109,11 @@ class GeoController extends Controller
         ];
     }
 
-    private function localBusinessSchema(string $appUrl, bool $isFr, array $city, string $slug, string $metaDesc): array
+    private function localBusinessSchema(string $appUrl, bool $isFr, array $city, string $slug, string $metaDesc, ?array $context): array
     {
-        return [
+        $headline = $context[$isFr ? 'headline_fr' : 'headline_en'] ?? null;
+
+        $schema = [
             '@context' => 'https://schema.org',
             '@type'    => 'ProfessionalService',
             'name'     => $isFr
@@ -114,7 +121,7 @@ class GeoController extends Controller
                 : "Sonia Habibi — Freelance Developer in {$city['lang_en']}",
             'url'         => "{$appUrl}/dev-freelance/{$slug}",
             'image'       => "{$appUrl}/assets/images/sonia.webp",
-            'description' => $metaDesc,
+            'description' => $headline ?? $metaDesc,
             'provider'    => ['@id' => "{$appUrl}#sonia"],
             'areaServed'  => ['@type' => 'City', 'name' => $city['label']],
             'serviceType' => $isFr
@@ -129,5 +136,12 @@ class GeoController extends Controller
                 ],
             ],
         ];
+
+        // knowsAbout : varie par ville → différencie chaque page géo aux yeux de Google
+        if (!empty($context['sectors'])) {
+            $schema['knowsAbout'] = $context['sectors'];
+        }
+
+        return $schema;
     }
 }

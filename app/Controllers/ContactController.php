@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use Core\Controller;
 use App\Helpers\Logger;
+use App\Helpers\Mailer;
 
 class ContactController extends Controller
 {
@@ -48,7 +49,7 @@ class ContactController extends Controller
         // 1. CSRF
         if (!csrf_check()) {
             Logger::security('contact_csrf_rejected');
-            return $this->fail();
+            $this->fail(); return;
         }
 
         // 2. Honeypot : champ caché que seuls les bots remplissent
@@ -56,21 +57,21 @@ class ContactController extends Controller
             Logger::security('contact_honeypot_triggered');
             // On feinte le succès pour ne pas signaler le piège aux bots
             $_SESSION['contact_success'] = true;
-            return $this->redirect('/contact');
+            $this->redirect('/contact'); return;
         }
 
         // 3. Timing : un humain met >3s à remplir, un bot envoie en <1s
         $loadedAt = $_SESSION['contact_form_loaded_at'] ?? 0;
         if ($loadedAt > 0 && (time() - $loadedAt) < self::MIN_FORM_DELAY_S) {
             Logger::security('contact_too_fast', ['elapsed' => time() - $loadedAt]);
-            return $this->fail();
+            $this->fail(); return;
         }
 
         // 4. Cooldown : une soumission max par minute par session
         $lastSubmit = $_SESSION['contact_last_submit'] ?? 0;
         if (time() - $lastSubmit < self::SUBMIT_COOLDOWN_S) {
             Logger::security('contact_cooldown', ['since' => time() - $lastSubmit]);
-            return $this->fail();
+            $this->fail(); return;
         }
 
         // 5. Validation
@@ -80,7 +81,7 @@ class ContactController extends Controller
         $type    = $this->validProjectType($_POST['project_type'] ?? '');
 
         if (!$this->validInput($name, $email, $message)) {
-            return $this->fail();
+            $this->fail(); return;
         }
 
         // 6. Anti-CRLF (header injection)
@@ -89,7 +90,7 @@ class ContactController extends Controller
                 'name'  => mb_substr($name, 0, 80),
                 'email' => mb_substr($email, 0, 80),
             ]);
-            return $this->fail();
+            $this->fail(); return;
         }
 
         // 7. Envoi
@@ -138,22 +139,14 @@ class ContactController extends Controller
         $to = $_ENV['MAIL_TO'] ?? '';
         if ($to === '') return false;
 
-        $subject = '=?UTF-8?B?' . base64_encode("Portfolio — Message de {$name}") . '?=';
+        $subject = "Portfolio — Message de {$name}";
 
         $body = "Nom : {$name}\n"
               . "Email : {$email}\n"
               . "Type : {$type}\n\n"
               . "Message :\n{$message}\n";
 
-        $from    = $_ENV['MAIL_FROM'] ?? 'noreply@sonia-habibi.dev';
-        $headers = implode("\r\n", [
-            "From: {$from}",
-            "Reply-To: {$email}",
-            'Content-Type: text/plain; charset=UTF-8',
-            'X-Mailer: Portfolio-Form',
-        ]);
-
-        return @mail($to, $subject, $body, $headers);
+        return Mailer::send($to, $subject, $body, replyTo: $email, fromName: 'Portfolio Sonia Habibi');
     }
 
     private function fail(): void

@@ -65,20 +65,22 @@ if ($isProd) {
     header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
 }
 
-header(
-    "Content-Security-Policy: "
-    . "default-src 'self'; "
-    . "script-src 'self'; "
-    . "style-src 'self' https://fonts.googleapis.com; "
-    . "font-src 'self' https://fonts.gstatic.com; "
-    . "img-src 'self' data: https:; "
-    . "connect-src 'self'; "
-    . "frame-ancestors 'self'; "
-    . "form-action 'self'; "
-    . "base-uri 'self'; "
-    . "object-src 'none'; "
-    . "upgrade-insecure-requests"
-);
+$csp = "default-src 'self'; "
+     . "script-src 'self'; "
+     . "style-src 'self' https://fonts.googleapis.com; "
+     . "font-src 'self' https://fonts.gstatic.com; "
+     . "img-src 'self' data: https:; "
+     . "connect-src 'self'; "
+     . "frame-ancestors 'self'; "
+     . "form-action 'self'; "
+     . "base-uri 'self'; "
+     . "object-src 'none'";
+
+if ($isProd) {
+    $csp .= "; upgrade-insecure-requests";
+}
+
+header("Content-Security-Policy: " . $csp);
 
 // ─── Langue par défaut ──────────────────────────────────────────────────────
 $_SESSION['lang'] ??= $_ENV['DEFAULT_LANG'] ?? 'fr';

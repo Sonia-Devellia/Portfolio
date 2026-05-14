@@ -83,3 +83,48 @@ Toutes les versions `.webp` qui sont effectivement utilisées sont conservées.
 ## Pour faire prendre effet les changements CSS sans rebuild
 
 J'ai appendé deux blocs minimaux au CSS compilé (`.hp-field` honeypot et le `.admin-sidebar__logout-form`). Le SCSS source est aussi à jour : un `npm run sass:build` régénérera proprement le fichier.
+
+## Migration mail() → PHPMailer (SMTP authentifié)
+
+### Pourquoi ce changement
+
+`mail()` natif sur hébergement mutualisé OVH :
+- Pas de DKIM signé par OVH → emails partent en spam folder
+- Pas de retour d'erreur précis (`@mail()` retourne juste `false`)
+- SPF souvent désaligné → bounce silencieux
+
+PHPMailer + SMTP authentifié sur `ssl0.ovh.net:465` :
+- DKIM signé automatiquement par OVH au passage SMTP
+- SPF aligné (l'IP émettrice est dans le `SPF` du domaine)
+- Erreurs SMTP capturées et loggées (`mail_smtp_failed` dans `security.log`)
+- Fallback automatique sur `mail()` si SMTP non configuré (en local par ex.)
+
+### Installation côté local
+
+```bash
+cd /Applications/MAMP/htdocs/portfolio
+composer require phpmailer/phpmailer:^6.9
+```
+
+Cela installe PHPMailer dans `vendor/phpmailer/phpmailer` et met à jour `composer.lock`. À commiter ensemble.
+
+### Configuration en production sur OVH
+
+Dans le `.env` de prod, renseigner :
+
+```env
+MAIL_HOST=ssl0.ovh.net
+MAIL_PORT=465
+MAIL_USER=contact@sonia-habibi.dev
+MAIL_PASS=<mot de passe du compte mail OVH>
+MAIL_FROM=contact@sonia-habibi.dev
+MAIL_TO=sonia@sonia-habibi.dev
+```
+
+**Crucial pour la deliverability** : `MAIL_FROM` doit appartenir au domaine du compte mail OVH, sinon SPF/DKIM ne s'alignent pas et les mails atterrissent en spam même avec SMTP authentifié.
+
+### Vérification post-déploiement
+
+1. Envoyer un test via le formulaire de contact
+2. Tester avec [mail-tester.com](https://mail-tester.com) : score ≥ 9/10 attendu sur OVH avec SPF + DKIM auto
+3. Vérifier les logs : `tail -f storage/logs/app.log` doit afficher `[INFO] contact_sent` au lieu de `[ERROR] contact_mail_failed`

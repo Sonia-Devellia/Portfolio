@@ -266,6 +266,44 @@
     }
 }
 
+// ─── Écosystème local — contenu unique par ville (anti thin content) ─────
+.geo-local {
+    &__inner {
+        max-width: 760px;
+    }
+
+    &__headline {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 500;
+        line-height: 1.25;
+        margin-bottom: 20px;
+        color: var(--text);
+    }
+
+    &__body {
+        font-size: 15px;
+        color: var(--text-2);
+        line-height: 1.75;
+        margin-bottom: 24px;
+    }
+
+    &__sectors {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__sectors-label {
+        font-size: var(--fs-mini);
+        font-weight: 500;
+        color: var(--text-3);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-right: 4px;
+    }
+}
+
 .geo-services {
     background: var(--bg-soft);
 

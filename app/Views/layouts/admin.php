@@ -17,7 +17,7 @@ $uri  = $_SERVER['REQUEST_URI'] ?? '';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= $base ?>/assets/css/main.css">
+    <link rel="stylesheet" href="<?= asset('/assets/css/main.css') ?>">
 </head>
 <body class="admin-body">
 
@@ -44,6 +44,6 @@ $uri  = $_SERVER['REQUEST_URI'] ?? '';
 <main id="main"><?= $content ?></main>
 <?php endif; ?>
 
-<script src="<?= $base ?>/assets/js/main.js" defer></script>
+<script src="<?= asset('/assets/js/main.js') ?>" defer></script>
 </body>
 </html>

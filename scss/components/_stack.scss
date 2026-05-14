@@ -15,7 +15,8 @@
 .stack__bigNum {
   position: absolute;
   top: 24px;
-  left: 24px;
+  left: auto;
+  right: 24px;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: clamp(48px, 6vw, 72px);
@@ -28,7 +29,8 @@
   &::after {
     content: '';
     position: absolute;
-    left: calc(100% + 12px);
+    left: auto;
+    right: calc(100% + 12px);
     top: 50%;
     transform: translateY(-50%);
     width: 40px;

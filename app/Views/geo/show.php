@@ -18,8 +18,13 @@ $isFr = $lang === 'fr';
 
 $isAbroad         ??= false;
 $breadcrumbSchema ??= [];
+$context          ??= null;
 
 $cityName = $isFr ? $city : $cityEn;
+
+$ctxHeadline  = $context[$isFr ? 'headline_fr'  : 'headline_en']  ?? null;
+$ctxEcosystem = $context[$isFr ? 'ecosystem_fr' : 'ecosystem_en'] ?? null;
+$ctxSectors   = $context['sectors'] ?? [];
 ?>
 
 <?php foreach ($extraSchemas as $schema): ?>
@@ -72,6 +77,31 @@ $cityName = $isFr ? $city : $cityEn;
         </div>
     </div>
 </section>
+
+<!-- ─── ÉCOSYSTÈME LOCAL — contenu unique par ville (anti thin content) ─ -->
+<?php if ($ctxHeadline || $ctxEcosystem): ?>
+<section class="section geo-local">
+    <div class="section__inner geo-local__inner">
+        <p class="eyebrow">
+            <?= $isFr ? "ÉCOSYSTÈME · {$cityName}" : "ECOSYSTEM · {$cityName}" ?>
+        </p>
+        <?php if ($ctxHeadline): ?>
+        <h2 class="section__title geo-local__headline"><?= htmlspecialchars($ctxHeadline) ?></h2>
+        <?php endif; ?>
+        <?php if ($ctxEcosystem): ?>
+        <p class="geo-local__body"><?= htmlspecialchars($ctxEcosystem) ?></p>
+        <?php endif; ?>
+        <?php if (!empty($ctxSectors)): ?>
+        <div class="geo-local__sectors">
+            <span class="geo-local__sectors-label"><?= $isFr ? 'Secteurs porteurs :' : 'Key sectors:' ?></span>
+            <?php foreach ($ctxSectors as $sector): ?>
+            <span class="tag tag--gray"><?= htmlspecialchars($sector) ?></span>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
 
 <!-- ─── SERVICES ─────────────────────────────────────────── -->
 <section class="section geo-services">
