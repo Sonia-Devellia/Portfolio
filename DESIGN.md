@@ -170,9 +170,68 @@ All six pairs invert to saturated dark backgrounds with light text in dark mode 
 
 **Serif Accent** (DM Serif Display, italic, 400 weight): Logo in nav (22px), service card numbers (32px), hero nameplate name (16px), WIP card label (32px). These four contexts only.
 
-**The Press Room Rule.** DM Serif Display italic is punctuation, not prose. It appears in exactly four established positions. Adding it anywhere else — descriptions, headings, buttons, new card types — dilutes the system's restraint. When in doubt, DM Sans.
+**The Press Room Rule.** DM Serif Display italic is punctuation, not prose. It appears in exactly six established positions. Adding it anywhere else — descriptions, headings, buttons, new card types — dilutes the system's restraint. When in doubt, DM Sans.
+
+**Six canonical positions for DM Serif Display italic:**
+1. Logo in the nav (22px)
+2. Service card numbers (32px)
+3. Hero nameplate name (16px)
+4. WIP placeholder labels (32px)
+5. `<em>` inside `.section__title` h2 headings
+6. Section watermark numbers (72px, `--text-3`, decorative only)
+
+Any use outside these six positions must be removed and replaced with DM Sans.
 
 **The Tracking Rule.** Uppercase labels carry `letter-spacing: 0.08em`. Display sizes carry negative tracking (`-0.035em`). Body and small text carry neutral tracking or fractional positive (`0.005em` max). Never apply positive tracking to body text — it signals amateur typesetting.
+
+## 3b. Accent Indigo — Rule of Three Uses
+
+The indigo accent (`--accent: #0F03A0` / `--accent-soft: #e0deff`) is a semantic signal, not a decorative color. It may appear in exactly three contexts:
+
+1. **`::selection`** — highlight color on all selected text (background `--accent`, text `#fff`)
+2. **`.link-edit::after`** — animated underline on editorial inline links
+3. **`.eyebrow::before`** — the 2px left bar accent on eyebrow supertitles
+
+**Forbidden uses of `--accent`:** decorative hairlines, progress bars, dot indicators, horizontal rules, card borders, button fills, background gradients, SVG strokes (except when they serve one of the three semantic uses above).
+
+If a design element reaches for indigo and doesn't fit one of these three slots, use `var(--text-2)` at reduced opacity or `var(--border-md)` instead.
+
+## 3c. Warmth vs Restraint
+
+Restraint targets noise, not life. The rule is not "animate nothing" — it is "animate nothing that doesn't earn its place."
+
+**Stays:** An animation that orients the user, confirms an action, or reveals content at the moment it becomes relevant.
+**Leaves:** An animation that runs because it looks interesting, fills silence, or mimics a template effect.
+
+Practically: the typewriter is a brand gesture on the H1 — it stays. The fade-up reveal is a content orientation mechanism — it stays. A spinning logo or a parallax background exists to decorate — it leaves.
+
+## 3d. Motion Contract
+
+Two animation systems are in use. They must not be mixed or extended informally.
+
+**System 1 — Content reveal (IntersectionObserver):**
+- Entry: `fade-up`, 600ms, `cubic-bezier(0.2, 0.8, 0.2, 1)`, threshold 0.15
+- Applied to: `.service-card`, `.project-card`, `.timeline-item`, `.reveal`
+- Never trigger on hover; always on viewport entry, once
+
+**System 2 — Hover micro-interactions (CSS only):**
+- Duration: 200ms, same easing `var(--ease-edit)`
+- Applied to: buttons, cards, links, nav items
+- No JS involved; CSS transitions only
+
+**Custom cursor:**
+- Treated as a micro-interaction, not a hero feature
+- Five semantic states (see Do's and Don'ts)
+- Transitions: 200ms `var(--ease-edit)` between states
+- Hidden on keyboard navigation, hidden on touch, hidden on `prefers-reduced-motion`
+
+**Typewriter:**
+- Brand gesture on the home H1 only — no other element
+- Maximum total duration: 1.2 seconds
+- Honoured `prefers-reduced-motion`: render immediately, no typing
+- Skip on first scroll: render full text instantly
+
+**`prefers-reduced-motion` is non-negotiable.** Every JS animation must check it. Every CSS animation must be wrapped in `@media (prefers-reduced-motion: no-preference)`.
 
 ## 4. Elevation
 
@@ -294,3 +353,5 @@ The single most recognizable UI element. A small pill in the navigation carrying
 - **Don't** use color alone to convey status. Tags always carry text labels; the availability badge always carries text alongside the dot.
 - **Don't** create new color tokens. Extend the system only by combining existing tokens, not by introducing new hex values.
 - **Don't** use `!important`. Reorganize specificity instead.
+- **Don't** use `--text-3` (`#9a9895`) for text smaller than 18px or non-bold — it fails WCAG AA (≈2.94:1 on white). Reserve it for 18px+ text, bold text, decorative captions, and placeholder text. For any small informational text, use `--text-2` instead.
+- **Don't** use `--accent` for anything outside its three semantic slots: `::selection`, `.link-edit` underline, and `.eyebrow::before` bar. For non-semantic visual separation, use `var(--border-md)` or `var(--text-2)` at reduced opacity.

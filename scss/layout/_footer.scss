@@ -41,20 +41,20 @@
 
   &__copy {
     font-size: 11px;
-    color: var(--text-3);
+    color: var(--text-2);
   }
 
   // 5 — Live local time (Vannes · Europe/Paris, updated by JS)
   &__time {
     font-family: ui-monospace, 'Courier New', monospace;
     font-size: 11px;
-    color: var(--text-3);
+    color: var(--text-2);
     letter-spacing: 0.04em;
     white-space: nowrap;
 
     &-label {
       font-size: 11px;
-      color: var(--text-3);
+      color: var(--text-2);
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }

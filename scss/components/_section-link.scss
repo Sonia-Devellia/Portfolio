@@ -9,7 +9,7 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    var(--accent) 50%,
+    var(--border-md) 50%,
     transparent 100%
   );
   position: relative;
@@ -24,7 +24,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--accent);
+    background: var(--text-3);
     opacity: 0;
     transition: opacity 400ms, top 800ms cubic-bezier(0.4, 0, 0.2, 1);
   }

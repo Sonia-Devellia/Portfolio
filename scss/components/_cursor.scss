@@ -1,6 +1,6 @@
 // ─── Custom cursor — desktop/mouse only ─────────────────────
-// Uses (hover: hover) and (pointer: fine) so touch devices are
-// unaffected at the CSS level (JS guard handles the rest).
+// 5 états : rest | link | image | dark | (keyboard → hidden)
+// States driven by data-state attribute set in main.js.
 
 @use '../abstracts/variables';
 
@@ -12,31 +12,79 @@
   }
 
   .cursor-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: var(--text);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
-    transition: none;
+    transition: background var(--dur-fast) var(--ease-edit);
   }
 
   .cursor-ring {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border: 1px solid var(--text);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
+    opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition:
-      width 0.3s ease,
-      height 0.3s ease,
-      opacity 0.3s ease,
-      border-color 0.3s ease;
-    opacity: 0.6;
+      width          200ms var(--ease-edit),
+      height         200ms var(--ease-edit),
+      border-radius  200ms var(--ease-edit),
+      border-color   200ms var(--ease-edit),
+      opacity        200ms var(--ease-edit);
+  }
+
+  // Label interne (état 'image' uniquement)
+  .cursor-ring__label {
+    font-family: ui-monospace, 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 200ms var(--ease-edit);
+    pointer-events: none;
+  }
+
+  // ─── État : rest ──────────────────────────────────────────
+  .cursor-dot[data-state="rest"]  { background: var(--text); }
+  .cursor-ring[data-state="rest"] { border-color: var(--text); opacity: 0.4; }
+
+  // ─── État : link (lien éditorial) ────────────────────────
+  .cursor-dot[data-state="link"]  { background: var(--accent); }
+  .cursor-ring[data-state="link"] {
+    width: 20px;
+    height: 20px;
+    border-color: var(--accent);
+    opacity: 1;
+  }
+
+  // ─── État : image (miniature projet) ─────────────────────
+  .cursor-ring[data-state="image"] {
+    width: 80px;
+    height: 24px;
+    border-radius: 999px;
+    border-color: var(--text);
+    opacity: 1;
+
+    .cursor-ring__label { opacity: 1; }
+  }
+
+  // ─── État : dark (CTA band) ───────────────────────────────
+  .cursor-dot[data-state="dark"]  { background: var(--bg); }
+  .cursor-ring[data-state="dark"] {
+    border-color: var(--bg);
+    opacity: 0.8;
   }
 }

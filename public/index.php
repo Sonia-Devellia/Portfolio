@@ -78,6 +78,15 @@ $csp = "default-src 'self'; "
 
 if ($isProd) {
     $csp .= "; upgrade-insecure-requests";
+
+    // ─── Reporting CSP — visibilité sur les violations en prod ─────────
+    // report-uri  : format legacy, encore utilisé par Firefox et anciens Chrome
+    // report-to   : format moderne, nécessite le header Reporting-Endpoints
+    $reportPath = '/csp-report';
+    $csp .= "; report-uri {$reportPath}; report-to csp-endpoint";
+
+    $appUrl = rtrim($_ENV['APP_URL'] ?? '', '/');
+    header('Reporting-Endpoints: csp-endpoint="' . $appUrl . $reportPath . '"');
 }
 
 header("Content-Security-Policy: " . $csp);

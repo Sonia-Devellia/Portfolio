@@ -58,41 +58,33 @@ $faqItems = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
 <!-- ─── STACK TECHNIQUE ──────────────────────────────────── -->
 <section class="stack" id="stack">
-    <div class="stack__bigNum" aria-hidden="true">02</div>
+    <span class="section__watermark" aria-hidden="true">02</span>
     <div class="stack__head stagger-group">
         <p class="eyebrow reveal"><?= $t('stack.eyebrow') ?></p>
         <h2 class="section__title reveal"><?= $tRaw('stack.title') ?></h2>
         <p class="section__sub reveal"><?= $tRaw('stack.lede') ?></p>
     </div>
-    <ol class="stack__list">
+    <ol class="stack__grid">
         <?php foreach ($stack as $i => $card): ?>
-        <li class="stack__row stack__row--<?= $card['side'] ?>">
-            <?php if ($card['side'] === 'right'): ?>
-            <div class="stack__dot reveal"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
-            <?php endif; ?>
-            <article class="stack__card reveal reveal--<?= $card['side'] ?>">
-                <div class="card__head">
-                    <span class="card__role"><?= $t($card['role_key']) ?></span>
-                    <span class="card__count"><?= sprintf('%02d / %02d', $i + 1, count($stack)) ?></span>
-                </div>
-                <h3 class="card__title"><?= $tRaw($card['title_key']) ?></h3>
-                <p class="card__sub"><?= $t($card['sub_key']) ?></p>
-                <ul class="card__techs">
-                    <?php foreach ($card['techs'] as $tech): ?>
-                    <li class="card__tech">
-                        <div class="card__tech-name">
-                            <span><?= htmlspecialchars($tech['name']) ?></span>
-                            <span><?= htmlspecialchars($tech['meta']) ?></span>
-                        </div>
-                        <div class="card__tech-bar" style="--lvl: <?= (int) $tech['lvl'] ?>%" aria-hidden="true"></div>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                <p class="card__foot"><?= $tRaw($card['foot_key']) ?></p>
-            </article>
-            <?php if ($card['side'] === 'left'): ?>
-            <div class="stack__dot reveal"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
-            <?php endif; ?>
+        <li class="stack__col reveal">
+            <div class="stack__col-num" aria-hidden="true"><?= str_pad($i + 1, 2, '0', STR_PAD_LEFT) ?></div>
+            <div class="stack__col-head">
+                <span class="stack__col-role"><?= $t($card['role_key']) ?></span>
+            </div>
+            <h3 class="stack__col-title"><?= $tRaw($card['title_key']) ?></h3>
+            <p class="stack__col-sub"><?= $t($card['sub_key']) ?></p>
+            <ul class="stack__techs">
+                <?php foreach ($card['techs'] as $tech): ?>
+                <li class="stack__tech">
+                    <div class="stack__tech-name">
+                        <span><?= htmlspecialchars($tech['name']) ?></span>
+                        <span class="stack__tech-meta"><?= htmlspecialchars($tech['meta']) ?></span>
+                    </div>
+                    <div class="stack__tech-bar" style="--lvl: <?= (int) $tech['lvl'] ?>%" aria-hidden="true"></div>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <p class="stack__col-foot"><?= $tRaw($card['foot_key']) ?></p>
         </li>
         <?php endforeach; ?>
     </ol>

@@ -20,6 +20,12 @@ $router->get('/dev-freelance/{slug}', 'GeoController',   'show');
 // Le sitemap.xml est forcé en dynamique via .htaccess RewriteRule.
 $router->get('/sitemap.xml',          'SitemapController', 'index');
 
+// ─── Reporting ────────────────────────────────────────────
+$router->post('/csp-report',          'ReportController',  'csp');
+
+// ─── Monitoring ───────────────────────────────────────────
+$router->get('/health',               'HealthController',  'index');
+
 // ─── Langue ───────────────────────────────────────────────
 $router->get('/lang/{code}',         'LangController',    'switch');
 

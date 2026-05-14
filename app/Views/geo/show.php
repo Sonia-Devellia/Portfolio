@@ -22,9 +22,10 @@ $context          ??= null;
 
 $cityName = $isFr ? $city : $cityEn;
 
-$ctxHeadline  = $context[$isFr ? 'headline_fr'  : 'headline_en']  ?? null;
-$ctxEcosystem = $context[$isFr ? 'ecosystem_fr' : 'ecosystem_en'] ?? null;
-$ctxSectors   = $context['sectors'] ?? [];
+$ctxHeadline   = $context[$isFr ? 'headline_fr'   : 'headline_en']   ?? null;
+$ctxEcosystem  = $context[$isFr ? 'ecosystem_fr'  : 'ecosystem_en']  ?? null;
+$ctxReferences = $context[$isFr ? 'references_fr' : 'references_en'] ?? null;
+$ctxSectors    = $context['sectors'] ?? [];
 ?>
 
 <?php foreach ($extraSchemas as $schema): ?>
@@ -98,6 +99,16 @@ $ctxSectors   = $context['sectors'] ?? [];
             <span class="tag tag--gray"><?= htmlspecialchars($sector) ?></span>
             <?php endforeach; ?>
         </div>
+        <?php endif; ?>
+
+        <?php if ($ctxReferences): ?>
+        <aside class="geo-local__refs">
+            <p class="geo-local__refs-label"><?= $isFr ? 'Réalisations dans cette zone' : 'Realisations in this area' ?></p>
+            <p class="geo-local__refs-body"><?= htmlspecialchars($ctxReferences) ?></p>
+            <a href="<?= $base ?>/projets" class="geo-local__refs-link">
+                <?= $isFr ? 'Voir le détail des projets →' : 'See project details →' ?>
+            </a>
+        </aside>
         <?php endif; ?>
     </div>
 </section>

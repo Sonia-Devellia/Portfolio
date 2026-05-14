@@ -26,6 +26,8 @@ return [
         'ecosystem_fr' => 'Rennes abrite le Pôle d\'Excellence Cyber, l\'IRISA, l\'INRIA Bretagne, et l\'INSA. La ville concentre une densité rare d\'ingénieurs logiciels, d\'experts cyber et de chercheurs IA, avec un tissu PME tech mature autour du quartier Beaulieu et de la Cité de la cybersécurité.',
         'ecosystem_en' => 'Rennes hosts the French Cybersecurity Excellence Cluster, IRISA, INRIA Bretagne, and INSA. The city concentrates a rare density of software engineers, cyber experts and AI researchers, with a mature tech SME ecosystem around the Beaulieu campus and the Cybersecurity Hub.',
         'sectors' => ['Cybersécurité', 'Télécoms', 'IA / Recherche', 'SaaS B2B'],
+        'references_fr' => 'À 1h de Vannes — projets livrés en Bretagne : Amanea Voyages (agence de voyages, itinéraires France-Bretagne-Île Maurice) et JS Entreprise Services (éducateur équin basé à Vannes, assistant IA + réservations + paiement Stripe).',
+        'references_en' => '1 hour from Vannes — projects delivered in Brittany: Amanea Voyages (travel agency, France-Brittany-Mauritius itineraries) and JS Entreprise Services (Vannes-based equine trainer, AI assistant + bookings + Stripe payment).',
     ],
 
     'nantes' => [
@@ -42,6 +44,8 @@ return [
         'ecosystem_fr' => 'Vannes s\'inscrit dans le réseau French Tech Atlantic Valley aux côtés de Lorient et Quimper. La ville mêle économie maritime, agritech, agences digitales et PME logicielles, avec un tissu de freelances seniors orienté code propre, sécurité et durabilité technique.',
         'ecosystem_en' => 'Vannes is part of the French Tech Atlantic Valley network alongside Lorient and Quimper. The city blends maritime economy, agritech, digital agencies and software SMEs, with a fabric of senior freelancers focused on clean code, security and technical sustainability.',
         'sectors' => ['Économie maritime', 'Agritech', 'Web / Digital', 'PME logicielles'],
+        'references_fr' => 'Projets livrés depuis Vannes : JS Entreprise Services (éducateur équin local — site, assistant IA agentic, réservations, paiement Stripe d\'un ebook de formation) et Amanea Voyages (agence de voyages opérant en Bretagne et à l\'Île Maurice — site bilingue, back-office, espace client).',
+        'references_en' => 'Projects delivered from Vannes: JS Entreprise Services (local equine trainer — website, agentic AI assistant, bookings, Stripe payment for a training e-book) and Amanea Voyages (travel agency operating in Brittany and Mauritius — bilingual website, back-office, client portal).',
     ],
 
     'brest' => [
@@ -50,6 +54,8 @@ return [
         'ecosystem_fr' => 'Brest concentre la recherche océanographique française autour d\'Ifremer et de l\'IUEM, et forme des ingénieurs logiciels via IMT Atlantique et l\'ENSTA Bretagne. L\'écosystème mêle maritime tech, défense, télécoms et logiciels embarqués — avec une forte culture open source.',
         'ecosystem_en' => 'Brest concentrates France\'s oceanographic research around Ifremer and IUEM, and trains software engineers through IMT Atlantique and ENSTA Bretagne. The ecosystem mixes maritime tech, defence, telecoms and embedded software — with a strong open source culture.',
         'sectors' => ['Maritime tech', 'Défense', 'Télécoms', 'Logiciels embarqués'],
+        'references_fr' => 'À 2h30 de Vannes par la pointe bretonne — projets livrés en Bretagne : Amanea Voyages (site bilingue agence de voyages) et JS Entreprise Services (Vannes, plateforme avec IA agentic).',
+        'references_en' => '2h30 from Vannes via the Breton tip — projects delivered in Brittany: Amanea Voyages (bilingual travel agency website) and JS Entreprise Services (Vannes, platform with agentic AI).',
     ],
 
     'quimper' => [
@@ -58,6 +64,8 @@ return [
         'ecosystem_fr' => 'Quimper s\'appuie sur un tissu industriel agroalimentaire en pleine digitalisation (traçabilité, supply chain, e-commerce B2B). La ville accueille des PME tech à taille familiale et bénéficie de la dynamique French Tech Atlantic Valley aux côtés de Lorient et Vannes.',
         'ecosystem_en' => 'Quimper relies on a food industry ecosystem undergoing rapid digitalisation (traceability, supply chain, B2B e-commerce). The city welcomes family-sized tech SMEs and benefits from the French Tech Atlantic Valley dynamic alongside Lorient and Vannes.',
         'sectors' => ['Agroalimentaire numérique', 'Supply chain', 'PME industrielles', 'E-commerce B2B'],
+        'references_fr' => 'Dans le bassin breton — projets de référence livrés depuis Vannes : Amanea Voyages (agence de voyages bilingue) et JS Entreprise Services (éducateur équin avec assistant IA agentic).',
+        'references_en' => 'In the Breton basin — reference projects delivered from Vannes: Amanea Voyages (bilingual travel agency) and JS Entreprise Services (equine trainer with agentic AI assistant).',
     ],
 
     'lorient' => [
@@ -66,6 +74,8 @@ return [
         'ecosystem_fr' => 'Lorient porte la Sea Tech Week, événement européen majeur sur les sciences et technologies de la mer, et concentre l\'industrie nautique haute performance. L\'écosystème logiciel local s\'oriente vers la navale, la défense, et les capteurs maritimes connectés.',
         'ecosystem_en' => 'Lorient hosts Sea Tech Week, a major European event on marine sciences and technology, and concentrates the high-performance nautical industry. The local software ecosystem focuses on naval, defence, and connected maritime sensors.',
         'sectors' => ['Maritime tech', 'IoT industriel', 'Défense navale', 'Voile compétition'],
+        'references_fr' => 'À 1h de Vannes en Bretagne Sud — projets livrés dans la région : Amanea Voyages (agence de voyages, itinéraires France-Bretagne-Île Maurice) et JS Entreprise Services (entrepreneur vannetais).',
+        'references_en' => '1 hour from Vannes in South Brittany — projects delivered in the region: Amanea Voyages (travel agency, France-Brittany-Mauritius itineraries) and JS Entreprise Services (Vannes-based entrepreneur).',
     ],
 
     'saint-brieuc' => [
@@ -74,6 +84,8 @@ return [
         'ecosystem_fr' => 'Saint-Brieuc s\'appuie sur l\'agroalimentaire breton, le tissu mutualiste bancaire et des PME industrielles en transformation numérique. La demande locale en développement web touche surtout des projets sectoriels — gestion, e-commerce, espace client — avec un horizon multi-années.',
         'ecosystem_en' => 'Saint-Brieuc draws on Brittany\'s food industry, the cooperative banking sector and industrial SMEs in digital transformation. Local web development demand is mostly about sector-specific projects — back-office, e-commerce, client portals — with a multi-year horizon.',
         'sectors' => ['Agroalimentaire', 'Back-office métier', 'E-commerce', 'PME industrielles'],
+        'references_fr' => 'Côté Côtes-d\'Armor — type de projets déjà livrés en Bretagne : Amanea Voyages (back-office + espace client multilingue) et JS Entreprise Services (Vannes, plateforme complète avec IA agentic et paiement).',
+        'references_en' => 'On the Côtes-d\'Armor side — type of projects already delivered in Brittany: Amanea Voyages (back-office + multilingual client portal) and JS Entreprise Services (Vannes, full platform with agentic AI and payment).',
     ],
 
     'saint-malo' => [
@@ -82,6 +94,8 @@ return [
         'ecosystem_fr' => 'Saint-Malo combine un tissu hôtelier-restauration exigeant, des opérateurs de croisière et un écosystème de PME orientées tourisme expérientiel. Les besoins tech locaux portent sur les espaces réservation, la billetterie, et les sites multilingues à forte saisonnalité.',
         'ecosystem_en' => 'Saint-Malo combines a demanding hotel and restaurant ecosystem, cruise operators, and SMEs focused on experiential tourism. Local tech needs centre on booking platforms, ticketing, and multilingual seasonal websites.',
         'sectors' => ['Tourisme premium', 'Booking & réservation', 'Croisière', 'Sites multilingues'],
+        'references_fr' => 'En haut de la côte d\'Émeraude — référence pour les acteurs du tourisme : Amanea Voyages, agence de voyages sur mesure pour qui j\'ai conçu un site bilingue avec back-office et espace client (itinéraires France-Bretagne-Île Maurice).',
+        'references_en' => 'At the top of the Côte d\'Émeraude — reference for tourism players: Amanea Voyages, bespoke travel agency for which I designed a bilingual website with back-office and client portal (France-Brittany-Mauritius itineraries).',
     ],
 
     // ═══════════════════════════════════════════════════════════════════
@@ -114,6 +128,8 @@ return [
         'ecosystem_fr' => 'Paris concentre Station F (le plus grand campus de startups au monde), un tissu fintech mature, des éditeurs SaaS B2B, l\'AdTech française et une scène IA de premier plan (Mistral, H, Hugging Face, écosystème PSL/Polytechnique). La demande tech parisienne est exigeante, internationale, et orientée scale.',
         'ecosystem_en' => 'Paris concentrates Station F (the world\'s largest startup campus), a mature fintech fabric, B2B SaaS publishers, France\'s AdTech scene and a leading AI ecosystem (Mistral, H, Hugging Face, PSL/Polytechnique). Parisian tech demand is exacting, international and scale-oriented.',
         'sectors' => ['Fintech', 'SaaS B2B', 'AdTech', 'IA / LLM', 'Marketplaces'],
+        'references_fr' => 'Référence Paris : Amanea Voyages, agence de voyages sur mesure dont les itinéraires couvrent Paris, la Bretagne et l\'Île Maurice. Site institutionnel bilingue FR/EN, back-office complet de gestion des destinations, espace client pour le suivi des réservations.',
+        'references_en' => 'Paris reference: Amanea Voyages, bespoke travel agency whose itineraries cover Paris, Brittany and Mauritius. Bilingual FR/EN institutional website, full back-office for destination management, client portal for booking tracking.',
     ],
 
     // ═══════════════════════════════════════════════════════════════════

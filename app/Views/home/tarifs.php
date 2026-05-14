@@ -281,6 +281,58 @@ $isFr = $lang === 'fr';
     </div>
 </section>
 
+<!-- ─── ZONES D'INTERVENTION — maillage SEO local + UX claire ─────────── -->
+<section class="section zones-section" id="zones-section">
+    <div class="section__inner">
+        <p class="eyebrow"><?= $isFr ? 'ZONES D\'INTERVENTION' : 'AREAS SERVED' ?></p>
+        <h2 class="section__title">
+            <?= $isFr
+                ? 'Basée à Vannes, je travaille en remote dans toute l\'Europe francophone.'
+                : 'Based in Vannes, I work remotely across French-speaking Europe.' ?>
+        </h2>
+        <p class="zones-section__intro">
+            <?= $isFr
+                ? 'Mes clients sont en France, Suisse romande et au Luxembourg. Réponse sous 24h, démarrage sous 2-4 semaines. Cliquez sur une ville pour voir le contexte local.'
+                : 'My clients are in France, French-speaking Switzerland and Luxembourg. Reply within 24h, start within 2-4 weeks. Click a city to see the local context.' ?>
+        </p>
+
+        <?php
+        $zones = $isFr ? [
+            'Grand Ouest — Bretagne'      => ['rennes' => 'Rennes', 'nantes' => 'Nantes', 'vannes' => 'Vannes', 'brest' => 'Brest', 'quimper' => 'Quimper', 'lorient' => 'Lorient', 'saint-brieuc' => 'Saint-Brieuc', 'saint-malo' => 'Saint-Malo'],
+            'Grand Ouest — Pays de la Loire' => ['angers' => 'Angers', 'le-mans' => 'Le Mans'],
+            'Paris'                       => ['paris' => 'Paris'],
+            'Sud-Ouest'                   => ['bordeaux' => 'Bordeaux', 'toulouse' => 'Toulouse', 'bayonne' => 'Bayonne', 'biarritz' => 'Biarritz'],
+            'Frontalier Haute-Savoie'     => ['annecy' => 'Annecy', 'annemasse' => 'Annemasse', 'thonon-les-bains' => 'Thonon-les-Bains'],
+            'Luxembourg'                  => ['luxembourg' => 'Luxembourg-Ville'],
+            'Suisse romande'              => ['geneve' => 'Genève', 'lausanne' => 'Lausanne'],
+        ] : [
+            'Western France — Brittany'      => ['rennes' => 'Rennes', 'nantes' => 'Nantes', 'vannes' => 'Vannes', 'brest' => 'Brest', 'quimper' => 'Quimper', 'lorient' => 'Lorient', 'saint-brieuc' => 'Saint-Brieuc', 'saint-malo' => 'Saint-Malo'],
+            'Western France — Pays de la Loire' => ['angers' => 'Angers', 'le-mans' => 'Le Mans'],
+            'Paris'                          => ['paris' => 'Paris'],
+            'South-West France'              => ['bordeaux' => 'Bordeaux', 'toulouse' => 'Toulouse', 'bayonne' => 'Bayonne', 'biarritz' => 'Biarritz'],
+            'Haute-Savoie border'            => ['annecy' => 'Annecy', 'annemasse' => 'Annemasse', 'thonon-les-bains' => 'Thonon-les-Bains'],
+            'Luxembourg'                     => ['luxembourg' => 'Luxembourg City'],
+            'French-speaking Switzerland'    => ['geneve' => 'Geneva', 'lausanne' => 'Lausanne'],
+        ];
+        ?>
+
+        <div class="zones-grid">
+            <?php foreach ($zones as $zoneName => $cities): ?>
+            <div class="zones-grid__group">
+                <span class="zones-grid__zone-name"><?= htmlspecialchars($zoneName) ?></span>
+                <ul class="zones-grid__cities">
+                    <?php foreach ($cities as $slug => $label): ?>
+                    <li>
+                        <a href="<?= $base ?>/dev-freelance/<?= $slug ?>"><?= htmlspecialchars($label) ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <!-- ─── CTA BAND ──────────────────────────────────────────── -->
 <section class="cta-band">
     <p class="eyebrow"><?= $isFr ? 'TRAVAILLONS ENSEMBLE' : 'LET\'S WORK TOGETHER' ?></p>

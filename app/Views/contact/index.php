@@ -38,6 +38,27 @@ $csrf_token ??= '';
                 </div>
             </dl>
 
+            <?php $lang = $_SESSION['lang'] ?? 'fr'; $isFr = $lang === 'fr'; ?>
+            <p class="contact-page__zones">
+                <?php if ($isFr): ?>
+                    Disponible depuis Vannes pour clients en remote :
+                    <a href="<?= $base ?>/dev-freelance/paris">Paris</a>,
+                    <a href="<?= $base ?>/dev-freelance/rennes">Rennes</a>,
+                    <a href="<?= $base ?>/dev-freelance/bordeaux">Bordeaux</a>,
+                    <a href="<?= $base ?>/dev-freelance/geneve">Genève</a>,
+                    <a href="<?= $base ?>/dev-freelance/luxembourg">Luxembourg</a>
+                    et <a href="<?= $base ?>/tarifs#zones-section">d'autres villes</a>.
+                <?php else: ?>
+                    Available from Vannes for remote clients in
+                    <a href="<?= $base ?>/dev-freelance/paris">Paris</a>,
+                    <a href="<?= $base ?>/dev-freelance/rennes">Rennes</a>,
+                    <a href="<?= $base ?>/dev-freelance/bordeaux">Bordeaux</a>,
+                    <a href="<?= $base ?>/dev-freelance/geneve">Geneva</a>,
+                    <a href="<?= $base ?>/dev-freelance/luxembourg">Luxembourg</a>
+                    and <a href="<?= $base ?>/tarifs#zones-section">other cities</a>.
+                <?php endif; ?>
+            </p>
+
             <ul class="contact-page__socials" aria-label="<?= $t('contact.socials.aria') ?>">
                 <li>
                     <a href="https://www.linkedin.com/in/sonia-habibi"
