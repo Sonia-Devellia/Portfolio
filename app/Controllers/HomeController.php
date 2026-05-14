@@ -25,8 +25,8 @@ class HomeController extends Controller
             'projects'     => $featured,
             'stack'        => $stack,
             'title'        => $isFr
-                ? 'Développeuse Freelance PHP Python IA — Sonia Habibi'
-                : 'Freelance PHP Python AI Developer — Sonia Habibi',
+                ? 'Sonia Habibi — Développeuse Full-Stack & IA'
+                : 'Sonia Habibi — Full-Stack & AI Developer',
             'metaDesc'     => $metaDesc,
             'canonical'    => $appUrl . '/',
             'faqSchema'    => $this->faqSchema($isFr),

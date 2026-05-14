@@ -19,8 +19,8 @@ $lang   = $_SESSION['lang'] ?? 'fr';
 $isFr   = $lang === 'fr';
 
 $pageTitle = $title ?? ($isFr
-    ? 'Développeuse Freelance PHP Python IA — Sonia Habibi'
-    : 'Freelance PHP Python AI Developer — Sonia Habibi');
+    ? 'Sonia Habibi — Développeuse Full-Stack & IA'
+    : 'Sonia Habibi — Full-Stack & AI Developer');
 $pageDesc  = $metaDesc  ?? $t('hero.sub');
 $pageUrl   = $canonical ?? ($base . strtok($_SERVER['REQUEST_URI'] ?? '/', '?'));
 $pageImg   = $ogImage   ?? ($base . '/assets/images/og-cover.jpg');
@@ -189,6 +189,26 @@ $jsonLd = static fn(array $data): string => json_encode(
             <span id="localTime"></span>
         </span>
     </div>
+
+    <!-- ─── Maillage SEO local — villes phares ───────────────── -->
+    <nav class="footer__zones" aria-label="<?= $isFr ? 'Zones d\'intervention' : 'Areas served' ?>">
+        <span class="footer__zones-label"><?= $isFr ? 'Disponible à' : 'Available in' ?></span>
+        <a href="<?= $base ?>/dev-freelance/paris">Paris</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/vannes">Vannes</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/rennes">Rennes</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/nantes">Nantes</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/bordeaux">Bordeaux</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/toulouse">Toulouse</a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/geneve"><?= $isFr ? 'Genève' : 'Geneva' ?></a>
+        <span aria-hidden="true">·</span>
+        <a href="<?= $base ?>/dev-freelance/luxembourg">Luxembourg</a>
+    </nav>
 </footer>
 
 <script src="<?= asset('/assets/js/modules/reveal.js') ?>" defer></script>
