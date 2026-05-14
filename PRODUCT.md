@@ -22,19 +22,19 @@ Success = a qualified contact request from someone with a real mission (not a fi
 
 ## Brand Personality
 
-précise · affirmée · silencieuse
+précise · affirmée · vivante
 
 **Précise** — no spare word, no spare pixel. Every decision is deliberate. Imprecision would undermine the entire proposition.
 
 **Affirmée** — confident without performing confidence. No superlatives, no "passionate about", no apology for the atypical background. The background is an asset; treat it as one.
 
-**Silencieuse** — the design doesn't ask for attention. It earns it through restraint. White space is not emptiness; it's editorial control. The work speaks; the interface stays quiet.
+**Vivante** — the design breathes, but with intention. Every animation serves content. No unsolicited motion. Restraint targets noise, not life — an animation that earns its place stays; one that merely decorates leaves.
 
 ## Anti-references
 
 Explicit rejections — if any of these patterns appear, rework:
 
-- **Webflow purple-gradient templates**: animated sections, particle heroes, scroll-triggered everything, neon-on-dark aesthetic. The opposite of precision.
+- **Webflow purple-gradient templates**: animated sections, particle heroes, scroll-triggered everything, neon-on-dark aesthetic. The opposite of precision. Note: a *signed*, contextual custom cursor is legitimate — the anti-pattern is a stock Webflow decoration cursor, not a cursor with genuine semantic states.
 - **Generic Malt/LinkedIn profile**: white background, Inter 16px, left-aligned text, no visual identity. Zero differentiation.
 - **Student portfolio with timeline + Flaticon icons**: decorative timelines, icon sets that don't belong to the brand, "my journey" framing. Too apologetic.
 - **Ultra-typographic Parisian creative agency**: conceptual, obscure, prioritizes aesthetic posturing over communication. Too far from legibility.
@@ -53,7 +53,9 @@ The design must be immediately distinguishable from all of these without being c
 
 **4. The atypical background is the edge.** Former entrepreneur + landscape designer → developer is not a weakness to explain away. It's a rare ability to hold client, product, and code in the same frame. Surface it with confidence, not defensiveness.
 
-**5. Pre-qualify, don't sell.** The portfolio should repel the wrong prospect as efficiently as it attracts the right one. Directness in copy, precision in design, no inflated claims — someone looking for the cheapest option should feel this isn't their site.
+**5. The portfolio is a publication, not a brochure.** It publishes a point of view, notes, numbers. It doesn't display services. It makes an argument.
+
+**6. Pre-qualify, don't sell.** The portfolio should repel the wrong prospect as efficiently as it attracts the right one. Directness in copy, precision in design, no inflated claims — someone looking for the cheapest option should feel this isn't their site.
 
 ## Accessibility & Inclusion
 
