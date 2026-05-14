@@ -254,7 +254,7 @@ return [
     'stack.card.frontend.foot'   => 'Mon passé de designer paysagiste au service de vos projets.',
     'stack.card.tooling.title'   => 'Livrer <em>proprement</em>, maintenir <em>longtemps</em>.',
     'stack.card.tooling.sub'     => 'Conception et production en méthode agile : Sprint Trello, Point de review, Git discipliné, déploiements reproductibles, observabilité minimale.',
-    'stack.card.tooling.foot'    => 'Une agilité de livraison qui fait la différence sur le long terme.',
+    'stack.card.tooling.foot'    => 'Cahier des charges, planning et suivi inclus — pas en option.',
     'stack.card.integration.title' => 'Connecter, automatiser, <em>livrer vite.</em>',
     'stack.card.integration.sub'   => 'CMS, e-commerce et automatisation no-code quand c\'est la bonne réponse au besoin. Shopify, WordPress, Webflow ou un agent IA selon ce qui crée de la valeur.',
     'stack.card.integration.foot'  => 'Le bon outil au bon problème — pas le plus technique, le plus efficace.',

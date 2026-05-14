@@ -43,11 +43,11 @@ $isFr = $lang === 'fr';
                 </div>
                 <p class="tarif-card__type"><?= $isFr ? 'Prestation freelance' : 'Freelance contract' ?></p>
                 <div class="tarif-card__price">
-                    <span class="tarif-card__amount">600–800 €</span>
+                    <span class="tarif-card__amount">300-500 €</span>
                     <span class="tarif-card__unit"><?= $isFr ? '/ jour HT' : '/ day excl. VAT' ?></span>
                 </div>
                 <p class="tarif-card__forfait">
-                    <?= $isFr ? 'Forfait à partir de 6 000 € HT · min. 2 semaines' : 'Fixed quote from €6,000 · min. 2 weeks' ?>
+                    <?= $isFr ? 'Forfait à partir de 3 000 € HT · min. 2 semaines' : 'Fixed quote from €3,000 · min. 2 weeks' ?>
                 </p>
                 <ul class="tarif-card__list">
                     <li><?= $isFr ? 'Pas d\'engagement long terme' : 'No long-term commitment' ?></li>
@@ -69,17 +69,17 @@ $isFr = $lang === 'fr';
 
             <!-- ── OPTION 2 : CDI REMOTE ── -->
             <article class="tarif-card" id="cdi-remote">
-                <p class="tarif-card__type"><?= $isFr ? 'CDI remote — temps plein' : 'Full-time remote CDI' ?></p>
+                <p class="tarif-card__type"><?= $isFr ? 'CDI — temps plein' : 'Full-time CDI' ?></p>
                 <div class="tarif-card__price">
                     <span class="tarif-card__amount"><?= $isFr ? 'Sur demande' : 'On request' ?></span>
-                    <span class="tarif-card__unit"><?= $isFr ? '35h / semaine' : '35h / week' ?></span>
+                    <span class="tarif-card__unit"><?= $isFr ? '35h à 40h/ semaine' : '35h at 40h/ week' ?></span>
                 </div>
                 <p class="tarif-card__forfait">
-                    <?= $isFr ? 'Remote 100 % · Pas de déménagement requis' : '100% remote · No relocation required' ?>
+                    <?= $isFr ? 'Remote 100 % · Remote partiel ' : '100% remote · Remote part-time' ?>
                 </p>
                 <ul class="tarif-card__list">
                     <li><?= $isFr ? 'Intégration complète dans votre équipe produit' : 'Full integration into your product team' ?></li>
-                    <li><?= $isFr ? 'Télétravail 100 % — France, Suisse, EU' : '100% remote — France, Switzerland, EU' ?></li>
+                    <li><?= $isFr ? 'Télétravail jusqu\'à 100 % — France, Suisse, EU' : '100% remote — France, Switzerland, EU' ?></li>
                     <li><?= $isFr ? 'Disponibilité dans votre stack et vos outils' : 'Availability within your stack and tooling' ?></li>
                     <li><?= $isFr ? 'Prétentions communiquées après premier échange' : 'Salary expectations shared after initial call' ?></li>
                     <li><?= $isFr ? 'Préavis légal à anticiper (1-3 mois)' : 'Legal notice period to plan for (1-3 months)' ?></li>
@@ -87,8 +87,8 @@ $isFr = $lang === 'fr';
                 <div class="tarif-card__ideal">
                     <strong><?= $isFr ? 'Idéal pour :' : 'Ideal for:' ?></strong>
                     <?= $isFr
-                        ? 'Startups Series A/B, scale-ups, PME tech cherchant à internaliser un profil senior full-stack.'
-                        : 'Series A/B startups, scale-ups, tech SMBs looking to internalise a senior full-stack profile.' ?>
+                        ? 'Startups Series A/B, scale-ups, PME tech cherchant à internaliser un profil full-stack et expertise en IA.'
+                        : 'Series A/B startups, scale-ups, tech SMBs looking to internalise a full-stack profile and AI expertise.' ?>
                 </div>
                 <a href="<?= $base ?>/contact" class="btn btn--outline btn--full">
                     <?= $isFr ? 'En savoir plus →' : 'Learn more →' ?>
@@ -149,8 +149,8 @@ $isFr = $lang === 'fr';
                 <div class="tarif-card__ideal">
                     <strong><?= $isFr ? 'Idéal pour :' : 'Ideal for:' ?></strong>
                     <?= $isFr
-                        ? 'Étudiant·e en développement web souhaitant progresser sur des projets concrets. Aussi ouvert aux startups et TPE/PME cherchant à former et intégrer un profil junior avec l\'encadrement d\'une développeuse senior.'
-                        : 'Web development students looking to grow on real projects. Also open to startups and SMBs wanting to train and integrate a junior profile under senior developer mentorship.' ?>
+                        ? 'Startups et TPE/PME cherchant à former et intégrer un profil intermédiaire avec de l\'embitoire en IA.'
+                        : 'Open to startups and SMBs wanting to train and integrate a mid-level profile with AI expertise.' ?>
                 </div>
                 <a href="<?= $base ?>/contact" class="btn btn--outline btn--full">
                     <?= $isFr ? 'Me contacter →' : 'Get in touch →' ?>
@@ -162,8 +162,8 @@ $isFr = $lang === 'fr';
         <!-- Disclaimer -->
         <p class="tarifs-disclaimer">
             <?= $isFr
-                ? 'Les propositions CDI sont examinées au cas par cas — projet technique, vision produit, équipe. Je n\'accepte pas toutes les offres. Un premier échange de 20 min permet de qualifier rapidement.'
-                : 'CDI proposals are considered case by case — technical project, product vision, team. I do not accept every offer. A 20-min initial call allows rapid qualification.' ?>
+                ? 'J\'étudie toutes les propositions avec beaucoup d\'attention — projet technique, vision produit, équipe. Je n\'accepte pas toutes les offres. Un appel initial de 20 min permet une qualification rapide.'
+                : 'I carefully consider all proposals — technical project, product vision, team. I do not accept every offer. An initial 20-minute call allows for quick qualification.' ?>
         </p>
     </div>
 </section>
@@ -180,7 +180,7 @@ $isFr = $lang === 'fr';
                         <th><?= $isFr ? 'Critère' : 'Criterion' ?></th>
                         <th><?= $isFr ? 'Freelance' : 'Freelance' ?></th>
                         <th><?= $isFr ? 'CDI Remote' : 'Full-time CDI' ?></th>
-                        <th><?= $isFr ? 'CDI Mi-temps' : 'Part-time CDI' ?></th>
+                        <th><?= $isFr ? 'Stage' : 'Internship' ?></th>
                         <th><?= $isFr ? 'Formation IA' : 'AI Training' ?></th>
                     </tr>
                 </thead>
@@ -201,9 +201,9 @@ $isFr = $lang === 'fr';
                     </tr>
                     <tr>
                         <td><?= $isFr ? 'Coût mensuel' : 'Monthly cost' ?></td>
-                        <td><?= $isFr ? '~12 000–16 000 € HT' : '~€12,000–16,000 excl. VAT' ?></td>
+                        <td><?= $isFr ? 'Possibilité de négocier' : 'Negotiable' ?></td>
                         <td><?= $isFr ? 'Salaire + charges' : 'Salary + employer costs' ?></td>
-                        <td><?= $isFr ? '50 % salaire + charges' : '50% salary + employer costs' ?></td>
+                        <td><?= $isFr ? 'Indemnité de stage négociée' : 'Negotiated internship allowance' ?></td>
                         <td><?= $isFr ? 'Forfait sur devis' : 'Fixed-price quote' ?></td>
                     </tr>
                     <tr>
@@ -215,9 +215,9 @@ $isFr = $lang === 'fr';
                     </tr>
                     <tr>
                         <td><?= $isFr ? 'Délai de démarrage' : 'Start timeline' ?></td>
-                        <td><?= $isFr ? '2-4 semaines' : '2-4 weeks' ?></td>
-                        <td><?= $isFr ? '1-3 mois (préavis)' : '1-3 months (notice)' ?></td>
-                        <td><?= $isFr ? '1-3 mois (préavis)' : '1-3 months (notice)' ?></td>
+                        <td><?= $isFr ? '1 semaine' : '1 week' ?></td>
+                        <td><?= $isFr ? '1 mois ' : '1 month' ?></td>
+                        <td><?= $isFr ? 'Immédiat' : 'Immediate' ?></td>
                         <td><?= $isFr ? '2-4 semaines' : '2-4 weeks' ?></td>
                     </tr>
                     <tr>
@@ -254,7 +254,7 @@ $isFr = $lang === 'fr';
                 ['Quelle est la différence légale entre prestataire et salarié ?',
                  'En tant que prestataire, je suis indépendante — vous êtes client, pas employeur. En CDI, vous devenez employeur (charges sociales, mutuelle, congés). Le choix dépend de votre besoin en termes d\'engagement et de dépendance économique.'],
                 ['Le TJM est-il négociable ?',
-                 'Le TJM varie entre 600 et 800 €/j selon la durée (plus long = plus prévisible), la complexité technique et la présence d\'IA dans le scope. Forfait possible à partir de 2 semaines, sans surprise sur la facture finale.'],
+                 'Le TJM varie entre 300 et 500 €/j selon la durée (plus long = plus prévisible), la complexité technique et la présence d\'IA dans le scope. Forfait possible à partir de 2 semaines, sans surprise sur la facture finale.'],
                 ['Quelles sont vos prétentions salariales en CDI ?',
                  'Disponibles sur demande après un premier échange pour cadrer le poste. Je ne communique pas de fourchette sans comprendre le périmètre réel, les avantages et la situation de l\'entreprise.'],
             ] : [
@@ -267,7 +267,7 @@ $isFr = $lang === 'fr';
                 ['What is the legal difference between a contractor and an employee?',
                  'As a freelance contractor, I am self-employed — you are a client, not an employer. Under a CDI, you become an employer with associated obligations (social charges, health insurance, paid leave).'],
                 ['Is the day rate negotiable?',
-                 'The day rate ranges from €600 to €800/day depending on mission length, technical complexity and whether AI is in scope. Fixed-price quotes available from 2 weeks of work, no surprise on the final invoice.'],
+                 'The day rate ranges from €300 to €500/day depending on mission length, technical complexity and whether AI is in scope. Fixed-price quotes available from 2 weeks of work, no surprise on the final invoice.'],
                 ['What are your salary expectations for a CDI?',
                  'Available on request after an initial call to frame the role. I do not communicate a salary range without first understanding the real scope, benefits and company situation.'],
             ];
@@ -290,8 +290,8 @@ $isFr = $lang === 'fr';
         <p class="eyebrow"><?= $isFr ? 'ZONES D\'INTERVENTION' : 'AREAS SERVED' ?></p>
         <h2 class="section__title">
             <?= $isFr
-                ? 'Basée à Vannes, je travaille en remote dans toute l\'Europe francophone.'
-                : 'Based in Vannes, I work remotely across French-speaking Europe.' ?>
+                ? 'Basée à Vannes mais aussi en Espagne et Suisse, je travaille en remote dans toute l\'Europe francophone.'
+                : 'Based in Vannes but also in Spain and Switzerland, I work remotely across French-speaking Europe.' ?>
         </h2>
         <p class="zones-section__intro">
             <?= $isFr
@@ -342,7 +342,7 @@ $isFr = $lang === 'fr';
 <!-- ─── CTA BAND ──────────────────────────────────────────── -->
 <section class="cta-band">
     <p class="eyebrow"><?= $isFr ? 'TRAVAILLONS ENSEMBLE' : 'LET\'S WORK TOGETHER' ?></p>
-    <h2 class="cta-band__title"><?= $isFr ? 'Discutons de votre projet.' : 'Let\'s talk about your project.' ?></h2>
+    <h2 class="cta-band__title"><?= $isFr ? 'Discutons de votre projet et de vos besoins.' : 'Let\'s talk about your project and needs.' ?></h2>
     <p class="cta-band__sub">
         <?= $isFr
             ? 'Premier échange de 20-30 min pour qualifier le besoin et choisir la bonne formule. Réponse sous 24h.'

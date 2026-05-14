@@ -42,13 +42,13 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   border-top: var(--rule-thin);
   border-left: var(--rule-thin);
   position: relative;
   z-index: 1;
 
-  @media (max-width: 840px) {
+  @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
 }

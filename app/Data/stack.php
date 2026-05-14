@@ -43,10 +43,11 @@ return [
         'foot_key'  => 'stack.card.tooling.foot',
         'side'      => 'left',
         'techs'     => [
-            ['name' => 'Git · GitHub · CI/CD',       'meta' => 'quotidien', 'lvl' => 90],
-            ['name' => 'Claude Code · Cursor (IA)',  'meta' => 'quotidien', 'lvl' => 85],
-            ['name' => 'Trello · cahier des charges', 'meta' => 'quotidien', 'lvl' => 90],
-            ['name' => 'Apache · VPS · o2switch',    'meta' => '2 ans',     'lvl' => 70],
+            ['name' => 'Git · GitHub · CI/CD',      'meta' => 'quotidien', 'lvl' => 90],
+            ['name' => 'Claude Code · Cursor (IA)', 'meta' => 'quotidien', 'lvl' => 85],
+            ['name' => 'Trello · Notion',           'meta' => 'quotidien', 'lvl' => 90],
+            ['name' => 'Apache · VPS · o2switch',   'meta' => '2 ans',     'lvl' => 70],
+            ['name' => 'Tests · monitoring · logs', 'meta' => 'en cours',  'lvl' => 60],
         ],
     ],
     [

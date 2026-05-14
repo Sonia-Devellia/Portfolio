@@ -254,7 +254,7 @@ return [
     'stack.card.frontend.foot'   => '<strong>Seen in production at:</strong> Salon Hélia, Pousse, this portfolio.',
     'stack.card.tooling.title'   => 'Ship <em>cleanly</em>, maintain <em>long-term</em>.',
     'stack.card.tooling.sub'     => 'Tooling that makes the code visible to others and to future-me. Disciplined Git, reproducible deployments, minimal observability.',
-    'stack.card.tooling.foot'    => '<strong>Stance:</strong> AI is a tool, not a substitute. I code and debug before it does.',
+    'stack.card.tooling.foot'    => 'Spec doc, planning and follow-up included — not optional.',
     'stack.card.integration.title' => 'Connect, automate, <em>ship fast.</em>',
     'stack.card.integration.sub'   => 'CMS, e-commerce and no-code automation when it\'s the right answer. Shopify, WordPress, Webflow or an AI agent — whatever creates the most value.',
     'stack.card.integration.foot'  => 'The right tool for the right problem — not the most technical, the most effective.',
