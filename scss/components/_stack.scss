@@ -1,6 +1,6 @@
 @use '../abstracts/mixins' as *;
 
-// ─── Section Stack technique — fiche 3 colonnes éditoriales ──────────────────
+// ─── Section Stack technique — slider éditorial ───────────────────────────────
 
 .stack {
   background: var(--bg-soft);
@@ -13,7 +13,7 @@
 
 .stack__head {
   max-width: var(--max-w);
-  margin: 0 auto 64px;
+  margin: 0 auto 48px;
   position: relative;
   z-index: 1;
 
@@ -31,35 +31,96 @@
     color: var(--text);
   }
 
-  @include mobile { margin-bottom: 40px; }
+  @include mobile { margin-bottom: 32px; }
 }
 
-// ─── Grille 3 colonnes — style fiche de spec ─────────────────────────────────
+// ─── Navigation onglets numérotés ────────────────────────────────────────────
+
+.stack__nav {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  border: var(--rule-thin);
+  border-bottom: none;
+  position: relative;
+  z-index: 1;
+}
+
+.stack__nav-btn {
+  flex: 1;
+  padding: 14px 20px;
+  background: none;
+  border: none;
+  border-right: var(--rule-thin);
+  text-align: left;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: color .15s, background .15s;
+
+  &:last-child { border-right: none; }
+
+  &.is-active {
+    color: var(--text);
+    background: var(--bg-subtle);
+  }
+
+  &:hover:not(.is-active) { color: var(--text-2); }
+
+  @include mobile { padding: 10px 14px; }
+}
+
+.stack__nav-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  color: inherit;
+  margin-bottom: 4px;
+
+  @include mobile { font-size: 22px; margin-bottom: 0; }
+}
+
+.stack__nav-label {
+  display: block;
+  font-family: ui-monospace, 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: inherit;
+
+  @include mobile { display: none; }
+}
+
+// ─── Slider — une card visible à la fois ─────────────────────────────────────
 
 .stack__grid {
   max-width: var(--max-w);
   margin: 0 auto;
   list-style: none;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: var(--rule-thin);
-  border-left: var(--rule-thin);
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border: var(--rule-thin);
   position: relative;
   z-index: 1;
 
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-  }
+  &::-webkit-scrollbar { display: none; }
 }
 
 .stack__col {
-  border-right: var(--rule-thin);
-  border-bottom: var(--rule-thin);
-  padding: 32px 28px;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  padding: 40px 36px;
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  @include mobile { padding: 28px 20px; }
 }
 
 // Numéro éditorial en tête de colonne
@@ -87,7 +148,7 @@
   color: var(--text-2);
 }
 
-// Titre de colonne — DM Sans (pas serif : voir tâche 6)
+// Titre de colonne
 .stack__col-title {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -144,7 +205,7 @@
   flex-shrink: 0;
 }
 
-// Barre de niveau — 2px, pas de couleur accent
+// Barre de niveau — 2px, animée à l'entrée du slide
 .stack__tech-bar {
   width: 100%;
   height: 2px;
@@ -160,8 +221,12 @@
     top: 0;
     bottom: 0;
     background: var(--text-2);
+    width: 0;
+    transition: width 600ms ease;
+  }
+
+  &.is-filled::before {
     width: var(--lvl, 60%);
-    transition: width 600ms var(--ease-edit);
   }
 }
 

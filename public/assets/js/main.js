@@ -18,12 +18,6 @@
     localStorage.setItem('theme', next);
   });
 
-  // ─── NAV SCROLL ────────────────────────────────────────
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav?.classList.toggle('nav--scrolled', window.scrollY > 20);
-  }, { passive: true });
-
   // ─── CONFIRM DIALOGS ───────────────────────────────────
   document.querySelectorAll('[data-confirm]').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -83,7 +77,7 @@
     });
 
     // État 'image' — images projet
-    const imageSelectors = '.frame-macbook, .home-project-card img, .case-study img, .project-card__thumb';
+    const imageSelectors = '.frame-macbook, .home-project-card img, .case-study img';
     document.querySelectorAll(imageSelectors).forEach(el => {
       el.addEventListener('mouseenter', () => setRingState('image'));
       el.addEventListener('mouseleave', () => setRingState('rest'));
@@ -119,17 +113,50 @@
     cursorDot.style.display = cursorRing.style.display = 'none';
   }
 
-  // ─── PROJECTS — clickable tabs ─────────────────────────
-  const slides  = document.querySelectorAll('.mac-slide');
-  const details = document.querySelectorAll('.project-detail');
-  if (slides.length) {
-    const show = i => {
-      slides.forEach((s, j)  => s.classList.toggle('mac-slide--active',      i === j));
-      details.forEach((d, j) => d.classList.toggle('project-detail--active', i === j));
+  // ─── STACK SLIDER — navigation onglets ────────────────
+  const stackGrid = document.querySelector('.stack__grid');
+  if (stackGrid) {
+    const cols = [...stackGrid.children];
+
+    // Construire la nav numérotée
+    const nav = document.createElement('div');
+    nav.className = 'stack__nav';
+    nav.setAttribute('aria-label', html.lang === 'fr' ? 'Navigation stack technique' : 'Technical stack navigation');
+
+    cols.forEach((col, i) => {
+      const num   = col.querySelector('.stack__col-num')?.textContent.trim() ?? String(i + 1).padStart(2, '0');
+      const label = col.querySelector('.stack__col-role')?.textContent.trim() ?? '';
+      const btn   = document.createElement('button');
+      btn.className = 'stack__nav-btn' + (i === 0 ? ' is-active' : '');
+      btn.setAttribute('aria-label', label || num);
+      btn.innerHTML = `<span class="stack__nav-num">${num}</span><span class="stack__nav-label">${label}</span>`;
+      btn.addEventListener('click', () => {
+        stackGrid.scrollTo({ left: cols[i].offsetLeft, behavior: 'smooth' });
+      });
+      nav.appendChild(btn);
+    });
+
+    stackGrid.before(nav);
+
+    const navBtns = [...nav.children];
+
+    const fillBars = col => {
+      col.querySelectorAll('.stack__tech-bar').forEach(bar => bar.classList.add('is-filled'));
     };
-    show(0);
-    slides.forEach((s, i)  => s.addEventListener('click',  () => show(i)));
-    details.forEach((d, i) => d.addEventListener('click',  () => show(i)));
+    const resetBars = col => {
+      col.querySelectorAll('.stack__tech-bar').forEach(bar => bar.classList.remove('is-filled'));
+    };
+
+    // Animer les barres de la 1re card au chargement
+    fillBars(cols[0]);
+
+    stackGrid.addEventListener('scroll', () => {
+      const mid = stackGrid.scrollLeft + stackGrid.clientWidth / 2;
+      let active = 0;
+      cols.forEach((col, i) => { if (col.offsetLeft <= mid) active = i; });
+      navBtns.forEach((btn, i) => btn.classList.toggle('is-active', i === active));
+      cols.forEach((col, i) => (i === active ? fillBars : resetBars)(col));
+    }, { passive: true });
   }
 
   // ─── FOOTER LOCAL TIME ─────────────────────────────────
