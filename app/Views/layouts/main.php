@@ -125,7 +125,9 @@ $jsonLd = static fn(array $data): string => json_encode(
 <a href="#main" class="skip-link"><?= $isFr ? 'Aller au contenu principal' : 'Skip to main content' ?></a>
 
 <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
-<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true">
+    <span class="cursor-ring__label" aria-hidden="true"></span>
+</div>
 
 <header class="nav" id="nav">
     <div class="nav__inner">
