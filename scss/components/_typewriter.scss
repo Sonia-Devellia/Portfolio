@@ -1,19 +1,29 @@
-// ─── Typewriter — curseur clignotant pendant la frappe du H1 hero ────────────
+// ─── Typewriter — caret indigo + is-typing state ─────────────────────────────
 
 [data-typewriter] {
   min-height: 1em; // stabilise la hauteur pendant la frappe
+}
 
-  &.is-typing::after {
-    content: '|';
-    color: var(--accent);
-    margin-left: 2px;
-    animation: tw-blink 1s step-end infinite;
-    font-style: normal;
-    font-weight: 300;
+// Caret injecté par JS dans le H1 pendant la frappe
+.tw-caret {
+  display: inline-block;
+  color: var(--accent);
+  margin-left: 2px;
+  font-style: normal;
+  font-weight: 300;
+  animation: tw-blink 300ms ease-in-out 2;
+  transition: opacity 600ms;
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
   }
 }
 
+.tw-caret.is-done {
+  opacity: 0;
+}
+
 @keyframes tw-blink {
-  0%, 50%   { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }

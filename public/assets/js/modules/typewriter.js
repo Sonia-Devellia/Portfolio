@@ -1,7 +1,6 @@
 // ─── Typewriter — H1[data-typewriter] sur la home uniquement ─────────────────
-// Lit le contenu, ré-écrit caractère à caractère avec curseur indigo.
-// Préserve les balises <em> inline pendant la frappe.
-// Si ce script ne se charge pas, le H1 reste visible normalement.
+// Geste de marque : frappe le H1 en 1.2s max, caret indigo, scroll-skip.
+// Si prefers-reduced-motion, rendu immédiat sans animation.
 
 (function () {
   var el = document.querySelector('[data-typewriter]');
@@ -35,15 +34,51 @@
 
   el.setAttribute('aria-label', full);
   el.setAttribute('aria-live', 'off');
+
+  // Caret element
+  var caret = document.createElement('span');
+  caret.className = 'tw-caret';
+  caret.setAttribute('aria-hidden', 'true');
+  caret.textContent = '|';
+
   el.innerHTML = '';
   el.classList.add('is-typing');
+  el.appendChild(caret);
 
-  var idx      = 0;
-  var liveEm   = null;
+  var idx    = 0;
+  var liveEm = null;
+  var done   = false;
+
+  function renderFull() {
+    if (done) return;
+    done = true;
+    el.innerHTML = '';
+    // Reconstruct with proper segments
+    segments.forEach(function (seg) {
+      if (seg.tag === 'em') {
+        var em = document.createElement('em');
+        em.textContent = seg.text;
+        el.appendChild(em);
+      } else {
+        el.appendChild(document.createTextNode(seg.text));
+      }
+    });
+    el.classList.remove('is-typing');
+  }
+
+  // Skip on scroll within the first 600ms
+  window.addEventListener('scroll', function () {
+    renderFull();
+  }, { once: true, passive: true });
 
   function type() {
+    if (done) return;
     if (idx >= ops.length) {
-      setTimeout(function () { el.classList.remove('is-typing'); }, 600);
+      done = true;
+      el.classList.remove('is-typing');
+      // Caret blinks twice (600ms) then fades out
+      el.appendChild(caret);
+      setTimeout(function () { caret.classList.add('is-done'); }, 600);
       return;
     }
 
@@ -52,26 +87,26 @@
     if (op.tag === 'em') {
       if (!liveEm) {
         liveEm = document.createElement('em');
-        el.appendChild(liveEm);
+        // Insert before caret
+        el.insertBefore(liveEm, caret);
       }
       liveEm.textContent += op.char;
     } else {
       liveEm = null;
-      var last = el.lastChild;
-      if (last && last.nodeType === Node.TEXT_NODE) {
-        last.textContent += op.char;
+      var prev = caret.previousSibling;
+      if (prev && prev.nodeType === Node.TEXT_NODE) {
+        prev.textContent += op.char;
       } else {
-        el.appendChild(document.createTextNode(op.char));
+        el.insertBefore(document.createTextNode(op.char), caret);
       }
     }
 
     var c     = op.char;
-    var delay = 72 + (Math.random() * 28 - 14);
+    var delay = 28 + (Math.random() * 8 - 4);
     if (c === ' ') delay = 1;
-    if ('.,;:—!?'.indexOf(c) !== -1) delay += 240;
     idx++;
     setTimeout(type, delay);
   }
 
-  setTimeout(type, 350);
+  setTimeout(type, 120);
 }());
